@@ -10,4 +10,5 @@ public partial class Role
     public string? RoleName { get; set; }
 
     public virtual ICollection<EmployeeProject> EmployeeProjects { get; } = new List<EmployeeProject>();
+    public virtual ICollection<EmployeePoc> EmployeePocs { get; } = new List<EmployeePoc>();
 }

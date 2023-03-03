@@ -19,5 +19,8 @@ public partial class EmployeePoc
 
     public string? ReportingTo { get; set; }
 
+    public int RoleId { get; set; }
+
     public virtual Poc Poc { get; set; } = null!;
+    public virtual Role Role { get; set; } = null!;
 }

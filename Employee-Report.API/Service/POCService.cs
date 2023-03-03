@@ -22,15 +22,17 @@ namespace Employee_Report.API.Service
             {
                 var result = (from ep in _dBContext.EmployeePocs
                               join p in _dBContext.Pocs on ep.Pocid equals p.Id
-                              select new {p.Name, ep.BenchId, ep.StartDate, ep.EndDate, ep.ReportingTo }).ToList();
+                              join r in _dBContext.Roles on ep.RoleId equals r.Id
+                              select new {p.Name, r.RoleName, ep.StartDate, ep.EndDate, ep.ReportingTo }).ToList();
 
                 if (result != null)
                 {
                     foreach (var emp in result)
                     {
                         empPOCDetails.Add( new EmployeePOCEntity { 
-                            BnechId = emp.BenchId,
+                            
                             Name= emp.Name,
+                            Role = emp.RoleName,
                             StartDate= emp.StartDate,
                             EndDate= emp.EndDate,
                             ReportingTo = emp.ReportingTo
