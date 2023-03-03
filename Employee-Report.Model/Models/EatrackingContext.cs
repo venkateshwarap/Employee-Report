@@ -14,20 +14,17 @@ public partial class EatrackingContext : DbContext
         : base(options)
     {
     }
-
     public virtual DbSet<EmployeePoc> EmployeePocs { get; set; }
-
     public virtual DbSet<EmployeeProject> EmployeeProjects { get; set; }
-
     public virtual DbSet<Poc> Pocs { get; set; }
-
     public virtual DbSet<Project> Projects { get; set; }
-
     public virtual DbSet<Role> Roles { get; set; }
+    public virtual DbSet<Skills> Skills { get; set; }
+    public virtual DbSet<Interview> Interviews { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=MLI-LAP-081\\MSSQLSERVER01;Database=EATracking;Integrated Security=True;TrustServerCertificate=True    ;");
+        => optionsBuilder.UseSqlServer("Server=MLI00741\\RAJEEV_SQLDEV;Database=EATracking;Integrated Security=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -99,6 +96,21 @@ public partial class EatrackingContext : DbContext
             entity.Property(e => e.RoleName)
                 .HasMaxLength(32)
                 .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Interview>(entity =>
+        {
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Date).HasColumnType("datetime");
+            entity.Property(e => e.Name).HasMaxLength(100);
+            entity.Property(e => e.ReportingTo).HasMaxLength(100);
+            entity.Property(e => e.Role).HasMaxLength(50);
+            entity.Property(e => e.Status).HasMaxLength(10);
+        });
+
+        modelBuilder.Entity<Skills>(entity =>
+        {
+            entity.HasNoKey();
         });
 
         OnModelCreatingPartial(modelBuilder);
