@@ -7,4 +7,10 @@
     <RootNamespace>Employee_Report</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.Blazor.Charts" Version="20.4.0.52" />
+    <PackageReference Include="Syncfusion.Blazor.Grid" Version="20.4.0.52" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="20.4.0.52" />
+  </ItemGroup>
+
 </Project>
