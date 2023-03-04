@@ -66,3 +66,35 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+.btnAdd {
+    height: 40px;
+    width: 150px;
+    font-weight: 900;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+
+#sfBtn {
+    background-color: dodgerblue;
+    margin-left: 79%;
+}
+
+#divHeader {
+    display: flex;
+    margin-bottom: 1%;
+}
+
+.custom-size {
+    height: 38px !important;
+}
+
+.e-outline-date {
+    font-size: 11px !important;
+}

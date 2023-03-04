@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee-Report", "Employee-Report\Employee-Report.csproj", "{5D46E07B-8C15-4965-A045-6FEB2A54F50C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employee-Report", "Employee-Report\Employee-Report.csproj", "{5D46E07B-8C15-4965-A045-6FEB2A54F50C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee-Report.API", "Employee-Report.API\Employee-Report.API.csproj", "{23F28BD9-2E9E-40DE-BF41-0C2644E7C518}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employee-Report.API", "Employee-Report.API\Employee-Report.API.csproj", "{23F28BD9-2E9E-40DE-BF41-0C2644E7C518}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee-Report.Model", "Employee-Report.Model\Employee-Report.Model.csproj", "{1E81DBE1-B9C7-4F12-8304-CDEBC23D3739}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employee-Report.Model", "Employee-Report.Model\Employee-Report.Model.csproj", "{1E81DBE1-B9C7-4F12-8304-CDEBC23D3739}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

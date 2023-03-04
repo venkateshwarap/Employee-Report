@@ -1,0 +1,73 @@
+﻿@page "/bench"
+@using Employee_Report.Model.Models
+@inject NavigationManager navManager;
+
+@if (benchdetails == null)
+{
+    <p><em>Loading... Please wait..</em></p>
+}
+else
+{
+    <div id="divHeader">
+        <h3>EA Council</h3>
+        @if(IsHidden)
+        {
+            <SfButton id="sfBtn" OnClick="AddClass"><i class="fa-solid fa-minus"></i> &nbsp;Add Entry</SfButton>
+        }
+        else
+        {
+        <SfButton id="sfBtn" OnClick="AddClass"><i class="fa-solid fa-plus"></i> &nbsp;Add Entry</SfButton>
+        }
+    </div>
+    <div class="@(IsHidden ? "show" : "hidden")">
+    <EditForm Model="@entryExit" OnValidSubmit="SaveEntry">
+    <DataAnnotationsValidator />
+        <div class="form-control">
+            <div class="row">
+                    <div class="col-md-6">
+                        <SfTextBox CssClass="e-outline custom-size" Placeholder="Employee Id" FloatLabelType="@FloatLabelType.Auto" Type="InputType.Text" class="form-control"
+                        @bind-Value="entryExit.EmpId" />
+                        <ValidationMessage For="@(() => entryExit.EmpId)" />
+                </div>
+                    <div class="col-md-6">
+                        <SfTextBox CssClass="e-outline custom-size" Placeholder="ReportingTo" FloatLabelType="@FloatLabelType.Auto" Type="InputType.Text" class="form-control" @bind-Value="entryExit.ReportingTo" />
+                    <ValidationMessage For="@(() => entryExit.ReportingTo)" />
+                </div>
+            </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                    <SfTextBox CssClass="e-outline custom-size" Placeholder="Role" FloatLabelType="@FloatLabelType.Auto" Type="InputType.Text" class="form-control" @bind-Value="entryExit.Role" />
+                    <ValidationMessage For="@(() => entryExit.Role)" />
+                </div>
+                <div class="col-md-6">
+                        <label Class="e-outline-date">StartDate</label>
+                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                               @bind-Value="entryExit.StartDate" />
+                        <ValidationMessage For="@(() => entryExit.StartDate)" />
+                </div>
+                </div>
+                <div class="row mt-2">
+                <div class="col-md-6">
+                        <label Class="e-outline-date">EndDate</label>
+                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                               @bind-Value="entryExit.EndDate" />
+                        <ValidationMessage For="@(() => entryExit.EndDate)" />
+                </div>
+            </div>
+            <div style="margin-top:10px;margin-left:46%;">
+                <div class="col-md-3">
+                    <SfButton @onclick="@AddClass" type="submit" class="btnAdd" style="background-color: midnightblue; color: white;" Content="Add"></SfButton>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+</EditForm>
+    </div>
+    <SfGrid DataSource="@benchdetails">
+        <GridColumns>
+            <GridColumn Field="@nameof(EACouncilEntryExit.EmpId)" HeaderText="EmpID" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+            <GridColumn Field="@nameof(EACouncilEntryExit.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+            <GridColumn Field="@nameof(EACouncilEntryExit.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+        </GridColumns>
+    </SfGrid>
+}
