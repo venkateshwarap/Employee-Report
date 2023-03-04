@@ -22,9 +22,11 @@ public partial class EatrackingContext : DbContext
     public virtual DbSet<Skills> Skills { get; set; }
     public virtual DbSet<Interview> Interviews { get; set; }
 
+    public virtual DbSet<EACouncilEntryExit> EACouncilEntryExit { get; set; }
+    public virtual DbSet<Certifications> Certifications { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=MLI00741\\RAJEEV_SQLDEV;Database=EATracking;Integrated Security=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Data Source=MLI-LAP-0346\\SQLEXPRESS;Initial Catalog=ETReport;Integrated Security=True;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -112,7 +114,27 @@ public partial class EatrackingContext : DbContext
         {
             entity.HasNoKey();
         });
+        modelBuilder.Entity<EACouncilEntryExit>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__EACouncilEntryExit__3214EC27CD2108DA");
+            entity.Property(e => e.Id).HasColumnName("Id");
+            entity.Property(e => e.EmpId).HasColumnName("EmpId");
+            entity.Property(e => e.EndDate).HasColumnType("datetime");
+            entity.Property(e => e.StartDate).HasColumnType("datetime");
+            entity.Property(e => e.Role).HasColumnName("Role");
+            entity.Property(e => e.ReportingTo).HasColumnName("ReportingTo");
+        });
 
+        modelBuilder.Entity<Certifications>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Certifications__3214EC27CD2108DA");
+            entity.Property(e => e.Id).HasColumnName("Id");
+            entity.Property(e => e.EmpId).HasColumnName("EmpId");
+            entity.Property(e => e.ValidFrom).HasColumnType("datetime");
+            entity.Property(e => e.ValidTill).HasColumnType("datetime");
+            entity.Property(e => e.EACId).HasColumnName("EACId");
+            entity.Property(e => e.Name).HasColumnName("Name");
+        });
         OnModelCreatingPartial(modelBuilder);
     }
 

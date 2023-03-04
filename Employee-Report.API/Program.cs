@@ -17,6 +17,8 @@ builder.Services.AddTransient<IPOCService, POCService>();
 builder.Services.AddTransient<IProjectService, ProjectService>();
 builder.Services.AddTransient<ISkillsService, SkillsService>();
 builder.Services.AddTransient<IInterviewService, InterviewService>();
+builder.Services.AddScoped<IEACouncilService, EACouncilService>();
+builder.Services.AddScoped<ICertificationService, CertificationService>();
 
 var app = builder.Build();
 
