@@ -1,11 +1,12 @@
 ﻿using Employee_Report.Model.Models;
 using Employee_Report.Model;
+using Employee.DataModel.Models;
 
 namespace Employee_Report.API.IService
 {
     public interface IInterviewService
     {
-        Task<List<Interview>> GetInterviewDeatils();
-        ResponseModel AddInterviews(Interview interview);
+        Task<Response> GetInterviews();
+        Task<Response> AddInterview(Interview interview);
     }
 }

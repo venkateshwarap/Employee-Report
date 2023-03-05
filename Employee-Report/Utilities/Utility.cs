@@ -17,7 +17,7 @@ namespace EmployeeDetails.Api.Utilities
 
             var jsonSerializerSettings = new JsonSerializerSettings();
             jsonSerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
-            var response =  JsonConvert.DeserializeObject<T>(value!.ToString()!, jsonSerializerSettings)!;
+            var response = JsonConvert.DeserializeObject<T>(value!.ToString()!, jsonSerializerSettings)!;
             return response;
         }
         public static List<T> Deserialize<T>(this string SerializedJSONString)
@@ -33,9 +33,9 @@ namespace EmployeeDetails.Api.Utilities
         {
             #region geting the response and DeserializeObject
             Response response = new Response();
-            HttpResponseMessage apiresponse = await client.GetAsync(config);
-            if(apiresponse.IsSuccessStatusCode)
-            response = await apiresponse.Content.ReadAsAsync<Response>();
+            HttpResponseMessage apiResponse = await client.GetAsync(config);
+            if (apiResponse.IsSuccessStatusCode)
+                response = await apiResponse.Content.ReadAsAsync<Response>();
             return response;
             #endregion
         }
@@ -80,13 +80,13 @@ namespace EmployeeDetails.Api.Utilities
         #endregion
 
         #region Put Request by int Id
-        public static async Task<Response> HttpClientPutAsync(string config, HttpClient client, object requestData,int id)
+        public static async Task<Response> HttpClientPutAsync(string config, HttpClient client, object requestData, int id)
         {
             #region geting the response
             Response response = new Response();
-            HttpResponseMessage apiresponse = await client.PutAsJsonAsync(config+id,requestData);
-            if(apiresponse.IsSuccessStatusCode)
-            response = await apiresponse.Content.ReadAsAsync<Response>();
+            HttpResponseMessage apiresponse = await client.PutAsJsonAsync(config + id, requestData);
+            if (apiresponse.IsSuccessStatusCode)
+                response = await apiresponse.Content.ReadAsAsync<Response>();
             return response;
             #endregion
         }
@@ -106,14 +106,14 @@ namespace EmployeeDetails.Api.Utilities
         #endregion
 
         #region Delete Request
-        public static async Task<Response> HttpClientDeleteAsync(string config, HttpClient client,int id)
+        public static async Task<Response> HttpClientDeleteAsync(string config, HttpClient client, int id)
         {
             #region geting the response
             HttpResponseMessage apiresponse;
             Response response = new Response();
             if (id > 0)
             {
-                 apiresponse = await client.DeleteAsync(config + id);
+                apiresponse = await client.DeleteAsync(config + id);
             }
             else
             {

@@ -85,6 +85,10 @@ a, .btn-link {
     background-color: dodgerblue;
     margin-left: 79%;
 }
+#sfBtnAddInterview {
+    background-color: dodgerblue;
+    margin-left: 78.5%;
+}
 
 #divHeader {
     display: flex;

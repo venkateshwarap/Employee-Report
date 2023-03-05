@@ -16,46 +16,36 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetInterviews")]
-        public async Task<IActionResult> GetInterviews()
+        [Route("GetAllInterviews")]
+        public async Task<IActionResult> GetAllInterviews()
         {
             try
             {
-                var interview = await _interviewService.GetInterviewDeatils();
-                if (interview == null)
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    return Ok(interview);
-                }
+                var result = await _interviewService.GetInterviews();
+                if (result.status)
+                    return Ok(result);
+                return BadRequest(result);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest(ex.Message);
+                throw;
             }
         }
 
         [HttpPost]
         [Route("AddInterview")]
-        public IActionResult AddInterview([FromBody] Interview interview)
+        public async Task<IActionResult> AddInterview(Interview interview)
         {
             try
             {
-                var newInterview = _interviewService.AddInterviews(interview);
-                if (newInterview == null)
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    return Ok(newInterview);
-                }
+                var result = await _interviewService.AddInterview(interview);
+                if (result.status)
+                    return Ok(result);
+                return BadRequest(result);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest(ex.Message);
+                throw;
             }
         }
     }
