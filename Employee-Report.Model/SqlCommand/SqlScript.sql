@@ -5,6 +5,7 @@ CREATE TABLE LEARNINGS
 (ID INT PRIMARY KEY IDENTITY(1,1),
 SkillID int,
 Name VARCHAR(30),
+HoursOfLearning int,
 Path VARCHAR(500),
 StartDate datetime,
 EndDate datetime )
