@@ -97,6 +97,10 @@ a, .btn-link {
     background-color: green;
     margin-left: 70%;
 }
+#sfBtnAddRole{
+    background-color: green;
+    margin-left:83%;
+}
 
 #divHeader {
     display: flex;
@@ -115,4 +119,6 @@ a, .btn-link {
     margin-left: 44%;
     margin-top: 1%;
 }
+
+
 

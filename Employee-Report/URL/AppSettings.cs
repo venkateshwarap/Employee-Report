@@ -18,6 +18,11 @@
         public const string AddProject = "https://localhost:7178/api/Project/AddEmployeeProject";
         #endregion
 
+        #region Role
+        public const string GetRole = "https://localhost:7178/api/Role/GetRole";
+        public const string AddRole = "https://localhost:7178/api/Role/AddRole";
+        #endregion
+
 
 
         public static string GetEmployeeURl = "https://localhost:7024/api/Employee/GetAllEmployee";

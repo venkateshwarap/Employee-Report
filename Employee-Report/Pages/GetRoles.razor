@@ -1,0 +1,49 @@
+﻿@page "/role"
+@inject NavigationManager navManager
+@using Employee_Report.Model.Models;
+@using Syncfusion.Blazor.Grids
+@if (role == null)
+{
+    <p><em>Loading your data... Please wait..</em></p>
+}
+else
+{
+    <div id="divHeader">
+        <h3 style="text-align:center">Rolec</h3>
+        @if (!IsHidden)
+        {
+            <SfButton id="sfBtnAddRole" OnClick="AddClass">Add Role</SfButton>
+        }
+    </div>
+
+    <div class="@(IsHidden ? "show" : "hidden")">
+        <EditForm Model="@roleModel" OnValidSubmit="addRole">
+            <DataAnnotationsValidator />
+            <div class="form-control">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>RoleName</label>
+                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="roleModel.RoleName" />
+                        <ValidationMessage For="@(() => roleModel.RoleName)" />
+                    </div>
+                </div>
+                <div id="SfBtns">
+                    <div class="col-md-3">
+                        <SfButton @onclick="@AddClass" type="submit" class="btnAdd" style="background-color: midnightblue; color: white;" Content="Add"></SfButton>
+                        @*<SfButton @onclick="@AddClass" type="submit" class="btnCancel" Content="Cancel"></SfButton>*@
+                    </div>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+
+    @if (!IsHidden)
+    {
+    <SfGrid DataSource="@role">
+        <GridColumns>
+                <GridColumn Field=@nameof(Role.RoleName) HeaderText="Role" TextAlign="TextAlign.Center">
+            </GridColumn>
+        </GridColumns>
+    </SfGrid>
+    }
+}

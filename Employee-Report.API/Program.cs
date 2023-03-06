@@ -19,10 +19,11 @@ builder.Services.AddTransient<ISkillsService, SkillsService>();
 builder.Services.AddTransient<IInterviewService, InterviewService>();
 builder.Services.AddScoped<IEACouncilService, EACouncilService>();
 builder.Services.AddScoped<ICertificationService, CertificationService>();
-builder.Services.AddScoped<ILearningService, LearningService>();
-builder.Services.AddScoped<IEmployeeLearningService, EmployeeLearningService>();
-builder.Services.AddScoped<IEmployeeTrainingService, EmployeeTrainingService>();
-builder.Services.AddScoped<ITrainingService, TrainingService>();
+//builder.Services.AddScoped<ILearningService, LearningService>();
+//builder.Services.AddScoped<IEmployeeLearningService, EmployeeLearningService>();
+//builder.Services.AddScoped<IEmployeeTrainingService, EmployeeTrainingService>();
+//builder.Services.AddScoped<ITrainingService, TrainingService>();
+builder.Services.AddTransient<IRoleService, RoleService>();
 
 var app = builder.Build();
 
