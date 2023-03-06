@@ -1,16 +1,22 @@
-﻿@*@page "/EmployeeReport"
+﻿@page "/EmployeeReport"
+@using EmployeeDetails.Api.Utilities;
+@using Employee_Report.Model.Models;
+@using Employee_Report.Services;
+
 
 <style>
     * {
         box-sizing: border-box;
     }
+
     h4 {
         text-align: center;
     }
-    th
-    {
+
+    th {
         color: #7b7d81 !important;
     }
+
     .footer {
         position: fixed;
         left: 0;
@@ -20,117 +26,155 @@
         color: white;
         text-align: center;
     }
+
     .column {
         float: left;
         width: 50%;
         padding: 10px;
-        height: 400px;
+        height: 420px;
     }
-    .dividinggap{
-        display:inline-flex;
-        flex-direction:row;
-        justify-content:space-between;
+
+    .dividinggap {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
+
     .header-wrapper {
         display: flex;
         justify-content: space-between
     }
+
     .table-t, .table-l {
         width: 48%;
     }
+
     .row:after {
         content: "";
         display: table;
         clear: both;
     }
+
     h2 {
-        text-align: center;
         color: navy;
     }
-    body{margin-top:20px;}
-.card-style1 {
-    box-shadow: 0px 0px 10px 0px rgb(89 75 128 / 9%);
-}
-.border-0 {
-    border: 0!important;
-}
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: 0.25rem;
-}
-section {
-    padding: 120px 0;
-    overflow: hidden;
-    background: #fff;
-}
-.mb-2-3, .my-2-3 {
-    margin-bottom: 2.3rem;
-}
-.section-title {
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    position: relative;
-    display: inline-block;
-}
-.text-primary {
-    color: #ceaa4d !important;
-}
-.text-secondary {
-    color: #15395A !important;
-}
-.font-weight-600 {
-    font-weight: 600;
-}
-.display-26 {
-    font-size: 1.3rem;
-}
-.p-1-9 {
-    padding: 1.9rem;
-        text-align:center;
-}
-.bg-secondary {
-    background: #15395A !important;
-}
-.pe-1-9, .px-1-9 {
-    padding-right: 1.9rem;
-}
-.ps-1-9, .px-1-9 {
-    padding-left: 1.9rem;
-}
-.pb-1-9, .py-1-9 {
-    padding-bottom: 1.9rem;
-}
-.pt-1-9, .py-1-9 {
-    padding-top: 1.9rem;
-}
-.mb-1-9, .my-1-9 {
-    margin-bottom: 1.9rem;
-}
-.rounded {
-    border-radius: 0.25rem!important;
-}
+
+    body {
+        margin-top: 20px;
+    }
+
+    .card-style1 {
+        box-shadow: 0px 0px 10px 0px rgb(89 75 128 / 9%);
+    }
+
+    .border-0 {
+        border: 0 !important;
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: 0.25rem;
+    }
+
+    section {
+        padding: 120px 0;
+        overflow: hidden;
+        background: #fff;
+    }
+
+    .mb-2-3, .my-2-3 {
+        margin-bottom: 2.3rem;
+    }
+
+    .section-title {
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .text-primary {
+        color: #ceaa4d !important;
+    }
+
+    .text-secondary {
+        color: #15395A !important;
+    }
+
+    .font-weight-600 {
+        font-weight: 600;
+    }
+
+    .display-26 {
+        font-size: 1.3rem;
+    }
+
+    .p-1-9 {
+        padding: 1.9rem;
+        text-align: center;
+    }
+
+    .bg-secondary {
+        background: #15395A !important;
+    }
+
+    .pe-1-9, .px-1-9 {
+        padding-right: 1.9rem;
+    }
+
+    .ps-1-9, .px-1-9 {
+        padding-left: 1.9rem;
+    }
+
+    .pb-1-9, .py-1-9 {
+        padding-bottom: 1.9rem;
+    }
+
+    .pt-1-9, .py-1-9 {
+        padding-top: 1.9rem;
+    }
+
+    .mb-1-9, .my-1-9 {
+        margin-bottom: 1.9rem;
+    }
+
+    .rounded {
+        border-radius: 0.25rem !important;
+    }
+
 </style>
-<div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-    <h3 class="h2 text-white mb-0" style="text-align:center">Motivity Employee Report</h3>
+<div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded text-center">
+    <h3 class="h2 text-white mb-0 rounded text-center">Motivity Labs Employee Report</h3>
 </div>
 <div style="float: left; flex-direction: column;">
     <div class="row">
         <div class="column" style="float: left;">
-           
             <ul class="list-unstyled mb-1-9">
                 <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Name:</span> Praful Kumar Reddy Duddela</li>
                 <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">MLID:</span>MLI748</li>
-                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">SKills:</span>Dotnet Core,.NetMVC, C#,...</li>
+                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">SKills:</span>Dotnet Core,.NetMVC, C#,Asp.Net WebForms</li>
             </ul>
+            <div class="header-wrapper">
+                <h4 style="width:48% ; color: navy;text-align: left;">Learnings</h4>
+            </div>
+            <SfGrid DataSource="@learning" AllowPaging="false">
+                <GridColumns>
+                    <GridColumn Field="Name" HeaderText="Name" Width="20%"></GridColumn>
+                    <GridColumn Field="Path" HeaderText="Path" Width="40%"></GridColumn>
+                    <GridColumn Field="HoursOfLearning" HeaderText="Learning Hours" Width="20%"></GridColumn>
+                    <GridColumn Field="StartDate" HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"> </GridColumn>
+                    <GridColumn Field="EndDate" HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
+                </GridColumns>
+            </SfGrid>
         </div>
         <div class="column " style="float: right;">
             <SfAccumulationChart Title="Holistic Chart">
@@ -140,31 +184,18 @@ section {
                         </AccumulationDataLabelSettings>
                     </AccumulationChartSeries>
                     <AccumulationChartTooltipSettings Enable="true"></AccumulationChartTooltipSettings>
-                    <AccumulationChartLegendSettings Visible="true" Position="LegendPosition.Bottom" Alignment="Alignment.Center"></AccumulationChartLegendSettings>
+                    <AccumulationChartLegendSettings Visible="true" Position="LegendPosition.Top" Alignment="Alignment.Center"></AccumulationChartLegendSettings>
                 </AccumulationChartSeriesCollection>
             </SfAccumulationChart>
         </div>
-    <div class="row" style="margin-left:2px">
+        <div class="row" style="margin-left:2px">
         </div>
         <div class="header-wrapper">
-           <h2 style="width:48%;text-align: left;">Learnings</h2>
-            <h2 style=" width:48%;text-align:left;">Trainings</h2>
+            <h2 style="width:48%;text-align: left;">Trainings</h2>
+            <h2 style=" width:48%;text-align:left;">Projects</h2>
         </div>
-              <div  class="dividinggap">
-              <div class="table-l">
-                <SfGrid DataSource="@learning" AllowPaging="false">
-                    <GridColumns>
-                        <GridColumn Field="Name" HeaderText="Name" Width="20%"></GridColumn>
-                        <GridColumn Field="Path" HeaderText="Path" Width="40%"></GridColumn>
-                        <GridColumn Field="HoursOfLearning" HeaderText="Learning Hours" Width="20%"></GridColumn>
-                        <GridColumn Field="StartDate" HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"> </GridColumn>
-                        <GridColumn Field="EndDate" HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
-                    </GridColumns>
-                </SfGrid>
-            </div>
-            <br /><br />
-            <h1 style="text-align: right;"></h1>
-              <div class="table-t" >
+        <div class="dividinggap">
+            <div class="table-l">
                 <SfGrid DataSource="@trainings" AllowPaging="false">
                     <GridColumns>
                         <GridColumn Field="Name" HeaderText="Name" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
@@ -172,29 +203,29 @@ section {
                         <GridColumn Field="StartDate" HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
                         <GridColumn Field="EndDate" HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
                     </GridColumns>
-                </SfGrid>      
-             </div>
-        </div>
-        <div class="header-wrapper">
-            <h2 style="width:48%;text-align: left;">Projects</h2>
-            <h2 style=" width:48%;text-align:left;">ProofOfConcepts</h2>
-        </div>
-        <div class="dividinggap">
-            <div class="table-l">
-                <SfGrid DataSource="@projects" AllowPaging="false">
-                    <GridColumns>
-                        <GridColumn Field="Name" HeaderText="Name" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
-                        <GridColumn Field="Role" HeaderText="Role" Width="150"></GridColumn>
-                        <GridColumn Field="EmpProjectStartDate" HeaderText="EmpProjectStartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%">
-                        </GridColumn>
-                        <GridColumn Field="EmpProjectEndDate" HeaderText="EmpProjectEndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
-                        <GridColumn Field="ReportingTo" HeaderText="ReportingTo" Width="20%"></GridColumn>
-                    </GridColumns>
                 </SfGrid>
             </div>
             <br /><br />
             <h1 style="text-align: right;"></h1>
             <div class="table-t">
+                <SfGrid DataSource="@projects" AllowPaging="false">
+                    <GridColumns>
+                        <GridColumn Field="Name" HeaderText="Name" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
+                        <GridColumn Field="Role" HeaderText="Role" Width="150"></GridColumn>
+                        <GridColumn Field="EmpProjectStartDate" HeaderText="Start Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%">
+                        </GridColumn>
+                        <GridColumn Field="EmpProjectEndDate" HeaderText="End Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
+                        <GridColumn Field="ReportingTo" HeaderText="ReportingTo" Width="20%"></GridColumn>
+                    </GridColumns>
+                </SfGrid>
+            </div>
+        </div>
+        <div class="header-wrapper">
+            <h2 style="width:48%;text-align: left;">ProofOfConcepts</h2>
+            <h2 style=" width:48%;text-align:left;">Intellectual Properties</h2>
+        </div>
+        <div class="dividinggap">
+            <div class="table-l">
                 <SfGrid DataSource="@proofOfConcepts" AllowPaging="false">
                     <GridColumns>
                         <GridColumn Field="Name" HeaderText="Name" TextAlign="TextAlign.Left" Width="120"></GridColumn>
@@ -206,14 +237,10 @@ section {
                     </GridColumns>
                 </SfGrid>
             </div>
-        </div>
-        <div class="header-wrapper">
-            <h2 style="width:48%;text-align: left;">Intellectual Properties</h2>
-            <h2 style=" width:48%;text-align:left;">Certifications</h2>
-        </div>
-        <div class="dividinggap">
-            <div class="table-l">
-                <SfGrid DataSource="@internalPools" AllowPaging="false">
+            <br /><br />
+            <h1 style="text-align: right;"></h1>
+            <div class="table-t">
+                <SfGrid DataSource="@intellectualproperties" AllowPaging="false">
                     <GridColumns>
                         <GridColumn Field="Name" HeaderText="Name" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
                         <GridColumn Field="Role" HeaderText="Role" Width="20%"></GridColumn>
@@ -224,9 +251,13 @@ section {
                     </GridColumns>
                 </SfGrid>
             </div>
-            <br /><br />
-            <h1 style="text-align: right;"></h1>
-            <div class="table-t">
+        </div>
+        <div class="header-wrapper">
+            <h2 style="width:48%;text-align: left;">Certifications</h2>
+            <h2 style=" width:48%;text-align:left;">Interviews</h2>
+        </div>
+        <div class="dividinggap">
+            <div class="table-l">
                 <SfGrid DataSource="@certifications" AllowPaging="false">
                     <GridColumns>
                         <GridColumn Field="Name" HeaderText="Name" TextAlign="TextAlign.Left" Width="120"></GridColumn>
@@ -235,14 +266,28 @@ section {
                     </GridColumns>
                 </SfGrid>
             </div>
+            <br /><br />
+            <h1 style="text-align: right;"></h1>
+            <div class="table-t">
+                <SfGrid DataSource="@interviewsDetails" AllowPaging="false">
+                    <GridColumns>
+                        <GridColumn Field=@nameof(Interview.Name) HeaderText="Name" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(Interview.Role) HeaderText="Role" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(Interview.Status) HeaderText="Status" Width="20%">
+                        </GridColumn>
+                        <GridColumn Field=@nameof(Interview.Date) HeaderText="Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(Interview.ReportingTo) HeaderText="ReportingTo" Width="20%"></GridColumn>
+                    </GridColumns>
+                </SfGrid>
+            </div>
         </div>
-         <div class="header-wrapper">
-            <h2 style="width:48%;text-align: left;">Interviews</h2>
+        <div class="header-wrapper">
+            <h2 style="width:48%;text-align: left;">EA Council Details</h2>
             <h2 style=" width:48%;text-align:left;"></h2>
         </div>
         <div style="display: flex; flex-direction: row;">
-            <div style="flex: 2;  width: 50%; height: 300px;">
-                  <SfAccumulationChart Title="Interview Details">
+            <div style="flex: 2;  width: 50%; height: 200px;">
+                <SfAccumulationChart Title="Interview Details">
                     <AccumulationChartSeriesCollection>
                         <AccumulationChartSeries Type="AccumulationType.Pie" DataSource="@ChartData" XName="Result" YName="ResultCount" LegendShape="LegendShape.Triangle">
                             <AccumulationDataLabelSettings Visible="true" Name="Text"></AccumulationDataLabelSettings>
@@ -252,222 +297,18 @@ section {
                     </AccumulationChartSeriesCollection>
                 </SfAccumulationChart>
             </div>
-            <div style="flex: 2;width: 200px; height: 200px;">
-                <SfGrid DataSource="@Interview" AllowPaging="false">
+            <div style="flex: 2;width: 150px; height: 200px;">
+                <SfGrid DataSource="@benchdetails" AllowPaging="false">
                     <GridColumns>
-                        <GridColumn Field="Name" HeaderText="Name" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
-                        <GridColumn Field="Role" HeaderText="Role" Width="20%"></GridColumn>
-                        <GridColumn Field="Status" HeaderText="Status" Width="20%">
-                        </GridColumn>
-                        <GridColumn Field="Date" HeaderText="Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
-                        <GridColumn Field="ReportingTo" HeaderText="ReportingTo" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EACouncilEntryExit.Role) HeaderText="Role" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EACouncilEntryExit.StartDate) HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EACouncilEntryExit.EndDate) HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EACouncilEntryExit.ReportingTo) HeaderText="ReportingTo" TextAlign="TextAlign.Right" Width="20%"></GridColumn>
                     </GridColumns>
                 </SfGrid>
             </div>
         </div>
-        
-     
-         <div class="header-wrapper">
-            <h2 style="width:48%;text-align: left;">EA Council Details</h2>
-            <h2 style=" width:48%;text-align:left;"></h2>
-        </div>
-        <div style="display: flex; flex-direction: row;">
-            <div style="flex: 2;width: 50%; height: 300px;">
-                <SfAccumulationChart Title="EA Details ">
-                    <AccumulationChartSeriesCollection>
-                        <AccumulationChartSeries Type="AccumulationType.Pie" DataSource="@ChartData" XName="EATerm" YName="EAResult" LegendShape="LegendShape.Triangle">
-                            <AccumulationDataLabelSettings Visible="true" Name="Text"></AccumulationDataLabelSettings>
-                        </AccumulationChartSeries>
-                        <AccumulationChartTooltipSettings Enable="true"></AccumulationChartTooltipSettings>
-                        <AccumulationChartLegendSettings Visible="true" Position="LegendPosition.Bottom" Alignment="Alignment.Center"></AccumulationChartLegendSettings>
-                    </AccumulationChartSeriesCollection>
-                </SfAccumulationChart>   
-            </div>
-             <div style="flex: 2;width: 200px; height: 200px;">
-                <SfGrid DataSource="@eACouncils" AllowPaging="false">
-                    <GridColumns>
-                        <GridColumn Field="Role" HeaderText="Role" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
-                        <GridColumn Field="StartDate" HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
-                        <GridColumn Field="EndDate" HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
-                        <GridColumn Field="ReportingTo" HeaderText="ReportingTo" TextAlign="TextAlign.Right" Width="20%"></GridColumn>
-                    </GridColumns>
-                </SfGrid>
-            </div>
-        </div>
-
     </div>
 </div>
 
 
-@code {
-    public List<ChartDataModel> pieData;
-    public List<Projects> projects { get; set; }
-    public List<Learnings> learning { get; set; }
-    public List<Interviews> Interview { get; set; }
-    public List<Certifications> certifications { get; set; }
-    public List<Trainings> trainings { get; set; }
-    public List<ProofOfConcepts> proofOfConcepts { get; set; }
-    public List<InternalPool> internalPools { get; set; }
-    public List<EACouncil> eACouncils { get; set; }
-    public class ChartDataModel
-    {
-        public string Expertise { get; set; }
-        public string Result { get; set; }
-        public int ResultCount { get; set; }
-        public int ResourceCount { get; set; }
-        public string EATerm { get; set; }
-        public int EAResult { get; set; }
-    }
-    List<ChartDataModel> ChartData = new List<ChartDataModel>
-     {
-         new ChartDataModel{ Expertise="Learnings",ResourceCount=10},
-         new ChartDataModel{ Expertise="ProofOfConcepts",ResourceCount=8},
-         new ChartDataModel{ Expertise="IPs",ResourceCount=0},
-         new ChartDataModel{ Expertise="Projects",ResourceCount=80},
-         new ChartDataModel{ Expertise="Trainings",ResourceCount=2},
-         new ChartDataModel{  Result ="Pass",ResultCount=66},
-         new ChartDataModel{ Result="Fail",ResultCount=34},
-          new ChartDataModel{ EATerm="POCs",EAResult=80},
-         new ChartDataModel{ EATerm="Learning",EAResult=10},
-         new ChartDataModel{ EATerm="Trainings",EAResult=2},
-         new ChartDataModel{ EATerm="IPs",EAResult=0}
-     };
-    public class PieChartDataList
-    {
-        public int EmployeeIdentity { get; set; }
-        public string ExpertiseDoamin { get; set; }
-    }
-    protected override void OnInitialized()
-    {
-        learning = new List<Learnings>
-        {
-                  new Learnings() {  Name = "C# Advanced",Path = "https://pluralsight.com/CsharpAdvanced",HoursOfLearning=10, StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  },
-        new Learnings() {  Name = "ASP.NET SIGNALIR",Path = "https://pluralsight.com/SIGNALIR",HoursOfLearning=10, StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  },
-
-        };
-        proofOfConcepts = new List<ProofOfConcepts>
-    {
-        new ProofOfConcepts() {  Name = "Commport",Role = "Team Lead",
-        ReportingTo = "Lakshumaiah", StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  },
-        new ProofOfConcepts() {  Name = "CWF",Role = "Team Lead",ReportingTo="Srinivas",
-        StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  }
-    };
-        internalPools = new List<InternalPool>
-    {
-      new InternalPool() {  Name = "Commport",Role = "Team Lead",
-        ReportingTo = "Lakshumaiah", StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  },
-        new InternalPool() {  Name = "CWF",Role = "Team Lead",ReportingTo="Srinivas",
-        StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  }
-    };
-        eACouncils = new List<EACouncil>
-    {
-      new EACouncil() {  Role = "Team Lead",
-        ReportingTo = "Lakshumaiah", StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  },
-        new EACouncil() {  Role = "Team Lead",ReportingTo="Srinivas",
-        StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  }
-    };
-        Interview = new List<Interviews>()
-        {
-           new Interviews() { Name = "Vertafore",Role= "TeamLead", Status = "Pass"  ,ReportingTo = "Sandeep" ,Date=new DateTime(2021, 8, 4, 12, 0, 0)},
-           new Interviews() { Name = "Advent",Role= "TeamLead", Status = "Pass"  ,ReportingTo = "Sandeep" ,Date=new DateTime(2021, 8, 5, 12, 0, 0)},
-           new Interviews() { Name = "Commport",Role= "TeamLead", Status = "Fail"  ,ReportingTo = "Sandeep" ,Date=new DateTime(2021, 8, 11, 12, 0, 0)},
-       };
-        projects = new List<Projects>()
-        {
-            new Projects() { Name = "Advent", Role = "Team Lead", EmpProjectStartDate = new DateTime(2021, 8, 4, 12, 0, 0),EmpProjectEndDate = new DateTime(2021, 9, 6, 12, 0, 0), ReportingTo = " Sandeep" },
-            new Projects() { Name = "Vertafore", Role = "Team Lead", EmpProjectStartDate = new DateTime(2022, 8, 4, 12, 0, 0) ,EmpProjectEndDate = new DateTime(2022, 9, 9, 12, 0, 0), ReportingTo = "Srinivas" },
-        };
-        trainings = new List<Trainings>()
-        {
-            new Trainings() { Name = "C# Advanced", HoursOfLearning   = 10, StartDate = new DateTime(2021, 8, 4, 12, 0, 0),EndDate = new DateTime(2021, 9, 6, 12, 0, 0) },
-            new Trainings() { Name = "Vertafore", HoursOfLearning = 10, StartDate = new DateTime(2022, 8, 4, 12, 0, 0) ,EndDate = new DateTime(2022, 9, 9, 12, 0, 0)},
-        };
-        certifications = new List<Certifications>()
-        {
-            new Certifications() { Name = "Azure Associate Architech", ValidFrom = new DateTime(2020, 8, 4, 12, 0, 0), ValidTo = new DateTime(2021, 8, 4, 12, 0, 0) },
-        };
-    }
-
-    public class Projects
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Role { get; set; }
-        public DateTime EmpProjectStartDate { get; set; }
-        public DateTime EmpProjectEndDate { get; set; }
-        public string ReportingTo { get; set; }
-    }
-
-    public class Trainings
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int HoursOfLearning { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-    }
-
-    public class ProofOfConcepts
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Role { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string ReportingTo { get; set; }
-    }
-
-
-    public class Certifications
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTime ValidFrom { get; set; }
-        public DateTime ValidTo { get; set; }
-    }
-
-    public class Learnings
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Path { get; set; }
-        public int HoursOfLearning { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-    }
-
-
-    public class Interviews
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Role { get; set; }
-        public string Status { get; set; }
-        public DateTime Date { get; set; }
-        public string ReportingTo { get; set; }
-    }
-
-    public class InternalPool
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Role { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string ReportingTo { get; set; }
-    }
-
-    public class EACouncil
-    {
-        public int Id { get; set; }
-        public string Role { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string ReportingTo { get; set; }
-    }
-
-
-
-}
-
-*@
