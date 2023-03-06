@@ -7,8 +7,9 @@ public class Interview
 {
     public int Id { get; set; }
     public string Name { get; set; } = null!;
+    public string Skill { get; set; } = null!;
     public string Role { get; set; } = null!;
     public string Status { get; set; } = null!;
-    public DateTime Date { get; set; } = DateTime.Now;
+    public DateTime Date { get; set; } = DateTime.Now.Date;
     public string ReportingTo { get; set; } = null!;
 }

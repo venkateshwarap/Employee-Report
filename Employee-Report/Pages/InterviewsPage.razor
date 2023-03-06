@@ -2,7 +2,7 @@
 @using Employee_Report.Model.Models
 @inject NavigationManager navManager;
 
-@if (interviewsDetails == null)
+@if (interviewsDetails is null)
 {
     <p><em>Loading your data... Please wait..</em></p>
 }
@@ -19,55 +19,63 @@ else
         <EditForm Model="@InterviewModel" OnValidSubmit="addInterview">
             <DataAnnotationsValidator />
             <div class="form-control">
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-md-6">
-                        <SfTextBox CssClass="e-outline custom-size" Placeholder="Candidate Name" FloatLabelType="@FloatLabelType.Auto"
-                               Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Name" />
+                        <label Class="e-outline-date">Name</label>
+                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Name" />
                         <ValidationMessage For="@(() => InterviewModel.Name)" />
                     </div>
                     <div class="col-md-6">
-                        <SfTextBox CssClass="e-outline custom-size" Placeholder="Interviewing for Role" FloatLabelType="@FloatLabelType.Auto"
-                               Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Role" />
-                        <ValidationMessage For="@(() => InterviewModel.Role)" />
+                        <label Class="e-outline-date">SKill</label>
+                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Skill" />
+                        <ValidationMessage For="@(() => InterviewModel.Skill)" />
                     </div>
                 </div>
+
                 <div class="row mt-2">
                     <div class="col-md-6">
-                        <SfTextBox CssClass="e-outline custom-size" Placeholder="Interview Status" FloatLabelType="@FloatLabelType.Auto"
-                               Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Status" />
+                        <label Class="e-outline-date">Role</label>
+                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Role" />
+                        <ValidationMessage For="@(() => InterviewModel.Role)" />
+                    </div>
+                    <div class="col-md-6">
+                        <label Class="e-outline-date">Status</label>
+                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Status" />
                         <ValidationMessage For="@(() => InterviewModel.Status)" />
                     </div>
+                </div>
+
+                <div class="row mt-2">
                     <div class="col-md-6">
                         <label Class="e-outline-date">Interview Date</label>
                         <InputDate Type="InputDateType.Date" class="form-control" @bind-Value="InterviewModel.Date" />
                         <ValidationMessage For="@(() => InterviewModel.Date)" />
                     </div>
-                </div>
-                <div class="row mt-2">
                     <div class="col-md-6">
-                        <SfTextBox CssClass="e-outline custom-size" Placeholder="Reporting To" FloatLabelType="@FloatLabelType.Auto"
-                               Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.ReportingTo" />
+                        <label Class="e-outline-date">Reporting To</label>
+                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.ReportingTo" />
                         <ValidationMessage For="@(() => InterviewModel.ReportingTo)" />
                     </div>
                 </div>
-                <div style="margin-top:10px;margin-left:46%;">
-                    <div class="col-md-3">
-                        <SfButton @onclick="@AddClass" type="submit" class="btnAdd" style="background-color: midnightblue; color: white;" Content="Add"></SfButton>
-                    </div>
-                    <div class="col-md-3"></div>
+                <div id="SfBtns">
+                    <SfButton @onclick="@AddClass" type="submit" class="btnAdd" Content="Add"></SfButton>
+                    <SfButton @onclick="@AddClass" type="submit" class="btnCancel" Content="Cancel"></SfButton>
                 </div>
             </div>
         </EditForm>
     </div>
 
-
-    <SfGrid DataSource="@interviewsDetails">
-        <GridColumns>
+    @if (!IsHidden)
+    {
+        <SfGrid DataSource="@interviewsDetails">
+            <GridColumns>
             <GridColumn Field="@nameof(InterviewModel.Name)" HeaderText="Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+            <GridColumn Field="@nameof(InterviewModel.Skill)" HeaderText="Skill" TextAlign="TextAlign.Center" Width="120"></GridColumn>
             <GridColumn Field="@nameof(InterviewModel.Role)" HeaderText="Role" TextAlign="TextAlign.Center" Width="120"></GridColumn>
             <GridColumn Field="@nameof(InterviewModel.Status)" HeaderText="Status" TextAlign="TextAlign.Center" Width="150"></GridColumn>
             <GridColumn Field="@nameof(InterviewModel.Date)" HeaderText="Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
             <GridColumn Field="@nameof(InterviewModel.ReportingTo)" HeaderText="Repoting to" TextAlign="TextAlign.Center" Width="150"></GridColumn>
         </GridColumns>
     </SfGrid>
+    }
 }
