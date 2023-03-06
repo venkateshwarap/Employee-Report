@@ -1,0 +1,25 @@
+﻿@page "/traning"
+@using Syncfusion.Blazor.Buttons
+<h3>Training Details</h3>
+
+<div class="col-md-3" hidden="@HideAdd">
+    <SfButton OnClick="AddLearning" style="background-color:dodgerblue;" Content="AddTraning"></SfButton>
+</div>
+<div class="form-control mt-2">
+    @if (TraningList == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <SfGrid TItem="EmployeeModel" hidden="@HideGeid" DataSource="@TraningList">
+            <GridColumns>
+                <GridColumn Field="@nameof(traning.Name)" HeaderText="Name" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field="@nameof(traning.HoursOfLearning)" HeaderText="LearningHours" TextAlign="TextAlign.Left" Width="100">
+                </GridColumn>
+                <GridColumn Field="@nameof(traning.StartDate)" HeaderText="StartDate" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field="@nameof(traning.EndDate)" HeaderText="EndDate" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+            </GridColumns>
+        </SfGrid>
+    }
+</div>

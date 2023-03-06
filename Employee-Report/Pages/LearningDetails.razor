@@ -1,0 +1,35 @@
+﻿@page "/learning"
+@using Employee_Report.Model.Models;
+@using Syncfusion.Blazor.Buttons
+@inject NavigationManager navManager
+
+<h3>Learning Details</h3>
+<div class="col-md-3" hidden="@HideAdd">
+    <SfButton OnClick="AddLearning" style="background-color:dodgerblue;" Content="AddLearning"></SfButton>
+</div>
+<div class="form-control mt-2">
+    @if (learningList == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <SfGrid TItem="EmployeeModel" hidden="@HideGeid" DataSource="@learningList">
+            <GridColumns>
+                <GridColumn Field="@nameof(learning.Name)" HeaderText="Name" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field="@nameof(learning.Path)" HeaderText="Path" TextAlign="TextAlign.Left" Width="100">
+                    <Template>
+                        @{
+                            var learningList = (context as Learning);
+                            <a href="@learningList.Path">@learningList.Path</a>
+                        }
+                    </Template>
+                </GridColumn>
+                <GridColumn Field="@nameof(learning.HoursOfLearning)" HeaderText="LearningHours" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field="@nameof(learning.StartDate)" HeaderText="StartDate" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field="@nameof(learning.EndDate)" HeaderText="EndDate" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+            </GridColumns>
+        </SfGrid>
+    }
+</div>
+

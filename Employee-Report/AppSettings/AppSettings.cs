@@ -22,5 +22,11 @@
         #region Skills
         public const string GetSkills = "Skills/GetSkills";
         #endregion
+        #region
+        public static string GetlearningApi = "https://localhost:7178/api/Learning";
+        public static string SavelearningApi = "";
+        public static string GetTraningApi = "https://localhost:7178/api/Training/GetEmployeeTraning";
+        public static string SaveTraningApi = "";
+        #endregion
     }
 }
