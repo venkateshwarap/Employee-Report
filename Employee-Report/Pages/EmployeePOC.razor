@@ -1,0 +1,96 @@
+﻿@page "/employeePocDetails"
+@using Employee_Report.API.Entities;
+@using Syncfusion.Blazor.Grids
+@inject NavigationManager navManager;
+
+
+@if (employeepoc == null)
+{
+    <p><em>Loading your data... Please wait..</em></p>
+}
+else
+{
+
+    <div id="divHeader">
+        <h3 style="text-align:center">Employee Poc</h3>
+        @if (!IsHidden)
+        {
+            <SfButton id="sfBtnAddPOC" OnClick="AddClass">Add POC</SfButton>
+        }
+    </div>
+
+    <div class="@(IsHidden ? "show" : "hidden")">
+        <EditForm Model="@employeePocModel" OnValidSubmit="addEmployeePOC">
+            <DataAnnotationsValidator />
+            <div class="form-control">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Poc</label>
+                        <SfNumericTextBox CssClass="e-outline" Type="InputType.Text" class="form-control"
+                                      @bind-Value="employeePocModel.Pocid" />
+                        <ValidationMessage For="@(() => employeePocModel.Pocid)" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>EmpId</label>
+                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeePocModel.EmpId" />
+                        <ValidationMessage For="@(() => employeePocModel.EmpId)" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>BenchId</label>
+                        <SfNumericTextBox CssClass="e-outline" Placeholder="BenchId" Type="InputType.Text" class="form-control"
+                                      @bind-Value="employeePocModel.BenchId" />
+                        <ValidationMessage For="@(() => employeePocModel.BenchId)" />
+                    </div>
+                    <div class="col-md-6">
+                        <label Class="e-outline">StartDate</label>
+                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                               @bind-Value="employeePocModel.StartDate" />
+                        <ValidationMessage For="@(() => employeePocModel.StartDate)" />
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label Class="e-outline">EndDate</label>
+                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                               @bind-Value="employeePocModel.EndDate" />
+                        <ValidationMessage For="@(() => employeePocModel.EndDate)" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>ReportingTo</label>
+                        <SfTextBox CssClass="e-outline" Placeholder="ReportingTo" Type="InputType.Text" class="form-control" @bind-Value="employeePocModel.ReportingTo" />
+                        <ValidationMessage For="@(() => employeePocModel.ReportingTo)" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>Role</label>
+                        <SfNumericTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeePocModel.RoleId" />
+                        <ValidationMessage For="@(() => employeePocModel.RoleId)" />
+                    </div>
+                </div>
+                <div id="SfBtns">
+                    <div class="col-md-3">
+                        <SfButton @onclick="@AddClass" type="submit" class="btnAdd" style="background-color: midnightblue; color: white;" Content="Add"></SfButton>
+                        @*<SfButton @onclick="@AddClass" type="submit" class="btnCancel" Content="Cancel"></SfButton>*@
+                    </div>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+    @if (!IsHidden)
+    {
+        <SfGrid DataSource="@employeepoc">
+            <GridColumns>
+                <GridColumn Field=@nameof(EmployeePOCEntity.Name) HeaderText="Name" TextAlign="TextAlign.Center" Width="120">
+                </GridColumn>
+                <GridColumn Field=@nameof(EmployeePOCEntity.Role) HeaderText="Role" TextAlign="TextAlign.Center" Width="150">
+                </GridColumn>
+                <GridColumn Field=@nameof(EmployeePOCEntity.StartDate) HeaderText="StartDate" TextAlign="TextAlign.Center" Width="130">
+                </GridColumn>
+                <GridColumn Field=@nameof(EmployeePOCEntity.EndDate) HeaderText="EndDate" TextAlign="TextAlign.Center" Width="120">
+                </GridColumn>
+                <GridColumn Field=@nameof(EmployeePOCEntity.ReportingTo) HeaderText="ReportingTo" TextAlign="TextAlign.Center" Width="120">
+                </GridColumn>
+
+            </GridColumns>
+        </SfGrid>
+    }
+}

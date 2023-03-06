@@ -13,14 +13,14 @@ public partial class EmployeePoc
 
     public int BenchId { get; set; }
 
-    public DateTime? StartDate { get; set; }
+    public DateTime? StartDate { get; set; } = DateTime.Now;
 
-    public DateTime? EndDate { get; set; }
+    public DateTime? EndDate { get; set; } = DateTime.Now;
 
     public string? ReportingTo { get; set; }
 
     public int RoleId { get; set; }
 
-    public virtual Poc Poc { get; set; } = null!;
-    public virtual Role Role { get; set; } = null!;
+    //public virtual Poc Poc { get; set; } = null!;
+    //public virtual Role Role { get; set; } = null!;
 }

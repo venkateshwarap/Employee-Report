@@ -11,6 +11,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<EACouncilService>();
 builder.Services.AddScoped<InterviewService>();
+builder.Services.AddScoped<EmployeeProjectService>();
+builder.Services.AddScoped<EmployeePocService>();
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddHttpClient();
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTIxMjA0MEAzMjMwMmUzNDJlMzBMalJWcXpUYTZBY09jeDZqNjQwVGRtK3lBU0dWMWladUU2Vi9XQVNmNFNzPQ==");

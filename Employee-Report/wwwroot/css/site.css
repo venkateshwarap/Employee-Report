@@ -68,8 +68,7 @@ a, .btn-link {
     }
 
 .btnAdd {
-    height: 40px;
-    width: 150px;
+    width: 45%;
     font-weight: 900;
 }
 
@@ -90,6 +89,15 @@ a, .btn-link {
     margin-left: 78.5%;
 }
 
+#sfBtnAddPOC{
+    background-color: green;
+    margin-left: 72%;
+}
+#sfBtnAddProject {
+    background-color: green;
+    margin-left: 70%;
+}
+
 #divHeader {
     display: flex;
     margin-bottom: 1%;
@@ -102,3 +110,9 @@ a, .btn-link {
 .e-outline-date {
     font-size: 11px !important;
 }
+
+#SfBtns {
+    margin-left: 44%;
+    margin-top: 1%;
+}
+

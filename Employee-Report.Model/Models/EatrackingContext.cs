@@ -26,7 +26,7 @@ public partial class EatrackingContext : DbContext
     public virtual DbSet<Certifications> Certifications { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=MLI-LAP-0346\\SQLEXPRESS;Initial Catalog=ETReport;Integrated Security=True;Trusted_Connection=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=MLI00737\\SQLEXPRESS;Database=EATracking;Integrated Security=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -34,23 +34,23 @@ public partial class EatrackingContext : DbContext
         {
             entity.ToTable("EmployeePOC");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+           // entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.EmpId).HasMaxLength(10);
             entity.Property(e => e.EndDate).HasColumnType("datetime");
             entity.Property(e => e.Pocid).HasColumnName("POCId");
             entity.Property(e => e.StartDate).HasColumnType("datetime");
 
-            entity.HasOne(d => d.Poc).WithMany(p => p.EmployeePocs)
-                .HasForeignKey(d => d.Pocid)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_EmployeePOC_POC");
+            //entity.HasOne(d => d.Poc).WithMany(p => p.EmployeePocs)
+            //    .HasForeignKey(d => d.Pocid)
+            //    .OnDelete(DeleteBehavior.ClientSetNull)
+            //    .HasConstraintName("FK_EmployeePOC_POC");
         });
 
         modelBuilder.Entity<EmployeeProject>(entity =>
         {
             entity.ToTable("EmployeeProject");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+          //  entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Achivements)
                 .HasMaxLength(200)
                 .IsUnicode(false);
@@ -61,15 +61,15 @@ public partial class EatrackingContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.StartDate).HasColumnType("datetime");
 
-            entity.HasOne(d => d.Project).WithMany(p => p.EmployeeProjects)
-                .HasForeignKey(d => d.ProjectId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_EmployeeProject_Project");
+            //entity.HasOne(d => d.Project).WithMany(p => p.EmployeeProjects)
+            //    .HasForeignKey(d => d.ProjectId)
+            //    .OnDelete(DeleteBehavior.ClientSetNull)
+            //    .HasConstraintName("FK_EmployeeProject_Project");
 
-            entity.HasOne(d => d.Role).WithMany(p => p.EmployeeProjects)
-                .HasForeignKey(d => d.RoleId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_EmployeeProject_Role");
+            //entity.HasOne(d => d.Role).WithMany(p => p.EmployeeProjects)
+            //    .HasForeignKey(d => d.RoleId)
+            //    .OnDelete(DeleteBehavior.ClientSetNull)
+            //    .HasConstraintName("FK_EmployeeProject_Role");
         });
 
         modelBuilder.Entity<Poc>(entity =>
