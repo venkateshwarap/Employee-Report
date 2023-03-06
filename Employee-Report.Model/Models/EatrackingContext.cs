@@ -21,12 +21,15 @@ public partial class EatrackingContext : DbContext
     public virtual DbSet<Role> Roles { get; set; }
     public virtual DbSet<Skills> Skills { get; set; }
     public virtual DbSet<Interview> Interviews { get; set; }
-
+    public virtual DbSet<EmployeeLearning> EmployeeLearnings { get; set; }
+    public virtual DbSet<EmployeeTraining> EmployeeTrainings { get; set; }
     public virtual DbSet<EACouncilEntryExit> EACouncilEntryExit { get; set; }
     public virtual DbSet<Certifications> Certifications { get; set; }
+    public virtual DbSet<Learning> Learnings { get; set; }
+    public virtual DbSet<Training> Trainings { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=MLI00737\\SQLEXPRESS;Database=EATracking;Integrated Security=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=MLI00741\\RAJEEV_SQLDEV;Database=EATracking;Integrated Security=True;TrustServerCertificate=True;User id=sa;Password=Raj@727_eev.MLI;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

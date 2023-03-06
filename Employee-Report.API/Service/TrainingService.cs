@@ -14,7 +14,7 @@ namespace Employee_Report.API.Service
         {
             try
             {
-                return _eatrackingContext.Training.ToList();
+                return _eatrackingContext.Trainings.ToList();
             }
             catch (Exception ex)
             {
