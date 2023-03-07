@@ -14,7 +14,7 @@ namespace Employee_Report.Pages
         protected async override Task OnInitializedAsync()
         {
             traning = new Training();
-            var responseMessage = await client.GetAsync(AppSettings.GetTraningApi);
+            var responseMessage = await client.GetAsync(AppSettings.Config.GetTrainings);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var data = await responseMessage.Content.ReadFromJsonAsync<Training[]>();

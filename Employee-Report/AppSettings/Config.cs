@@ -1,9 +1,14 @@
-﻿namespace Employee_Report
-{
-    public static class AppSettings
-    {
-        public const string BaseUrl = "https://localhost:7178/api/";
+﻿using Employee_Report.Utilities;
 
+namespace Employee_Report.AppSettings
+{
+    public static class Config
+    {
+        public static string API_ROUTE = ConfigurationHelper._config!.GetSection(Constants.API_ROUTE).Value!;
+        public static string GET_EA_COUNCIL = ConfigurationHelper._config!.GetSection(Constants.GET_EA_COUNCIL).Value!;
+        public static string CREATE_EA_COUNCIL_ENTRY = ConfigurationHelper._config!.GetSection(Constants.CREATE_EA_COUNCIL_ENTRY).Value!;
+        public static string GET_CERTIFICATIONS_DETAILS = ConfigurationHelper._config!.GetSection(Constants.GET_CERTIFICATIONS_DETAILS).Value!;
+        public static string CREATE_CERTIFICATIONS_DETAILS = ConfigurationHelper._config!.GetSection(Constants.CREATE_CERTIFICATIONS_DETAILS).Value!;
 
         public const string LoginAPI = "https://localhost:7024/api/Authenticate/login";
         public const string DashboardList = "https://localhost:7024/api/Dashboard/GetEmployeeDetails";
@@ -23,15 +28,13 @@
         public const string AddRole = "https://localhost:7178/api/Role/AddRole";
         #endregion
 
-
-
-        public static string GetEmployeeURl = "https://localhost:7024/api/Employee/GetAllEmployee";
-        public static string GetlearningURl = "https://localhost:7024/api/Learning/GetLearningDetails";
-        public static string PostlearningURl = "https://localhost:7024/api/Learning/SaveLearning";
+        public static string GetEmployeeURl = "Employee/GetAllEmployee";
+        public static string GetlearningURl = "Learning/GetLearningDetails";
+        public static string PostlearningURl = "Learning/SaveLearning";
         public const string GetTrainings = "https://localhost:7024/api/Training/GetAllTrainings";
         public const string GetBenchEntry = "eacouncil/entry/get";
         public const string CreateBenchEntry = "eacouncil/entry/create";
-        
+
         #region Interviews
         public const string GetInterviews = "Interview/GetAllInterviews";
         public const string AddInterviews = "Interview/AddInterview";
@@ -39,12 +42,6 @@
 
         #region Skills
         public const string GetSkills = "Skills/GetSkills";
-        #endregion
-        #region
-        public static string GetlearningApi = "https://localhost:7178/api/Learning";
-        public static string SavelearningApi = "";
-        public static string GetTraningApi = "https://localhost:7178/api/Training/GetEmployeeTraning";
-        public static string SaveTraningApi = "";
         #endregion
     }
 }

@@ -2,7 +2,7 @@
 using Employee_Report.Model.Models;
 using Employee_Report.Repository.IServices;
 using Employee_Report.Repository.Services;
-using EmployeeDetails.Api.Utilities;
+using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Identity.Client;
 

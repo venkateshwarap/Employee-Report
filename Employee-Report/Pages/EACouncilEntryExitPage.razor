@@ -1,4 +1,4 @@
-﻿@page "/bench"
+﻿@page "/eacouncil"
 @using Employee_Report.Model.Models
 @inject NavigationManager navManager;
 
@@ -9,7 +9,7 @@
 else
 {
     <div id="divHeader">
-        <h3>EA Council</h3>
+        <h5>EA Council</h5>
         @if(IsHidden)
         {
             <SfButton id="sfBtn" OnClick="AddClass"><i class="fa-solid fa-minus"></i> &nbsp;Add Entry</SfButton>
@@ -66,8 +66,8 @@ else
     <SfGrid DataSource="@benchdetails">
         <GridColumns>
             <GridColumn Field="@nameof(EACouncilEntryExit.EmpId)" HeaderText="EmpID" TextAlign="TextAlign.Center" Width="120"></GridColumn>
-            <GridColumn Field="@nameof(EACouncilEntryExit.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-            <GridColumn Field="@nameof(EACouncilEntryExit.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+            <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(EACouncilEntryExit.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+            <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(EACouncilEntryExit.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
         </GridColumns>
     </SfGrid>
 }

@@ -1,6 +1,5 @@
 ﻿using Employee_Report.Model.Models;
-using Employee_Report.Repository.Services;
-using EmployeeDetails.Api.Utilities;
+using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components;
 
 namespace Employee_Report.Pages
@@ -8,23 +7,23 @@ namespace Employee_Report.Pages
     public partial class EACouncilEntryExitPage
     {
         [Inject]
-        public EACouncilService benchServices { get; set; }
+        public Repository.IServices.IEACouncilService benchServices { get; set; }
         public IEnumerable<EACouncilEntryExit> benchdetails { get; set; }
         public EACouncilEntryExit entryExit = new();
         private bool IsHidden { get; set; } = false;
         protected override async Task OnInitializedAsync()
         {
-            var response = await benchServices.GetBenchEntry();
+            var response = await benchServices.GeEACouncilEntryDetails();
             benchdetails = Utility.GetResponseData<List<EACouncilEntryExit>>(response.response);
         }
         private async void SaveEntry()
         {
             if (entryExit != null)
             {
-                var response = await benchServices.CreateBenchEntry(entryExit);
+                var response = await benchServices.CreateEACouncilEntryDetails(entryExit);
                 if (response.status)
                 {
-                    navManager.NavigateTo("/bench", forceLoad: true);
+                    navManager.NavigateTo("/eacouncil", forceLoad: true);
                     IsHidden = false;
                 }
 

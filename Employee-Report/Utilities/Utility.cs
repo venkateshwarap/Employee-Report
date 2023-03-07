@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Net.Http;
 
-namespace EmployeeDetails.Api.Utilities
+namespace Employee_Report.Utilities
 {
     public static class Utility
     {

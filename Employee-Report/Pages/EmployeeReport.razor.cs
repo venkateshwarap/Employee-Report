@@ -1,5 +1,6 @@
-﻿using Employee_Report.Repository.Services;
-using EmployeeDetails.Api.Utilities;
+﻿using Employee_Report.Repository.IServices;
+using Employee_Report.Repository.Services;
+using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components;
 
 namespace Employee_Report.Pages
@@ -10,7 +11,7 @@ namespace Employee_Report.Pages
         public IEnumerable<Interview> interviewsDetails { get; set; }
         public Interview InterviewModel = new();
         [Inject]
-        public EACouncilService benchServices { get; set; }
+        public IEACouncilService benchServices { get; set; }
         public IEnumerable<EACouncilEntryExit> benchdetails { get; set; }
         public EACouncilEntryExit entryExit = new();
         public List<ChartDataModel> pieData;
@@ -54,7 +55,7 @@ namespace Employee_Report.Pages
             var response = await interviewService.GetInterviews();
             interviewsDetails = Utility.GetResponseData<List<Interview>>(response.response);
 
-            var benchresponse = await benchServices.GetBenchEntry();
+            var benchresponse = await benchServices.GeEACouncilEntryDetails();
             benchdetails = Utility.GetResponseData<List<EACouncilEntryExit>>(response.response);
 
             learning = new List<Learnings>

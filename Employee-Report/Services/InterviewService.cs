@@ -1,7 +1,7 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.Model.Models;
 using Employee_Report.Repository.IServices;
-using EmployeeDetails.Api.Utilities;
+using Employee_Report.Utilities;
 
 namespace Employee_Report.Repository.Services
 {
@@ -10,16 +10,16 @@ namespace Employee_Report.Repository.Services
         HttpClient _httpClient = new HttpClient();
         public InterviewService()
         {
-            _httpClient.BaseAddress = new Uri(AppSettings.BaseUrl!);
+            _httpClient.BaseAddress = new Uri(AppSettings.Config.API_ROUTE!);
         }
         public async Task<Response> GetInterviews()
         {
-            var entry = await Utility.HttpClientGetAsync(AppSettings.GetInterviews, _httpClient);
+            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GetInterviews, _httpClient);
             return entry;
         }
         public async Task<Response> AddInterview(Interview interview)
         {
-            var entry = await Utility.HttpClientPostAsync(AppSettings.AddInterviews, _httpClient, interview);
+            var entry = await Utility.HttpClientPostAsync(AppSettings.Config.AddInterviews, _httpClient, interview);
             return entry;
         }
     }

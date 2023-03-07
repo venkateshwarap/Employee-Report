@@ -1,4 +1,5 @@
 ﻿using Employee_Report.API.IService;
+using Employee_Report.API.Utilities;
 using Employee_Report.Model.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpPost]
-        [Route("entry/create")]
+        [Route("create")]
         public async Task<IActionResult> CreateBenchEntry(EACouncilEntryExit benchEntry)
         {
             try
@@ -35,7 +36,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpGet]
-        [Route("entry/get")]
+        [Route("get")]
         public async Task<IActionResult> GetEACouncilDetails()
         {
             try
@@ -54,7 +55,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpPost]
-        [Route("entry/getbyId")]
+        [Route("getbyId")]
         public async Task<IActionResult> GetEACouncilDetailsById(string empid)
         {
             try
@@ -73,7 +74,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpDelete]
-        [Route("entry/delete")]
+        [Route("delete")]
         public async Task<IActionResult> DeleteEmployeeFromEACouncil(string empid)
         {
             try

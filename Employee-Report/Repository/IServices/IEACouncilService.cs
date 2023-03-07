@@ -5,7 +5,7 @@ namespace Employee_Report.Repository.IServices
 {
     public interface IEACouncilService
     {
-        Task<Response> GetBenchEntry();
-        Task<Response> CreateBenchEntry(EACouncilEntryExit EACouncilEntryExit);
+        Task<Response> GeEACouncilEntryDetails();
+        Task<Response> CreateEACouncilEntryDetails(EACouncilEntryExit EACouncilEntryExit);
     }
 }

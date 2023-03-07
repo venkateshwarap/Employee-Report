@@ -13,13 +13,13 @@ namespace Employee_Report.Repository.Services
         }
         public async Task<IEnumerable<Role>> GetRoleDetails()
         {
-            var role = await _httpClient.GetFromJsonAsync<Role[]>(AppSettings.GetRole);
+            var role = await _httpClient.GetFromJsonAsync<Role[]>(AppSettings.Config.GetRole);
             return role;
         }
 
         public async Task<HttpResponseMessage> AddRole(Role role)
         {
-            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.AddRole, role);
+            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddRole, role);
             return responseMessage;
         }
     }

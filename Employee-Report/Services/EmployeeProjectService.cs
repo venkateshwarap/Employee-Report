@@ -14,7 +14,7 @@ namespace Employee_Report.Repository.Services
 
         public async Task<IEnumerable<EmployeeProjectEntity>> GetEmployeeProjectDetails()
         {
-            var empProject = await _httpClient.GetFromJsonAsync<EmployeeProjectEntity[]>(AppSettings.GetEmployeeProject);
+            var empProject = await _httpClient.GetFromJsonAsync<EmployeeProjectEntity[]>(AppSettings.Config.GetEmployeeProject);
             return empProject;
         }
 
@@ -26,7 +26,7 @@ namespace Employee_Report.Repository.Services
 
         public async Task<HttpResponseMessage> AddEmployeeProject(EmployeeProject project)
         {
-            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.AddProject, project);
+            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddProject, project);
             return responseMessage;
         }
     }

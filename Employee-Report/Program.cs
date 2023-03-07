@@ -1,5 +1,6 @@
 using Employee_Report.Repository.IServices;
 using Employee_Report.Repository.Services;
+using Employee_Report.Utilities;
 using Syncfusion.Blazor;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<IEACouncilService, EACouncilService>();
+builder.Services.AddScoped<ICertificationsService, CertificationsService>();
 builder.Services.AddScoped<IInterviewService, InterviewService>();
 builder.Services.AddScoped<IEmployeeProjectService, EmployeeProjectService>();
 builder.Services.AddScoped<IEmployeePocService, EmployeePocService>();
@@ -15,7 +17,7 @@ builder.Services.AddScoped<IGetRoleService, GetRoleService>();
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddHttpClient();
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTIxMjA0MEAzMjMwMmUzNDJlMzBMalJWcXpUYTZBY09jeDZqNjQwVGRtK3lBU0dWMWladUU2Vi9XQVNmNFNzPQ==");
-
+ConfigurationHelper.Initialize(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

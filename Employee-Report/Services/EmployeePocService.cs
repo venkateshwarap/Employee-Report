@@ -14,13 +14,13 @@ namespace Employee_Report.Repository.Services
 
         public async Task<IEnumerable<EmployeePOCEntity>> GetEmployeePOCDetails()
         {
-            var empPoc = await _httpClient.GetFromJsonAsync<EmployeePOCEntity[]>(AppSettings.GetPOC);
+            var empPoc = await _httpClient.GetFromJsonAsync<EmployeePOCEntity[]>(AppSettings.Config.GetPOC);
             return empPoc;
         }
 
         public async Task<HttpResponseMessage> AddPOC(EmployeePoc employeePoc)
         {
-            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.AddPOC, employeePoc);
+            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddPOC, employeePoc);
             return responseMessage;
         }
     }
