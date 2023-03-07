@@ -9,7 +9,7 @@
 else
 {
     <div id="divHeader">
-        <h3 style="text-align:center">Rolec</h3>
+        <h3 style="text-align:center">Role</h3>
         @if (!IsHidden)
         {
             <SfButton id="sfBtnAddRole" OnClick="AddClass">Add Role</SfButton>
@@ -30,7 +30,7 @@ else
                 <div id="SfBtns">
                     <div class="col-md-3">
                         <SfButton @onclick="@AddClass" type="submit" class="btnAdd" style="background-color: midnightblue; color: white;" Content="Add"></SfButton>
-                        @*<SfButton @onclick="@AddClass" type="submit" class="btnCancel" Content="Cancel"></SfButton>*@
+                        <SfButton @onclick="@AddClass" type="submit" class="btnCancel" Content="Cancel"></SfButton>
                     </div>
                 </div>
             </div>
