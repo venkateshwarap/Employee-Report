@@ -1,9 +1,10 @@
 ﻿using Employee_Report.API.Entities;
 using Employee_Report.Model.Models;
+using Employee_Report.Repository.IServices;
 
-namespace Employee_Report.Services
+namespace Employee_Report.Repository.Services
 {
-    public class EmployeePocService
+    public class EmployeePocService : IEmployeePocService
     {
         private readonly HttpClient _httpClient;
         public EmployeePocService(HttpClient httpClient)
@@ -19,7 +20,7 @@ namespace Employee_Report.Services
 
         public async Task<HttpResponseMessage> AddPOC(EmployeePoc employeePoc)
         {
-           HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.AddPOC, employeePoc);
+            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.AddPOC, employeePoc);
             return responseMessage;
         }
     }

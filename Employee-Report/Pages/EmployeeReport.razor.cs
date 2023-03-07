@@ -1,4 +1,4 @@
-﻿using Employee_Report.Services;
+﻿using Employee_Report.Repository.Services;
 using EmployeeDetails.Api.Utilities;
 using Microsoft.AspNetCore.Components;
 
@@ -7,11 +7,11 @@ namespace Employee_Report.Pages
     public partial class EmployeeReport
     {
         [Inject]
-        public Services.InterviewService interviewService { get; set; }
+        public InterviewService interviewService { get; set; }
         public IEnumerable<Interview> interviewsDetails { get; set; }
         public Interview InterviewModel = new();
         [Inject]
-        public Services.EACouncilService benchServices { get; set; }
+        public EACouncilService benchServices { get; set; }
         public IEnumerable<EACouncilEntryExit> benchdetails { get; set; }
         public EACouncilEntryExit entryExit = new();
         public List<ChartDataModel> pieData;

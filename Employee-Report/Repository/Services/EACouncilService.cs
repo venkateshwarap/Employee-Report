@@ -1,10 +1,11 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.Model.Models;
+using Employee_Report.Repository.IServices;
 using EmployeeDetails.Api.Utilities;
 
-namespace Employee_Report.Services
+namespace Employee_Report.Repository.Services
 {
-    public class EACouncilService 
+    public class EACouncilService : IEACouncilService
     {
         private readonly HttpClient _httpClient;
         public EACouncilService(HttpClient httpClient)

@@ -1,9 +1,10 @@
 ﻿using Employee_Report.API.Entities;
 using Employee_Report.Model.Models;
+using Employee_Report.Repository.IServices;
 
-namespace Employee_Report.Services
+namespace Employee_Report.Repository.Services
 {
-    public class EmployeeProjectService
+    public class EmployeeProjectService : IEmployeeProjectService
     {
         private readonly HttpClient _httpClient;
         public EmployeeProjectService(HttpClient httpClient)

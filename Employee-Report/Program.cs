@@ -1,4 +1,5 @@
-using Employee_Report.Services;
+using Employee_Report.Repository.IServices;
+using Employee_Report.Repository.Services;
 using Syncfusion.Blazor;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,11 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddScoped<EACouncilService>();
-builder.Services.AddScoped<InterviewService>();
-builder.Services.AddScoped<EmployeeProjectService>();
-builder.Services.AddScoped<EmployeePocService>();
-builder.Services.AddScoped<GetRoleService>();
+builder.Services.AddScoped<IEACouncilService, EACouncilService>();
+builder.Services.AddScoped<InterviewService, InterviewService>();
+builder.Services.AddScoped<IEmployeeProjectService, EmployeeProjectService>();
+builder.Services.AddScoped<IEmployeePocService, EmployeePocService>();
+builder.Services.AddScoped<IGetRoleService, GetRoleService>();
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddHttpClient();
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTIxMjA0MEAzMjMwMmUzNDJlMzBMalJWcXpUYTZBY09jeDZqNjQwVGRtK3lBU0dWMWladUU2Vi9XQVNmNFNzPQ==");

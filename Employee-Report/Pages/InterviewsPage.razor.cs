@@ -1,4 +1,5 @@
 ﻿using Employee_Report.Model.Models;
+using Employee_Report.Repository.Services;
 using EmployeeDetails.Api.Utilities;
 using Microsoft.AspNetCore.Components;
 
@@ -7,7 +8,7 @@ namespace Employee_Report.Pages
     public partial class InterviewsPage
     {
         [Inject]
-        public Services.InterviewService interviewService { get; set; }
+        public InterviewService interviewService { get; set; }
         public IEnumerable<Interview> interviewsDetails { get; set; }
         public Interview InterviewModel = new();
         private bool IsHidden { get; set; } = false;

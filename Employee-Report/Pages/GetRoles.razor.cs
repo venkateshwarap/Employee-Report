@@ -1,6 +1,6 @@
 ﻿using Employee_Report.API.Service;
 using Employee_Report.Model.Models;
-using Employee_Report.Services;
+using Employee_Report.Repository.Services;
 using Microsoft.AspNetCore.Components;
 
 namespace Employee_Report.Pages
