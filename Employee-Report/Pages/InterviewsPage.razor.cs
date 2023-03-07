@@ -1,15 +1,17 @@
-﻿using Employee_Report.Model.Models;
+﻿using Employee_Report.API.Service;
+using Employee_Report.Model.Models;
+using Employee_Report.Repository.IServices;
 using Employee_Report.Repository.Services;
 using EmployeeDetails.Api.Utilities;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Identity.Client;
 
 namespace Employee_Report.Pages
 {
     public partial class InterviewsPage
     {
-        [Inject]
-        public InterviewService interviewService { get; set; }
-        public IEnumerable<Interview> interviewsDetails { get; set; }
+        Repository.Services.InterviewService interviewService = new Repository.Services.InterviewService();
+        public IEnumerable<Interview>? interviewsDetails { get; set; }
         public Interview InterviewModel = new();
         private bool IsHidden { get; set; } = false;
         protected override async Task OnInitializedAsync()
@@ -17,7 +19,8 @@ namespace Employee_Report.Pages
             var response = await interviewService.GetInterviews();
             interviewsDetails = Utility.GetResponseData<List<Interview>>(response.response);
         }
-        private async void addInterview()
+
+        public async void addInterview()
         {
             if (InterviewModel != null)
             {
@@ -27,6 +30,7 @@ namespace Employee_Report.Pages
                     navManager.NavigateTo("/Interviews", forceLoad: true);
                     IsHidden = false;
                 }
+
             }
         }
         private void AddClass()

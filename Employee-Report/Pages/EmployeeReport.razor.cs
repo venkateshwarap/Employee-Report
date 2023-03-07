@@ -6,7 +6,6 @@ namespace Employee_Report.Pages
 {
     public partial class EmployeeReport
     {
-        [Inject]
         public InterviewService interviewService { get; set; }
         public IEnumerable<Interview> interviewsDetails { get; set; }
         public Interview InterviewModel = new();
@@ -52,7 +51,6 @@ namespace Employee_Report.Pages
         }
         protected override async Task OnInitializedAsync()
         {
-
             var response = await interviewService.GetInterviews();
             interviewsDetails = Utility.GetResponseData<List<Interview>>(response.response);
 
