@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<IEACouncilService, EACouncilService>();
-builder.Services.AddScoped<InterviewService, InterviewService>();
+builder.Services.AddScoped<IInterviewService, InterviewService>();
 builder.Services.AddScoped<IEmployeeProjectService, EmployeeProjectService>();
 builder.Services.AddScoped<IEmployeePocService, EmployeePocService>();
 builder.Services.AddScoped<IGetRoleService, GetRoleService>();
