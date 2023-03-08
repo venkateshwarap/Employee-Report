@@ -6,6 +6,10 @@ namespace Employee_Report.API.Utilities
     {
         public const string Content_Type = "text/html";
 
+        #region Empty data
+        public const string Response_Database_Empty = "Your database is empty... Try adding some data";
+        #endregion
+
         #region Bench
         public const string Response_Bench_Entry = "Bench entry has been created successfully.";
         public const string Response_Bench_Entry_Failed = "Bench entry has not been created.";
@@ -19,8 +23,14 @@ namespace Employee_Report.API.Utilities
         #endregion
 
         #region Interview
-        public const string Response_Add_Inetrview_Success = "New Interview details have been added Successfully";
-        public const string Response_Add_Inetrview_Failure = "Failed to add New Interview details";
+        public const string Response_Add_Interview_Success = "New Interview details have been added Successfully";
+        public const string Response_Add_Interview_Failure = "Failed to add New Interview details";
+        #endregion
+
+        #region Skills
+        public const string Response_Add_Skill_Success = "New Skill has been added Successfully";
+        public const string Response_Add_Skill_Failure = "Failed to add New Skill";
+        public const string Response_Skill_Already_Exists = "This skill already exists.";
         #endregion
 
 

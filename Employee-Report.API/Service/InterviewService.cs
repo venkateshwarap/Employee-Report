@@ -21,10 +21,10 @@ namespace Employee_Report.API.Service
             var result = _context.SaveChanges();
             if (result > 0)
             {
-                return BindResponse(result, true, Constants.Response_Add_Inetrview_Success);
+                return BindResponse(result, true, Constants.Response_Add_Interview_Success);
             }
             {
-                return BindResponse(result, false, Constants.Response_Add_Inetrview_Failure);
+                return BindResponse(result, false, Constants.Response_Add_Interview_Failure);
             }
         }
 
@@ -32,12 +32,8 @@ namespace Employee_Report.API.Service
         {
             var result = await _context.Interviews.ToListAsync();
             if (result.Count > 0)
-            {
                 return BindResponse(result, true);
-            }
-            {
-                return BindResponse(result, false);
-            }
+            return BindResponse(result, false);
         }
 
         private Response BindResponse(Object Obj = null!, bool Status = true, string Message = "")

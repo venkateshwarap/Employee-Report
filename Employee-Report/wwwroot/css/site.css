@@ -68,7 +68,7 @@ a, .btn-link {
     }
 
 .btnAdd, .btnCancel {
-    width: 41%;
+    width: 13%;
     font-weight: 900;
 }
 
@@ -117,13 +117,13 @@ a, .btn-link {
 
 #SfBtns {
     margin-top: 1%;
-    margin-left: 41%;
+    margin-left: 41.5%;
 }
 
 #SfBtns > .btnCancel {
     background-color: grey;
     color: white;
-    margin-left: 4%;
+    margin-left: 3%;
 }
 
 #SfBtns > .btnAdd {

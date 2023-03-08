@@ -73,7 +73,8 @@ namespace Employee_Report.Utilities
             #region geting the response and DeserializeObject
             Response response = new Response();
             HttpResponseMessage apiresponse = await client.PostAsJsonAsync(config, requestData);
-            response = await apiresponse.Content.ReadAsAsync<Response>();
+            if (apiresponse.IsSuccessStatusCode)
+                response = await apiresponse.Content.ReadAsAsync<Response>();
             return response;
             #endregion
         }
