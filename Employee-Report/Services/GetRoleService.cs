@@ -6,11 +6,12 @@ namespace Employee_Report.Repository.Services
 {
     public class GetRoleService : IGetRoleService
     {
-        private readonly HttpClient _httpClient;
-        public GetRoleService(HttpClient httpClient)
+        HttpClient _httpClient = new HttpClient();
+        public GetRoleService()
         {
-            _httpClient = httpClient;
+            _httpClient.BaseAddress = new Uri(AppSettings.Config.API_ROUTE!);
         }
+
         public async Task<IEnumerable<Role>> GetRoleDetails()
         {
             var role = await _httpClient.GetFromJsonAsync<Role[]>(AppSettings.Config.GetRole);

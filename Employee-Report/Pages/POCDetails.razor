@@ -1,0 +1,47 @@
+﻿@page "/poc"
+@inject NavigationManager navManager
+@using Employee_Report.Model.Models;
+@using Syncfusion.Blazor.Grids
+
+@if (poc == null)
+{
+    <p><em>Loading your data... Please wait..</em></p>
+}
+else
+{
+    <div id="divHeader">
+        <h3 style="text-align:center">POC</h3>
+        @if (!IsHidden)
+        {
+            <SfButton id="sfBtnAddPocs" OnClick="AddClass">Add Poc</SfButton>
+        }
+    </div>
+    <div class="@(IsHidden ? "show" : "hidden")">
+        <EditForm Model="@pocModel" OnValidSubmit="addpoc">
+            <DataAnnotationsValidator />
+            <div class="form-control">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Name</label>
+                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="pocModel.Name" />
+                        <ValidationMessage For="@(() => pocModel.Name)" />
+                    </div>
+                </div>
+                <div id="SfBtns">
+                    <SfButton @onclick="@AddClass" type="submit" class="btnAdd" Content="Add"></SfButton>
+                    <SfButton @onclick="@AddClass" type="submit" class="btnCancel" Content="Cancel"></SfButton>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+
+    @if (!IsHidden)
+    {
+        <SfGrid DataSource="@poc">
+            <GridColumns>
+                <GridColumn Field=@nameof(Poc.Name) HeaderText="POCName" TextAlign="TextAlign.Center">
+                </GridColumn>
+            </GridColumns>
+        </SfGrid>
+    }
+}

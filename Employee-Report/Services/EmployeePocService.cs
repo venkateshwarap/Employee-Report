@@ -6,21 +6,33 @@ namespace Employee_Report.Repository.Services
 {
     public class EmployeePocService : IEmployeePocService
     {
-        private readonly HttpClient _httpClient;
-        public EmployeePocService(HttpClient httpClient)
+        HttpClient _httpClient = new HttpClient();
+        public EmployeePocService()
         {
-            _httpClient = httpClient;
+            _httpClient.BaseAddress = new Uri(AppSettings.Config.API_ROUTE!);
         }
 
         public async Task<IEnumerable<EmployeePOCEntity>> GetEmployeePOCDetails()
         {
-            var empPoc = await _httpClient.GetFromJsonAsync<EmployeePOCEntity[]>(AppSettings.Config.GetPOC);
+            var empPoc = await _httpClient.GetFromJsonAsync<EmployeePOCEntity[]>(AppSettings.Config.GetEmployeePOC);
             return empPoc;
         }
 
-        public async Task<HttpResponseMessage> AddPOC(EmployeePoc employeePoc)
+        public async Task<HttpResponseMessage> AddEmployeePOC(EmployeePoc employeePoc)
         {
-            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddPOC, employeePoc);
+            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddEmployeePOC, employeePoc);
+            return responseMessage;
+        }
+
+        public async Task<IEnumerable<Poc>> GetPOCDetails()
+        {
+            var Poc = await _httpClient.GetFromJsonAsync<Poc[]>(AppSettings.Config.GetPOC);
+            return Poc;
+        }
+
+        public async Task<HttpResponseMessage> AddPOC(Poc poc)
+        {
+            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddPOC, poc);
             return responseMessage;
         }
     }

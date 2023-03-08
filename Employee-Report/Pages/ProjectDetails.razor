@@ -1,0 +1,47 @@
+﻿@page "/projects"
+@inject NavigationManager navManager
+@using Employee_Report.Model.Models;
+@using Syncfusion.Blazor.Grids
+
+@if (projects == null)
+{
+    <p><em>Loading your data... Please wait..</em></p>
+}
+else
+{
+    <div id="divHeader">
+        <h3 style="text-align:center">Projects</h3>
+        @if (!IsHidden)
+        {
+            <SfButton id="sfBtnAddProjects" OnClick="AddClass">Add Project</SfButton>
+        }
+    </div>
+    <div class="@(IsHidden ? "show" : "hidden")">
+        <EditForm Model="@projectModel" OnValidSubmit="addproject">
+            <DataAnnotationsValidator />
+            <div class="form-control">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Name</label>
+                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="projectModel.ProjectName" />
+                        <ValidationMessage For="@(() => projectModel.ProjectName)" />
+                    </div>
+                </div>
+                <div id="SfBtns">
+                    <SfButton @onclick="@AddClass" type="submit" class="btnAdd" Content="Add"></SfButton>
+                    <SfButton @onclick="@AddClass" type="submit" class="btnCancel" Content="Cancel"></SfButton>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+
+    @if (!IsHidden)
+    {
+        <SfGrid DataSource="@projects">
+            <GridColumns>
+                <GridColumn Field=@nameof(Project.ProjectName) HeaderText="ProjectName" TextAlign="TextAlign.Center">
+                </GridColumn>
+            </GridColumns>
+        </SfGrid>
+    }
+}

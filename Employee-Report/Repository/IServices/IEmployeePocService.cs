@@ -6,6 +6,8 @@ namespace Employee_Report.Repository.IServices
     public interface IEmployeePocService
     {
         Task<IEnumerable<EmployeePOCEntity>> GetEmployeePOCDetails();
-        Task<HttpResponseMessage> AddPOC(EmployeePoc employeePoc);
+        Task<HttpResponseMessage> AddEmployeePOC(EmployeePoc employeePoc);
+        Task<IEnumerable<Poc>> GetPOCDetails();
+        Task<HttpResponseMessage> AddPOC(Poc poc);
     }
 }

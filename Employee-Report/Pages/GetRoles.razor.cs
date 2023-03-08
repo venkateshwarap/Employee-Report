@@ -1,14 +1,10 @@
-﻿using Employee_Report.API.Service;
-using Employee_Report.Model.Models;
-using Employee_Report.Repository.Services;
-using Microsoft.AspNetCore.Components;
+﻿using Employee_Report.Model.Models;
 
 namespace Employee_Report.Pages
 {
     public partial class GetRoles
     {
-        [Inject]
-        public GetRoleService roleService { get; set; }
+        Repository.Services.GetRoleService roleService = new Repository.Services.GetRoleService();
         public IEnumerable<Role> role { get; set; }
         private bool IsHidden { get; set; } = false;
 

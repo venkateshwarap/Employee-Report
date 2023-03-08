@@ -14,13 +14,17 @@ namespace Employee_Report.AppSettings
         public const string DashboardList = "https://localhost:7024/api/Dashboard/GetEmployeeDetails";
 
         #region POC       
-        public const string GetPOC = "https://localhost:7178/api/POC/GetEmployeePOC";
-        public const string AddPOC = "https://localhost:7178/api/POC/AddEmployeePoc";
+        public const string GetEmployeePOC = "https://localhost:7178/api/POC/GetEmployeePOC";
+        public const string AddEmployeePOC = "https://localhost:7178/api/POC/AddEmployeePoc";
+        public const string GetPOC = "https://localhost:7178/api/POC/GetPOC";
+        public const string AddPOC = "https://localhost:7178/api/POC/AddPoc";
         #endregion
 
         #region Project
         public const string GetEmployeeProject = "https://localhost:7178/api/Project/GetEmployeeProject";
-        public const string AddProject = "https://localhost:7178/api/Project/AddEmployeeProject";
+        public const string AddEmployeeProject = "https://localhost:7178/api/Project/AddEmployeeProject";
+        public const string GetProject = "https://localhost:7178/api/Project/GetProject";
+        public const string AddProject = "https://localhost:7178/api/Project/AddProject";
         #endregion
 
         #region Role

@@ -1,30 +1,37 @@
-﻿using Employee_Report.API.Entities;
+﻿using Employee.DataModel.Models;
+using Employee_Report.API.Entities;
 using Employee_Report.Model.Models;
 using Employee_Report.Repository.IServices;
+using Employee_Report.Utilities;
 
 namespace Employee_Report.Repository.Services
 {
     public class EmployeeProjectService : IEmployeeProjectService
     {
-        private readonly HttpClient _httpClient;
-        public EmployeeProjectService(HttpClient httpClient)
+       
+        HttpClient _httpClient = new HttpClient();
+        public EmployeeProjectService()
         {
-            _httpClient = httpClient;
+            _httpClient.BaseAddress = new Uri(AppSettings.Config.API_ROUTE!);
         }
-
         public async Task<IEnumerable<EmployeeProjectEntity>> GetEmployeeProjectDetails()
         {
             var empProject = await _httpClient.GetFromJsonAsync<EmployeeProjectEntity[]>(AppSettings.Config.GetEmployeeProject);
             return empProject;
         }
-
-        //public async Task<HttpResponseMessage> AddProject(EmployeeProject employeeProject)
-        //{
-        //    HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.AddPOC, employeeProject);
-        //    return responseMessage;
-        //}
-
         public async Task<HttpResponseMessage> AddEmployeeProject(EmployeeProject project)
+        {
+            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddEmployeeProject, project);
+            return responseMessage;
+        }
+
+        public async Task<IEnumerable<Project>> GetProjectDetails()
+        {
+            var empProject = await _httpClient.GetFromJsonAsync<Project[]>(AppSettings.Config.GetProject);
+            return empProject;
+        }
+
+        public async Task<HttpResponseMessage> AddProject(Project project)
         {
             HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddProject, project);
             return responseMessage;
