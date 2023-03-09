@@ -15,21 +15,22 @@ else
             <SfButton id="sfBtnAddProject" OnClick="AddClass">Add Project</SfButton>
         }
     </div>
-     <div class="@(IsHidden ? "show" : "hidden")">
+    <div class="@(IsHidden ? "show" : "hidden")">
         <EditForm Model="@employeeProject" OnValidSubmit="addProject">
-            <DataAnnotationsValidator/>
-             <div class="form-control">
+            <DataAnnotationsValidator />
+            <div class="form-control">
                 <div class="row">
-                 <div class="col-md-6">
+                    <div class="col-md-6">
                         <label>ProjectId</label>
-                     <SfNumericTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeProject.ProjectId" />
+                        <SfNumericTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeProject.ProjectId" />
                         <ValidationMessage For="@(() => employeeProject.ProjectId)" />
-                 </div>
+                    </div>
                     <div class="col-md-6">
                         <label>EmpId</label>
-                        <SfNumericTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeProject.EmpId" />
+                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeProject.EmpId" />
                         <ValidationMessage For="@(() => employeeProject.EmpId)" />
                     </div>
+                    
                     <div class="col-md-6">
                         <label Class="e-outline">StartDate</label>
                         <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
@@ -53,7 +54,14 @@ else
                             <SfNumericTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeProject.RoleId" />
                             <ValidationMessage For="@(() => employeeProject.RoleId)" />
                         </div>
-                     </div>
+                        </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label>Achivements</label>
+                            <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeProject.Achivements" />
+                            <ValidationMessage For="@(() => employeeProject.Achivements)" />
+                        </div>
+                    </div>
                 </div>
                 <div id="SfBtns">
                     <SfButton @onclick="@AddClass" type="submit" class="btnAdd" Content="Add"></SfButton>
@@ -61,7 +69,7 @@ else
                 </div>
             </div>
         </EditForm>
-     </div>
+    </div>
 
     @if (!IsHidden)
     {

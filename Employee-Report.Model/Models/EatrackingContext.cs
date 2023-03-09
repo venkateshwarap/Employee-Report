@@ -88,7 +88,7 @@ public partial class EatrackingContext : DbContext
         {
             entity.ToTable("Project");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+           // entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.ProjectName)
                 .HasMaxLength(50)
                 .IsUnicode(false);
