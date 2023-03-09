@@ -41,6 +41,15 @@ namespace Employee_Report.Utilities
         }
         #endregion
 
+        public static async Task<string> HttpClientGetStringAsync(string config, HttpClient client)
+        {
+            #region geting the response and DeserializeObject
+            Response response = new Response();
+            string apiResponse = await client.GetStringAsync(config);
+            return apiResponse;
+            #endregion
+        }
+
         #region Get Request by String Id
         public static async Task<Response> HttpClientGetAsync(string config, string Id, HttpClient client)
         {

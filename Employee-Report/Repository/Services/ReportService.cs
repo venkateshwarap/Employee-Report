@@ -3,7 +3,7 @@ using Employee_Report.API.Entities;
 using Employee_Report.Model.Models;
 using Employee_Report.Utilities;
 
-namespace Employee_Report.Services
+namespace Employee_Report.Repository.Services
 {
     public class ReportService
     {

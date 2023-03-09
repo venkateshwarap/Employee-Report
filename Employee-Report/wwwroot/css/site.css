@@ -19,7 +19,7 @@ a, .btn-link {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 .content {
@@ -84,23 +84,27 @@ a, .btn-link {
     background-color: dodgerblue;
     margin-left: 79%;
 }
-#sfBtnAddInterview {
+
+#sfBtnAddInterview{
     background-color: dodgerblue;
     margin-left: 78.5%;
 }
 
-#sfBtnAddPOC{
+#sfBtnAddPOC {
     background-color: green;
     margin-left: 72%;
 }
+
 #sfBtnAddProject {
     background-color: green;
     margin-left: 70%;
 }
-#sfBtnAddRole{
+
+#sfBtnAddRole {
     background-color: green;
-    margin-left:83%;
+    margin-left: 83%;
 }
+
 #sfBtnAddPocs {
     background-color: green;
     margin-left: 85%;
@@ -110,6 +114,7 @@ a, .btn-link {
     background-color: green;
     margin-left: 83%;
 }
+
 #divHeader {
     display: flex;
     margin-bottom: 1%;
@@ -128,6 +133,15 @@ a, .btn-link {
     margin-left: 41%;
 }
 
+#SfSkillsBtns {
+    margin-top: 1%;
+    margin-left: 12%;
+}
+
+#SfSkillsBtns > .btnAdd {
+    background-color: dodgerblue;
+}
+
 #SfBtns > .btnCancel {
     background-color: grey;
     color: white;
@@ -139,3 +153,11 @@ a, .btn-link {
     color: white;
 }
 
+#btnAddskill {
+    /*background-color: dodgerblue;*/
+    display: flex;
+}
+#sfBtnAddSkill {
+    background-color: dodgerblue;
+    margin-left: 2%;
+}
