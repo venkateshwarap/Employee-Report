@@ -1,19 +1,118 @@
 ﻿@inherits LayoutComponentBase
 
-<PageTitle>Employee-Report</PageTitle>
+<PageTitle>BalzerTestDemo</PageTitle>
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
+
+    <div id="mySidebar" class="collaps-active" style="@(collaps? "width:250px !important" : "")">
+        <nav class="flex-column">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button menu-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="bi bi-person-lock menu-icon"> </i>  Master
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ul class="Master-toggler-menu">
+                                <li>
+                                    <NavLink class="nav-link" href="learning">
+                                        <span class="oi oi-list-rich" aria-hidden="true"></span> Learning
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="poc">
+                                        <span class="oi oi-list-rich" aria-hidden="true"></span>POC
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="projects">
+                                        <span class="oi oi-list-rich" aria-hidden="true"></span>Project
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="role">
+                                        <span class="oi oi-list-rich" aria-hidden="true"></span>Role
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="skills">
+                                        <span class="oi oi-list-rich" aria-hidden="true"></span>Skills
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="certifications">
+                                        <span class="oi oi-list-rich" aria-hidden="true"></span>Certifications
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="training">
+                                        <span class="oi oi-list-rich" aria-hidden="true"></span>Training
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed menu-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <i class="bi bi-person-circle menu-icon"></i>Employee
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ul class="Employee-toggle-menu">
+                                <li>
+                                    <NavLink class="nav-link" href="eacouncil">
+                                        <span class="oi oi-list-rich" aria-hidden="true"></span>EA Council
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="employeeProjectDetails">
+                                        <span class="oi oi-list-rich" aria-hidden="true"></span>Employee Project
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="employeePocDetails">
+                                        <span class="oi oi-list-rich" aria-hidden="true"></span>Employee POC
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="EmployeeReport">
+                                        <span class="oi oi-list-rich" aria-hidden="true"></span>Employee Report
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
-
+    <div id="main" class="mainMargin" style="@(collaps? "margin-left:250px !important" : "")">
+        <nav class="navbar navbar-expand-lg" style="background-color:#f0f0f0">
+            <button class="openbtn" @onclick="@(collaps ?  CloseNav : OpenNav)">☰</button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         <article class="content px-4">
             @Body
         </article>
-    </main>
+    </div>
+
 </div>
+
+@code {
+
+    bool collaps = false;
+    void OpenNav() => collaps = true;
+    void CloseNav() => collaps = false;
+
+}

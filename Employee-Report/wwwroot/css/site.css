@@ -67,6 +67,79 @@ a, .btn-link {
         content: "An error has occurred."
     }
 
+
+.collaps-active {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #c6dfef;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+    .collaps-active a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 16px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+        .collaps-active a:hover {
+            background-color: #a0c5e8;
+            /*border-radius: 22px;*/
+        }
+
+        .collaps-active a:hover {
+            color: #f1f1f1;
+        }
+
+    .collaps-active .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+}
+
+/*.openbtn:hover {
+  background-color: #444;
+}*/
+
+#main {
+    transition: margin-left .5s;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .collaps-active {
+        padding-top: 15px;
+    }
+
+        .collaps-active a {
+            font-size: 15px;
+        }
+}
+
+
+#main {
+    width: 100%;
+}
+
+
 .btnAdd, .btnCancel {
     width: 50%;
     margin: 5px;
@@ -160,4 +233,38 @@ a, .btn-link {
 #sfBtnAddSkill {
     background-color: dodgerblue;
     margin-left: 2%;
+}
+
+a {
+    color: #fff;
+}
+
+
+.Master-toggler-menu {
+    list-style-type: none;
+}
+.Employee-toggle-menu {
+    list-style-type: none;
+}
+
+.accordion-button:not(.menu-button) {
+    color: #0c63e4 !important;
+    background-color: none !important;
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%) !important;
+}
+
+.accordion-button:focus {
+     z-index: 3; 
+     border-color: none !important; 
+     outline: 0; 
+     box-shadow: 0 !important; 
+}
+
+.menu-button {
+    /*padding-left: 45px !important;*/
+    height: 40px !important;
+}
+.menu-icon
+{
+    margin:10px;
 }
