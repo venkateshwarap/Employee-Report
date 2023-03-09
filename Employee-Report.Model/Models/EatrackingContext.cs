@@ -23,12 +23,13 @@ public partial class EatrackingContext : DbContext
     public virtual DbSet<Interview> Interviews { get; set; }
     public virtual DbSet<EmployeeLearning> EmployeeLearnings { get; set; }
     public virtual DbSet<EmployeeTraining> EmployeeTrainings { get; set; }
+    public virtual DbSet<EmployeeSkills> EmployeeSkills { get; set; }
     public virtual DbSet<EACouncilEntryExit> EACouncilEntryExit { get; set; }
     public virtual DbSet<Certifications> Certifications { get; set; }
     public virtual DbSet<Learning> Learnings { get; set; }
     public virtual DbSet<Training> Trainings { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=MLI00740\\SQLEXPRESS;Database=EATracking;Integrated Security=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=MLI00741\\RAJEEV_SQLDEV;Database=EATracking;Integrated Security=True;TrustServerCertificate=True;User Id=sa;Password=Raj@727_eev.MLI;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -72,6 +73,20 @@ public partial class EatrackingContext : DbContext
             //    .HasForeignKey(d => d.RoleId)
             //    .OnDelete(DeleteBehavior.ClientSetNull)
             //    .HasConstraintName("FK_EmployeeProject_Role");
+        });
+
+        modelBuilder.Entity<EmployeeSkills>(entity =>
+        {
+            entity.ToTable("EmployeeSkills");
+            entity.Property(e => e.ID);
+            entity.Property(e => e.EmpID).HasMaxLength(10);
+            entity.Property(e => e.SkillID);
+            entity.Property(e => e.StartDate);
+            entity.Property(e => e.EndDate);
+            entity.Property(e => e.CreatedBy).HasMaxLength(50);
+            entity.Property(e => e.CreatedOn);
+            entity.Property(e => e.ModifiedBy).HasMaxLength(50);
+            entity.Property(e => e.ModifiedOn);
         });
 
         modelBuilder.Entity<Poc>(entity =>

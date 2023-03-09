@@ -12,6 +12,7 @@ builder.Services.AddScoped<IEACouncilService, EACouncilService>();
 builder.Services.AddScoped<ICertificationsService, CertificationsService>();
 builder.Services.AddScoped<IInterviewService, InterviewService>();
 builder.Services.AddScoped<IEmployeeProjectService, EmployeeProjectService>();
+builder.Services.AddScoped<IEmployeeSkillsService, EmployeeSkillsService>();
 builder.Services.AddScoped<IEmployeePocService, EmployeePocService>();
 builder.Services.AddScoped<IGetRoleService, GetRoleService>();
 builder.Services.AddSyncfusionBlazor();

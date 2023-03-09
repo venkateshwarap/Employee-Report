@@ -21,6 +21,7 @@ builder.Services.AddScoped<IEACouncilService, EACouncilService>();
 builder.Services.AddScoped<ICertificationService, CertificationService>();
 builder.Services.AddScoped<ILearningService, LearningService>();
 builder.Services.AddScoped<IEmployeeLearningService, EmployeeLearningService>();
+builder.Services.AddScoped<IEmployeeSkillsService, EmployeeSkillsService>();
 builder.Services.AddScoped<IEmployeeTrainingService, EmployeeTrainingService>();
 builder.Services.AddScoped<ITrainingService, TrainingService>();
 builder.Services.AddTransient<IRoleService, RoleService>();

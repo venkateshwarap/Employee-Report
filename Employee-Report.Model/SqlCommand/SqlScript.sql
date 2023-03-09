@@ -394,3 +394,42 @@ VALUES('MLI748', 4, GETDATE()-30, GETDATE()+30, 4)
 
 INSERT INTO [dbo].[EmployeeTraining]([EmpID], [TraningID], [StartDate], [EndDate], [BenchID])
 VALUES('MLI719', 5, GETDATE()-30, GETDATE()+30, 5)
+
+--EmployeeSkills TABLE:
+
+CREATE TABLE [dbo].[EmployeeSkills](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[EmpID] [nvarchar] (10) NOT NULL,
+	[SkillID] [int] NOT NULL,
+	[StartDate] [date] NOT NULL,
+	[EndDate] [nvarchar](50) NOT NULL,
+	[CreatedBy] [nvarchar](50) NOT NULL,
+	[CreatedOn] [date] NOT NULL,
+	[ModifiedBy] [nvarchar](50) NOT NULL,
+	[modifiedOn] [date] NOT NULL,
+ CONSTRAINT [PK_EmployeeSkills] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[EmployeeSkills]  WITH CHECK ADD  CONSTRAINT [FK_EmployeeSkills_Skills] FOREIGN KEY([SkillID])
+REFERENCES [dbo].[Skills] ([ID])
+
+ALTER TABLE [dbo].[EmployeeSkills] CHECK CONSTRAINT [FK_EmployeeSkills_Skills]
+
+--EmployeeSkills DATA:
+INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [StartDate], [EndDate], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
+VALUES('MLI741', 1, GETDATE()-30, GETDATE(), 'Rajeev', GETDATE(), 'Rajeev', GETDATE()+1)
+
+INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [StartDate], [EndDate], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
+VALUES('MLI740', 2, GETDATE()-30, GETDATE(), 'Nitin', GETDATE(), 'Nitin', GETDATE()+1)
+
+INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [StartDate], [EndDate], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
+VALUES('MLI737', 3, GETDATE()-30, GETDATE(), 'SriLaxmi', GETDATE(), 'SriLaxmi', GETDATE()+1)
+
+INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [StartDate], [EndDate], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
+VALUES('MLI748', 4, GETDATE()-30, GETDATE(), 'Praful', GETDATE(), 'Praful', GETDATE()+1)
+
+INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [StartDate], [EndDate], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
+VALUES('MLI719', 5, GETDATE()-30, GETDATE(), 'Taj', GETDATE(), 'Taj', GETDATE()+1)
