@@ -1,5 +1,9 @@
-﻿using Employee_Report.Repository.IServices;
+﻿using Employee_Report.API.Entities;
+using Employee_Report.API.Service;
+using Employee_Report.Model.Models;
+using Employee_Report.Repository.IServices;
 using Employee_Report.Repository.Services;
+using Employee_Report.Services;
 using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components;
 
@@ -7,17 +11,34 @@ namespace Employee_Report.Pages
 {
     public partial class EmployeeReport
     {
-        public InterviewService interviewService { get; set; }
-        public IEnumerable<Interview> interviewsDetails { get; set; }
+
+         ReportService reportService=new ReportService();
+        public IEnumerable<Interview>? interviewsDetails { get; set; }
         public Interview InterviewModel = new();
+
+        public IEnumerable<Certifications>? certificationslist { get; set; }
+        public Certifications certifications = new();
+
         [Inject]
-        public IEACouncilService benchServices { get; set; }
-        public IEnumerable<EACouncilEntryExit> benchdetails { get; set; }
+        public Repository.IServices.IEACouncilService benchServices { get; set; }
+        public IEnumerable<EACouncilEntryExit> eacouncildetails { get; set; }
         public EACouncilEntryExit entryExit = new();
+
+        public IEnumerable<EmployeePOCEntity> employeepoc { get; set; }
+
+        public EmployeePoc employeePocModel = new();
+
+        public IEnumerable<EmployeeProjectEntity> employee { get; set; }
+        public EmployeeProject employeeProject = new();
+
+
+
+        public IEnumerable<Poc> poc { get; set; }
+
         public List<ChartDataModel> pieData;
         public List<Projects> projects { get; set; }
         public List<Learnings> learning { get; set; }
-        public List<Certifications> certifications { get; set; }
+        //public List<Certifications> certifications { get; set; }
         public List<Trainings> trainings { get; set; }
         public List<ProofOfConcepts> proofOfConcepts { get; set; }
         public List<IntellectualProperties> intellectualproperties { get; set; }
@@ -52,11 +73,20 @@ namespace Employee_Report.Pages
         }
         protected override async Task OnInitializedAsync()
         {
-            var response = await interviewService.GetInterviews();
+            var response = await reportService.GetInterviews();
             interviewsDetails = Utility.GetResponseData<List<Interview>>(response.response);
 
-            var benchresponse = await benchServices.GeEACouncilEntryDetails();
-            benchdetails = Utility.GetResponseData<List<EACouncilEntryExit>>(response.response);
+            var cerificationresponse = await reportService.GetCertificationDetails();
+            certificationslist = Utility.GetResponseData<List<Certifications>>(response.response);
+
+            var eacouncilresponse = await benchServices.GeEACouncilEntryDetails();
+            eacouncildetails = Utility.GetResponseData<List<EACouncilEntryExit>>(response.response);
+
+            employeepoc = (await reportService.GetEmployeePOCDetails()).ToList();
+
+            employee = (await reportService.GetEmployeeProjectDetails()).ToList();
+
+
 
             learning = new List<Learnings>
         {
@@ -78,13 +108,13 @@ namespace Employee_Report.Pages
         new IntellectualProperties() {  Name = "CWF",Role = "Team Lead",ReportingTo="Srinivas",
         StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  }
     };
-            eACouncils = new List<EACouncil>
-    {
-      new EACouncil() {  Role = "Team Lead",
-        ReportingTo = "Lakshumaiah", StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  },
-        new EACouncil() {  Role = "Team Lead",ReportingTo="Srinivas",
-        StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  }
-    };
+    //        eACouncils = new List<EACouncil>
+    //{
+    //  new EACouncil() {  Role = "Team Lead",
+    //    ReportingTo = "Lakshumaiah", StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  },
+    //    new EACouncil() {  Role = "Team Lead",ReportingTo="Srinivas",
+    //    StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  }
+    //};
             projects = new List<Projects>()
         {
             new Projects() { Name = "Advent", Role = "Team Lead", EmpProjectStartDate = new DateTime(2021, 8, 4, 12, 0, 0),EmpProjectEndDate = new DateTime(2021, 9, 6, 12, 0, 0), ReportingTo = " Sandeep" },
@@ -95,10 +125,10 @@ namespace Employee_Report.Pages
             new Trainings() { Name = "C# Advanced", HoursOfLearning   = 10, StartDate = new DateTime(2021, 8, 4, 12, 0, 0),EndDate = new DateTime(2021, 9, 6, 12, 0, 0) },
             new Trainings() { Name = "Vertafore", HoursOfLearning = 10, StartDate = new DateTime(2022, 8, 4, 12, 0, 0) ,EndDate = new DateTime(2022, 9, 9, 12, 0, 0)},
         };
-            certifications = new List<Certifications>()
-        {
-            new Certifications() { Name = "Azure Associate Architech", ValidFrom = new DateTime(2020, 8, 4, 12, 0, 0), ValidTo = new DateTime(2021, 8, 4, 12, 0, 0) },
-        };
+        //    certifications = new List<Certifications>()
+        //{
+        //    new Certifications() { Name = "Azure Associate Architech", ValidFrom = new DateTime(2020, 8, 4, 12, 0, 0), ValidTo = new DateTime(2021, 8, 4, 12, 0, 0) },
+        //};
         }
         public class Projects
         {
@@ -176,6 +206,38 @@ namespace Employee_Report.Pages
             public string Status { get; set; } = null!;
             public DateTime Date { get; set; } = DateTime.Now;
             public string ReportingTo { get; set; } = null!;
+        }
+
+        public  class Poc
+        {
+            public int Id { get; set; }
+
+            public string? Name { get; set; }
+
+            public virtual ICollection<EmployeePoc> EmployeePocs { get; } = new List<EmployeePoc>();
+        }
+
+        public  class EmployeeProject
+        {
+            public int Id { get; set; }
+
+            public int ProjectId { get; set; }
+
+            public string? EmpId { get; set; }
+
+            public DateTime? StartDate { get; set; } = DateTime.Now;
+
+            public DateTime? EndDate { get; set; } = DateTime.Now;
+
+            public string? ReportingTo { get; set; }
+
+            public int RoleId { get; set; }
+
+            public string? Achivements { get; set; }
+
+            //public virtual Project Project { get; set; } = null!;
+
+            //public virtual Role Role { get; set; } = null!;
         }
     }
 }
