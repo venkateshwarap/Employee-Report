@@ -68,8 +68,8 @@ a, .btn-link {
     }
 
 .btnAdd, .btnCancel {
-    width: 13%;
-    font-weight: 900;
+    width: 50%;
+    margin: 5px;
 }
 
 .hidden {

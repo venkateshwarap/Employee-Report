@@ -10,7 +10,7 @@ namespace Employee_Report.Pages
         public Repository.IServices.ICertificationsService service { get; set; }
         public IEnumerable<Certifications>? certificationslist { get; set; }
         public Certifications certifications = new();
-        private bool IsHidden { get; set; } = false;
+        private bool IsHidden { get; set; } = true;
         protected override async Task OnInitializedAsync()
         {
             var response = await service.GetCertificationDetails();
@@ -29,7 +29,11 @@ namespace Employee_Report.Pages
 
             }
         }
-        private void AddClass()
+        private void Save()
+        {
+            IsHidden = !IsHidden;
+        }
+        private void Cancel()
         {
             IsHidden = !IsHidden;
         }

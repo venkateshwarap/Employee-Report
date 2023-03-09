@@ -10,7 +10,7 @@ namespace Employee_Report.Pages
         public Repository.IServices.IEACouncilService benchServices { get; set; }
         public IEnumerable<EACouncilEntryExit> benchdetails { get; set; }
         public EACouncilEntryExit entryExit = new();
-        private bool IsHidden { get; set; } = false;
+        private bool IsHidden { get; set; } = true;
         protected override async Task OnInitializedAsync()
         {
             var response = await benchServices.GeEACouncilEntryDetails();
@@ -29,7 +29,11 @@ namespace Employee_Report.Pages
 
             }
         }
-        private void AddClass()
+        private void Save()
+        {
+            IsHidden = !IsHidden;
+        }
+        private void Cancel()
         {
             IsHidden = !IsHidden;
         }

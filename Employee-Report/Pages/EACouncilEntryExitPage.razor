@@ -12,14 +12,10 @@ else
         <h5>EA Council</h5>
         @if(IsHidden)
         {
-            <SfButton id="sfBtn" OnClick="AddClass"><i class="fa-solid fa-minus"></i> &nbsp;Add Entry</SfButton>
-        }
-        else
-        {
-        <SfButton id="sfBtn" OnClick="AddClass"><i class="fa-solid fa-plus"></i> &nbsp;Add Entry</SfButton>
+            <SfButton id="sfBtn" OnClick="Save">Add Entry</SfButton>
         }
     </div>
-    <div class="@(IsHidden ? "show" : "hidden")">
+    <div class="@(IsHidden ? "hidden" : "show")">
     <EditForm Model="@entryExit" OnValidSubmit="SaveEntry">
     <DataAnnotationsValidator />
         <div class="form-control">
@@ -36,7 +32,13 @@ else
             </div>
                 <div class="row mt-2">
                     <div class="col-md-6">
-                    <SfTextBox CssClass="e-outline custom-size" Placeholder="Role" FloatLabelType="@FloatLabelType.Auto" Type="InputType.Text" class="form-control" @bind-Value="entryExit.Role" />
+                        <label Class="e-outline-date">Role</label>
+                        <InputSelect class="form-control" @bind-Value=@entryExit.Role>
+                            <option selected value="">Please Select</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Team Lead</">Team Lead</option>
+                        </InputSelect>
                     <ValidationMessage For="@(() => entryExit.Role)" />
                 </div>
                 <div class="col-md-6">
@@ -55,8 +57,9 @@ else
                 </div>
             </div>
             <div style="margin-top:10px;margin-left:46%;">
-                <div class="col-md-3">
-                    <SfButton @onclick="@AddClass" type="submit" class="btnAdd" style="background-color: midnightblue; color: white;" Content="Add"></SfButton>
+                <div class="col-md-3" style="display:flex;padding:5px">
+                    <SfButton @onclick="@Save" type="submit" class="btnAdd" style="background-color: midnightblue; color: white;" Content="Add"></SfButton>
+                        <SfButton @onclick="@Cancel" type="button" class="btnCancel" style="background-color: orangered; color: white;" Content="Cancel"></SfButton>
                 </div>
                 <div class="col-md-3"></div>
             </div>
