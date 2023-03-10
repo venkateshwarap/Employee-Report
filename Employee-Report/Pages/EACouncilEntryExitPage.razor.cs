@@ -1,4 +1,5 @@
-﻿using Employee_Report.Model.Models;
+﻿using Employee.DataModel.Models;
+using Employee_Report.Model.Models;
 using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components;
 
@@ -8,13 +9,13 @@ namespace Employee_Report.Pages
     {
         [Inject]
         public Repository.IServices.IEACouncilService benchServices { get; set; }
-        public IEnumerable<EACouncilEntryExit> benchdetails { get; set; }
-        public EACouncilEntryExit entryExit = new();
+        public IEnumerable<EacouncilEntryExit> benchdetails { get; set; }
+        public EacouncilEntryExit entryExit = new();
         private bool IsHidden { get; set; } = true;
         protected override async Task OnInitializedAsync()
         {
             var response = await benchServices.GeEACouncilEntryDetails();
-            benchdetails = Utility.GetResponseData<List<EACouncilEntryExit>>(response.response);
+            benchdetails = Utility.GetResponseData<List<EacouncilEntryExit>>(response.response);
         }
         private async void SaveEntry()
         {

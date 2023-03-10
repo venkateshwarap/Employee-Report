@@ -6,29 +6,29 @@ use EATracking
 --Employee TABLE
 
 CREATE TABLE [dbo].[Employee](
-    [EmpId] [nvarchar](10) NOT NULL,
+    [Id] [nvarchar](10) NOT NULL,
     [Name] [varchar](50) NOT NULL,
     [Email] [nvarchar](50) NOT NULL,
 CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED 
 (
-    [EmpId] ASC
+    [Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
  
 --Employee DATA:
-INSERT INTO [dbo].[Employee] ([EmpId], [Name], [Email])
+INSERT INTO [dbo].[Employee] ([Id], [Name], [Email])
 VALUES ('MLI741', 'Rajeev', 'rajeev.reddy@motivitylabs.com')
 
-INSERT INTO [dbo].[Employee] ([EmpId], [Name], [Email])
+INSERT INTO [dbo].[Employee] ([Id], [Name], [Email])
 VALUES ('MLI740', 'Nitin', 'nitin.sharma@motivitylabs.com')
 
-INSERT INTO [dbo].[Employee] ([EmpId], [Name], [Email])
+INSERT INTO [dbo].[Employee] ([Id], [Name], [Email])
 VALUES ('MLI737', 'SriLaxmi', 'srilaxmi.katla@motivitylabs.com')
 
-INSERT INTO [dbo].[Employee] ([EmpId], [Name], [Email])
+INSERT INTO [dbo].[Employee] ([Id], [Name], [Email])
 VALUES ('MLI748', 'Praful', 'praful.reddy@motivitylabs.com')
 
-INSERT INTO [dbo].[Employee] ([EmpId], [Name], [Email])
+INSERT INTO [dbo].[Employee] ([Id], [Name], [Email])
 VALUES ('MLI719', 'Taj', 'taj.ansari@motivitylabs.com')
 
 --POC TABLE: 
@@ -43,12 +43,9 @@ CONSTRAINT [PK_POC] PRIMARY KEY CLUSTERED 
 ) ON [PRIMARY]
 
 --POC DATA:
-INSERT INTO [dbo].[POC] ([Name]) VALUES ('Rajeev')
-INSERT INTO [dbo].[POC] ([Name]) VALUES ('Nitin')
-INSERT INTO [dbo].[POC] ([Name]) VALUES ('SriLaxmi')
-INSERT INTO [dbo].[POC] ([Name]) VALUES ('Praful')
-INSERT INTO [dbo].[POC] ([Name]) VALUES ('Taj')
-
+INSERT INTO [dbo].[POC] ([Name]) VALUES ('Commport')
+INSERT INTO [dbo].[POC] ([Name]) VALUES ('EATracking')
+INSERT INTO [dbo].[POC] ([Name]) VALUES ('AutoCard')
 
 
 --Project TABLE:
@@ -64,7 +61,7 @@ CONSTRAINT [PK_Project] PRIMARY KEY CLUSTERED 
 
 --Project DATA:
 INSERT INTO [dbo].[Project]([ProjectName]) VALUES('Hoozin')
-INSERT INTO [dbo].[Project]([ProjectName]) VALUES('Commport')
+INSERT INTO [dbo].[Project]([ProjectName]) VALUES('Helix Sense')
 INSERT INTO [dbo].[Project]([ProjectName]) VALUES('ALG - Beach Bound')
 INSERT INTO [dbo].[Project]([ProjectName]) VALUES('Advent')
 INSERT INTO [dbo].[Project]([ProjectName]) VALUES('BlackBerry')
@@ -279,7 +276,7 @@ REFERENCES [dbo].[Role] ([Id])
 ALTER TABLE [dbo].[EmployeePOC] CHECK CONSTRAINT [FK_EmployeePOC_Role]
 
 ALTER TABLE [dbo].[EmployeePOC]  WITH CHECK ADD  CONSTRAINT [FK_EmployeePOC_Employee] FOREIGN KEY([EmpId])
-REFERENCES [dbo].[Employee] ([EmpId])
+REFERENCES [dbo].[Employee] ([Id])
 ALTER TABLE [dbo].[EmployeePOC] CHECK CONSTRAINT [FK_EmployeePOC_Employee]
 
 --EmployeePOC DATA:
@@ -323,7 +320,7 @@ REFERENCES [dbo].[Role] ([Id])
 ALTER TABLE [dbo].[EmployeeProject] CHECK CONSTRAINT [FK_EmployeeProject_Role]
 
 ALTER TABLE [dbo].[EmployeeProject]  WITH CHECK ADD  CONSTRAINT [FK_EmployeeProject_Employee] FOREIGN KEY([EmpId])
-REFERENCES [dbo].[Employee] ([EmpId])
+REFERENCES [dbo].[Employee] ([Id])
 ALTER TABLE [dbo].[EmployeeProject] CHECK CONSTRAINT [FK_EmployeeProject_Employee]
  
 --EmployeeProject DATA:

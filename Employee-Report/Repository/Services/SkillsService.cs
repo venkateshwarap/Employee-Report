@@ -17,7 +17,7 @@ namespace Employee_Report.Repository.Services
             var entry = await Utility.HttpClientGetStringAsync(AppSettings.Config.GetSkills, _httpClient);
             return entry;
         }
-        public async Task<Response> AddSkill(Skills skill)
+        public async Task<Response> AddSkill(Skill skill)
         {
             var entry = await Utility.HttpClientPostAsync(AppSettings.Config.AddSkill, _httpClient, skill);
             return entry;

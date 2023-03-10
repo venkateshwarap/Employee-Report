@@ -1,4 +1,5 @@
-﻿using Employee_Report.API.IService;
+﻿using Employee.DataModel.Models;
+using Employee_Report.API.IService;
 using Employee_Report.Model.Models;
 
 namespace Employee_Report.API.Service
@@ -14,7 +15,7 @@ namespace Employee_Report.API.Service
         {
             try
             {
-                return _eatrackingContext.Trainings.ToList();
+                return _eatrackingContext.Training.ToList();
             }
             catch (Exception ex)
             {

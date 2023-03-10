@@ -13,7 +13,7 @@ namespace Employee_Report.API.Service
         {
             this._context = context;
         }
-        public async Task<Response> AddSkill(Skills skill)
+        public async Task<Response> AddSkill(Skill skill)
         {
             var doesSkillExist = await _context.Skills.Where(x => x.SkillName == skill.SkillName).FirstOrDefaultAsync();
             if (doesSkillExist == null)
@@ -27,7 +27,7 @@ namespace Employee_Report.API.Service
                 return BindResponse(doesSkillExist.SkillName, false, Constants.Response_Skill_Already_Exists);
             }
         }
-        public async Task<List<Skills>> GetSkills()
+        public async Task<List<Skill>> GetSkills()
         {
             return await _context.Skills.ToListAsync();
         }

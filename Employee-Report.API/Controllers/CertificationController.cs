@@ -1,4 +1,5 @@
-﻿using Employee_Report.API.IService;
+﻿using Employee.DataModel.Models;
+using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
 using Employee_Report.Model.Models;
 using Microsoft.AspNetCore.Http;
@@ -18,7 +19,7 @@ namespace Employee_Report.API.Controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task<IActionResult> CreateCertificationDetails(Certifications certifications)
+        public async Task<IActionResult> CreateCertificationDetails(Certification certifications)
         {
             try
             {

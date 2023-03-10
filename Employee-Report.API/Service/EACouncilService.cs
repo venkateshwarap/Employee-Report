@@ -13,9 +13,9 @@ namespace Employee_Report.API.Service
             _context = context;
         }
 
-        public async Task<Response> CreateCouncilEntry(EACouncilEntryExit bench)
+        public async Task<Response> CreateCouncilEntry(EacouncilEntryExit bench)
         {
-            await _context.EACouncilEntryExit.AddAsync(bench);
+            await _context.EacouncilEntryExits.AddAsync(bench);
             var result = _context.SaveChanges();
             if (result > 0)
             {
@@ -29,7 +29,7 @@ namespace Employee_Report.API.Service
 
         public async Task<Response> GetAllEACouncilEntryExit()
         {
-            var result = await _context.EACouncilEntryExit.ToListAsync();
+            var result = await _context.EacouncilEntryExits.ToListAsync();
             if (result.Count > 0)
             {
                 return BindResponse(result, true);
@@ -41,7 +41,7 @@ namespace Employee_Report.API.Service
 
         public async Task<Response> GetEACouncilByEmpId(string empid)
         {
-            var result = await _context.EACouncilEntryExit.Where(x=>x.EmpId == empid).FirstOrDefaultAsync();
+            var result = await _context.EacouncilEntryExits.Where(x=>x.EmpId == empid).FirstOrDefaultAsync();
             if (result != null)
             {
                 return BindResponse(result!, true);
@@ -53,12 +53,12 @@ namespace Employee_Report.API.Service
 
         public async Task<Response> DeleteFromEACouncil(string empid)
         {
-            var result = await _context.EACouncilEntryExit.Where(x=>x.EmpId == empid).FirstOrDefaultAsync();
+            var result = await _context.EacouncilEntryExits.Where(x=>x.EmpId == empid).FirstOrDefaultAsync();
             if (result == null)
             {
                 return BindResponse(result!, false, Constants.RE_EmpId_Not_Available_EA);
             }
-            _context.EACouncilEntryExit.Remove(result!);
+            _context.EacouncilEntryExits.Remove(result!);
             var response = await _context.SaveChangesAsync();
 
             if (response == 1)

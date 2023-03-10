@@ -1,10 +1,5 @@
-﻿using Employee_Report.API.Service;
-using Employee_Report.Model.Models;
-using Employee_Report.Repository.IServices;
-using Employee_Report.Repository.Services;
+﻿using Employee.DataModel.Models;
 using Employee_Report.Utilities;
-using Microsoft.AspNetCore.Components;
-using Microsoft.Identity.Client;
 
 namespace Employee_Report.Pages
 {

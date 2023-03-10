@@ -1,5 +1,7 @@
-﻿using Employee_Report.API.Entities;
+﻿using Employee.DataModel.Models;
+using Employee_Report.API.Entities;
 using Employee_Report.Model.Models;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace Employee_Report.Pages
 {
@@ -31,6 +33,11 @@ namespace Employee_Report.Pages
                     IsHidden = false;
                 }
             }
+        }
+        public void Clicked(MouseEventArgs Args)
+        {
+
+            navManager.NavigateTo("/reports/EmpId");
         }
     }
 }

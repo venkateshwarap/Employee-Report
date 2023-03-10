@@ -20,7 +20,7 @@ namespace Employee_Report.Repository.Services
             var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GET_CERTIFICATIONS_DETAILS, _httpClient);
             return entry;
         }
-        public async Task<Response> CreateCertificationDetails(Certifications certifications)
+        public async Task<Response> CreateCertificationDetails(Certification certifications)
         {
             var entry = await Utility.HttpClientPostAsync(AppSettings.Config.CREATE_CERTIFICATIONS_DETAILS, _httpClient, certifications);
             return entry;

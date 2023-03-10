@@ -1,4 +1,5 @@
-﻿using Employee_Report.API.Entities;
+﻿using Employee.DataModel.Models;
+using Employee_Report.API.Entities;
 using Employee_Report.Model.Models;
 
 namespace Employee_Report.API.IService

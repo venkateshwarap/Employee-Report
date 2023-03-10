@@ -6,6 +6,6 @@ namespace Employee_Report.Repository.IServices
     public interface IEACouncilService
     {
         Task<Response> GeEACouncilEntryDetails();
-        Task<Response> CreateEACouncilEntryDetails(EACouncilEntryExit EACouncilEntryExit);
+        Task<Response> CreateEACouncilEntryDetails(EacouncilEntryExit EACouncilEntryExit);
     }
 }

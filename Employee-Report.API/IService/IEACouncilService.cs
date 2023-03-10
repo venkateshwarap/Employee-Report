@@ -6,7 +6,7 @@ namespace Employee_Report.API.IService
 {
     public interface IEACouncilService
     {
-        Task<Response> CreateCouncilEntry(EACouncilEntryExit bench);
+        Task<Response> CreateCouncilEntry(EacouncilEntryExit bench);
         Task<Response> GetAllEACouncilEntryExit();
         Task<Response> GetEACouncilByEmpId(string empid);
         Task<Response> DeleteFromEACouncil(string empid);

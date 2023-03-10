@@ -20,7 +20,7 @@ namespace Employee_Report.API.Service
             var result = _context.SaveChanges();
             if (result > 0)
             {
-                return BindResponse(result, true, Constants.Response_Add_EmployeeSills_Success);
+                return BindResponse(result, true, Constants.Response_Add_EmployeeSkills_Success);
             }
             {
                 return BindResponse(result, false, Constants.Response_Add_Interview_Failure);

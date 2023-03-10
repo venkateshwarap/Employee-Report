@@ -18,7 +18,7 @@ namespace Employee_Report.Repository.Services
             var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EA_COUNCIL, _httpClient);
             return entry;
         }
-        public async Task<Response> CreateEACouncilEntryDetails(EACouncilEntryExit EACouncilEntryExit)
+        public async Task<Response> CreateEACouncilEntryDetails(EacouncilEntryExit EACouncilEntryExit)
         {
             var entry = await Utility.HttpClientPostAsync(AppSettings.Config.CREATE_EA_COUNCIL_ENTRY, _httpClient, EACouncilEntryExit);
             return entry;

@@ -34,9 +34,9 @@ namespace Employee_Report.API.Utilities
         #endregion
 
         #region EmployeeSkills
-        public const string Response_Add_EmployeeSills_Success = "New EmployeeSkill has been added Successfully";
-        public const string Response_Add_EmployeeSills_Failue = "Faield to add New EmployeeSkill";
-        public const string Response_EmployeeSills_Already_Exists = "EmployeeSkill already exists in your database";
+        public const string Response_Add_EmployeeSkills_Success = "New EmployeeSkill has been added Successfully";
+        public const string Response_Add_EmployeeSkills_Failue = "Faield to add New EmployeeSkill";
+        public const string Response_EmployeeSkills_Already_Exists = "EmployeeSkill already exists in your database";
         #endregion
 
         #region API Routes

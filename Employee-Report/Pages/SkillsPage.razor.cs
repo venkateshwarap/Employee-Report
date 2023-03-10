@@ -1,4 +1,5 @@
-﻿using Employee_Report.Model.Models;
+﻿using Employee.DataModel.Models;
+using Employee_Report.Model.Models;
 using Employee_Report.Utilities;
 
 namespace Employee_Report.Pages
@@ -6,9 +7,9 @@ namespace Employee_Report.Pages
     public partial class SkillsPage
     {
         Repository.Services.SkillsService SkillsService = new();
-        public IEnumerable<Skills> skillsDetails { get; set; }
+        public IEnumerable<Skill> skillsDetails { get; set; }
         public string skills { get; set; }
-        public Skills skillsModel = new();
+        public Skill skillsModel = new();
         private bool IsHidden { get; set; } = false;
         protected override async Task OnInitializedAsync()
         {

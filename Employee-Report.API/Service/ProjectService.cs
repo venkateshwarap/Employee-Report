@@ -1,4 +1,5 @@
-﻿using employee_report.api.iservice;
+﻿using Employee.DataModel.Models;
+using employee_report.api.iservice;
 using Employee_Report.API.Entities;
 using Employee_Report.Model.Models;
 using Microsoft.EntityFrameworkCore;
@@ -72,6 +73,27 @@ namespace Employee_Report.API.Service
                 return employeeProject.Id;
             }
             return 0;
+        }
+
+        public async Task<Response> GetByProjectId(string EmpId)
+        {
+            var result = await _dBContext.EmployeeProjects.Where(x => x.EmpId == EmpId).FirstOrDefaultAsync();
+            if (result != null)
+            {
+                return BindResponse(result!, true);
+            }
+            {
+                return BindResponse(result!, false);
+            }
+
+        }
+        private Response BindResponse(Object Obj = null!, bool Status = true, string Message = "")
+        {
+            Response resp = new Response();
+            resp.response = Obj;
+            resp.message = Message;
+            resp.status = Status;
+            return resp;
         }
     }
 }

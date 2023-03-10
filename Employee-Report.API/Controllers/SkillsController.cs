@@ -1,7 +1,6 @@
-﻿using Employee_Report.API.IService;
+﻿using Employee.DataModel.Models;
+using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
-using Employee_Report.Model.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Report.API.Controllers
@@ -34,7 +33,7 @@ namespace Employee_Report.API.Controllers
 
         [HttpPost]
         [Route("AddSkill")]
-        public async Task<IActionResult> AddSkill(Skills skill)
+        public async Task<IActionResult> AddSkill(Skill skill)
         {
             try
             {

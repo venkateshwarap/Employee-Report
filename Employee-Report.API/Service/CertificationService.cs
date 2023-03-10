@@ -13,7 +13,7 @@ namespace Employee_Report.API.Service
         {
             _context = context;
         }
-        public async Task<Response> CreateCertificationDetails(Certifications certifications)
+        public async Task<Response> CreateCertificationDetails(Certification certifications)
         {
             await _context.Certifications.AddAsync(certifications);
             var result = _context.SaveChanges();

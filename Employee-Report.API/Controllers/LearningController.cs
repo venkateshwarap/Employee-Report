@@ -1,4 +1,5 @@
-﻿using Employee_Report.API.IService;
+﻿using Employee.DataModel.Models;
+using Employee_Report.API.IService;
 using Employee_Report.Model.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

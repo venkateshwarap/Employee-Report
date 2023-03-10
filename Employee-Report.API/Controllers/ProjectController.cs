@@ -1,4 +1,5 @@
-﻿using employee_report.api.iservice;
+﻿using Employee.DataModel.Models;
+using employee_report.api.iservice;
 using Employee_Report.Model.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,6 +38,24 @@ namespace Employee_Report.API.Controllers
             try
             {
                 var p = await _projectService.GetEmployeeProjectDetails();
+                if (p == null)
+                {
+                    return NotFound();
+                }
+                return Ok(p);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("GetEmployeeProjectById")]
+        public async Task<IActionResult> GetEmployeePOCById(string empid)
+        {
+            try
+            {
+                var p = await _projectService.GetByProjectId(empid);
                 if (p == null)
                 {
                     return NotFound();
