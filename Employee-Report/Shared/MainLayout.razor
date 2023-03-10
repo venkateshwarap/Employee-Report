@@ -1,96 +1,95 @@
 ﻿@inherits LayoutComponentBase
 
 <PageTitle>BalzerTestDemo</PageTitle>
-
+@inject NavigationManager navManager;
 <div class="page">
 
     <div id="mySidebar" class="collaps-active" style="@(collaps? "width:250px !important" : "")">
+        <div class="top-logo">
+            <img class="main-logo-sidebar" src="../icon/EA-Tracking-main-logo.png" />
+        </div>
         <nav class="flex-column">
             <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button menu-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            <i class="bi bi-person-lock menu-icon"> </i>  Master
+                            <i class="bi bi-person-lock menu-icon"> </i> Admin
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                      
-                            <ul class="Master-toggler-menu">
-                                <li>
-                                    <NavLink class="nav-link" href="learning">
-                                        <span class="oi oi-list-rich" aria-hidden="true"></span>  Learning
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink class="nav-link" href="poc">
-                                        <span class="oi oi-list-rich" aria-hidden="true"></span>  POC
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink class="nav-link" href="projects">
-                                        <span class="oi oi-list-rich" aria-hidden="true"></span>  Project
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink class="nav-link" href="role">
-                                        <span class="oi oi-list-rich" aria-hidden="true"></span>  Role
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink class="nav-link" href="skills">
-                                        <span class="oi oi-list-rich" aria-hidden="true"></span>  Skills
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink class="nav-link" href="certifications">
-                                        <span class="oi oi-list-rich" aria-hidden="true"></span>  Certifications
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink class="nav-link" href="training">
-                                        <span class="oi oi-list-rich" aria-hidden="true"></span>  Training
-                                    </NavLink>
-                                </li>
-                            </ul>
-                      
+
+                        <ul class="Master-toggler-menu">
+                            <li>
+                                <NavLink class="nav-link" href="learning">
+                                    <i class="bi bi-book sub-menu-icon" aria-hidden="true"></i>Learning
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="poc">
+                                    <i class="bi bi-cast sub-menu-icon" aria-hidden="true"></i>POC
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="projects">
+                                    <i class="bi bi-projector sub-menu-icon" aria-hidden="true"></i>Project
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="role">
+                                    <i class="bi bi-person-add sub-menu-icon" aria-hidden="true"></i>Role
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="certifications">
+                                    <i class="bi bi-journal-check sub-menu-icon" aria-hidden="true"></i>Skills
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="training">
+                                    <i class="bi bi-person-workspace sub-menu-icon" aria-hidden="true"></i>Training
+                                </NavLink>
+                            </li>
+                        </ul>
+
                     </div>
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed menu-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <i class="bi bi-person-circle menu-icon"></i> Employee
+                            <i class="bi bi-person-circle menu-icon"></i>
+                            Employee
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                      
-                            <ul class="Employee-toggle-menu">
-                                <li>
-                                    <NavLink class="nav-link" href="eacouncil">
-                                        <span class="oi oi-list-rich" aria-hidden="true"></span>  Power House
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink class="nav-link" href="employeeProjectDetails">
-                                        <span class="oi oi-list-rich" aria-hidden="true"></span>  Employee Project
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink class="nav-link" href="EmployeeSkills">
-                                        <span class="oi oi-list-rich" aria-hidden="true"></span>  Employee Skills
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink class="nav-link" href="employeePocDetails">
-                                        <span class="oi oi-list-rich" aria-hidden="true"></span>  Employee POC
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink class="nav-link" href="EmployeeReport">
-                                        <span class="oi oi-list-rich" aria-hidden="true"></span>  Employee Report
-                                    </NavLink>
-                                </li>
-                            </ul>
-                       
+
+                        <ul class="Employee-toggle-menu">
+                            <li>
+                                <NavLink class="nav-link" href="eacouncil">
+                                    <i class="bi bi-house-add-fill sub-menu-icon" aria-hidden="true"></i>Power House
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="EmployeeSkills">
+                                    <i class="bi bi-person-lock sub-menu-icon"> </i>Project
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="employeePocDetails">
+                                    <i class="bi bi-cast sub-menu-icon" aria-hidden="true"></i>POC
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="certifications">
+                                    <i class="bi bi-patch-check-fill sub-menu-icon" aria-hidden="true"></i>Certifications
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="EmployeeReport">
+                                    <i class="bi bi-pie-chart sub-menu-icon"></i>Report
+                                </NavLink>
+                            </li>
+                        </ul>
+
                     </div>
                 </div>
             </div>
@@ -100,9 +99,15 @@
         <nav class="navbar navbar-expand-lg" style="background-color:#f0f0f0">
             <button class="openbtn" @onclick="@(collaps ?  CloseNav : OpenNav)">☰</button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                @*     <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                <a class="nav-link" href="#"><span class="sr-only">@navManager.BaseUri</span></a>
+                </li>
+
+                </ul>*@
+                <ul class="navbar-nav mr-auto" style="margin-left: 100%">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">LogOut</a>
                     </li>
                 </ul>
             </div>
