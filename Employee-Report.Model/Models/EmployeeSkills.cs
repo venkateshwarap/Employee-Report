@@ -13,7 +13,7 @@ namespace Employee.DataModel.Models
 
         public DateTime StartDate { get; set; }
 
-        public string EndDate { get; set; } = null!;
+        public DateTime EndDate { get; set; }
 
         public string CreatedBy { get; set; } = null!;
 

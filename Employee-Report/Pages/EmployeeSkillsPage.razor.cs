@@ -1,4 +1,5 @@
-﻿using Employee_Report.Model.Models;
+﻿using Employee.DataModel.Models;
+using Employee_Report.Model.Models;
 using Employee_Report.Utilities;
 
 namespace Employee_Report.Pages
@@ -19,7 +20,6 @@ namespace Employee_Report.Pages
         {
             if (employeeSkillModel != null)
             {
-                //var response = await interviewService.AddInterview(InterviewModel);
                 var response = await EmployeeSkillsService.AddEmployeeSkill(employeeSkillModel);
                 if (response.status)
                 {

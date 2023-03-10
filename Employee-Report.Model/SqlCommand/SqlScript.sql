@@ -399,7 +399,7 @@ CREATE TABLE [dbo].[EmployeeSkills](
 	[EmpID] [nvarchar] (10) NOT NULL,
 	[SkillID] [int] NOT NULL,
 	[StartDate] [date] NOT NULL,
-	[EndDate] [nvarchar](50) NOT NULL,
+	[EndDate] [date](50) NOT NULL,
 	[CreatedBy] [nvarchar](50) NOT NULL,
 	[CreatedOn] [date] NOT NULL,
 	[ModifiedBy] [nvarchar](50) NOT NULL,

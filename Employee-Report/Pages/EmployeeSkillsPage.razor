@@ -21,13 +21,13 @@ else
                 <div class="row mt-2">
                     <div class="col-md-6">
                         <label Class="e-outline-date">Employee ID</label>
-                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeSkillModel.EmpID" />
-                        <ValidationMessage For="@(() => employeeSkillModel.EmpID)" />
+                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeSkillModel.EmpId" />
+                        <ValidationMessage For="@(() => employeeSkillModel.EmpId)" />
                     </div>
                     <div class="col-md-6">
                         <label Class="e-outline-date">SKill ID</label>
-                        <SfNumericTextBox CssClass="e-outline" Type="InputType.Number" class="form-control" @bind-Value="employeeSkillModel.SkillID" />
-                        <ValidationMessage For="@(() => employeeSkillModel.SkillID)" />
+                        <SfNumericTextBox CssClass="e-outline" Type="InputType.Number" class="form-control" @bind-Value="employeeSkillModel.SkillId" />
+                        <ValidationMessage For="@(() => employeeSkillModel.SkillId)" />
                     </div>
                 </div>
 
@@ -82,8 +82,8 @@ else
     {
         <SfGrid DataSource="@employeeSkillDetails">
             <GridColumns>
-                <GridColumn Field="@nameof(employeeSkillModel.EmpID)" HeaderText="Employee ID" TextAlign="TextAlign.Center" Width="120"></GridColumn>
-                <GridColumn Field="@nameof(employeeSkillModel.SkillID)" HeaderText="Skill ID" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Field="@nameof(employeeSkillModel.EmpId)" HeaderText="Employee ID" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Field="@nameof(employeeSkillModel.SkillId)" HeaderText="Skill ID" TextAlign="TextAlign.Center" Width="120"></GridColumn>
                 <GridColumn Field="@nameof(employeeSkillModel.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Center" Width="120"></GridColumn>
                 <GridColumn Field="@nameof(employeeSkillModel.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
                 <GridColumn Field="@nameof(employeeSkillModel.CreatedBy)" HeaderText="Created By" TextAlign="TextAlign.Center" Width="150"></GridColumn>
