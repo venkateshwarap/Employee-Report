@@ -105,11 +105,13 @@
                 </li>
 
                 </ul>*@
-                <ul class="navbar-nav mr-auto" style="margin-left: 100%">
+                <div class="logoutbtn">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item ">
                         <a class="nav-link" href="#">LogOut</a>
                     </li>
                 </ul>
+                </div>
             </div>
         </nav>
         <article class="content px-4">
@@ -121,8 +123,8 @@
 
 @code {
 
-    bool collaps = false;
-    void OpenNav() => collaps = true;
-    void CloseNav() => collaps = false;
+    bool collaps = true;
+    void OpenNav() => collaps = !collaps;
+    void CloseNav() => collaps = !collaps;
 
 }
