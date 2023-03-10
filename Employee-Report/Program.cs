@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddScoped<IEACouncilService, EACouncilService>();
+builder.Services.AddScoped<IPowerHouseService, PowerHouseService>();
 builder.Services.AddScoped<ICertificationsService, CertificationsService>();
 builder.Services.AddScoped<IInterviewService, InterviewService>();
 builder.Services.AddScoped<IEmployeeProjectService, EmployeeProjectService>();

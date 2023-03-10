@@ -18,7 +18,7 @@ builder.Services.AddTransient<IPOCService, POCService>();
 builder.Services.AddTransient<IProjectService, ProjectService>();
 builder.Services.AddTransient<ISkillsService, SkillsService>();
 builder.Services.AddTransient<IInterviewService, InterviewService>();
-builder.Services.AddScoped<IEACouncilService, EACouncilService>();
+builder.Services.AddScoped<IPowerHouseService, PowerHouseService>();
 builder.Services.AddScoped<ICertificationService, CertificationService>();
 builder.Services.AddScoped<ILearningService, LearningService>();
 builder.Services.AddScoped<IEmployeeLearningService, EmployeeLearningService>();

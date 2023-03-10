@@ -18,7 +18,7 @@ namespace Employee.DataModel.Models
 
         public virtual DbSet<Certification> Certifications { get; set; }
 
-        public virtual DbSet<EacouncilEntryExit> EacouncilEntryExits { get; set; }
+        public virtual DbSet<PowerHouse> PowerHouse { get; set; }
 
         public virtual DbSet<Employee> Employees { get; set; }
 
@@ -47,7 +47,7 @@ namespace Employee.DataModel.Models
         public virtual DbSet<Training> Training { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer("Server=MLI00741\\RAJEEV_SQLDEV;Database=EATracking;Integrated Security=True;TrustServerCertificate=True;User Id=sa;Password=Raj@727_eev.MLI;");
+            => optionsBuilder.UseSqlServer("Data Source=MLI00740\\SQLEXPRESS;Database=EATracking;Integrated Security=True;TrustServerCertificate=True;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -67,11 +67,12 @@ namespace Employee.DataModel.Models
                 entity.Property(e => e.ValidTill).HasColumnType("date");
             });
 
-            modelBuilder.Entity<EacouncilEntryExit>(entity =>
+            modelBuilder.Entity<PowerHouse>(entity =>
             {
-                entity
-                    .HasNoKey()
-                    .ToTable("EACouncilEntryExit");
+
+                entity.HasKey(e => e.Id).HasName("PK__PowerHouse__3214EC2703360EFB");
+
+                entity.ToTable("PowerHouse");
 
                 entity.Property(e => e.EmpId)
                     .HasMaxLength(10)

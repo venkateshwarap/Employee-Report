@@ -5,10 +5,10 @@ using Employee_Report.Utilities;
 
 namespace Employee_Report.Repository.Services
 {
-    public class EACouncilService : IEACouncilService
+    public class PowerHouseService : IPowerHouseService
     {
         private readonly HttpClient _httpClient;
-        public EACouncilService()
+        public PowerHouseService()
         {
             _httpClient =new HttpClient();
             _httpClient.BaseAddress = new Uri(AppSettings.Config.API_ROUTE!);
@@ -18,9 +18,10 @@ namespace Employee_Report.Repository.Services
             var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EA_COUNCIL, _httpClient);
             return entry;
         }
-        public async Task<Response> CreateEACouncilEntryDetails(EacouncilEntryExit EACouncilEntryExit)
+        public async Task<Response> CreateEACouncilEntryDetails(PowerHouse powerHouse)
         {
-            var entry = await Utility.HttpClientPostAsync(AppSettings.Config.CREATE_EA_COUNCIL_ENTRY, _httpClient, EACouncilEntryExit);
+            powerHouse.CreatedDate = DateTime.Now;
+            var entry = await Utility.HttpClientPostAsync(AppSettings.Config.CREATE_EA_COUNCIL_ENTRY, _httpClient, powerHouse);
             return entry;
         }
     }

@@ -3,9 +3,9 @@ using Employee_Report.Model.Models;
 
 namespace Employee_Report.Repository.IServices
 {
-    public interface IEACouncilService
+    public interface IPowerHouseService
     {
         Task<Response> GeEACouncilEntryDetails();
-        Task<Response> CreateEACouncilEntryDetails(EacouncilEntryExit EACouncilEntryExit);
+        Task<Response> CreateEACouncilEntryDetails(PowerHouse EACouncilEntryExit);
     }
 }

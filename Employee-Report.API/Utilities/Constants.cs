@@ -41,7 +41,7 @@ namespace Employee_Report.API.Utilities
 
         #region API Routes
         public const string RT_Certification = "api/certification";
-        public const string RT_EACouncil = "api/eacouncil";
+        public const string RT_POWER_HOUSE = "api/power-house";
         #endregion
     }
 }

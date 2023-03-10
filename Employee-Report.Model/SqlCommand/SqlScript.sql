@@ -175,7 +175,11 @@ CREATE TABLE [dbo].[EACouncilEntryExit](
 	[StartDate] [date] NULL,
 	[EndDate] [date] NULL,
 	[Role] [nvarchar](50) NULL,
-	[ReportingTo] [varchar](10) NULL
+	[ReportingTo] [varchar](10) NULL,
+    [CreatedBy] [nvarchar](50) NOT NULL,
+	[CreatedOn] [date] NOT NULL,
+	[ModifiedBy] [nvarchar](50) NOT NULL,
+	[modifiedOn] [date] NOT NULL,
 ) ON [PRIMARY]
  
 --EACouncilEntryExit DATA:

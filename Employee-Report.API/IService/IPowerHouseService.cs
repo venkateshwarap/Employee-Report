@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Report.API.IService
 {
-    public interface IEACouncilService
+    public interface IPowerHouseService
     {
-        Task<Response> CreateCouncilEntry(EacouncilEntryExit bench);
+        Task<Response> CreateCouncilEntry(PowerHouse bench);
         Task<Response> GetAllEACouncilEntryExit();
         Task<Response> GetEACouncilByEmpId(string empid);
         Task<Response> DeleteFromEACouncil(string empid);

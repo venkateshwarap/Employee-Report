@@ -7,19 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route(Constants.RT_EACouncil)]
+    [Route(Constants.RT_POWER_HOUSE)]
     [ApiController]
-    public class EACouncilController : ControllerBase
+    public class PowerHouseController : ControllerBase
     {
-        private readonly IEACouncilService _BenchService;
-        public EACouncilController(IEACouncilService BenchService)
+        private readonly IPowerHouseService _BenchService;
+        public PowerHouseController(IPowerHouseService BenchService)
         {
             _BenchService = BenchService;
         }
 
         [HttpPost]
         [Route("create")]
-        public async Task<IActionResult> CreateBenchEntry(EacouncilEntryExit benchEntry)
+        public async Task<IActionResult> CreateBenchEntry(PowerHouse benchEntry)
         {
             try
             {

@@ -20,7 +20,7 @@ namespace Employee_Report.Pages
         public Certifications certifications = new();
 
         [Inject]
-        public Repository.IServices.IEACouncilService benchServices { get; set; }
+        public Repository.IServices.IPowerHouseService benchServices { get; set; }
         public IEnumerable<EACouncilEntryExit> eacouncildetails { get; set; }
         public EACouncilEntryExit entryExit = new();
 

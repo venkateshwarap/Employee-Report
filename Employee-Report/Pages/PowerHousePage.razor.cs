@@ -1,21 +1,21 @@
 ﻿using Employee.DataModel.Models;
-using Employee_Report.Model.Models;
 using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components;
 
+
 namespace Employee_Report.Pages
 {
-    public partial class EACouncilEntryExitPage
+    public partial class PowerHousePage
     {
         [Inject]
-        public Repository.IServices.IEACouncilService benchServices { get; set; }
-        public IEnumerable<EacouncilEntryExit> benchdetails { get; set; }
-        public EacouncilEntryExit entryExit = new();
+        public Repository.IServices.IPowerHouseService benchServices { get; set; }
+        public IEnumerable<PowerHouse> benchdetails { get; set; }
+        public PowerHouse entryExit = new();
         private bool IsHidden { get; set; } = true;
         protected override async Task OnInitializedAsync()
         {
             var response = await benchServices.GeEACouncilEntryDetails();
-            benchdetails = Utility.GetResponseData<List<EacouncilEntryExit>>(response.response);
+            benchdetails = Utility.GetResponseData<List<PowerHouse>>(response.response);
         }
         private async void SaveEntry()
         {
@@ -24,7 +24,7 @@ namespace Employee_Report.Pages
                 var response = await benchServices.CreateEACouncilEntryDetails(entryExit);
                 if (response.status)
                 {
-                    navManager.NavigateTo("/eacouncil", forceLoad: true);
+                    navManager.NavigateTo("/power-house", forceLoad: true);
                     IsHidden = false;
                 }
 
@@ -38,5 +38,6 @@ namespace Employee_Report.Pages
         {
             IsHidden = !IsHidden;
         }
+
     }
 }
