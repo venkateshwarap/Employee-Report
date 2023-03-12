@@ -114,14 +114,12 @@ a, .btn-link {
     padding: 10px 15px;
     border: none;
 }
-
-/*.openbtn:hover {
+    /*.openbtn:hover {
   background-color: #444;
 }*/
-
-#main {
-    transition: margin-left .5s;
-}
+    #main {
+        transition: margin-left .5s;
+    }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
@@ -190,7 +188,8 @@ a, .btn-link {
 
 #divHeader {
     display: flex;
-    margin-bottom: 1%;
+    width: 100%;
+    /*position: fixed;*/
 }
 
 .custom-size {
@@ -233,7 +232,8 @@ a, .btn-link {
 
 #sfBtnAddSkill {
     background-color: dodgerblue;
-    margin-left: 2%;
+    margin-left: 72%;
+    position: fixed;
 }
 
 a {

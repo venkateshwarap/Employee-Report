@@ -45,8 +45,8 @@ namespace Employee_Report.AppSettings
         #endregion
 
         #region Skills
-        public const string GetSkills = "Skills/GetSkills";
-        public const string AddSkill = "Skills/AddSkill";
+        public const string GetSkills = "Skills/get";
+        public const string AddSkill = "Skills/create";
         #endregion
 
         #region EmployeeSkills

@@ -7,20 +7,20 @@ namespace Employee_Report.Pages
     public partial class SkillsPage
     {
         Repository.Services.SkillsService SkillsService = new();
-        public IEnumerable<Skill> skillsDetails { get; set; }
-        public string skills { get; set; }
-        public Skill skillsModel = new();
+        public IEnumerable<Skill>? skillDetails { get; set; }
+        public Skill skillModel = new();
         private bool IsHidden { get; set; } = false;
         protected override async Task OnInitializedAsync()
         {
             var response = await SkillsService.GetSkills();
-            skills = response;
+            skillDetails = Utility.GetResponseData<List<Skill>>(response.response);
         }
-        public async void addSkill()
+
+        public async void AddSkill()
         {
-            if (skillsModel != null)
+            if (skillModel != null)
             {
-                var response = await SkillsService.AddSkill(skillsModel);
+                var response = await SkillsService.AddSkill(skillModel);
                 if (response.status)
                 {
                     navManager.NavigateTo("/skills", forceLoad: true);
@@ -28,9 +28,14 @@ namespace Employee_Report.Pages
                 }
             }
         }
+
         private void AddClass()
         {
             IsHidden = !IsHidden;
+        }
+        private void cancelSkill()
+        {
+            navManager.NavigateTo("/skills", forceLoad: true);
         }
     }
 }

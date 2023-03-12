@@ -43,5 +43,10 @@ namespace Employee_Report.API.Utilities
         public const string RT_Certification = "api/certification";
         public const string RT_POWER_HOUSE = "api/power-house";
         #endregion
+
+        #region Controller Routes
+        public const string get = "get";
+        public const string create = "create";
+        #endregion
     }
 }

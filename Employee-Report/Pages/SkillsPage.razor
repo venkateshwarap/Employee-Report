@@ -2,8 +2,7 @@
 @using Employee_Report.Model.Models
 @inject NavigationManager navManager;
 
-@*@if (skillsDetails is null)*@
-@if (skills == null)
+@if (skillDetails is null)
 {
     <p><em>Loading your data... Please wait..</em></p>
 }
@@ -11,25 +10,25 @@ else
 {
     <div id="divHeader">
         <h3>Skills</h3>
-       @* @if (!IsHidden)
+        @if (!IsHidden)
         {
-            <SfButton id="sfBtnAddInterview" OnClick="AddClass">Add Skill</SfButton>
-        }*@
+            <SfButton id="sfBtnAddSkill" OnClick="AddClass">Add Skill</SfButton>
+        }
     </div>
     <div class="@(IsHidden ? "show" : "hidden")">
-        <EditForm Model="@skills" OnValidSubmit="addSkill">
+        <EditForm Model="@skillModel">
             <DataAnnotationsValidator />
             <div class="form-control">
                 <div class="row mt-2">
                     <div class="col-md-6">
                         <label Class="e-outline-date">Name</label>
-                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="skillsModel.SkillName" />
-                        <ValidationMessage For="@(() => skillsModel.SkillName)" />
+                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="skillModel.SkillName" />
+                        <ValidationMessage For="@(() => skillModel.SkillName)" />
                     </div>
                 </div>
-                <div id="SfSkillsBtns">
-                    <SfButton @onclick="@AddClass" type="submit" class="btnAdd" Content="Add"></SfButton>
-                    <SfButton @onclick="@AddClass" type="submit" class="btnCancel" Content="Cancel"></SfButton>
+                <div id="SfAddSkillBtnsSkill">
+                    <SfButton @onclick="@AddSkill" type="submit" class="btnAdd" Content="Add"></SfButton>
+                    <SfButton @onclick="@cancelSkill" type="submit" class="btnCancel" Content="Cancel"></SfButton>
                 </div>
             </div>
         </EditForm>
@@ -37,17 +36,10 @@ else
 
     @if (!IsHidden)
     {
-        @*<SfGrid DataSource="@skills">
+        <SfGrid DataSource="@skillDetails">
             <GridColumns>
-                <GridColumn Field="@nameof(skills)" HeaderText="Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Field="@nameof(skillModel.SkillName)" HeaderText="Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
             </GridColumns>
-        </SfGrid>*@
-        <div id="btnAddskill">
-        <SfTextBox Type="InputType.Text" class="form-control"  @bind-Value="skills" Readonly />
-            @if (!IsHidden)
-            {
-                <SfButton id="sfBtnAddSkill" OnClick="AddClass">Add Skill</SfButton>
-            }
-        </div>
+        </SfGrid>
     }
 }

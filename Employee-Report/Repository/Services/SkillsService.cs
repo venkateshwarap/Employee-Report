@@ -12,9 +12,9 @@ namespace Employee_Report.Repository.Services
         {
             _httpClient.BaseAddress = new Uri(AppSettings.Config.API_ROUTE!);
         }
-        public async Task<string> GetSkills()
+        public async Task<Response> GetSkills()
         {
-            var entry = await Utility.HttpClientGetStringAsync(AppSettings.Config.GetSkills, _httpClient);
+            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GetSkills, _httpClient);
             return entry;
         }
         public async Task<Response> AddSkill(Skill skill)

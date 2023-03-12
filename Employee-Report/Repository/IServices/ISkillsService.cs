@@ -5,7 +5,7 @@ namespace Employee_Report.Repository.IServices
 {
     public interface ISkillsService
     {
-        Task<string> GetSkills();
+        Task<Response> GetSkills();
         Task<Response> AddSkill(Skill skill);
     }
 }

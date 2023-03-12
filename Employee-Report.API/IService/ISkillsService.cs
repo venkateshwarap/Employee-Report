@@ -1,11 +1,12 @@
-﻿using Employee.DataModel.Models;
-using Employee_Report.Model.Models;
+﻿using Employee_Report.Model.Models;
+using Employee_Report.Model;
+using Employee.DataModel.Models;
 
 namespace Employee_Report.API.IService
 {
     public interface ISkillsService
     {
-        Task<List<Skill>> GetSkills();
-        Task<Response> AddSkill(Skill skill);
+        Task<Response> GetSkills();
+        Task<Response> AddNewSkill(Skill skill);
     }
 }

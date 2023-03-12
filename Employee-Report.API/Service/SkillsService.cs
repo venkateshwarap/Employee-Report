@@ -1,35 +1,47 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
+using Employee_Report.Model;
 using Employee_Report.Model.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Report.API.Service
 {
-    public class SkillsService: ISkillsService
+    public class SkillsService : ISkillsService
     {
         private EatrackingContext _context;
+
         public SkillsService(EatrackingContext context)
         {
             this._context = context;
         }
-        public async Task<Response> AddSkill(Skill skill)
+        public async Task<Response> AddNewSkill(Skill skill)
         {
-            var doesSkillExist = await _context.Skills.Where(x => x.SkillName == skill.SkillName).FirstOrDefaultAsync();
-            if (doesSkillExist == null)
+            var getSkillByName = _context.Skills.Where(x=> x.SkillName == skill.SkillName);
+            if (getSkillByName == null)
             {
                 await _context.Skills.AddAsync(skill);
                 var result = _context.SaveChanges();
-                return BindResponse(result, true, Constants.Response_Add_Skill_Success);
+                if (result > 0)
+                {
+                    return BindResponse(result, true, Constants.Response_Add_Skill_Success);
+                }
+                {
+                    return BindResponse(result, false, Constants.Response_Add_Skill_Failure);
+                }
             }
             else
             {
-                return BindResponse(doesSkillExist.SkillName, false, Constants.Response_Skill_Already_Exists);
+                return BindResponse("The skill - "+skill.SkillName, false, Constants.Response_Skill_Already_Exists);
             }
         }
-        public async Task<List<Skill>> GetSkills()
+
+        public async Task<Response> GetSkills()
         {
-            return await _context.Skills.ToListAsync();
+            var result = await _context.Skills.ToListAsync();
+            if (result.Count > 0)
+                return BindResponse(result, true);
+            return BindResponse(result, false);
         }
 
         private Response BindResponse(Object Obj = null!, bool Status = true, string Message = "")
