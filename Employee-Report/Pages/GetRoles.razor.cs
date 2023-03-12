@@ -20,7 +20,7 @@ namespace Employee_Report.Pages
         {
             role = (await roleService.GetRoleDetails()).ToList();
         }
-        private async void addRole()
+        private async void AddRole()
         {
             if (roleModel != null)
             {
@@ -31,6 +31,10 @@ namespace Employee_Report.Pages
                     IsHidden = false;
                 }
             }
+        }
+        private void CancelRole()
+        {
+            navManager.NavigateTo("/role", forceLoad: true);
         }
     }
 }

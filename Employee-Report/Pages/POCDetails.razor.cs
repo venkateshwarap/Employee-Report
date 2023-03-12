@@ -21,7 +21,7 @@ namespace Employee_Report.Pages
         {
             poc = (await employeePocService.GetPOCDetails()).ToList();
         }
-        private async void addpoc()
+        private async void AddPOC()
         {
             if (pocModel != null)
             {
@@ -32,6 +32,10 @@ namespace Employee_Report.Pages
                     IsHidden = false;
                 }
             }
+        }
+        private void CancelPOC()
+        {
+            navManager.NavigateTo("/poc", forceLoad: true);
         }
     }
 }

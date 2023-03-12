@@ -18,7 +18,7 @@ else
         }
     </div>
     <div class="@(IsHidden ? "show" : "hidden")">
-        <EditForm Model="@projectModel" OnValidSubmit="addproject">
+        <EditForm Model="@projectModel">
             <DataAnnotationsValidator />
             <div class="form-control">
                 <div class="row">
@@ -28,9 +28,9 @@ else
                         <ValidationMessage For="@(() => projectModel.ProjectName)" />
                     </div>
                 </div>
-                <div id="SfBtns">
-                    <SfButton @onclick="@AddClass" type="submit" class="btnAdd" Content="Add"></SfButton>
-                    <SfButton @onclick="@AddClass" type="submit" class="btnCancel" Content="Cancel"></SfButton>
+                <div id="SfAddProjectBtns">
+                    <SfButton @onclick="@AddProject" type="submit" class="btnAddProject" Content="Add"></SfButton>
+                    <SfButton @onclick="@CancelProject" type="submit" class="btnCancelProject" Content="Cancel"></SfButton>
                 </div>
             </div>
         </EditForm>

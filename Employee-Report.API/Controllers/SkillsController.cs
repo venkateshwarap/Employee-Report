@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Skills")]
     [ApiController]
     public class SkillsController : ControllerBase
     {
@@ -45,7 +45,7 @@ namespace Employee_Report.API.Controllers
                     return Ok(result);
                 return BadRequest(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }

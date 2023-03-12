@@ -1,26 +1,25 @@
 ﻿using Employee.DataModel.Models;
-using Employee_Report.API.IService;
 using Employee_Report.Model.Models;
 using Employee_Report.Repository.IServices;
 using Employee_Report.Utilities;
 
 namespace Employee_Report.Repository.Services
 {
-    public class SkillsService : Repository.IServices.ISkillsService
+    public class LearningService : ILearningService
     {
         HttpClient _httpClient = new HttpClient();
-        public SkillsService()
+        public LearningService()
         {
             _httpClient.BaseAddress = new Uri(AppSettings.Config.API_ROUTE!);
         }
-        public async Task<Response> GetSkills()
+        public async Task<Response> GetLearnings()
         {
-            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GetSkills, _httpClient);
+            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.Getlearnings, _httpClient);
             return entry;
         }
-        public async Task<Response> AddSkill(Skill skill)
+        public async Task<Response> AddNewLearning(Learning learning)
         {
-            var entry = await Utility.HttpClientPostAsync(AppSettings.Config.AddSkill, _httpClient, skill);
+            var entry = await Utility.HttpClientPostAsync(AppSettings.Config.AddNewLearning, _httpClient, learning);
             return entry;
         }
     }

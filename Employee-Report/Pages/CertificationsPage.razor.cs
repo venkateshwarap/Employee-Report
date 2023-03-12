@@ -4,19 +4,19 @@ using Microsoft.AspNetCore.Components;
 
 namespace Employee_Report.Pages
 {
-    public partial class CertificatiosPage
+    public partial class CertificationsPage
     {
         [Inject]
         public Repository.IServices.ICertificationsService service { get; set; }
         public IEnumerable<Certification>? certificationslist { get; set; }
         public Certification certifications = new();
-        private bool IsHidden { get; set; } = true;
+        private bool IsHidden { get; set; } = false;
         protected override async Task OnInitializedAsync()
         {
             var response = await service.GetCertificationDetails();
             certificationslist = Utility.GetResponseData<List<Certification>>(response.response);
         }
-        private async void SaveEntry()
+        private async void AddCertification()
         {
             if (certifications != null)
             {
@@ -26,14 +26,14 @@ namespace Employee_Report.Pages
                     navManager.NavigateTo("/certifications", forceLoad: true);
                     IsHidden = false;
                 }
-
             }
         }
-        private void Save()
+
+        private void CancelCertification()
         {
-            IsHidden = !IsHidden;
+            navManager.NavigateTo("/certifications", forceLoad: true);
         }
-        private void Cancel()
+        private void AddClass()
         {
             IsHidden = !IsHidden;
         }

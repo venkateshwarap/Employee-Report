@@ -114,12 +114,12 @@ a, .btn-link {
     padding: 10px 15px;
     border: none;
 }
-    /*.openbtn:hover {
+/*.openbtn:hover {
   background-color: #444;
 }*/
-    #main {
-        transition: margin-left .5s;
-    }
+#main {
+    transition: margin-left .5s;
+}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
@@ -162,8 +162,8 @@ a, .btn-link {
 }
 
 #sfBtnAddPOC {
-    background-color: green;
-    margin-left: 72%;
+    background-color: dodgerblue;
+    margin-left: 76.4%;
 }
 
 #sfBtnAddProject {
@@ -172,24 +172,49 @@ a, .btn-link {
 }
 
 #sfBtnAddRole {
-    background-color: green;
-    margin-left: 83%;
+    background-color: dodgerblue;
+    margin-left: 87.7%;
 }
 
 #sfBtnAddPocs {
-    background-color: green;
-    margin-left: 85%;
+    background-color: dodgerblue;
+    margin-left: 88%;
 }
 
 #sfBtnAddProjects {
-    background-color: green;
+    background-color: dodgerblue;
+    margin-left: 82%;
+}
+
+#sfBtnAddSkill {
+    background-color: dodgerblue;
     margin-left: 83%;
 }
+
+#sfBtnAddTraining{
+    background-color: dodgerblue;
+    margin-left:80%;
+}
+
+#sfBtnAddPowerHouse {
+    background-color: dodgerblue;
+    margin-left: 74.2%;
+}
+
+#SfBtnsAddEmployeePOC{
+    margin:1%;
+    margin-left: 43%;
+}
+
+#sfBtnCertifications{
+    background-color: dodgerblue;
+    margin-left: 77%;
+}
+
 
 #divHeader {
     display: flex;
     width: 100%;
-    /*position: fixed;*/
 }
 
 .custom-size {
@@ -225,15 +250,99 @@ a, .btn-link {
     color: white;
 }
 
-#btnAddskill {
-    /*background-color: dodgerblue;*/
-    display: flex;
+#SfAddRoleBtns {
+    margin-top: 1%;
+    margin-left: 13%;
 }
 
-#sfBtnAddSkill {
-    background-color: dodgerblue;
-    margin-left: 72%;
-    position: fixed;
+.btnAddRole {
+    width: 10%;
+    background-color: dodgerblue !important;
+}
+
+.btnCancelRole {
+    width: 10%;
+    margin-left: 5%;
+}
+
+#SfAddSkillBtns {
+    margin: 1%;
+    margin-left: 15%;
+}
+
+#btnAddSkill {
+    width: 10%;
+    background-color: dodgerblue !important;
+}
+
+#btnCancelSkill {
+    width: 10%;
+    margin-left: 5%;
+}
+
+#SfAddPOCBtns{
+    margin: 1%;
+    margin-left:13%;
+}
+
+.btnAddPOC{
+    width: 10%;
+    background-color:dodgerblue !important;
+}
+
+.btnCancelPOC{
+    width: 10%;
+    margin-left:5%;
+}
+
+#SfAddProjectBtns{
+    margin:1%;
+    margin-left:13%;
+}
+
+.btnAddProject{
+    width: 10%;
+    background-color:dodgerblue !important;
+}
+
+.btnCancelProject{
+    width:10%;
+    margin-left: 5%;
+}
+
+.btnAddTraining {
+    width: 10%;
+    background-color: dodgerblue !important;
+}
+
+.btnCancelTraining{
+    width: 10%;
+    margin-left:5%;
+}
+
+.btnAddEmployeePOC{
+    width: 10%;
+    background-color:dodgerblue !important;
+}
+
+.btnCancelEmployeePOC{
+    width: 10%;
+    margin-left: 5%;
+}
+
+#SfAddCertificationBtns{
+    margin: 1%;
+    margin-left: 43%;
+}
+
+.btnAddCertification {
+    width: 10%;
+    background-color: dodgerblue !important;
+}
+
+.btnCancelCertification{
+    width: 10%;
+    margin-left: 5%;
 }
 
 a {
@@ -283,7 +392,7 @@ a {
 
 #sfBtnAddEmployeeSkill {
     background-color: dodgerblue;
-    margin-left: 70%;
+    margin-left: 68.5%;
 }
 
 .btnCancelEmployeeSkill {
@@ -321,9 +430,11 @@ a {
     height: 66px;
     font-weight: bold;
 }
+
 .logoutbtn {
-    margin-left:90%;
+    margin-left: 90%;
 }
+
 .sub-menu-icon {
     margin-right: 15px;
 }

@@ -1,53 +1,47 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.API.IService;
+using Employee_Report.API.Utilities;
 using Employee_Report.Model.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Report.API.Service
 {
-    public class TrainingService:ITrainingService
+    public class TrainingService : ITrainingService
     {
-        private readonly EatrackingContext _eatrackingContext;
-        public TrainingService(EatrackingContext eatrackingContext)
+        private EatrackingContext _context;
+
+        public TrainingService(EatrackingContext context)
         {
-            _eatrackingContext = eatrackingContext;
+            this._context = context;
         }
-        public List<Training> GetTraningDetails()
+        public async Task<Response> AddNewTraining(Training training)
         {
-            try
+            await _context.Training.AddAsync(training);
+            var result = _context.SaveChanges();
+            if (result > 0)
             {
-                return _eatrackingContext.Training.ToList();
+                return BindResponse(result, true, Constants.Response_Add_Training_Success);
             }
-            catch (Exception ex)
             {
-
-                throw;
+                return BindResponse(result, true, Constants.Response_Add_Training_Failure);
             }
-            
         }
 
-        public ResponseModel SaveTraningDetails(Training traning)
+        public async Task<Response> GetTrainings()
         {
-            try
-            {
-                _eatrackingContext.Add(traning);
-                _eatrackingContext.SaveChanges();
-                return new ResponseModel()
-                {
-                    Message = "Traning details is inserted successfully",
-                    Status = true
-                };
-            }
-            catch (Exception ex)
-            {
+            var result = await _context.Training.ToListAsync();
+            if (result.Count > 0)
+                return BindResponse(result, true);
+            return BindResponse(result, false);
+        }
 
-                return new ResponseModel()
-                {
-                    Message = "Traning details does not inserted successfully " + ex.Message,
-                    Status = false
-                };
-            }
-
-
+        private Response BindResponse(Object Obj = null!, bool Status = true, string Message = "")
+        {
+            Response resp = new Response();
+            resp.response = Obj;
+            resp.message = Message;
+            resp.status = Status;
+            return resp;
         }
     }
 }

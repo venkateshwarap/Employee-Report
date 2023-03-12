@@ -28,14 +28,13 @@ namespace Employee_Report.Pages
                 }
             }
         }
-
-        private void AddClass()
-        {
-            IsHidden = !IsHidden;
-        }
         private void cancelSkill()
         {
             navManager.NavigateTo("/skills", forceLoad: true);
+        }
+        private void AddClass()
+        {
+            IsHidden = !IsHidden;
         }
     }
 }

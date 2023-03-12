@@ -1,32 +1,54 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.API.IService;
+using Employee_Report.API.Utilities;
 using Employee_Report.Model.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Trainings")]
     [ApiController]
     public class TrainingController : ControllerBase
     {
-
         private readonly ITrainingService _trainingService;
         public TrainingController(ITrainingService trainingService)
         {
             _trainingService = trainingService;
         }
+
         [HttpGet]
-        [Route("GetEmployeeTraning")]
-        public List<Training> GetTranings()
+        [Route(Constants.get)]
+        public async Task<IActionResult> GetTrainings()
         {
-            return _trainingService.GetTraningDetails();
+            try
+            {
+                var result = await _trainingService.GetTrainings();
+                if (result.status)
+                    return Ok(result);
+                return BadRequest(result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
+
         [HttpPost]
-        [Route("SaveEmployeeTraning")]
-        public ResponseModel Save(Training training)
+        [Route(Constants.create)]
+        public async Task<IActionResult> AddNewTraining(Training training)
         {
-            return _trainingService.SaveTraningDetails(training);
+            try
+            {
+                var result = await _trainingService.AddNewTraining(training);
+                if (result.status)
+                    return Ok(result);
+                return BadRequest(result);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

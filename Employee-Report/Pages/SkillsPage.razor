@@ -21,14 +21,14 @@ else
             <div class="form-control">
                 <div class="row mt-2">
                     <div class="col-md-6">
-                        <label Class="e-outline-date">Name</label>
+                        <label>Name</label>
                         <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="skillModel.SkillName" />
                         <ValidationMessage For="@(() => skillModel.SkillName)" />
                     </div>
                 </div>
-                <div id="SfAddSkillBtnsSkill">
-                    <SfButton @onclick="@AddSkill" type="submit" class="btnAdd" Content="Add"></SfButton>
-                    <SfButton @onclick="@cancelSkill" type="submit" class="btnCancel" Content="Cancel"></SfButton>
+                <div id="SfAddSkillBtns">
+                    <SfButton @onclick="@AddSkill" type="submit" id="btnAddSkill" Content="Add"></SfButton>
+                    <SfButton @onclick="@cancelSkill" type="submit" id="btnCancelSkill" Content="Cancel"></SfButton>
                 </div>
             </div>
         </EditForm>

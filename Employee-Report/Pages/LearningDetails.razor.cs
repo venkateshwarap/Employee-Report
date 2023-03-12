@@ -1,35 +1,40 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.Model.Models;
+using Employee_Report.Utilities;
 
 namespace Employee_Report.Pages
 {
     public partial class LearningDetails
     {
-        public bool HideLearningControls = true;
-        public bool HideAdd = false;
-        public bool HideGeid = false;
-        public Learning learning { get; set; }
-        public Learning[] learningList { get; set; }
-        HttpClient client = new HttpClient();
-
+        Repository.Services.LearningService LearningService = new();
+        public IEnumerable<Learning>? learningDetails { get; set; }
+        public Learning learningModel = new();
+        private bool IsHidden { get; set; } = false;
         protected override async Task OnInitializedAsync()
         {
-            learning = new Learning();
-            var responseMessage = await client.GetAsync(AppSettings.Config.GetlearningURl);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var data = await responseMessage.Content.ReadFromJsonAsync<Learning[]>();
-                learningList = data;
-            }
-            base.OnInitialized();
+            var response = await LearningService.GetLearnings();
+            learningDetails = Utility.GetResponseData<List<Learning>>(response.response);
         }
-        public void AddLearning()
+        public async void AddLearning()
         {
-            if (HideLearningControls == true)
+            if (learningModel != null)
             {
-                HideLearningControls = false;
-                HideAdd = true;
+                var response = await LearningService.AddNewLearning(learningModel);
+                if (response.status)
+                {
+                    navManager.NavigateTo("/learnings", forceLoad: true);
+                    IsHidden = false;
+                }
             }
+        }
+        private void CancelLearnings()
+        {
+            navManager.NavigateTo("/learnings", forceLoad: true);
+        }
+
+        private void AddClass()
+        {
+            IsHidden = !IsHidden;
         }
     }
 }

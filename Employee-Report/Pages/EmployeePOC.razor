@@ -10,9 +10,8 @@
 }
 else
 {
-
     <div id="divHeader">
-        <h3 style="text-align:center">Employee Poc</h3>
+        <h3 style="text-align:center">Employee&nbsp;Poc</h3>
         @if (!IsHidden)
         {
             <SfButton id="sfBtnAddPOC" OnClick="AddClass">Add POC</SfButton>
@@ -20,29 +19,29 @@ else
     </div>
 
     <div class="@(IsHidden ? "show" : "hidden")">
-        <EditForm Model="@employeePocModel" OnValidSubmit="addEmployeePOC">
+        <EditForm Model="@employeePocModel">
             <DataAnnotationsValidator />
             <div class="form-control">
                 <div class="row">
                     <div class="col-md-6">
-                        <label>Poc</label>
+                        <label>POC</label>
                         <SfNumericTextBox CssClass="e-outline" Type="InputType.Text" class="form-control"
                                       @bind-Value="employeePocModel.Pocid" />
                         <ValidationMessage For="@(() => employeePocModel.Pocid)" />
                     </div>
                     <div class="col-md-6">
-                        <label>EmpId</label>
+                        <label>Employee ID</label>
                         <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeePocModel.EmpId" />
                         <ValidationMessage For="@(() => employeePocModel.EmpId)" />
                     </div>
                     <div class="col-md-6">
-                        <label>BenchId</label>
+                        <label>Bench Id</label>
                         <SfNumericTextBox CssClass="e-outline" Placeholder="BenchId" Type="InputType.Text" class="form-control"
                                       @bind-Value="employeePocModel.BenchId" />
                         <ValidationMessage For="@(() => employeePocModel.BenchId)" />
                     </div>
                     <div class="col-md-6">
-                        <label Class="e-outline">StartDate</label>
+                        <label Class="e-outline">Start Date</label>
                         <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
                                @bind-Value="employeePocModel.StartDate" />
                         <ValidationMessage For="@(() => employeePocModel.StartDate)" />
@@ -50,13 +49,13 @@ else
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-6">
-                        <label Class="e-outline">EndDate</label>
+                        <label Class="e-outline">End Date</label>
                         <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
                                @bind-Value="employeePocModel.EndDate" />
                         <ValidationMessage For="@(() => employeePocModel.EndDate)" />
                     </div>
                     <div class="col-md-6">
-                        <label>ReportingTo</label>
+                        <label>Reporting To</label>
                         <SfTextBox CssClass="e-outline" Placeholder="ReportingTo" Type="InputType.Text" class="form-control" @bind-Value="employeePocModel.ReportingTo" />
                         <ValidationMessage For="@(() => employeePocModel.ReportingTo)" />
                     </div>
@@ -66,9 +65,9 @@ else
                         <ValidationMessage For="@(() => employeePocModel.RoleId)" />
                     </div>
                 </div>
-                <div id="SfBtns">
-                    <SfButton @onclick="@AddClass" type="submit" class="btnAdd" Content="Add"></SfButton>
-                    <SfButton @onclick="@AddClass" type="submit" class="btnCancel" Content="Cancel"></SfButton>
+                <div id="SfBtnsAddEmployeePOC">
+                    <SfButton @onclick="@AddEmployeePOC" type="submit" class="btnAddEmployeePOC" Content="Add"></SfButton>
+                    <SfButton @onclick="@CancelEmployeePOC" type="submit" class="btnCancelEmployeePOC" Content="Cancel"></SfButton>
                 </div>
             </div>
         </EditForm>

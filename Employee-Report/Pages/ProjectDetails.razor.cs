@@ -21,7 +21,7 @@ namespace Employee_Report.Pages
             projects = (await employeeProjectService.GetProjectDetails()).ToList();
         }
 
-        private async void addproject()
+        private async void AddProject()
         {
             if (projectModel != null)
             {
@@ -32,6 +32,10 @@ namespace Employee_Report.Pages
                     IsHidden = false;
                 }
             }
+        }
+        private void CancelProject()
+        {
+            navManager.NavigateTo("/projects", forceLoad: true);
         }
     }
 }

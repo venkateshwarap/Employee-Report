@@ -1,54 +1,47 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.API.IService;
+using Employee_Report.API.Utilities;
 using Employee_Report.Model.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Report.API.Service
 {
-    public class LearningService:ILearningService
+    public class LearningService : ILearningService
     {
-        private readonly EatrackingContext _context;
+        private EatrackingContext _context;
+
         public LearningService(EatrackingContext context)
         {
-            _context = context;
+            this._context = context;
+        }
+        public async Task<Response> AddNewLearning(Learning learning)
+        {
+            await _context.Learnings.AddAsync(learning);
+            var result = _context.SaveChanges();
+            if (result > 0)
+            {
+                return BindResponse(result, true, Constants.Response_Add_Learning_Success);
+            }
+            {
+                return BindResponse(result, true, Constants.Response_Add_Learning_Failure);
+            }
         }
 
-        public List<Learning> GetlearningDetails()
+        public async Task<Response> GetLearnings()
         {
-            try
-            {
-               return _context.Learnings.ToList();
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-            
+            var result = await _context.Learnings.ToListAsync();
+            if (result.Count > 0)
+                return BindResponse(result, true);
+            return BindResponse(result, false);
         }
 
-        public ResponseModel SaveLearningDetails(Learning learning)
+        private Response BindResponse(Object Obj = null!, bool Status = true, string Message = "")
         {
-            try
-            {
-                var response = _context.Add(learning);
-                _context.SaveChanges();
-                return new ResponseModel()
-                {
-                    Message = "Learning Details Inserted Successfully",
-                    Status = true
-                };
-            }
-            catch (Exception ex)
-            {
-                return new ResponseModel()
-                {
-                    Message = "Learning Details not inserted due to " + ex.Message,
-                    Status = false
-                };
-
-            }
-
-
+            Response resp = new Response();
+            resp.response = Obj;
+            resp.message = Message;
+            resp.status = Status;
+            return resp;
         }
     }
 }

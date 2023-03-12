@@ -9,19 +9,19 @@ namespace Employee_Report.Pages
     {
         [Inject]
         public Repository.IServices.IPowerHouseService benchServices { get; set; }
-        public IEnumerable<PowerHouse> benchdetails { get; set; }
-        public PowerHouse entryExit = new();
+        public IEnumerable<PowerHouse> powerHouseDetails { get; set; }
+        public PowerHouse powerHouseModel = new();
         private bool IsHidden { get; set; } = true;
         protected override async Task OnInitializedAsync()
         {
             var response = await benchServices.GeEACouncilEntryDetails();
-            benchdetails = Utility.GetResponseData<List<PowerHouse>>(response.response);
+            powerHouseDetails = Utility.GetResponseData<List<PowerHouse>>(response.response);
         }
         private async void SaveEntry()
         {
-            if (entryExit != null)
+            if (powerHouseModel != null)
             {
-                var response = await benchServices.CreateEACouncilEntryDetails(entryExit);
+                var response = await benchServices.CreateEACouncilEntryDetails(powerHouseModel);
                 if (response.status)
                 {
                     navManager.NavigateTo("/power-house", forceLoad: true);

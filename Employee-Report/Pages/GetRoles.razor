@@ -18,7 +18,7 @@ else
     </div>
 
     <div class="@(IsHidden ? "show" : "hidden")">
-        <EditForm Model="@roleModel" OnValidSubmit="addRole">
+        <EditForm Model="@roleModel">
             <DataAnnotationsValidator />
             <div class="form-control">
                 <div class="row">
@@ -28,11 +28,9 @@ else
                         <ValidationMessage For="@(() => roleModel.RoleName)" />
                     </div>
                 </div>
-                <div id="SfBtns">
-                    <div class="col-md-3">
-                        <SfButton @onclick="@AddClass" type="submit" class="btnAdd" style="background-color: midnightblue; color: white;" Content="Add"></SfButton>
-                        <SfButton @onclick="@AddClass" type="submit" class="btnCancel" Content="Cancel"></SfButton>
-                    </div>
+                <div id="SfAddRoleBtns">
+                    <SfButton @onclick="@AddRole" type="submit" class="btnAddRole" Content="Add"></SfButton>
+                    <SfButton @onclick="@CancelRole" type="submit" class="btnCancelRole" Content="Cancel"></SfButton>
                 </div>
             </div>
         </EditForm>
@@ -40,11 +38,11 @@ else
 
     @if (!IsHidden)
     {
-    <SfGrid DataSource="@role">
-        <GridColumns>
+        <SfGrid DataSource="@role">
+            <GridColumns>
                 <GridColumn Field=@nameof(Role.RoleName) HeaderText="Role" TextAlign="TextAlign.Center">
-            </GridColumn>
-        </GridColumns>
-    </SfGrid>
+                </GridColumn>
+            </GridColumns>
+        </SfGrid>
     }
 }

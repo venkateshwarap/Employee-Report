@@ -18,7 +18,7 @@ else
         }
     </div>
     <div class="@(IsHidden ? "show" : "hidden")">
-        <EditForm Model="@pocModel" OnValidSubmit="addpoc">
+        <EditForm Model="@pocModel">
             <DataAnnotationsValidator />
             <div class="form-control">
                 <div class="row">
@@ -28,9 +28,9 @@ else
                         <ValidationMessage For="@(() => pocModel.Name)" />
                     </div>
                 </div>
-                <div id="SfBtns">
-                    <SfButton @onclick="@AddClass" type="submit" class="btnAdd" Content="Add"></SfButton>
-                    <SfButton @onclick="@AddClass" type="submit" class="btnCancel" Content="Cancel"></SfButton>
+                <div id="SfAddPOCBtns">
+                    <SfButton @onclick="@AddPOC" type="submit" class="btnAddPOC" Content="Add"></SfButton>
+                    <SfButton @onclick="@CancelPOC" type="submit" class="btnCancelPOC" Content="Cancel"></SfButton>
                 </div>
             </div>
         </EditForm>

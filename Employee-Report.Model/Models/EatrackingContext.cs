@@ -47,7 +47,7 @@ namespace Employee.DataModel.Models
         public virtual DbSet<Training> Training { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer("Data Source=MLI00740\\SQLEXPRESS;Database=EATracking;Integrated Security=True;TrustServerCertificate=True;");
+            => optionsBuilder.UseSqlServer("Data Source=MLI00741\\RAJEEV_SQLDEV;Database=EATracking;Integrated Security=True;TrustServerCertificate=True;User Id=sa;Password=Raj@727_eev.MLI;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

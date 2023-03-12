@@ -32,10 +32,17 @@ namespace Employee_Report.AppSettings
         public const string AddRole = "https://localhost:7178/api/Role/AddRole";
         #endregion
 
+        #region Learnings
+        public static string Getlearnings = "Learnings/get";
+        public static string AddNewLearning = "Learnings/create";
+        #endregion
+
+        #region Trainings
+        public static string GetTrainings = "Trainings/get";
+        public static string AddNewTraining = "Trainings/create";
+        #endregion
+
         public static string GetEmployeeURl = "Employee/GetAllEmployee";
-        public static string GetlearningURl = "Learning/GetLearningDetails";
-        public static string PostlearningURl = "Learning/SaveLearning";
-        public const string GetTrainings = "https://localhost:7024/api/Training/GetAllTrainings";
         public const string GetBenchEntry = "eacouncil/entry/get";
         public const string CreateBenchEntry = "eacouncil/entry/create";
 

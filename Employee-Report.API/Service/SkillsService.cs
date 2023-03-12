@@ -17,9 +17,6 @@ namespace Employee_Report.API.Service
         }
         public async Task<Response> AddNewSkill(Skill skill)
         {
-            var getSkillByName = _context.Skills.Where(x=> x.SkillName == skill.SkillName);
-            if (getSkillByName == null)
-            {
                 await _context.Skills.AddAsync(skill);
                 var result = _context.SaveChanges();
                 if (result > 0)
@@ -27,13 +24,8 @@ namespace Employee_Report.API.Service
                     return BindResponse(result, true, Constants.Response_Add_Skill_Success);
                 }
                 {
-                    return BindResponse(result, false, Constants.Response_Add_Skill_Failure);
+                    return BindResponse(result, true, Constants.Response_Add_Skill_Failure);
                 }
-            }
-            else
-            {
-                return BindResponse("The skill - "+skill.SkillName, false, Constants.Response_Skill_Already_Exists);
-            }
         }
 
         public async Task<Response> GetSkills()

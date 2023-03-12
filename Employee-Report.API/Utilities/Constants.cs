@@ -30,7 +30,16 @@ namespace Employee_Report.API.Utilities
         #region Skills
         public const string Response_Add_Skill_Success = "New Skill has been added Successfully";
         public const string Response_Add_Skill_Failure = "Failed to add New Skill";
-        public const string Response_Skill_Already_Exists = "This skill already exists.";
+        #endregion
+
+        #region Learnings
+        public const string Response_Add_Learning_Success = "New Learning has been added Successfully";
+        public const string Response_Add_Learning_Failure = "Failed to add New Learning";
+        #endregion
+
+        #region Trainings
+        public const string Response_Add_Training_Success = "New training has been added Successfully";
+        public const string Response_Add_Training_Failure = "Failed to add New Training";
         #endregion
 
         #region EmployeeSkills

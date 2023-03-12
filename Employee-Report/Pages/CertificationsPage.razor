@@ -3,21 +3,22 @@
 @using Employee_Report.Model.Models
 @inject NavigationManager navManager;
 
-@if (certifications == null)
+@if (certificationslist == null)
 {
-    <p><em>Loading... Please wait..</em></p>
+    <p><em>Loading your data... Please wait..</em></p>
 }
 else
 {
     <div id="divHeader">
         <h5>Certifications</h5>
-        @if (IsHidden)
+        @if (!IsHidden)
         {
-            <SfButton id="sfBtn" OnClick="Save">Add Certification</SfButton>
+            <SfButton id="sfBtnCertifications" OnClick="AddClass">Add Certification</SfButton>
         }
     </div>
-    <div class="@(IsHidden ? "hidden" : "show")">
-        <EditForm Model="@certifications" OnValidSubmit="SaveEntry">
+
+    <div class="@(IsHidden ? "show" : "hidden")">
+        <EditForm Model="@certifications">
             <DataAnnotationsValidator />
             <div class="form-control">
                 <div class="row">
@@ -41,21 +42,21 @@ else
                         <ValidationMessage For="@(() => certifications.ValidTill)" />
                     </div>
                 </div>
-                <div style="margin-top:10px;margin-left:46%;">
-                    <div class="col-md-3" style="display:flex;padding:5px">
-                        <SfButton @onclick="@Save" type="submit" class="btnAdd" style="background-color: midnightblue; color: white;" Content="Add"></SfButton>
-                        <SfButton @onclick="@Cancel" type="button" class="btnCancel" style="background-color: orangered; color: white;" Content="Cancel"></SfButton>
-                    </div>
-                    <div class="col-md-3"></div>
+                <div id="SfAddCertificationBtns">
+                        <SfButton @onclick="@AddCertification" type="submit" class="btnAddCertification" Content="Add"></SfButton>
+                        <SfButton @onclick="@CancelCertification" type="button" class="btnCancelCertification" Content="Cancel"></SfButton>
                 </div>
             </div>
         </EditForm>
     </div>
-    <SfGrid DataSource="@certificationslist">
-        <GridColumns>
-            <GridColumn Field="@nameof(Certification.Name)" HeaderText="Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
-            <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(Certification.ValidFrom)" HeaderText="ValidFrom" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-            <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(Certification.ValidTill)" HeaderText="ValidTill" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-        </GridColumns>
-    </SfGrid>
+    @if (!IsHidden)
+    {
+        <SfGrid DataSource="@certificationslist">
+            <GridColumns>
+                <GridColumn Field="@nameof(Certification.Name)" HeaderText="Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(Certification.ValidFrom)" HeaderText="Valid From" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(Certification.ValidTill)" HeaderText="Valid Till" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+            </GridColumns>
+        </SfGrid>
+    }
 }

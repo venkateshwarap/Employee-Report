@@ -1,12 +1,13 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.API.IService;
+using Employee_Report.API.Utilities;
 using Employee_Report.Model.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Learnings")]
     [ApiController]
     public class LearningController : ControllerBase
     {
@@ -15,16 +16,39 @@ namespace Employee_Report.API.Controllers
         {
             _learningService = learningService;
         }
+
         [HttpGet]
-        public List<Learning> GetLearnings()
+        [Route(Constants.get)]
+        public async Task<IActionResult> GetLearnings()
         {
-            return _learningService.GetlearningDetails();
+            try
+            {
+                var result = await _learningService.GetLearnings();
+                if (result.status)
+                    return Ok(result);
+                return BadRequest(result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
+
         [HttpPost]
-        [Route("SaveLearningDetails")]
-        public ResponseModel Save(Learning learning)
+        [Route(Constants.create)]
+        public async Task<IActionResult> AddNewLearning(Learning learning)
         {
-            return _learningService.SaveLearningDetails(learning);
+            try
+            {
+                var result = await _learningService.AddNewLearning(learning);
+                if (result.status)
+                    return Ok(result);
+                return BadRequest(result);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }
