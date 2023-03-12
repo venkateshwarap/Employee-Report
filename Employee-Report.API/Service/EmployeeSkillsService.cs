@@ -1,4 +1,5 @@
 ﻿using Employee.DataModel.Models;
+using Employee_Report.API.Entities;
 using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
 using Employee_Report.Model.Models;
@@ -14,7 +15,7 @@ namespace Employee_Report.API.Service
         {
             this._context = context;
         }
-        public async Task<Response> SaveEmployeeSkills(EmployeeSkills employeeSkills)
+        public async Task<Response> AddEmployeeSkill(EmployeeSkills employeeSkills)
         {
             await _context.EmployeeSkills.AddAsync(employeeSkills);
             var result = _context.SaveChanges();
@@ -23,16 +24,34 @@ namespace Employee_Report.API.Service
                 return BindResponse(result, true, Constants.Response_Add_EmployeeSkills_Success);
             }
             {
-                return BindResponse(result, false, Constants.Response_Add_Interview_Failure);
+                return BindResponse(result, false, Constants.Response_Add_EmployeeSkills_Failue);
             }
         }
 
-        public async Task<Response> getEmployeeSkills()
+        public async Task<List<EmployeeSkills_Skills_Entity>> GetEmployeeSkills()
         {
-            var result = await _context.EmployeeSkills.ToListAsync();
-            if (result.Count > 0)
-                return BindResponse(result, true);
-            return BindResponse(result, false);
+            var employeeSkillsDetails = new List<EmployeeSkills_Skills_Entity>();
+            if (_context != null)
+            {
+                var result = (from empskills in _context.EmployeeSkills
+                              join skills in _context.Skills on empskills.SkillId equals skills.Id
+                              select new { empskills.EmpId, skills.SkillName, empskills.StartDate, empskills.EndDate }).ToList();
+
+                if (result != null)
+                {
+                    foreach (var res in result)
+                    {
+                        employeeSkillsDetails.Add(new EmployeeSkills_Skills_Entity
+                        {
+                            EmpID = res.EmpId,
+                            SkillName = res.SkillName,
+                            StartDate = res.StartDate,
+                            EndDate = res.EndDate
+                        });
+                    }
+                }
+            }
+            return employeeSkillsDetails;
         }
 
         private Response BindResponse(Object Obj = null!, bool Status = true, string Message = "")

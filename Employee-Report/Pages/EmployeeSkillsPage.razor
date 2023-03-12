@@ -1,78 +1,56 @@
 ﻿@page "/EmployeeSkills"
-@inject NavigationManager navManager;
+@inject NavigationManager navManager
+@using Employee.DataModel.Models;
+@using Employee_Report.API.Entities;
+@using Employee_Report.Model.Models;
+@using Syncfusion.Blazor.Grids
 
-@if (employeeSkillDetails is null)
+@if (employeeSkills_SkillsDetails == null)
 {
     <p><em>Loading your data... Please wait..</em></p>
 }
 else
 {
     <div id="divHeader">
-        <h3>Employee&nbsp;Skills</h3>
+        <h3 style="text-align:center">Employee&nbsp;Skills</h3>
         @if (!IsHidden)
         {
             <SfButton id="sfBtnAddEmployeeSkill" OnClick="AddClass">Add Employee Skill</SfButton>
         }
     </div>
     <div class="@(IsHidden ? "show" : "hidden")">
-        <EditForm Model="@employeeSkillModel" OnValidSubmit="addEmployeeSkill">
+        <EditForm Model="@EmployeeSkills_SkillsModel">
             <DataAnnotationsValidator />
             <div class="form-control">
-                <div class="row mt-2">
+                <div class="row">
                     <div class="col-md-6">
-                        <label Class="e-outline-date">Employee ID</label>
-                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeSkillModel.EmpId" />
-                        <ValidationMessage For="@(() => employeeSkillModel.EmpId)" />
+                        <label>Employee ID</label>
+                        <SfTextBox Type="InputType.Text" class="form-control"
+                               @bind-Value="EmployeeSkills_SkillsModel.EmpID" />
+                        <ValidationMessage For="@(() => EmployeeSkills_SkillsModel.EmpID)" />
                     </div>
                     <div class="col-md-6">
-                        <label Class="e-outline-date">SKill ID</label>
-                        <SfNumericTextBox CssClass="e-outline" Type="InputType.Number" class="form-control" @bind-Value="employeeSkillModel.SkillId" />
-                        <ValidationMessage For="@(() => employeeSkillModel.SkillId)" />
-                    </div>
-                </div>
-
-
-                <div class="row mt-2">
-                    <div class="col-md-6">
-                        <label Class="e-outline-date">Start Date</label>
-                        <InputDate Type="InputDateType.Date" class="form-control" @bind-Value="employeeSkillModel.StartDate" />
-                        <ValidationMessage For="@(() => employeeSkillModel.StartDate)" />
+                        <label>Skill Name</label>
+                        <SfTextBox Type="InputType.Text" class="form-control"
+                               @bind-Value="EmployeeSkills_SkillsModel.SkillName" />
+                        <ValidationMessage For="@(() => EmployeeSkills_SkillsModel.SkillName)" />
                     </div>
                     <div class="col-md-6">
-                        <label Class="e-outline-date">End Date</label>
-                        <InputDate Type="InputDateType.Date" class="form-control" @bind-Value="employeeSkillModel.EndDate" />
-                        <ValidationMessage For="@(() => employeeSkillModel.EndDate)" />
-                    </div>
-                </div>
-
-                <div class="row mt-2">
-                    <div class="col-md-6">
-                        <label Class="e-outline-date">Created By</label>
-                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeSkillModel.CreatedBy" />
-                        <ValidationMessage For="@(() => employeeSkillModel.CreatedBy)" />
+                        <label>Start Date</label>
+                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                               @bind-Value="EmployeeSkills_SkillsModel.EndDate" />
+                        <ValidationMessage For="@(() => EmployeeSkills_SkillsModel.StartDate)" />
                     </div>
                     <div class="col-md-6">
-                        <label Class="e-outline-date">Created On</label>
-                        <InputDate Type="InputDateType.Date" class="form-control" @bind-Value="employeeSkillModel.CreatedOn" />
-                        <ValidationMessage For="@(() => employeeSkillModel.CreatedOn)" />
-                    </div>
-                </div>
-
-                <div class="row mt-2">
-                    <div class="col-md-6">
-                        <label Class="e-outline-date">Modified By</label>
-                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeSkillModel.ModifiedBy" />
-                        <ValidationMessage For="@(() => employeeSkillModel.ModifiedBy)" />
-                    </div>
-                    <div class="col-md-6">
-                        <label Class="e-outline-date">Modified On</label>
-                        <InputDate Type="InputDateType.Date" class="form-control" @bind-Value="employeeSkillModel.ModifiedOn" />
-                        <ValidationMessage For="@(() => employeeSkillModel.ModifiedOn)" />
+                        <label>End Date</label>
+                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                               @bind-Value="EmployeeSkills_SkillsModel.EndDate" />
+                        <ValidationMessage For="@(() => EmployeeSkills_SkillsModel.EndDate)" />
                     </div>
                 </div>
                 <div id="SfBtnsEmployeeSkills">
-                    <SfButton @onclick="@AddClass" type="submit" class="btnAddEmployeeSkill" Content="Add"></SfButton>
-                    <SfButton @onclick="@AddClass" type="submit" class="btnCancelEmployeeSkill" Content="Cancel"></SfButton>
+                    <SfButton @onclick="@AddEmployeeSkill" type="submit" class="btnAddEmployeeSkill" Content="Add"></SfButton>
+                    <SfButton @onclick="@CancelEmployeeSkill" type="submit" class="btnCancelEmployeeSkill" Content="Cancel"></SfButton>
                 </div>
             </div>
         </EditForm>
@@ -80,12 +58,12 @@ else
 
     @if (!IsHidden)
     {
-        <SfGrid DataSource="@employeeSkillDetails">
+        <SfGrid DataSource="@employeeSkills_SkillsDetails">
             <GridColumns>
-                <GridColumn Field="@nameof(employeeSkillModel.EmpId)" HeaderText="Employee ID" TextAlign="TextAlign.Center" Width="120"></GridColumn>
-                <GridColumn Field="@nameof(employeeSkillModel.SkillId)" HeaderText="Skill ID" TextAlign="TextAlign.Center" Width="120"></GridColumn>
-                <GridColumn Field="@nameof(employeeSkillModel.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Center" Width="120"></GridColumn>
-                <GridColumn Field="@nameof(employeeSkillModel.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                <GridColumn Field=@nameof(EmployeeSkills_SkillsModel.EmpID) HeaderText="Employee ID" TextAlign="TextAlign.Center"></GridColumn>
+                <GridColumn Field=@nameof(EmployeeSkills_SkillsModel.SkillName) HeaderText="Skill Name" TextAlign="TextAlign.Center"></GridColumn>
+                <GridColumn Format="d" Field=@nameof(EmployeeSkills_SkillsModel.StartDate) HeaderText="Start State" TextAlign="TextAlign.Center"></GridColumn>
+                <GridColumn Format="d" Field=@nameof(EmployeeSkills_SkillsModel.EndDate) HeaderText="End Date" TextAlign="TextAlign.Center"></GridColumn>
             </GridColumns>
         </SfGrid>
     }

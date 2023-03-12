@@ -191,9 +191,9 @@ a, .btn-link {
     margin-left: 83%;
 }
 
-#sfBtnAddTraining{
+#sfBtnAddTraining {
     background-color: dodgerblue;
-    margin-left:80%;
+    margin-left: 80%;
 }
 
 #sfBtnAddPowerHouse {
@@ -201,16 +201,20 @@ a, .btn-link {
     margin-left: 74.2%;
 }
 
-#SfBtnsAddEmployeePOC{
-    margin:1%;
+#SfBtnsAddEmployeePOC {
+    margin: 1%;
     margin-left: 43%;
 }
 
-#sfBtnCertifications{
+#sfBtnCertifications {
     background-color: dodgerblue;
     margin-left: 77%;
 }
 
+#sfBtnAddEmployeeSkill {
+    background-color: dodgerblue;
+    margin-left: 68.5%;
+}
 
 #divHeader {
     display: flex;
@@ -280,33 +284,33 @@ a, .btn-link {
     margin-left: 5%;
 }
 
-#SfAddPOCBtns{
+#SfAddPOCBtns {
     margin: 1%;
-    margin-left:13%;
+    margin-left: 13%;
 }
 
-.btnAddPOC{
+.btnAddPOC {
     width: 10%;
-    background-color:dodgerblue !important;
+    background-color: dodgerblue !important;
 }
 
-.btnCancelPOC{
+.btnCancelPOC {
     width: 10%;
-    margin-left:5%;
+    margin-left: 5%;
 }
 
-#SfAddProjectBtns{
-    margin:1%;
-    margin-left:13%;
+#SfAddProjectBtns {
+    margin: 1%;
+    margin-left: 13%;
 }
 
-.btnAddProject{
+.btnAddProject {
     width: 10%;
-    background-color:dodgerblue !important;
+    background-color: dodgerblue !important;
 }
 
-.btnCancelProject{
-    width:10%;
+.btnCancelProject {
+    width: 10%;
     margin-left: 5%;
 }
 
@@ -315,22 +319,22 @@ a, .btn-link {
     background-color: dodgerblue !important;
 }
 
-.btnCancelTraining{
-    width: 10%;
-    margin-left:5%;
-}
-
-.btnAddEmployeePOC{
-    width: 10%;
-    background-color:dodgerblue !important;
-}
-
-.btnCancelEmployeePOC{
+.btnCancelTraining {
     width: 10%;
     margin-left: 5%;
 }
 
-#SfAddCertificationBtns{
+.btnAddEmployeePOC {
+    width: 10%;
+    background-color: dodgerblue !important;
+}
+
+.btnCancelEmployeePOC {
+    width: 10%;
+    margin-left: 5%;
+}
+
+#SfAddCertificationBtns {
     margin: 1%;
     margin-left: 43%;
 }
@@ -340,9 +344,24 @@ a, .btn-link {
     background-color: dodgerblue !important;
 }
 
-.btnCancelCertification{
+.btnCancelCertification {
     width: 10%;
     margin-left: 5%;
+}
+
+#SfBtnsEmployeeSkills{
+    margin: 1%;
+    margin-left: 43%;
+}
+
+.btnAddEmployeeSkill{
+    width:10%;
+    background-color: dodgerblue !important;
+}
+
+.btnCancelEmployeeSkill{
+    width: 10%;
+    margin-left: 4%;
 }
 
 a {
@@ -378,25 +397,6 @@ a {
 
 .menu-icon {
     margin: 10px;
-}
-
-#SfBtnsEmployeeSkills {
-    margin-top: 1%;
-    margin-left: 45%;
-}
-
-    #SfBtnsEmployeeSkills > .btnAddEmployeeSkill {
-        background-color: dodgerblue;
-        width: 10%;
-    }
-
-#sfBtnAddEmployeeSkill {
-    background-color: dodgerblue;
-    margin-left: 68.5%;
-}
-
-.btnCancelEmployeeSkill {
-    width: 10%;
 }
 
 .menu-icon {

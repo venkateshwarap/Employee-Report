@@ -1,5 +1,7 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.API.IService;
+using Employee_Report.API.Service;
+using Employee_Report.API.Utilities;
 using Employee_Report.Model.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,36 +11,38 @@ namespace Employee_Report.API.Controllers
     [ApiController]
     public class EmployeeSkillsController : ControllerBase
     {
-        private readonly IEmployeeSkillsService _employeeSkills;
-        public EmployeeSkillsController(IEmployeeSkillsService employeeSkills)
+        private readonly IEmployeeSkillsService _employeeSkillService;
+        public EmployeeSkillsController(IEmployeeSkillsService employeeSkillService)
         {
-            _employeeSkills = employeeSkills;
+            _employeeSkillService = employeeSkillService;
         }
 
         [HttpGet]
-        [Route("GetEmployeeSkills")]
-        public async Task<IActionResult> GetEmployeeSkills()
+        [Route(Constants.get)]
+        public async Task<IActionResult> GetEmployeeSkill()
         {
             try
             {
-                var result = await _employeeSkills.getEmployeeSkills();
-                if (result.status)
-                    return Ok(result);
-                return BadRequest(result);
+                var empSkills = await _employeeSkillService.GetEmployeeSkills();
+                if (empSkills == null)
+                {
+                    return NotFound();
+                }
+                return Ok(empSkills);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return BadRequest();
             }
         }
 
         [HttpPost]
-        [Route("AddEmployeeSkill")]
-        public async Task<IActionResult> AddEmployeeSkill(EmployeeSkills employeeSkill)
+        [Route(Constants.create)]
+        public async Task<IActionResult> AddEmployeeSkill([FromBody] EmployeeSkills employeeSkills)
         {
             try
             {
-                var result = await _employeeSkills.SaveEmployeeSkills(employeeSkill);
+                var result = await _employeeSkillService.AddEmployeeSkill(employeeSkills);
                 if (result.status)
                     return Ok(result);
                 return BadRequest(result);

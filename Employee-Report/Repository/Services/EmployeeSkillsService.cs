@@ -1,26 +1,30 @@
 ﻿using Employee.DataModel.Models;
+using Employee_Report.API.Entities;
+using Employee_Report.API.IService;
 using Employee_Report.Model.Models;
-using Employee_Report.Repository.IServices;
 using Employee_Report.Utilities;
+using static Employee_Report.Pages.EmployeeReport;
 
 namespace Employee_Report.Repository.Services
 {
-    public class EmployeeSkillsService : IEmployeeSkillsService
+    public class EmployeeSkillService : Repository.IServices.IEmployeeSkillService
     {
         HttpClient _httpClient = new HttpClient();
-        public EmployeeSkillsService()
+        public EmployeeSkillService()
         {
-            _httpClient.BaseAddress = new Uri(AppSettings.Config.API_ROUTE!);
+            _httpClient.BaseAddress = new Uri(AppSettings.Config.API_ROUTE);
         }
-        public async Task<Response> GetEmployeeSkills()
+
+        public async Task<IEnumerable<EmployeeSkills_Skills_Entity>> GetEmployeeSkills_Skills()
         {
-            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GetEmployeeSkills, _httpClient);
-            return entry;
+            var empSkills_Skills = await _httpClient.GetFromJsonAsync<EmployeeSkills_Skills_Entity[]>(AppSettings.Config.GetEmployeeSkills);
+            return empSkills_Skills;
         }
-        public async Task<Response> AddEmployeeSkill(EmployeeSkills employeeSkill)
+
+        public async Task<HttpResponseMessage> AddEmployeeSkills_Skils(EmployeeSkills_Skills_Entity employeeSkills_Skills_Entity)
         {
-            var entry = await Utility.HttpClientPostAsync(AppSettings.Config.AddEmployeeSkill, _httpClient, employeeSkill);
-            return entry;
+            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddEmployeeSkill, employeeSkills_Skills_Entity);
+            return responseMessage;
         }
     }
 }
