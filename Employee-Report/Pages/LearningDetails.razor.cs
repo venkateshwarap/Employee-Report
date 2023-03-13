@@ -1,40 +1,62 @@
 ﻿using Employee.DataModel.Models;
+using Employee_Report.API.IService;
+using Employee_Report.API.Service;
 using Employee_Report.Model.Models;
+using Employee_Report.Repository.Services;
 using Employee_Report.Utilities;
 
 namespace Employee_Report.Pages
 {
     public partial class LearningDetails
     {
-        Repository.Services.LearningService LearningService = new();
-        public IEnumerable<Learning>? learningDetails { get; set; }
-        public Learning learningModel = new();
-        private bool IsHidden { get; set; } = false;
+        public bool HideLearningControls = true;
+        public bool HideAdd = false;
+        public bool HideGrid = false;
+        public Learning learning { get; set; }
+        public List<Learning> learningList { get; set; }
+        HttpClient client = new HttpClient();
+        Repository.Services.LearningService learningService = new Repository.Services.LearningService();
         protected override async Task OnInitializedAsync()
         {
-            var response = await LearningService.GetLearnings();
-            learningDetails = Utility.GetResponseData<List<Learning>>(response.response);
-        }
-        public async void AddLearning()
-        {
-            if (learningModel != null)
+            learning = new Learning();
+            var responseMessage = await learningService.GetLearnings();
+            if (responseMessage != null)
             {
-                var response = await LearningService.AddNewLearning(learningModel);
+                learningList = Utility.GetResponseData<List<Learning>>(responseMessage.response);
+            }
+            //base.OnInitialized();
+        }
+        public void AddLearning()
+        {
+            if (HideLearningControls == true)
+            {
+                HideLearningControls = false;
+                HideAdd = true;
+                HideGrid = true;
+            }
+        }
+        public async void PostLearningDetails()
+        {
+
+            if (learning != null)
+            {
+                var response = await learningService.AddNewLearning(learning);
                 if (response.status)
                 {
                     navManager.NavigateTo("/learnings", forceLoad: true);
-                    IsHidden = false;
+                    HideAdd = false;
+                    HideLearningControls = true;
+                    HideGrid = false;
                 }
+
             }
         }
-        private void CancelLearnings()
+        public void ClearPostLearningDetails()
         {
-            navManager.NavigateTo("/learnings", forceLoad: true);
+            HideLearningControls = true;
+            HideAdd = false;
+            HideGrid = false;
         }
 
-        private void AddClass()
-        {
-            IsHidden = !IsHidden;
-        }
     }
 }

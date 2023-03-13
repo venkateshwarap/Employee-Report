@@ -1,47 +1,53 @@
 ﻿@page "/trainings"
-<PageTitle>Employee Information - Trainings</PageTitle>
-@inject NavigationManager navManager;
-
-
-
-@if (trainingDetails is null)
-{
-    <p><em>Loading your data... Please wait..</em></p>
-}
-else
-{
-    <div id="divHeader">
-        <h3>Trainings</h3>
-        @if (!IsHidden)
-        {
-            <SfButton id="sfBtnAddTraining" OnClick="AddClass">Add Training</SfButton>
-        }
+@using Syncfusion.Blazor.Buttons
+@inject NavigationManager navManager
+<h3>Training Details</h3>
+<hr />
+<div class="form-control" hidden=@HideLearningControls>
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <SfTextBox @bind-Value="training.Name" class="form-control" Placeholder="Enter Training Technology Name"></SfTextBox>
+        </div>
+        <div class="col-md-6 mt-2">
+            <SfNumericTextBox @bind-Value="training.HoursOfLearning" class="form-control" Placeholder="Enter Learning Hours"></SfNumericTextBox>
+        </div>
     </div>
-    <div class="@(IsHidden ? "show" : "hidden")">
-        <EditForm Model="@trainingModel">
-            <DataAnnotationsValidator />
-            <div class="form-control">
-                <div class="row mt-2">
-                    <div class="col-md-6">
-                        <label>Name</label>
-                        <SfTextBox Type="InputType.Text" class="form-control" @bind-Value="trainingModel.Name" />
-                        <ValidationMessage For="@(() => trainingModel.Name)" />
-                    </div>
-                </div>
-                <div id="SfAddSkillBtns">
-                    <SfButton @onclick="@AddTraining" type="submit" class="btnAddTraining" Content="Add"></SfButton>
-                    <SfButton @onclick="@cancelTraining" type="submit" class="btnCancelTraining" Content="Cancel"></SfButton>
-                </div>
-            </div>
-        </EditForm>
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <InputDate Type="InputDateType.Date" @bind-Value="training.StartDate" class="form-control" Placeholder="Select StartDate"></InputDate>
+        </div>
+        <div class="col-md-6 mt-2">
+            <InputDate Type="InputDateType.Date" @bind-Value="training.EndDate" class="form-control" Placeholder="Select EndDate"></InputDate>
+        </div>
     </div>
+    <div style="margin-top:10px;" class="row">
+        <div class="col-md-1">
+            <SfButton OnClick="PostTrainingDetails" style="color:white;font-weight:900;background-color:dodgerblue;border-radius:8px;padding-top:5px;padding-bottom:5px;padding-left:50px;padding-right:50px;" Content="Create"></SfButton>
+        </div>
+        <div class="col-md-1" style="width:78%">
+            <SfButton OnClick="ClearPostTrainingDetails" style="color:white;font-weight:900;background-color:dodgerblue;border-radius:8px;padding-top:5px;padding-bottom:5px;padding-left:50px;padding-right:50px;margin-left:100%" Content="Cancel"></SfButton>
+        </div>
+    </div>
+</div>
 
-    @if (!IsHidden)
+<div class="col-md-3" hidden="@HideAdd">
+    <SfButton OnClick="AddTraining" style="background-color:dodgerblue;" Content="AddTraning"></SfButton>
+</div>
+<div class="mt-2">
+    @if (TraningList == null)
     {
-        <SfGrid DataSource="@trainingDetails">
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <SfGrid TItem="EmployeeModel" hidden="@HideGrid" DataSource="@TraningList">
             <GridColumns>
-                <GridColumn Field="@nameof(trainingModel.Name)" HeaderText="Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Field="@nameof(training.Name)" HeaderText="Name" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field="@nameof(training.HoursOfLearning)" HeaderText="LearningHours" TextAlign="TextAlign.Center" Width="100">
+                </GridColumn>
+                <GridColumn Format="d" Field="@nameof(training.StartDate)" HeaderText="StartDate" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Format="d" Field="@nameof(training.EndDate)" HeaderText="EndDate" TextAlign="TextAlign.Left" Width="100"></GridColumn>
             </GridColumns>
         </SfGrid>
     }
-}
+</div>
