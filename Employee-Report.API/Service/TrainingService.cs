@@ -8,9 +8,9 @@ namespace Employee_Report.API.Service
 {
     public class TrainingService : ITrainingService
     {
-        private EatrackingContext _context;
+        private EmployeeInfoContext _context;
 
-        public TrainingService(EatrackingContext context)
+        public TrainingService(EmployeeInfoContext context)
         {
             this._context = context;
         }

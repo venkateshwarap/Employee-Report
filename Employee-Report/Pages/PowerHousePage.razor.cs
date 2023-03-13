@@ -11,7 +11,7 @@ namespace Employee_Report.Pages
         public Repository.IServices.IPowerHouseService benchServices { get; set; }
         public IEnumerable<PowerHouse> powerHouseDetails { get; set; }
         public PowerHouse powerHouseModel = new();
-        private bool IsHidden { get; set; } = true;
+        private bool IsHidden { get; set; } = false;
         protected override async Task OnInitializedAsync()
         {
             var response = await benchServices.GeEACouncilEntryDetails();

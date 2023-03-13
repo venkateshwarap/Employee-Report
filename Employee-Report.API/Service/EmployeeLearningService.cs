@@ -8,8 +8,8 @@ namespace Employee_Report.API.Service
     public class EmployeeLearningService : IEmployeeLearningService
     {
 
-        private readonly EatrackingContext _context;
-        public EmployeeLearningService(EatrackingContext context)
+        private readonly EmployeeInfoContext _context;
+        public EmployeeLearningService(EmployeeInfoContext context)
         {
             this._context = context;
         }

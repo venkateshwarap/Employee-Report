@@ -11,6 +11,7 @@ namespace Employee_Report.Pages
         protected override async Task OnInitializedAsync()
         {
             employees = (await employeesService.GetEmployeeDetails()).ToList();
+
         }
         public void Clicked(MouseEventArgs Args)
         {

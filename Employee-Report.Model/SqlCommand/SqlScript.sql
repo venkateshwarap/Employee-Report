@@ -1,5 +1,5 @@
-Create database EATracking
-use EATracking
+Create database EmployeeInfo
+use EmployeeInfo
 
 
 -----------------------------------------Master-----------------------------------------
@@ -141,7 +141,7 @@ VALUES('MLI719', 'Taj', getdate()-365,GETDATE()+30, 1)
 
 --EACouncilEntryExit TABLE:
 
-CREATE TABLE [dbo].[EACouncilEntryExit](
+CREATE TABLE [dbo].[PowerHouse](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[EmpId] [varchar](10) NULL,
 	[StartDate] [date] NULL,
@@ -155,19 +155,19 @@ CREATE TABLE [dbo].[EACouncilEntryExit](
 ) ON [PRIMARY]
  
 --EACouncilEntryExit DATA:
-INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
 VALUES('MLI741', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'Rajeev', GETDATE(), 'Rajeev', GETDATE())
 
-INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
 VALUES('MLI740', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'Nitin', GETDATE(), 'Nitin', GETDATE())
 
-INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
 VALUES('MLI737', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'SriLaxmi', GETDATE(), 'SriLaxmi', GETDATE())
 
-INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
 VALUES('MLI748', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'Praful', GETDATE(), 'Praful', GETDATE())
 
-INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
 VALUES('MLI719', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'Taj', GETDATE(), 'Taj', GETDATE())
 
 
