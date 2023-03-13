@@ -6,6 +6,8 @@ using Employee_Report.Repository.IServices;
 using Employee_Report.Repository.Services;
 using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace Employee_Report.Pages
 {
@@ -71,27 +73,31 @@ namespace Employee_Report.Pages
             public int EmployeeIdentity { get; set; }
             public string ExpertiseDoamin { get; set; }
         }
+
+       
+        private string _empid;
+
         protected override async Task OnInitializedAsync()
         {
+
+            var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
+            var queryStrings = QueryHelpers.ParseQuery(uri.Query);
+            if(queryStrings.TryGetValue("EMPID", out var empid))
+                {
+                _empid = empid;
+            }
             var response = await reportService.GetInterviews();
             interviewsDetails = Utility.GetResponseData<List<Interview>>(response.response);
-
             var cerificationresponse = await reportService.GetCertificationDetails();
             certificationslist = Utility.GetResponseData<List<Certification>>(cerificationresponse.response);
-
             var powerHouseresponse = await benchServices.GeEACouncilEntryDetails();
             powerHouseDetails = Utility.GetResponseData<List<PowerHouse>>(powerHouseresponse.response);
-
             employeepoc = (await reportService.GetEmployeePOCDetails()).ToList();
-
             employee = (await reportService.GetEmployeeProjectDetails()).ToList();
-
             var learningresponse = await LearningService.GetLearnings();
             learningCompleteDetails = Utility.GetResponseData<List<Learning>>(learningresponse.response);
-
             var trainingresponse = await TrainingService.GetTrainings();
             trainingDetails = Utility.GetResponseData<List<Training>>(trainingresponse.response);
-
         }
     }
 }
