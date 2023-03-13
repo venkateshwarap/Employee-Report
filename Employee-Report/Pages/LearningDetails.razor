@@ -1,45 +1,68 @@
 ﻿@page "/learnings"
-<PageTitle>Employee Information - Learnings</PageTitle>
+@using Employee.DataModel.Models;
+@using Employee_Report.Model.Models;
+@using Syncfusion.Blazor.Buttons
 @inject NavigationManager navManager
 
-@if (learningDetails is null)
-{
-    <p><em>Loading your data... Please wait..</em></p>
-}
-else
-{
-    <div id="divHeader">
-        <h3>Learning</h3>
-        @if (!IsHidden)
-        {
-            <SfButton id="sfBtnAddSkill" OnClick="AddClass">Add Skill</SfButton>
-        }
+<h2>Learning Details</h2>
+<hr />
+<div class="form-control" hidden=@HideLearningControls>
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <InputText @bind-Value="learning.Name" class="form-control" Placeholder="Enter learning Technology Name"></InputText>
+        </div>
+        <div class="col-md-6 mt-2">
+            <InputText @bind-Value="learning.Path" class="form-control" Placeholder="Enter path"></InputText>
+        </div>
     </div>
-    <div class="@(IsHidden ? "show" : "hidden")">
-        <EditForm Model="@learningModel">
-            <DataAnnotationsValidator />
-            <div class="form-control">
-                <div class="row mt-2">
-                    <div class="col-md-6">
-                        <label>Name</label>
-                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="learningModel.Name" />
-                        <ValidationMessage For="@(() => learningModel.Name)" />
-                    </div>
-                </div>
-                <div id="SfAddSkillBtns">
-                    <SfButton @onclick="@AddLearning" type="submit" id="btnAddSkill" Content="Add"></SfButton>
-                    <SfButton @onclick="@CancelLearnings" type="submit" id="btnCancelSkill" Content="Cancel"></SfButton>
-                </div>
-            </div>
-        </EditForm>
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <InputDate Type="InputDateType.Date" @bind-Value="learning.StartDate" class="form-control" Placeholder="Select StartDate"></InputDate>
+        </div>
+        <div class="col-md-6 mt-2">
+            <InputDate Type="InputDateType.Date" @bind-Value="learning.EndDate" class="form-control" Placeholder="Select EndDate"></InputDate>
+        </div>
     </div>
-
-    @if (!IsHidden)
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <InputNumber @bind-Value="learning.HoursOfLearning" class="form-control" Placeholder="Learning Hours"></InputNumber>
+        </div>
+    </div>
+    <div style="margin-top:10px;" class="row">
+        <div class="col-md-1">
+            <SfButton OnClick="PostLearningDetails" style="color:white;font-weight:900;background-color:dodgerblue;border-radius:8px;padding-top:5px;padding-bottom:5px;padding-left:50px;padding-right:50px;" Content="Create"></SfButton>
+        </div>
+        <div class="col-md-1" style="width:78%">
+            <SfButton OnClick="ClearPostLearningDetails" style="color:white;font-weight:900;background-color:dodgerblue;border-radius:8px;padding-top:5px;padding-bottom:5px;padding-left:50px;padding-right:50px;margin-left:100%" Content="Cancel"></SfButton>
+        </div>
+    </div>
+</div>
+<div class="col-md-3" hidden="@HideAdd">
+    <SfButton OnClick="AddLearning" style="background-color:dodgerblue;" Content="AddLearning"></SfButton>
+</div>
+<div class="mt-2">
+    @if (learningList == null)
     {
-        <SfGrid DataSource="@learningDetails">
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <SfGrid TItem="EmployeeModel" hidden="@HideGrid" DataSource="@learningList">
             <GridColumns>
-                <GridColumn Field="@nameof(learningModel.Name)" HeaderText="Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Field="@nameof(learning.Name)" HeaderText="Name" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field="@nameof(learning.Path)" HeaderText="Path" TextAlign="TextAlign.Center" Width="100">
+                    <Template>
+                        @{
+                            var learningList = (context as Learning);
+                            <a target="_blank" href="@learningList.Path">@learningList.Path</a>
+                        }
+                    </Template>
+                </GridColumn>
+                <GridColumn Field="@nameof(learning.HoursOfLearning)" HeaderText="LearningHours" TextAlign="TextAlign.Center" Width="100"></GridColumn>
+                <GridColumn Format="d" Field="@nameof(learning.StartDate)" HeaderText="StartDate" TextAlign="TextAlign.Center" Width="100"></GridColumn>
+                <GridColumn Format="d" Field="@nameof(learning.EndDate)" HeaderText="EndDate" TextAlign="TextAlign.Center" Width="100"></GridColumn>
             </GridColumns>
         </SfGrid>
     }
-}
+</div>
+

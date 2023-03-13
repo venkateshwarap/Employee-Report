@@ -7,35 +7,53 @@ namespace Employee_Report.Pages
 {
     public partial class TraningDetails
     {
-        Repository.Services.TrainingService TrainingService= new();
-        public IEnumerable<Training>? trainingDetails { get; set; }
-        public Training trainingModel = new();
-        private bool IsHidden { get; set; } = false;
-        protected override async Task OnInitializedAsync()
+
+        public bool HideLearningControls = true;
+        public bool HideAdd = false;
+        public bool HideGrid = false;
+        public Training training { get; set; }
+        public List<Training> TraningList { get; set; }
+        HttpClient client = new HttpClient();
+        Repository.Services.TrainingService trainingService = new Repository.Services.TrainingService();
+        protected async override Task OnInitializedAsync()
         {
-            var response = await TrainingService.GetTrainings();
-            trainingDetails = Utility.GetResponseData<List<Training>>(response.response);
+            training = new Training();
+            var responseMessage = await trainingService.GetTrainings();
+            if (responseMessage != null)
+            {
+                TraningList = Utility.GetResponseData<List<Training>>(responseMessage.response);
+            }
+            await base.OnInitializedAsync();
+        }
+        public void AddTraining()
+        {
+            if (HideLearningControls == true)
+            {
+                HideLearningControls = false;
+                HideAdd = true;
+                HideGrid = true;
+            }
         }
 
-        public async void AddTraining()
+        public async void PostTrainingDetails()
         {
-            if (trainingModel != null)
+            if (training != null)
             {
-                var response = await TrainingService.AddNewTraining(trainingModel);
+                var response = await trainingService.AddNewTraining(training);
                 if (response.status)
                 {
                     navManager.NavigateTo("/trainings", forceLoad: true);
-                    IsHidden = false;
+                    HideAdd = false;
+                    HideGrid = false;
+                    HideLearningControls = true;
                 }
             }
         }
-        private void cancelTraining()
+        public void ClearPostTrainingDetails()
         {
-            navManager.NavigateTo("/trainings", forceLoad: true);
-        }
-        private void AddClass()
-        {
-            IsHidden = !IsHidden;
+            HideLearningControls = true;
+            HideAdd = false;
+            HideGrid = false;
         }
     }
 }
