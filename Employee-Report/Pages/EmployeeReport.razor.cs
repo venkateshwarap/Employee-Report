@@ -73,10 +73,7 @@ namespace Employee_Report.Pages
             public int EmployeeIdentity { get; set; }
             public string ExpertiseDoamin { get; set; }
         }
-
-       
         private string _empid;
-
         protected override async Task OnInitializedAsync()
         {
 

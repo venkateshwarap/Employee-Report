@@ -10,15 +10,12 @@
     * {
         box-sizing: border-box;
     }
-
     h4 {
         text-align: center;
     }
-
     th {
         color: #7b7d81 !important;
     }
-
     p.solid {
         border-style: solid;
         color:deepskyblue;
@@ -135,13 +132,13 @@
     }
 </style>
     <h3 class="h2 text-black mb-0 rounded text-center">Motivity Labs Employee Report</h3>
-<h3>MLID:@_empid</h3>
+<h3></h3>
 <div style="float: left; flex-direction: column;">
     <div class="row">
         <div class="column" style="float: left;">
             <ul class="list-unstyled mb-1-9">
                 <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Name:</span> Praful Kumar Reddy Duddela</li>
-                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">MLID:</span>MLI748</li>
+                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">MLID:@_empid</span></li>
                 <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">SKills:</span>Dotnet Core,.NetMVC, C#,Asp.Net WebForms</li>
             </ul>
             <div class="header-wrapper">
@@ -190,7 +187,6 @@
             <div class="table-t">
                 <SfGrid DataSource="@employee" AllowPaging="false">
                     <GridColumns>
-                        <GridColumn Field=@nameof(EmployeeProject.ProjectId) HeaderText="ProjectId" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
                         <GridColumn Field=@nameof(EmployeeProject.StartDate) HeaderText="Start Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%">
                         </GridColumn>
                         <GridColumn Field=@nameof(EmployeeProject.EndDate) HeaderText="End Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
@@ -220,16 +216,16 @@
             <br /><br />
             <h1 style="text-align: right;"></h1>
             <div class="table-t">
-               @* <SfGrid DataSource="@intellectualproperties" AllowPaging="false">
+                <SfGrid DataSource="@employeepoc" AllowPaging="false">
                     <GridColumns>
-                        <GridColumn Field="Name" HeaderText="Name" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
-                        <GridColumn Field="Role" HeaderText="Role" Width="20%"></GridColumn>
-                        <GridColumn Field="StartDate" HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%">
+                        <GridColumn Field=@nameof(EmployeePoc.Pocid) HeaderText="Name" TextAlign="TextAlign.Left" Width="120"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeePoc.RoleId) HeaderText="Role" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeePoc.StartDate) HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%">
                         </GridColumn>
-                        <GridColumn Field="EndDate" HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
-                        <GridColumn Field="ReportingTo" HeaderText="ReportingTo" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeePoc.EndDate) HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeePoc.ReportingTo) HeaderText="ReportingTo" Width="20%"></GridColumn>
                     </GridColumns>
-                </SfGrid>*@
+                </SfGrid>
             </div>
         </div>
         <div class="header-wrapper">
@@ -259,7 +255,7 @@
         </div>
         <p class="solid">
         <div style="display: flex; flex-direction: row;">
-            <div style="flex: 2;  width: 50%; height: 395px;">
+            <div style="flex: 2;  width: 50%;">
                 <SfAccumulationChart >
                     <AccumulationChartSeriesCollection>
                         <AccumulationChartSeries Type="AccumulationType.Pie" DataSource="@ChartData" XName="Result" YName="ResultCount" LegendShape="LegendShape.Triangle">
@@ -291,7 +287,7 @@
         </div>
         <p class="solid">
         <div style="display: flex; flex-direction: row;">
-            <div style="flex: 2;  width: 50%; height: 200px;">
+            <div style="flex: 2;  width: 50%; ">
                 <SfAccumulationChart >
                     <AccumulationChartSeriesCollection>
                         <AccumulationChartSeries Type="AccumulationType.Pie" DataSource="@ChartData" XName="EATerm" YName="EAResult" LegendShape="LegendShape.Triangle">
