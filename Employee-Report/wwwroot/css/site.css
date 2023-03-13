@@ -299,6 +299,21 @@ a, .btn-link {
     margin-left: 5%;
 }
 
+#SfAddPowerHouseBtns {
+    margin-top: 10px;
+    margin-left: 42%;
+}
+
+.btnAddPowerHouse {
+    background-color: dodgerblue !important;
+    width: 10%;
+}
+
+.btnCancelPowerHouse{
+    width: 10%;
+    margin-left: 5%;
+}
+
 #SfAddProjectBtns {
     margin: 1%;
     margin-left: 13%;

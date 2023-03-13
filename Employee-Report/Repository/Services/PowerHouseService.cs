@@ -20,7 +20,7 @@ namespace Employee_Report.Repository.Services
         }
         public async Task<Response> CreateEACouncilEntryDetails(PowerHouse powerHouse)
         {
-            powerHouse.CreatedDate = DateTime.Now;
+            powerHouse.CreatedOn = DateTime.Now;
             var entry = await Utility.HttpClientPostAsync(AppSettings.Config.CREATE_EA_COUNCIL_ENTRY, _httpClient, powerHouse);
             return entry;
         }
