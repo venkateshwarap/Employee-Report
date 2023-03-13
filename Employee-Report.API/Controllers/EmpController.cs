@@ -15,7 +15,7 @@ namespace Employee_Report.API.Controllers
             this._empService = empService;
         }
         [HttpGet("GetEmployee")]
-        public async Task<IActionResult> GetPOC()
+        public async Task<IActionResult> GetEmployeeDetails()
         {
             try
             {
