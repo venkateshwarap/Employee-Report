@@ -16,13 +16,13 @@ namespace Employee_Report.Pages
         public IEnumerable<Interview>? interviewsDetails { get; set; }
         public Interview InterviewModel = new();
 
-        public IEnumerable<Certifications>? certificationslist { get; set; }
-        public Certifications certifications = new();
+        public IEnumerable<Certification>? certificationslist { get; set; }
+        public Certification certifications = new();
 
         [Inject]
         public Repository.IServices.IPowerHouseService benchServices { get; set; }
-        public IEnumerable<EACouncilEntryExit> eacouncildetails { get; set; }
-        public EACouncilEntryExit entryExit = new();
+        public IEnumerable<PowerHouse> powerHouseDetails { get; set; }
+        public PowerHouse powerHouseModel = new();
 
         public IEnumerable<EmployeePOCEntity> employeepoc { get; set; }
 
@@ -31,18 +31,18 @@ namespace Employee_Report.Pages
         public IEnumerable<EmployeeProjectEntity> employee { get; set; }
         public EmployeeProject employeeProject = new();
 
+        Repository.Services.LearningService LearningService = new();
+        public IEnumerable<Learning>? learningCompleteDetails { get; set; }
+        public Learning learningModel = new();
 
+        Repository.Services.TrainingService TrainingService = new();
+        public IEnumerable<Training>? trainingDetails { get; set; }
+        public Training trainingModel = new();
 
         public IEnumerable<Poc> poc { get; set; }
 
         public List<ChartDataModel> pieData;
-        public List<Projects> projects { get; set; }
-        public List<Learnings> learning { get; set; }
-        //public List<Certifications> certifications { get; set; }
-        public List<Trainings> trainings { get; set; }
-        public List<ProofOfConcepts> proofOfConcepts { get; set; }
-        public List<IntellectualProperties> intellectualproperties { get; set; }
-        public List<EACouncil> eACouncils { get; set; }
+      
         public class ChartDataModel
         {
             public string Expertise { get; set; }
@@ -77,167 +77,21 @@ namespace Employee_Report.Pages
             interviewsDetails = Utility.GetResponseData<List<Interview>>(response.response);
 
             var cerificationresponse = await reportService.GetCertificationDetails();
-            certificationslist = Utility.GetResponseData<List<Certifications>>(response.response);
+            certificationslist = Utility.GetResponseData<List<Certification>>(cerificationresponse.response);
 
-            var eacouncilresponse = await benchServices.GeEACouncilEntryDetails();
-            eacouncildetails = Utility.GetResponseData<List<EACouncilEntryExit>>(response.response);
+            var powerHouseresponse = await benchServices.GeEACouncilEntryDetails();
+            powerHouseDetails = Utility.GetResponseData<List<PowerHouse>>(powerHouseresponse.response);
 
             employeepoc = (await reportService.GetEmployeePOCDetails()).ToList();
 
             employee = (await reportService.GetEmployeeProjectDetails()).ToList();
 
+            var learningresponse = await LearningService.GetLearnings();
+            learningCompleteDetails = Utility.GetResponseData<List<Learning>>(learningresponse.response);
 
+            var trainingresponse = await TrainingService.GetTrainings();
+            trainingDetails = Utility.GetResponseData<List<Training>>(trainingresponse.response);
 
-            learning = new List<Learnings>
-        {
-                  new Learnings() {  Name = "C# Advanced",Path = "https://pluralsight.com/CsharpAdvanced",HoursOfLearning=10, StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  },
-        new Learnings() {  Name = "ASP.NET SIGNALIR",Path = "https://pluralsight.com/SIGNALIR",HoursOfLearning=10, StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  },
-
-        };
-            proofOfConcepts = new List<ProofOfConcepts>
-    {
-        new ProofOfConcepts() {  Name = "Commport",Role = "Team Lead",
-        ReportingTo = "Lakshumaiah", StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  },
-        new ProofOfConcepts() {  Name = "CWF",Role = "Team Lead",ReportingTo="Srinivas",
-        StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  }
-    };
-            intellectualproperties = new List<IntellectualProperties>
-    {
-      new IntellectualProperties() {  Name = "Commport",Role = "Team Lead",
-        ReportingTo = "Lakshumaiah", StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  },
-        new IntellectualProperties() {  Name = "CWF",Role = "Team Lead",ReportingTo="Srinivas",
-        StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  }
-    };
-    //        eACouncils = new List<EACouncil>
-    //{
-    //  new EACouncil() {  Role = "Team Lead",
-    //    ReportingTo = "Lakshumaiah", StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  },
-    //    new EACouncil() {  Role = "Team Lead",ReportingTo="Srinivas",
-    //    StartDate = new DateTime(2021, 8, 4, 12, 0, 0)  ,EndDate = new DateTime(2021, 9, 6, 12, 0, 0)  }
-    //};
-            projects = new List<Projects>()
-        {
-            new Projects() { Name = "Advent", Role = "Team Lead", EmpProjectStartDate = new DateTime(2021, 8, 4, 12, 0, 0),EmpProjectEndDate = new DateTime(2021, 9, 6, 12, 0, 0), ReportingTo = " Sandeep" },
-            new Projects() { Name = "Vertafore", Role = "Team Lead", EmpProjectStartDate = new DateTime(2022, 8, 4, 12, 0, 0) ,EmpProjectEndDate = new DateTime(2022, 9, 9, 12, 0, 0), ReportingTo = "Srinivas" },
-        };
-            trainings = new List<Trainings>()
-        {
-            new Trainings() { Name = "C# Advanced", HoursOfLearning   = 10, StartDate = new DateTime(2021, 8, 4, 12, 0, 0),EndDate = new DateTime(2021, 9, 6, 12, 0, 0) },
-            new Trainings() { Name = "Vertafore", HoursOfLearning = 10, StartDate = new DateTime(2022, 8, 4, 12, 0, 0) ,EndDate = new DateTime(2022, 9, 9, 12, 0, 0)},
-        };
-        //    certifications = new List<Certifications>()
-        //{
-        //    new Certifications() { Name = "Azure Associate Architech", ValidFrom = new DateTime(2020, 8, 4, 12, 0, 0), ValidTo = new DateTime(2021, 8, 4, 12, 0, 0) },
-        //};
-        }
-        public class Projects
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Role { get; set; }
-            public DateTime EmpProjectStartDate { get; set; }
-            public DateTime EmpProjectEndDate { get; set; }
-            public string ReportingTo { get; set; }
-        }
-        public class Trainings
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public int HoursOfLearning { get; set; }
-            public DateTime StartDate { get; set; }
-            public DateTime EndDate { get; set; }
-        }
-        public class ProofOfConcepts
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Role { get; set; }
-            public DateTime StartDate { get; set; }
-            public DateTime EndDate { get; set; }
-            public string ReportingTo { get; set; }
-        }
-        public class Certifications
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public DateTime ValidFrom { get; set; }
-            public DateTime ValidTo { get; set; }
-        }
-        public class Learnings
-        {
-            public int ID { get; set; }
-            public string Name { get; set; }
-            public string Path { get; set; }
-            public int HoursOfLearning { get; set; }
-            public DateTime StartDate { get; set; }
-            public DateTime EndDate { get; set; }
-        }
-        public class IntellectualProperties
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Role { get; set; }
-            public DateTime StartDate { get; set; }
-            public DateTime EndDate { get; set; }
-            public string ReportingTo { get; set; }
-        }
-        public class EACouncil
-        {
-            public int Id { get; set; }
-            public string Role { get; set; }
-            public DateTime StartDate { get; set; }
-            public DateTime EndDate { get; set; }
-            public string ReportingTo { get; set; }
-        }
-        public class EACouncilEntryExit
-        {
-            public int Id { get; set; }
-            public string? EmpId { get; set; }
-            public DateTime StartDate { get; set; } = DateTime.Now;
-            public DateTime EndDate { get; set; } = DateTime.Now;
-            public string? Role { get; set; }
-            public string? ReportingTo { get; set; }
-        }
-        public class Interview
-        {
-            public int Id { get; set; }
-            public string Name { get; set; } = null!;
-            public string Role { get; set; } = null!;
-            public string Status { get; set; } = null!;
-            public DateTime Date { get; set; } = DateTime.Now;
-            public string ReportingTo { get; set; } = null!;
-        }
-
-        public  class Poc
-        {
-            public int Id { get; set; }
-
-            public string? Name { get; set; }
-
-            public virtual ICollection<EmployeePoc> EmployeePocs { get; } = new List<EmployeePoc>();
-        }
-
-        public  class EmployeeProject
-        {
-            public int Id { get; set; }
-
-            public int ProjectId { get; set; }
-
-            public string? EmpId { get; set; }
-
-            public DateTime? StartDate { get; set; } = DateTime.Now;
-
-            public DateTime? EndDate { get; set; } = DateTime.Now;
-
-            public string? ReportingTo { get; set; }
-
-            public int RoleId { get; set; }
-
-            public string? Achivements { get; set; }
-
-            //public virtual Project Project { get; set; } = null!;
-
-            //public virtual Role Role { get; set; } = null!;
         }
     }
 }
