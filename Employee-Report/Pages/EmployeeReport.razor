@@ -3,6 +3,7 @@
 @using Employee.DataModel.Models;
 @using Employee_Report.Model.Models;
 @using Employee_Report.Repository.Services;
+@inject NavigationManager NavManager
 
 
 <style>
@@ -134,6 +135,7 @@
     }
 </style>
     <h3 class="h2 text-black mb-0 rounded text-center">Motivity Labs Employee Report</h3>
+<h3>MLID:@_empid</h3>
 <div style="float: left; flex-direction: column;">
     <div class="row">
         <div class="column" style="float: left;">
