@@ -9,9 +9,9 @@ namespace Employee_Report.API.Service
 {
     public class InterviewService : IInterviewService
     {
-        private EatrackingContext _context;
+        private EmployeeInfoContext _context;
 
-        public InterviewService(EatrackingContext context)
+        public InterviewService(EmployeeInfoContext context)
         {
             this._context = context;
         }

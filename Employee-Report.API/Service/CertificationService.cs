@@ -8,8 +8,8 @@ namespace Employee_Report.API.Service
 {
     public class CertificationService : ICertificationService
     {
-        private EatrackingContext _context;
-        public CertificationService(EatrackingContext context)
+        private EmployeeInfoContext _context;
+        public CertificationService(EmployeeInfoContext context)
         {
             _context = context;
         }
