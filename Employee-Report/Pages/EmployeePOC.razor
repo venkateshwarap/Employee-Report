@@ -78,12 +78,6 @@ else
         <SfGrid DataSource="@employeepoc">
             <GridColumns>
                 <GridColumn Field=@nameof(EmployeePOCEntity.Name) HeaderText="Name" TextAlign="TextAlign.Center" Width="120">
-                    <Template>
-                        @{
-                            var emp = (context as EmployeePOCEntity);
-                            <a href="#" @onclick="Clicked">@emp.Name</a>
-                        }
-                    </Template>
                 </GridColumn>
                 <GridColumn Field=@nameof(EmployeePOCEntity.Role) HeaderText="Role" TextAlign="TextAlign.Center" Width="150">
                 </GridColumn>
