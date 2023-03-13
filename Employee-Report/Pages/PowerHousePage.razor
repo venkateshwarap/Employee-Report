@@ -1,4 +1,5 @@
 ﻿@page "/power-house"
+<PageTitle>Employee Information - PowerHouse</PageTitle>
 @using Employee.DataModel.Models;
 @using Employee_Report.Model.Models
 @inject NavigationManager navManager;
@@ -11,12 +12,12 @@ else
 {
     <div id="divHeader">
         <h5>Power&nbsp;House</h5>
-        @if (IsHidden)
+        @if (!IsHidden)
         {
             <SfButton id="sfBtnAddPowerHouse" OnClick="Save">Add new PowerHouse</SfButton>
         }
     </div>
-    <div class="@(IsHidden ? "hidden" : "show")">
+    <div class="@(IsHidden ? "show" : "hidden")">
         <EditForm Model="@powerHouseModel" OnValidSubmit="SaveEntry">
             <DataAnnotationsValidator />
             <div class="form-control">
@@ -58,25 +59,22 @@ else
                         <ValidationMessage For="@(() => powerHouseModel.EndDate)" />
                     </div>
                 </div>
-                <div style="margin-top:10px;margin-left:46%;">
-                    <div class="col-md-3" style="display:flex;padding:5px">
-                        <SfButton @onclick="@Save" type="submit" class="btnAdd" style="background-color: midnightblue; color: white;" Content="Add"></SfButton>
-                        <SfButton @onclick="@Cancel" type="button" class="btnCancel" style="background-color: orangered; color: white;" Content="Cancel"></SfButton>
-                    </div>
-                    <div class="col-md-3"></div>
+                <div id="SfAddPowerHouseBtns">
+                        <SfButton @onclick="@Save" type="submit" class="btnAddPowerHouse" Content="Add"></SfButton>
+                        <SfButton @onclick="@Cancel" type="button" class="btnCancelPowerHouse" Content="Cancel"></SfButton>
                 </div>
             </div>
         </EditForm>
     </div>
-}
 
-@if (!IsHidden)
-{
-    <SfGrid DataSource="@powerHouseDetails">
-        <GridColumns>
-            <GridColumn Field="@nameof(powerHouseModel.EmpId)" HeaderText="EmpID" TextAlign="TextAlign.Center" Width="120"></GridColumn>
-            <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(powerHouseModel.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-            <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(powerHouseModel.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-        </GridColumns>
-    </SfGrid>
+    @if (!IsHidden)
+    {
+        <SfGrid DataSource="@powerHouseDetails">
+            <GridColumns>
+                <GridColumn Field="@nameof(powerHouseModel.EmpId)" HeaderText="EmpID" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(powerHouseModel.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(powerHouseModel.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+            </GridColumns>
+        </SfGrid>
+    }
 }

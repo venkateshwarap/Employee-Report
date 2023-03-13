@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<EatrackingContext>();
+builder.Services.AddDbContext<EmployeeInfoContext>();
 builder.Services.AddTransient<IPOCService, POCService>();
 builder.Services.AddTransient<IProjectService, ProjectService>();
 builder.Services.AddTransient<ISkillsService, SkillsService>();

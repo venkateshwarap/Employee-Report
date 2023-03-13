@@ -41,5 +41,17 @@ namespace Employee_Report.Repository.Services
             var empProject = await _httpClient.GetFromJsonAsync<EmployeeProjectEntity[]>(AppSettings.Config.GetEmployeeProject);
             return empProject;
         }
+
+        public async Task<Response> GetLearnings()
+        {
+            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.Getlearnings, _httpClient);
+            return entry;
+        }
+
+        public async Task<Response> GetTrainings()
+        {
+            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GetTrainings, _httpClient);
+            return entry;
+        }
     }
 }

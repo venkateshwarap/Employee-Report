@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 namespace Employee.DataModel.Models
 {
 
-    public partial class EatrackingContext : DbContext
+    public partial class EmployeeInfoContext : DbContext
     {
-        public EatrackingContext()
+        public EmployeeInfoContext()
         {
         }
 
-        public EatrackingContext(DbContextOptions<EatrackingContext> options)
+        public EmployeeInfoContext(DbContextOptions<EmployeeInfoContext> options)
             : base(options)
         {
         }
@@ -47,7 +47,7 @@ namespace Employee.DataModel.Models
         public virtual DbSet<Training> Training { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer("Server=MLI00737\\SQLEXPRESS;Database=EATracking;Integrated Security=True;TrustServerCertificate=True;");
+            => optionsBuilder.UseSqlServer("Server=MLI00741\\RAJEEV_SQLDEV;Database=EmployeeInfo;Integrated Security=True;TrustServerCertificate=True;User ID=sa; Password=Raj@727_eev.MLI;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

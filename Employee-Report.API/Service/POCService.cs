@@ -10,9 +10,9 @@ namespace Employee_Report.API.Service
     public class POCService : IPOCService
     {
 
-        private EatrackingContext _dBContext;
+        private EmployeeInfoContext _dBContext;
 
-        public POCService(EatrackingContext context)
+        public POCService(EmployeeInfoContext context)
         {
             this._dBContext = context;
         }

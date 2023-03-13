@@ -8,9 +8,9 @@ namespace Employee_Report.API.Service
 {
     public class ProjectService : IProjectService
     {
-        private EatrackingContext _dBContext;
+        private EmployeeInfoContext _dBContext;
 
-        public ProjectService(EatrackingContext context)
+        public ProjectService(EmployeeInfoContext context)
         {
             this._dBContext = context;
         }

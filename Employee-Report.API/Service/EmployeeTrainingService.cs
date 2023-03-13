@@ -7,8 +7,8 @@ namespace Employee_Report.API.Service
     public class EmployeeTrainingService:IEmployeeTrainingService
     {
 
-        private readonly EatrackingContext _eatrackingContext;
-        public EmployeeTrainingService(EatrackingContext eatrackingContext)
+        private readonly EmployeeInfoContext _eatrackingContext;
+        public EmployeeTrainingService(EmployeeInfoContext eatrackingContext)
         {
             _eatrackingContext = eatrackingContext;
         }

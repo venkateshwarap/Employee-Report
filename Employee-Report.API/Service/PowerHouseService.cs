@@ -6,8 +6,8 @@ namespace Employee_Report.API.Service
 {
     public class PowerHouseService : IPowerHouseService
     {
-        private EatrackingContext _context;
-        public PowerHouseService(EatrackingContext context)
+        private EmployeeInfoContext _context;
+        public PowerHouseService(EmployeeInfoContext context)
         {
             _context = context;
         }

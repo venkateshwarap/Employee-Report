@@ -7,9 +7,9 @@ namespace Employee_Report.API.Service
 {
     public class RoleService : IRoleService
     {
-        private EatrackingContext _dBContext;
+        private EmployeeInfoContext _dBContext;
 
-        public RoleService(EatrackingContext context)
+        public RoleService(EmployeeInfoContext context)
         {
             this._dBContext = context;
         }
