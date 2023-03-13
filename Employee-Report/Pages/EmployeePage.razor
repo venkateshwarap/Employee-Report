@@ -1,0 +1,33 @@
+﻿@page "/"
+@using Employee.DataModel.Models;
+@inject NavigationManager navManager
+
+
+<h3 style="align-content: center">Employee Details</h3>
+@if (employees == null)
+{
+    <p>Loading.....</p>
+}
+else
+{
+    <SfGrid DataSource="@employees">
+        <GridColumns>
+            <GridColumn Field=@nameof(Employees.Id) HeaderText="Id" TextAlign="TextAlign.Center" Width="150">
+            </GridColumn>
+            <GridColumn Field=@nameof(Employees.FirstName) HeaderText="First Name" TextAlign="TextAlign.Center" Width="120">
+                <Template>
+                    @{
+                        var emp = (context as Employees);
+                        <a href="#" @onclick="Clicked">@emp.FirstName</a>
+                    }
+                </Template>
+            </GridColumn>
+            <GridColumn Field=@nameof(Employees.LastName) HeaderText="Last Name" TextAlign="TextAlign.Center" Width="120">
+            </GridColumn>
+            <GridColumn Field=@nameof(Employees.Email) HeaderText="Email" TextAlign="TextAlign.Center" Width="150">
+            </GridColumn>
+           @* <GridColumn Field="Active" HeaderText="Status" TextAlign="TextAlign.Center" Width="150">
+            </GridColumn>*@
+        </GridColumns>
+    </SfGrid>
+}

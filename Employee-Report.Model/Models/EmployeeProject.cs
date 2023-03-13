@@ -21,10 +21,10 @@ namespace Employee.DataModel.Models
 
         public string? Achivements { get; set; }
 
-        public virtual Employee? Emp { get; set; }
+        //public virtual Employee? Emp { get; set; }
 
-        public virtual Project Project { get; set; } = null!;
+        //public virtual Project Project { get; set; } = null!;
 
-        public virtual Role Role { get; set; } = null!;
+        //public virtual Role Role { get; set; } = null!;
     }
 }

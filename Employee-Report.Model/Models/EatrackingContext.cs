@@ -20,7 +20,7 @@ namespace Employee.DataModel.Models
 
         public virtual DbSet<PowerHouse> PowerHouse { get; set; }
 
-        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Employees> Employees { get; set; }
 
         public virtual DbSet<EmployeeLearning> EmployeeLearnings { get; set; }
 
@@ -47,7 +47,7 @@ namespace Employee.DataModel.Models
         public virtual DbSet<Training> Training { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer("Data Source=MLI00741\\RAJEEV_SQLDEV;Database=EATracking;Integrated Security=True;TrustServerCertificate=True;User Id=sa;Password=Raj@727_eev.MLI;");
+            => optionsBuilder.UseSqlServer("Server=MLI00737\\SQLEXPRESS;Database=EATracking;Integrated Security=True;TrustServerCertificate=True;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -86,13 +86,16 @@ namespace Employee.DataModel.Models
                 entity.Property(e => e.StartDate).HasColumnType("date");
             });
 
-            modelBuilder.Entity<Employee>(entity =>
+            modelBuilder.Entity<Employees>(entity =>
             {
                 entity.ToTable("Employee");
 
                 entity.Property(e => e.Id).HasMaxLength(10);
                 entity.Property(e => e.Email).HasMaxLength(50);
-                entity.Property(e => e.Name)
+                entity.Property(e => e.FirstName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                entity.Property(e => e.LastName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
@@ -121,20 +124,20 @@ namespace Employee.DataModel.Models
                 entity.Property(e => e.ReportingTo).HasMaxLength(25);
                 entity.Property(e => e.StartDate).HasColumnType("date");
 
-                entity.HasOne(d => d.Emp).WithMany(p => p.EmployeePocs)
-                    .HasForeignKey(d => d.EmpId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_EmployeePOC_Employee");
+                //entity.HasOne(d => d.Emp).WithMany(p => p.EmployeePocs)
+                //    .HasForeignKey(d => d.EmpId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_EmployeePOC_Employee");
 
-                entity.HasOne(d => d.Poc).WithMany(p => p.EmployeePocs)
-                    .HasForeignKey(d => d.Pocid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_EmployeePOC_POC");
+                //entity.HasOne(d => d.Poc).WithMany(p => p.EmployeePocs)
+                //    .HasForeignKey(d => d.Pocid)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_EmployeePOC_POC");
 
-                entity.HasOne(d => d.Role).WithMany(p => p.EmployeePocs)
-                    .HasForeignKey(d => d.RoleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_EmployeePOC_Role");
+                //entity.HasOne(d => d.Role).WithMany(p => p.EmployeePocs)
+                //    .HasForeignKey(d => d.RoleId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_EmployeePOC_Role");
             });
 
             modelBuilder.Entity<EmployeeProject>(entity =>
@@ -151,19 +154,19 @@ namespace Employee.DataModel.Models
                     .IsUnicode(false);
                 entity.Property(e => e.StartDate).HasColumnType("date");
 
-                entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeProjects)
-                    .HasForeignKey(d => d.EmpId)
-                    .HasConstraintName("FK_EmployeeProject_Employee");
+                //entity.HasOne(d => d.Emp).WithMany(p => p.EmployeeProjects)
+                //    .HasForeignKey(d => d.EmpId)
+                //    .HasConstraintName("FK_EmployeeProject_Employee");
 
-                entity.HasOne(d => d.Project).WithMany(p => p.EmployeeProjects)
-                    .HasForeignKey(d => d.ProjectId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_EmployeeProject_Project");
+                //entity.HasOne(d => d.Project).WithMany(p => p.EmployeeProjects)
+                //    .HasForeignKey(d => d.ProjectId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_EmployeeProject_Project");
 
-                entity.HasOne(d => d.Role).WithMany(p => p.EmployeeProjects)
-                    .HasForeignKey(d => d.RoleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_EmployeeProject_Role");
+                //entity.HasOne(d => d.Role).WithMany(p => p.EmployeeProjects)
+                //    .HasForeignKey(d => d.RoleId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_EmployeeProject_Role");
             });
 
             modelBuilder.Entity<EmployeeSkills>(entity =>
