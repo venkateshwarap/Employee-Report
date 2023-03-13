@@ -19,7 +19,7 @@ else
                 <Template>
                     @{
                         var emp = (context as Employees);
-                        <a href="#" @onclick="Clicked">@emp.FirstName</a>
+                        <a href="/EmployeeReport/@emp.Id" @onclick="Clicked">@emp.FirstName</a>
                     }
                 </Template>
             </GridColumn>

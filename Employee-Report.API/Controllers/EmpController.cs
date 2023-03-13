@@ -14,11 +14,11 @@ namespace Employee_Report.API.Controllers
     public class EmpController : ControllerBase
     {
         private IEmpService _empService;
-        private EatrackingContext _dBContext;
-        public EmpController(IEmpService empService, EatrackingContext context)
+       
+        public EmpController(IEmpService empService)
         {
             this._empService = empService;
-            this._dBContext = context;
+           
         }
         [HttpGet("GetEmployee")]
         public async Task<IActionResult> GetEmployeeDetails()
