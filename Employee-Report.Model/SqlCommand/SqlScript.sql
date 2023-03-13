@@ -2,7 +2,7 @@ Create database EmployeeInfo
 use EmployeeInfo
 
 
------------------------------------------Master-----------------------------------------
+-------------------------------------------Master-----------------------------------------
 
 --POC TABLE: 
 
@@ -139,7 +139,7 @@ VALUES('MLI748', 'Praful', getdate()-365,GETDATE()+30, 1)
 INSERT INTO [dbo].[Certifications]([EmpId], [Name], [ValidFrom], [ValidTill], [EACId])
 VALUES('MLI719', 'Taj', getdate()-365,GETDATE()+30, 1)
 
---EACouncilEntryExit TABLE:
+--POWERHOUSE TABLE:
 
 CREATE TABLE [dbo].[PowerHouse](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
@@ -151,10 +151,10 @@ CREATE TABLE [dbo].[PowerHouse](
     [CreatedBy] [nvarchar](50) NOT NULL,
 	[CreatedOn] [date] NOT NULL,
 	[ModifiedBy] [nvarchar](50) NOT NULL,
-	[modifiedOn] [date] NOT NULL,
+	[ModifiedOn] [date] NOT NULL,
 ) ON [PRIMARY]
  
---EACouncilEntryExit DATA:
+--POWERHOUSE DATA:
 INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
 VALUES('MLI741', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'Rajeev', GETDATE(), 'Rajeev', GETDATE())
 

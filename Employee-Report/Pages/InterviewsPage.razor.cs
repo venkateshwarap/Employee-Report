@@ -15,7 +15,7 @@ namespace Employee_Report.Pages
             interviewsDetails = Utility.GetResponseData<List<Interview>>(response.response);
         }
 
-        public async void addInterview()
+        public async void AddInterview()
         {
             if (InterviewModel != null)
             {
@@ -25,8 +25,11 @@ namespace Employee_Report.Pages
                     navManager.NavigateTo("/Interviews", forceLoad: true);
                     IsHidden = false;
                 }
-
             }
+        }
+        public void CancelInterview()
+        {
+            navManager.NavigateTo("/Interviews", forceLoad: true);
         }
         private void AddClass()
         {

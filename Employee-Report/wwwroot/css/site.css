@@ -157,6 +157,7 @@ a, .btn-link {
 }
 
 #sfBtnAddInterview {
+    margin-bottom: 1%;
     background-color: dodgerblue;
     margin-left: 78.5%;
 }
@@ -187,6 +188,7 @@ a, .btn-link {
 }
 
 #sfBtnAddSkill {
+    margin-bottom: 1%;
     background-color: dodgerblue;
     margin-left: 83%;
 }
@@ -213,6 +215,7 @@ a, .btn-link {
 }
 
 #sfBtnAddEmployeeSkill {
+    margin-bottom:1%;
     background-color: dodgerblue;
     margin-left: 68.5%;
 }
@@ -285,6 +288,20 @@ a, .btn-link {
     margin-left: 5%;
 }
 
+#SfInterviewBtns{
+    margin: 1%;
+    margin-left: 43%;
+}
+
+.btnAddInterview{
+    background-color: dodgerblue !important;
+    width: 10%;
+}
+
+.btnCancelInterview{
+    width: 10%;
+    margin-left: 5%;
+}
 #SfAddPOCBtns {
     margin: 1%;
     margin-left: 13%;

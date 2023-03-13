@@ -15,7 +15,7 @@ namespace Employee.DataModel.Models
 
         public string Status { get; set; } = null!;
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public string ReportingTo { get; set; } = null!;
     }
