@@ -1,35 +1,8 @@
 Create database EATracking
 use EATracking
 
+
 -----------------------------------------Master-----------------------------------------
-
---Employee TABLE
-
-CREATE TABLE [dbo].[Employee](
-    [Id] [nvarchar](10) NOT NULL,
-    [Name] [varchar](50) NOT NULL,
-    [Email] [nvarchar](50) NOT NULL,
-CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED 
-(
-    [Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
- 
---Employee DATA:
-INSERT INTO [dbo].[Employee] ([Id], [Name], [Email])
-VALUES ('MLI741', 'Rajeev', 'rajeev.reddy@motivitylabs.com')
-
-INSERT INTO [dbo].[Employee] ([Id], [Name], [Email])
-VALUES ('MLI740', 'Nitin', 'nitin.sharma@motivitylabs.com')
-
-INSERT INTO [dbo].[Employee] ([Id], [Name], [Email])
-VALUES ('MLI737', 'SriLaxmi', 'srilaxmi.katla@motivitylabs.com')
-
-INSERT INTO [dbo].[Employee] ([Id], [Name], [Email])
-VALUES ('MLI748', 'Praful', 'praful.reddy@motivitylabs.com')
-
-INSERT INTO [dbo].[Employee] ([Id], [Name], [Email])
-VALUES ('MLI719', 'Taj', 'taj.ansari@motivitylabs.com')
 
 --POC TABLE: 
 
@@ -136,7 +109,6 @@ VALUES ('Praful', 'Angular', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
 INSERT INTO [dbo].[Interviews]([Name], [Skill], [Role], [Status], [Date] ,[ReportingTo])
 VALUES ('Taj', 'C#', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
 
-select * from Interviews
 
 
 
@@ -183,21 +155,20 @@ CREATE TABLE [dbo].[EACouncilEntryExit](
 ) ON [PRIMARY]
  
 --EACouncilEntryExit DATA:
-INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo])
-VALUES('MLI741', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y')
+INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+VALUES('MLI741', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'Rajeev', GETDATE(), 'Rajeev', GETDATE())
 
-INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo])
-VALUES('MLI740', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y')
+INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+VALUES('MLI740', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'Nitin', GETDATE(), 'Nitin', GETDATE())
 
-INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo])
-VALUES('MLI737', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y')
+INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+VALUES('MLI737', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'SriLaxmi', GETDATE(), 'SriLaxmi', GETDATE())
 
-INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo])
-VALUES('MLI748', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y')
+INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+VALUES('MLI748', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'Praful', GETDATE(), 'Praful', GETDATE())
 
-INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo])
-VALUES('MLI719', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y')
-
+INSERT INTO [dbo].[EACouncilEntryExit]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+VALUES('MLI719', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'Taj', GETDATE(), 'Taj', GETDATE())
 
 
 --Learnings TABLE:
@@ -252,6 +223,37 @@ VALUES('Praful', 16, GETDATE()-30, GETDATE()+30)
 
 INSERT INTO [dbo].[Training]([Name], [HoursOfLearning], [StartDate], [EndDate])
 VALUES('Taj', 16, GETDATE()-30, GETDATE()+30)
+
+--Employee TABLE
+
+CREATE TABLE [dbo].[Employee](
+	[Id] [nvarchar](10) NOT NULL,
+	[FirstName] [varchar](50) NOT NULL,
+	[LastName] [varchar](50) NOT NULL,
+	[Email] [nvarchar](50) NOT NULL,
+	[Status] [bit] NULL,
+ CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+ 
+--Employee DATA:
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status])
+VALUES ('MLI741', 'Rajeev','Reddy', 'rajeev.reddy@motivitylabs.com',1)
+
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status])
+VALUES ('MLI740', 'Nitin','Sharma', 'nitin.sharma@motivitylabs.com',1)
+
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status])
+VALUES ('MLI737', 'SriLaxmi','Katla', 'srilaxmi.katla@motivitylabs.com',1)
+
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status])
+VALUES ('MLI748', 'Praful','Reddy', 'praful.reddy@motivitylabs.com',1)
+
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status])
+VALUES ('MLI719', 'Taj','Ansari', 'taj.ansari@motivitylabs.com',1)
+
 
 
 -----------------------------------------Employee-----------------------------------------
@@ -403,7 +405,7 @@ CREATE TABLE [dbo].[EmployeeSkills](
 	[EmpID] [nvarchar] (10) NOT NULL,
 	[SkillID] [int] NOT NULL,
 	[StartDate] [date] NOT NULL,
-	[EndDate] [date](50) NOT NULL,
+	[EndDate] [date] NOT NULL,
 	[CreatedBy] [nvarchar](50) NOT NULL,
 	[CreatedOn] [date] NOT NULL,
 	[ModifiedBy] [nvarchar](50) NOT NULL,

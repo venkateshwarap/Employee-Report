@@ -26,6 +26,7 @@ builder.Services.AddScoped<IEmployeeSkillsService, EmployeeSkillsService>();
 builder.Services.AddScoped<IEmployeeTrainingService, EmployeeTrainingService>();
 builder.Services.AddScoped<ITrainingService, TrainingService>();
 builder.Services.AddTransient<IRoleService, RoleService>();
+builder.Services.AddTransient<IEmpService, EmpService>();
 
 var app = builder.Build();
 

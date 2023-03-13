@@ -21,10 +21,10 @@ namespace Employee.DataModel.Models
 
         public int RoleId { get; set; }
 
-        public virtual Employee Emp { get; set; } = null!;
+        //public virtual Employees Emp { get; set; } = null!;
 
-        public virtual Poc Poc { get; set; } = null!;
+        //public virtual Poc Poc { get; set; } = null!;
 
-        public virtual Role Role { get; set; } = null!;
+        //public virtual Role Role { get; set; } = null!;
     }
 }
