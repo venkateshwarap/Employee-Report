@@ -1,7 +1,11 @@
-﻿using Employee_Report.API.IService;
+﻿using Employee.DataModel.Models;
+using Employee_Report.API.Entities;
+using Employee_Report.API.IService;
 using Employee_Report.API.Service;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Report.API.Controllers
 {
@@ -10,9 +14,11 @@ namespace Employee_Report.API.Controllers
     public class EmpController : ControllerBase
     {
         private IEmpService _empService;
-        public EmpController(IEmpService empService)
+        private EatrackingContext _dBContext;
+        public EmpController(IEmpService empService, EatrackingContext context)
         {
             this._empService = empService;
+            this._dBContext = context;
         }
         [HttpGet("GetEmployee")]
         public async Task<IActionResult> GetEmployeeDetails()
@@ -42,12 +48,13 @@ namespace Employee_Report.API.Controllers
 
             try
             {
-                var emp = await _empService.GetEmployeeById(Id);
+                var emp =  _empService.GetEmployeeById(Id);
 
                 if (emp == null)
                 {
                     return NotFound();
                 }
+
 
                 return Ok(emp);
             }

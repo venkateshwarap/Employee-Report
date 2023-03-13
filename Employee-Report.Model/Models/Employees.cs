@@ -13,7 +13,8 @@ namespace Employee.DataModel.Models
 
         public string Email { get; set; } = null!;
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; } 
+
 
         //public virtual ICollection<EmployeePoc> EmployeePocs { get; } = new List<EmployeePoc>();
 
