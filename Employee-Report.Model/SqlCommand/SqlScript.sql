@@ -436,3 +436,20 @@ VALUES('MLI748', 4, GETDATE()-30, GETDATE(), 'Praful', GETDATE(), 'Praful', GETD
 
 INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [StartDate], [EndDate], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
 VALUES('MLI719', 5, GETDATE()-30, GETDATE(), 'Taj', GETDATE(), 'Taj', GETDATE()+1)
+
+
+CREATE TABLE [dbo].[IntelleactualProperty](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[POCId] [int] NOT NULL,
+	[EmpId] [nvarchar](10) NOT NULL,
+	[StartDate] [date] NULL,
+	[EndDate] [date] NULL,
+	[ReportingTo] [nvarchar](25) NULL,
+	[RoleId] [int] NOT NULL,
+	[CreatedBy] [nvarchar](50) NULL,
+	[CreatedOn] [datetime] NULL,
+	[ModifiedBy] [nvarchar](50) NULL,
+	[ModifiedOn] [datetime] NULL,
+	[IsActive] [bit] NULL
+) ON [PRIMARY]
+GO
