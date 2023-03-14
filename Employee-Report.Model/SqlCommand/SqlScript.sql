@@ -81,6 +81,7 @@ INSERT INTO [dbo].[Skills]([SkillName]) VALUES('Angular')
 
 CREATE TABLE [dbo].[Interviews](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name][nvarchar](100) NOT NULL,
 	[EmpId] [nvarchar](10) NOT NULL,
 	[Skill][nvarchar](100) NOT NULL,
 	[Role] [nvarchar](50) NOT NULL,
@@ -94,23 +95,20 @@ CREATE TABLE [dbo].[Interviews](
 ) ON [PRIMARY]
 
 --Interview DATA:
-INSERT INTO [dbo].[Interviews]([EmpId], [Skill], [Role], [Status], [Date] ,[ReportingTo])
-VALUES ('MLI741', '.NET', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
+INSERT INTO [dbo].[Interviews]([Name], [EmpId], [Skill], [Role], [Status], [Date] ,[ReportingTo])
+VALUES ('Hoozin', 'MLI741', '.NET', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
 
-INSERT INTO [dbo].[Interviews]([EmpId], [Skill], [Role], [Status], [Date] ,[ReportingTo])
-VALUES ('MLI740', 'Azure', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
+INSERT INTO [dbo].[Interviews]([Name], [EmpId], [Skill], [Role], [Status], [Date] ,[ReportingTo])
+VALUES ('Commport', 'MLI740', 'Azure', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
 
-INSERT INTO [dbo].[Interviews]([EmpId], [Skill], [Role], [Status], [Date] ,[ReportingTo])
-VALUES ('MLI737', 'React JS', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
+INSERT INTO [dbo].[Interviews]([Name], [EmpId], [Skill], [Role], [Status], [Date] ,[ReportingTo])
+VALUES ('Hoozin', 'MLI737', 'React JS', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
 
-INSERT INTO [dbo].[Interviews]([EmpId], [Skill], [Role], [Status], [Date] ,[ReportingTo])
-VALUES ('MLI748', 'Angular', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
+INSERT INTO [dbo].[Interviews]([Name], [EmpId], [Skill], [Role], [Status], [Date] ,[ReportingTo])
+VALUES ('Advent', 'MLI748', 'Angular', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
 
-INSERT INTO [dbo].[Interviews]([EmpID], [Skill], [Role], [Status], [Date] ,[ReportingTo])
-VALUES ('MLI716', 'C#', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
-
-
-
+INSERT INTO [dbo].[Interviews]([Name], [EmpID], [Skill], [Role], [Status], [Date] ,[ReportingTo])
+VALUES ('Hoozin', 'MLI716', 'C#', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
 
 --Certifications TABLE:
 
