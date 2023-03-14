@@ -4,9 +4,8 @@
 @using Syncfusion.Blazor.Buttons
 @inject NavigationManager navManager
 
-<h2>Learning Details</h2>
-<hr />
-<div class="form-control" hidden=@HideLearningControls>
+<div hidden=@HideLearningControls>
+    <h1>Add Learning Details</h1>
     <div class="row">
         <div class="col-md-6 mt-2">
             <InputText @bind-Value="learning.Name" class="form-control" Placeholder="Enter learning Technology Name"></InputText>
@@ -28,17 +27,19 @@
             <InputNumber @bind-Value="learning.HoursOfLearning" class="form-control" Placeholder="Learning Hours"></InputNumber>
         </div>
     </div>
-    <div style="margin-top:10px;" class="row">
+    <div style="margin-top:10px;" id="postBtnCenter" class="row">
         <div class="col-md-1">
-            <SfButton OnClick="PostLearningDetails" style="color:white;font-weight:900;background-color:dodgerblue;border-radius:8px;padding-top:5px;padding-bottom:5px;padding-left:50px;padding-right:50px;" Content="Create"></SfButton>
+            <SfButton OnClick="PostLearningDetails" id="postID"  Content="Create"></SfButton>
         </div>
         <div class="col-md-1" style="width:78%">
-            <SfButton OnClick="ClearPostLearningDetails" style="color:white;font-weight:900;background-color:dodgerblue;border-radius:8px;padding-top:5px;padding-bottom:5px;padding-left:50px;padding-right:50px;margin-left:100%" Content="Cancel"></SfButton>
+            <SfButton OnClick="ClearPostLearningDetails" id="clearPostLearning" Content="Cancel"></SfButton>
         </div>
     </div>
 </div>
-<div class="col-md-3" hidden="@HideAdd">
-    <SfButton OnClick="AddLearning" style="background-color:dodgerblue;" Content="AddLearning"></SfButton>
+<div class="col-md-3" hidden="@HideAdd" id="sflearningID">
+    <h2 style="margin-top: 7px;">Learning&nbsp;Details</h2>
+    <SfButton OnClick="AddLearning" id="sfAddbuttonID" Content="Add Learning"></SfButton>
+    
 </div>
 <div class="mt-2">
     @if (learningList == null)

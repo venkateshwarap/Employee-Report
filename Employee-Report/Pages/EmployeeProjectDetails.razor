@@ -10,7 +10,7 @@
 else
 {
     <div id="divHeader">
-        <h3 style="text-align:center">Employee Project</h3>
+        <h3 style="text-align:center">Employee&nbsp;Project</h3>
         @if (!IsHidden)
         {
             <SfButton id="sfBtnAddProject" OnClick="AddClass">Add Project</SfButton>
@@ -31,7 +31,7 @@ else
                         <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeProject.EmpId" />
                         <ValidationMessage For="@(() => employeeProject.EmpId)" />
                     </div>
-                    
+
                     <div class="col-md-6">
                         <label Class="e-outline">StartDate</label>
                         <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
@@ -55,7 +55,7 @@ else
                             <SfNumericTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeProject.RoleId" />
                             <ValidationMessage For="@(() => employeeProject.RoleId)" />
                         </div>
-                        </div>
+                    </div>
                     <div class="row mt-2">
                         <div class="col-md-6">
                             <label>Achivements</label>
@@ -71,24 +71,25 @@ else
             </div>
         </EditForm>
     </div>
+    <div style="margin-top:4px">
+        @if (!IsHidden)
+        {
+            <SfGrid DataSource="@employee">
+                <GridColumns>
+                    <GridColumn Field=@nameof(EmployeeProjectEntity.Name) HeaderText="Name" TextAlign="TextAlign.Center" Width="120">
+                    </GridColumn>
+                    <GridColumn Field=@nameof(EmployeeProjectEntity.Role) HeaderText="Role" TextAlign="TextAlign.Center" Width="150">
+                    </GridColumn>
+                    <GridColumn Format="d" Field=@nameof(EmployeeProjectEntity.StartDate) HeaderText="Start Date" TextAlign="TextAlign.Center" Width="130">
+                    </GridColumn>
+                    <GridColumn Format="d" Field=@nameof(EmployeeProjectEntity.EndDate) HeaderText="End Date" TextAlign="TextAlign.Center" Width="120">
+                    </GridColumn>
+                    <GridColumn Field=@nameof(EmployeeProjectEntity.ReportingTo) HeaderText="Reporting To" TextAlign="TextAlign.Center" Width="120">
+                    </GridColumn>
 
-    @if (!IsHidden)
-    {
-        <SfGrid DataSource="@employee">
-            <GridColumns>
-                <GridColumn Field=@nameof(EmployeeProjectEntity.Name) HeaderText="Name" TextAlign="TextAlign.Center" Width="120">                   
-                </GridColumn>
-                <GridColumn Field=@nameof(EmployeeProjectEntity.Role) HeaderText="Role" TextAlign="TextAlign.Center" Width="150">
-                </GridColumn>
-                <GridColumn Format="d" Field=@nameof(EmployeeProjectEntity.StartDate) HeaderText="Start Date" TextAlign="TextAlign.Center" Width="130">
-                </GridColumn>
-                <GridColumn Format="d" Field=@nameof(EmployeeProjectEntity.EndDate) HeaderText="End Date" TextAlign="TextAlign.Center" Width="120">
-                </GridColumn>
-                <GridColumn Field=@nameof(EmployeeProjectEntity.ReportingTo) HeaderText="Reporting To" TextAlign="TextAlign.Center" Width="120">
-                </GridColumn>
-
-            </GridColumns>
-        </SfGrid>
-    }
+                </GridColumns>
+            </SfGrid>
+        }
+    </div>
 
 }

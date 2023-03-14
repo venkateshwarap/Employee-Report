@@ -157,6 +157,7 @@ a, .btn-link {
 }
 
 #sfBtnAddInterview {
+    margin-bottom: 1%;
     background-color: dodgerblue;
     margin-left: 78.5%;
 }
@@ -164,11 +165,14 @@ a, .btn-link {
 #sfBtnAddPOC {
     background-color: dodgerblue;
     margin-left: 76.4%;
+    margin-top:8px;
 }
 
 #sfBtnAddProject {
-    background-color: green;
-    margin-left: 70%;
+    background-color: dodgerblue;
+    margin-left: 70.5%;
+    margin-top:9px
+    
 }
 
 #sfBtnAddRole {
@@ -187,6 +191,7 @@ a, .btn-link {
 }
 
 #sfBtnAddSkill {
+    margin-bottom: 1%;
     background-color: dodgerblue;
     margin-left: 83%;
 }
@@ -199,6 +204,7 @@ a, .btn-link {
 #sfBtnAddPowerHouse {
     background-color: dodgerblue;
     margin-left: 74.2%;
+    margin-bottom: 1%;
 }
 
 #SfBtnsAddEmployeePOC {
@@ -212,8 +218,10 @@ a, .btn-link {
 }
 
 #sfBtnAddEmployeeSkill {
+    margin-bottom:1%;
     background-color: dodgerblue;
     margin-left: 68.5%;
+    margin-top:8px;
 }
 
 #divHeader {
@@ -284,6 +292,20 @@ a, .btn-link {
     margin-left: 5%;
 }
 
+#SfInterviewBtns{
+    margin: 1%;
+    margin-left: 43%;
+}
+
+.btnAddInterview{
+    background-color: dodgerblue !important;
+    width: 10%;
+}
+
+.btnCancelInterview{
+    width: 10%;
+    margin-left: 5%;
+}
 #SfAddPOCBtns {
     margin: 1%;
     margin-left: 13%;
@@ -309,7 +331,7 @@ a, .btn-link {
     width: 10%;
 }
 
-.btnCancelPowerHouse{
+.btnCancelPowerHouse {
     width: 10%;
     margin-left: 5%;
 }
@@ -364,17 +386,17 @@ a, .btn-link {
     margin-left: 5%;
 }
 
-#SfBtnsEmployeeSkills{
+#SfBtnsEmployeeSkills {
     margin: 1%;
     margin-left: 43%;
 }
 
-.btnAddEmployeeSkill{
-    width:10%;
+.btnAddEmployeeSkill {
+    width: 10%;
     background-color: dodgerblue !important;
 }
 
-.btnCancelEmployeeSkill{
+.btnCancelEmployeeSkill {
     width: 10%;
     margin-left: 4%;
 }
@@ -444,7 +466,7 @@ a {
     border-bottom-color: #f0f0f0;
     height: 66px;
     font-weight: bold;
-    background-color:black;
+    background-color: black;
 }
 
 .logoutbtn {
@@ -453,4 +475,49 @@ a {
 
 .sub-menu-icon {
     margin-right: 15px;
+}
+/*Learning Css*/
+#postID {
+    color: white;
+    font-weight: 900;
+    background-color: dodgerblue;
+}
+#postBtnCenter {
+    margin-left:42%;
+}
+#clearPostLearning {
+    margin-left: 7%;
+}
+#sflearningID {
+    display: flex;
+}
+
+#sfAddbuttonID {
+    background-color: dodgerblue;
+    margin-left: 273%;
+    margin-top:8%;
+}
+/*Training Css*/
+#trainingpostID {
+    color: white;
+    font-weight: 900;
+    background-color: dodgerblue;
+}
+
+#trainingpostBtnCenter {
+    margin-left: 42%;
+}
+
+#clearPostTraining {
+    margin-left: 7%;
+}
+
+#sfTrainingID {
+    display: flex;
+}
+
+#sfAddBtnTrainingID {
+    background-color: dodgerblue;
+    margin-left: 281%;
+    margin-top: 8%;
 }

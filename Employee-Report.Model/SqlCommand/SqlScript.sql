@@ -2,7 +2,7 @@ Create database EmployeeInfo
 use EmployeeInfo
 
 
------------------------------------------Master-----------------------------------------
+-------------------------------------------Master-----------------------------------------
 
 --POC TABLE: 
 
@@ -81,7 +81,8 @@ INSERT INTO [dbo].[Skills]([SkillName]) VALUES('Angular')
 
 CREATE TABLE [dbo].[Interviews](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[Name] [nvarchar](100) NOT NULL,
+	[Name][nvarchar](100) NOT NULL,
+	[EmpId] [nvarchar](10) NOT NULL,
 	[Skill][nvarchar](100) NOT NULL,
 	[Role] [nvarchar](50) NOT NULL,
 	[Status] [nvarchar](10) NOT NULL,
@@ -94,23 +95,20 @@ CREATE TABLE [dbo].[Interviews](
 ) ON [PRIMARY]
 
 --Interview DATA:
-INSERT INTO [dbo].[Interviews]([Name], [Skill], [Role], [Status], [Date] ,[ReportingTo])
-VALUES ('Rajeev', '.NET', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
+INSERT INTO [dbo].[Interviews]([Name], [EmpId], [Skill], [Role], [Status], [Date] ,[ReportingTo])
+VALUES ('Hoozin', 'MLI741', '.NET', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
 
-INSERT INTO [dbo].[Interviews]([Name], [Skill], [Role], [Status], [Date] ,[ReportingTo])
-VALUES ('Nitin', 'Azure', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
+INSERT INTO [dbo].[Interviews]([Name], [EmpId], [Skill], [Role], [Status], [Date] ,[ReportingTo])
+VALUES ('Commport', 'MLI740', 'Azure', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
 
-INSERT INTO [dbo].[Interviews]([Name], [Skill], [Role], [Status], [Date] ,[ReportingTo])
-VALUES ('SriLaxmi', 'React JS', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
+INSERT INTO [dbo].[Interviews]([Name], [EmpId], [Skill], [Role], [Status], [Date] ,[ReportingTo])
+VALUES ('Hoozin', 'MLI737', 'React JS', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
 
-INSERT INTO [dbo].[Interviews]([Name], [Skill], [Role], [Status], [Date] ,[ReportingTo])
-VALUES ('Praful', 'Angular', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
+INSERT INTO [dbo].[Interviews]([Name], [EmpId], [Skill], [Role], [Status], [Date] ,[ReportingTo])
+VALUES ('Advent', 'MLI748', 'Angular', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
 
-INSERT INTO [dbo].[Interviews]([Name], [Skill], [Role], [Status], [Date] ,[ReportingTo])
-VALUES ('Taj', 'C#', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
-
-
-
+INSERT INTO [dbo].[Interviews]([Name], [EmpID], [Skill], [Role], [Status], [Date] ,[ReportingTo])
+VALUES ('Hoozin', 'MLI716', 'C#', 'Developer', 'Selected', GETDATE(), 'Sandeep Y')
 
 --Certifications TABLE:
 
@@ -125,21 +123,21 @@ CREATE TABLE [dbo].[Certifications](
 
 --Certifications DATA:
 INSERT INTO [dbo].[Certifications]([EmpId], [Name], [ValidFrom], [ValidTill], [EACId])
-VALUES('MLI741', 'Rajeev', getdate()-365,GETDATE()+30, 1)
+VALUES('MLI741', 'Azure Developer', getdate()-365,GETDATE()+30, 1)
 
 INSERT INTO [dbo].[Certifications]([EmpId], [Name], [ValidFrom], [ValidTill], [EACId])
-VALUES('MLI740', 'Nitin', getdate()-365,GETDATE()+30, 1)
+VALUES('MLI740', 'Azure Architect', getdate()-365,GETDATE()+30, 1)
 
 INSERT INTO [dbo].[Certifications]([EmpId], [Name], [ValidFrom], [ValidTill], [EACId])
-VALUES('MLI737', 'SriLaxmi', getdate()-365,GETDATE()+30, 1)
+VALUES('MLI737', 'Azure Architect', getdate()-365,GETDATE()+30, 1)
 
 INSERT INTO [dbo].[Certifications]([EmpId], [Name], [ValidFrom], [ValidTill], [EACId])
-VALUES('MLI748', 'Praful', getdate()-365,GETDATE()+30, 1)
+VALUES('MLI748', 'Azure Developer', getdate()-365,GETDATE()+30, 1)
 
 INSERT INTO [dbo].[Certifications]([EmpId], [Name], [ValidFrom], [ValidTill], [EACId])
-VALUES('MLI719', 'Taj', getdate()-365,GETDATE()+30, 1)
+VALUES('MLI719', 'Azure Admin', getdate()-365,GETDATE()+30, 1)
 
---EACouncilEntryExit TABLE:
+--POWERHOUSE TABLE:
 
 CREATE TABLE [dbo].[PowerHouse](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
@@ -151,10 +149,10 @@ CREATE TABLE [dbo].[PowerHouse](
     [CreatedBy] [nvarchar](50) NOT NULL,
 	[CreatedOn] [date] NOT NULL,
 	[ModifiedBy] [nvarchar](50) NOT NULL,
-	[modifiedOn] [date] NOT NULL,
+	[ModifiedOn] [date] NOT NULL,
 ) ON [PRIMARY]
  
---EACouncilEntryExit DATA:
+--POWERHOUSE DATA:
 INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
 VALUES('MLI741', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'Rajeev', GETDATE(), 'Rajeev', GETDATE())
 
@@ -184,19 +182,19 @@ EndDate date )
 
 --Learnings DATA:
 INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path], [StartDate], [EndDate])
-VALUES(1, 16, 'Rajeev', 'https://learn.microsoft.com/en-us/dotnet/', GETDATE()-30, GETDATE()+30)
+VALUES(1, 16, '.NET', 'https://learn.microsoft.com/en-us/dotnet/', GETDATE()-30, GETDATE()+30)
 
 INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path], [StartDate], [EndDate])
-VALUES(2,16, 'Nitin', 'https://learn.microsoft.com/en-us/certifications/exams/az-204/', GETDATE()-30, GETDATE()+30)
+VALUES(2,16, 'Azure', 'https://learn.microsoft.com/en-us/certifications/exams/az-204/', GETDATE()-30, GETDATE()+30)
 
 INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path], [StartDate], [EndDate])
-VALUES(3, 16, 'SriLaxmi', 'https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started', GETDATE()-30, GETDATE()+30)
+VALUES(3, 16, 'React', 'https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started', GETDATE()-30, GETDATE()+30)
 
 INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path], [StartDate], [EndDate])
-VALUES(4, 16, 'Praful', 'https://learn.microsoft.com/en-us/aspnet/core/client-side/spa/angular?view=aspnetcore-7.0&tabs=visual-studio', GETDATE()-30, GETDATE()+30)
+VALUES(4, 16, 'Blazor', 'https://learn.microsoft.com/en-us/aspnet/core/client-side/spa/angular?view=aspnetcore-7.0&tabs=visual-studio', GETDATE()-30, GETDATE()+30)
 
 INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path], [StartDate], [EndDate])
-VALUES(5, 16, 'Taj', 'https://learn.microsoft.com/en-us/dotnet/', GETDATE()-30, GETDATE()+30)
+VALUES(5, 16, 'Angular', 'https://learn.microsoft.com/en-us/dotnet/', GETDATE()-30, GETDATE()+30)
 
 --Training TABLE:
 
@@ -210,19 +208,19 @@ EndDate date
 
 --Training DATA:
 INSERT INTO [dbo].[Training]([Name], [HoursOfLearning], [StartDate], [EndDate])
-VALUES('Rajeev', 16, GETDATE()-30, GETDATE()+30)
+VALUES('.Net', 16, GETDATE()-30, GETDATE()+30)
 
 INSERT INTO [dbo].[Training]([Name], [HoursOfLearning], [StartDate], [EndDate])
-VALUES('Nitin', 16, GETDATE()-30, GETDATE()+30)
+VALUES('Azure', 16, GETDATE()-30, GETDATE()+30)
 
 INSERT INTO [dbo].[Training]([Name], [HoursOfLearning], [StartDate], [EndDate])
-VALUES('SriLaxmi', 16, GETDATE()-30, GETDATE()+30)
+VALUES('React', 16, GETDATE()-30, GETDATE()+30)
 
 INSERT INTO [dbo].[Training]([Name], [HoursOfLearning], [StartDate], [EndDate])
-VALUES('Praful', 16, GETDATE()-30, GETDATE()+30)
+VALUES('Blazor', 16, GETDATE()-30, GETDATE()+30)
 
 INSERT INTO [dbo].[Training]([Name], [HoursOfLearning], [StartDate], [EndDate])
-VALUES('Taj', 16, GETDATE()-30, GETDATE()+30)
+VALUES('Angular', 16, GETDATE()-30, GETDATE()+30)
 
 --Employee TABLE
 
@@ -436,3 +434,20 @@ VALUES('MLI748', 4, GETDATE()-30, GETDATE(), 'Praful', GETDATE(), 'Praful', GETD
 
 INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [StartDate], [EndDate], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
 VALUES('MLI719', 5, GETDATE()-30, GETDATE(), 'Taj', GETDATE(), 'Taj', GETDATE()+1)
+
+
+CREATE TABLE [dbo].[IntelleactualProperty](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[POCId] [int] NOT NULL,
+	[EmpId] [nvarchar](10) NOT NULL,
+	[StartDate] [date] NULL,
+	[EndDate] [date] NULL,
+	[ReportingTo] [nvarchar](25) NULL,
+	[RoleId] [int] NOT NULL,
+	[CreatedBy] [nvarchar](50) NULL,
+	[CreatedOn] [datetime] NULL,
+	[ModifiedBy] [nvarchar](50) NULL,
+	[ModifiedOn] [datetime] NULL,
+	[IsActive] [bit] NULL
+) ON [PRIMARY]
+GO

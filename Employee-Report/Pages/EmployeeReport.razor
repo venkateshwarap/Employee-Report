@@ -1,6 +1,7 @@
 ﻿@page "/EmployeeReport"
 <PageTitle>Employee Information - Employee Report</PageTitle>
 @using Employee.DataModel.Models;
+@using Employee_Report.API.Entities;
 @using Employee_Report.Model.Models;
 @using Employee_Report.Repository.Services;
 @inject NavigationManager NavManager
@@ -10,16 +11,20 @@
     * {
         box-sizing: border-box;
     }
+
     h4 {
         text-align: center;
     }
+
     th {
         color: #7b7d81 !important;
     }
+
     p.solid {
         border-style: solid;
-        color:deepskyblue;
+        color: deepskyblue;
     }
+
     .footer {
         position: fixed;
         left: 0;
@@ -29,24 +34,29 @@
         color: white;
         text-align: center;
     }
+
     .column {
         float: left;
         width: 50%;
         padding: 10px;
         height: 420px;
     }
+
     .dividinggap {
         display: inline-flex;
         flex-direction: row;
         justify-content: space-between;
     }
+
     .header-wrapper {
         display: flex;
         justify-content: space-between
     }
+
     .table-t, .table-l {
         width: 48%;
     }
+
     .row:after {
         content: "";
         display: table;
@@ -60,12 +70,15 @@
     body {
         margin-top: 20px;
     }
+
     .card-style1 {
         box-shadow: 0px 0px 10px 0px rgb(89 75 128 / 9%);
     }
+
     .border-0 {
         border: 0 !important;
     }
+
     .card {
         position: relative;
         display: flex;
@@ -77,14 +90,17 @@
         border: 1px solid rgba(0,0,0,.125);
         border-radius: 0.25rem;
     }
+
     section {
         padding: 120px 0;
         overflow: hidden;
         background: #fff;
     }
+
     .mb-2-3, .my-2-3 {
         margin-bottom: 2.3rem;
     }
+
     .section-title {
         font-weight: 600;
         letter-spacing: 2px;
@@ -93,52 +109,64 @@
         position: relative;
         display: inline-block;
     }
+
     .text-primary {
         color: #ceaa4d !important;
     }
+
     .text-secondary {
         color: #15395A !important;
     }
+
     .font-weight-600 {
         font-weight: 600;
     }
+
     .display-26 {
         font-size: 1.3rem;
     }
+
     .p-1-9 {
         padding: 1.9rem;
         text-align: center;
     }
+
     .bg-secondary {
         background: #15395A !important;
     }
+
     .pe-1-9, .px-1-9 {
         padding-right: 1.9rem;
     }
+
     .ps-1-9, .px-1-9 {
         padding-left: 1.9rem;
     }
+
     .pb-1-9, .py-1-9 {
         padding-bottom: 1.9rem;
     }
+
     .pt-1-9, .py-1-9 {
         padding-top: 1.9rem;
     }
+
     .mb-1-9, .my-1-9 {
         margin-bottom: 1.9rem;
     }
+
     .rounded {
         border-radius: 0.25rem !important;
     }
 </style>
-    <h3 class="h2 text-black mb-0 rounded text-center">Motivity Labs Employee Report</h3>
+<h3 class="h2 text-black mb-0 rounded text-center">MOTIVITY LABS EMPLOYEE REPORT</h3>
 <h3></h3>
 <div style="float: left; flex-direction: column;">
     <div class="row">
         <div class="column" style="float: left;">
             <ul class="list-unstyled mb-1-9">
                 <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Name:</span> Praful Kumar Reddy Duddela</li>
-                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">MLID:@_empid</span></li>
+                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">MLID:</span>@_empid</li>
                 <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">SKills:</span>Dotnet Core,.NetMVC, C#,Asp.Net WebForms</li>
             </ul>
             <div class="header-wrapper">
@@ -147,10 +175,17 @@
             <SfGrid DataSource="@learningCompleteDetails" AllowPaging="false">
                 <GridColumns>
                     <GridColumn Field=@nameof(Learning.Name) HeaderText="Name" Width="20%"></GridColumn>
-                    <GridColumn Field=@nameof(Learning.Path) HeaderText="Path" Width="40%"></GridColumn>
-                    <GridColumn Field=@nameof(Learning.HoursOfLearning) HeaderText="Learning Hours" Width="20%"></GridColumn>
-                    <GridColumn Field=@nameof(Learning.StartDate) HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"> </GridColumn>
-                    <GridColumn Field=@nameof(Learning.EndDate) HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
+                    <GridColumn Field=@nameof(Learning.Path) HeaderText="Path" Width="40%">
+                        <Template>
+                            @{
+                                var learningList = (context as Learning);
+                                <a target="_blank" href="@learningList.Path">@learningList.Path</a>
+                            }
+                        </Template>
+                    </GridColumn>
+                    <GridColumn Field=@nameof(Learning.HoursOfLearning) HeaderText="HoursSpent" TextAlign="TextAlign.Center" Width="20%"></GridColumn>
+                    <GridColumn Field=@nameof(Learning.StartDate) HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="30%"> </GridColumn>
+                    <GridColumn Field=@nameof(Learning.EndDate) HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="30%"></GridColumn>
                 </GridColumns>
             </SfGrid>
         </div>
@@ -177,7 +212,7 @@
                 <SfGrid DataSource="@trainingDetails" AllowPaging="false">
                     <GridColumns>
                         <GridColumn Field=@nameof(Training.Name) HeaderText="Name" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(Training.HoursOfLearning)  HeaderText="HoursOfLearning" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(Training.HoursOfLearning) HeaderText="HoursSpent" TextAlign="TextAlign.Center" Width="20%"></GridColumn>
                         <GridColumn Field=@nameof(Training.StartDate) HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
                         <GridColumn Field=@nameof(Training.EndDate) HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
                     </GridColumns>
@@ -185,13 +220,14 @@
             </div>
             <h1 style="text-align: right;"></h1>
             <div class="table-t">
-                <SfGrid DataSource="@employee" AllowPaging="false">
+                <SfGrid DataSource="@employeeproject" AllowPaging="false">
                     <GridColumns>
-                        <GridColumn Field=@nameof(EmployeeProject.StartDate) HeaderText="Start Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%">
+                        <GridColumn Field=@nameof(EmployeeProjectEntity.Name) HeaderText="Name" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeeProjectEntity.Role) HeaderText="Role" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeeProjectEntity.StartDate) HeaderText="Start Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%">
                         </GridColumn>
-                        <GridColumn Field=@nameof(EmployeeProject.EndDate) HeaderText="End Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(EmployeeProject.Achivements) HeaderText="Achievements" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(EmployeeProject.ReportingTo) HeaderText="ReportingTo" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeeProjectEntity.EndDate) HeaderText="End Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeeProjectEntity.ReportingTo) HeaderText="ReportingTo" Width="20%"></GridColumn>
                     </GridColumns>
                 </SfGrid>
             </div>
@@ -202,14 +238,14 @@
         </div>
         <div class="dividinggap">
             <div class="table-l">
-             <SfGrid DataSource="@employeepoc" AllowPaging="false">
+                <SfGrid DataSource="@employeepoc" AllowPaging="false">
                     <GridColumns>
-                        <GridColumn Field=@nameof(EmployeePoc.Pocid) HeaderText="Name" TextAlign="TextAlign.Left" Width="120"></GridColumn>
-                        <GridColumn Field=@nameof(EmployeePoc.RoleId) HeaderText="Role" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(EmployeePoc.StartDate) HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%">
+                        <GridColumn Field=@nameof(EmployeePOCEntity.Name) HeaderText="Name" TextAlign="TextAlign.Left" Width="120"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeePOCEntity.Role) HeaderText="Role" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeePOCEntity.StartDate) HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%">
                         </GridColumn>
-                        <GridColumn Field=@nameof(EmployeePoc.EndDate) HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(EmployeePoc.ReportingTo) HeaderText="ReportingTo" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeePOCEntity.EndDate) HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeePOCEntity.ReportingTo) HeaderText="ReportingTo" Width="20%"></GridColumn>
                     </GridColumns>
                 </SfGrid>
             </div>
@@ -218,12 +254,12 @@
             <div class="table-t">
                 <SfGrid DataSource="@employeepoc" AllowPaging="false">
                     <GridColumns>
-                        <GridColumn Field=@nameof(EmployeePoc.Pocid) HeaderText="Name" TextAlign="TextAlign.Left" Width="120"></GridColumn>
-                        <GridColumn Field=@nameof(EmployeePoc.RoleId) HeaderText="Role" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(EmployeePoc.StartDate) HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%">
+                        <GridColumn Field=@nameof(EmployeePOCEntity.Name) HeaderText="Name" TextAlign="TextAlign.Left" Width="120"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeePOCEntity.Role) HeaderText="Role" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeePOCEntity.StartDate) HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%">
                         </GridColumn>
-                        <GridColumn Field=@nameof(EmployeePoc.EndDate) HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(EmployeePoc.ReportingTo) HeaderText="ReportingTo" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeePOCEntity.EndDate) HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeePOCEntity.ReportingTo) HeaderText="ReportingTo" Width="20%"></GridColumn>
                     </GridColumns>
                 </SfGrid>
             </div>
@@ -234,7 +270,7 @@
         </div>
         <div class="dividinggap">
             <div class="table-l">
-                 <SfGrid DataSource="@certificationslist" AllowPaging="false">
+                <SfGrid DataSource="@certificationslist" AllowPaging="false">
                     <GridColumns>
                         <GridColumn Field=@nameof(Certification.Name) HeaderText="Name" TextAlign="TextAlign.Left" Width="120"></GridColumn>
                         <GridColumn Field=@nameof(Certification.ValidFrom) HeaderText="ValidFrom" Format="dd/MM/yyyy" TextAlign="TextAlign.Center" Type="ColumnType.DateTime" Width="150"></GridColumn>
@@ -242,11 +278,10 @@
                     </GridColumns>
                 </SfGrid>
             </div>
-        
+
             <br /><br />
             <h1 style="text-align: right;"></h1>
             <div class="table-t">
-                
             </div>
         </div>
         <div class="header-wrapper">
@@ -254,61 +289,60 @@
             <h2 style=" width:48%;text-align:left;"></h2>
         </div>
         <p class="solid">
-        <div style="display: flex; flex-direction: row;">
-            <div style="flex: 2;  width: 50%;">
-                <SfAccumulationChart >
-                    <AccumulationChartSeriesCollection>
-                        <AccumulationChartSeries Type="AccumulationType.Pie" DataSource="@ChartData" XName="Result" YName="ResultCount" LegendShape="LegendShape.Triangle">
-                            <AccumulationDataLabelSettings Visible="true" Name="Text"></AccumulationDataLabelSettings>
-                        </AccumulationChartSeries>
-                        <AccumulationChartTooltipSettings Enable="true"></AccumulationChartTooltipSettings>
-                        <AccumulationChartLegendSettings Visible="true" Position="LegendPosition.Bottom" Alignment="Alignment.Center"></AccumulationChartLegendSettings>
-                    </AccumulationChartSeriesCollection>
-                </SfAccumulationChart>
+            <div style="display: flex; flex-direction: row;">
+                <div style="flex: 2;  width: 50%;">
+                    <SfAccumulationChart>
+                        <AccumulationChartSeriesCollection>
+                            <AccumulationChartSeries Type="AccumulationType.Pie" DataSource="@ChartData" XName="Result" YName="ResultCount" LegendShape="LegendShape.Triangle">
+                                <AccumulationDataLabelSettings Visible="true" Name="Text"></AccumulationDataLabelSettings>
+                            </AccumulationChartSeries>
+                            <AccumulationChartTooltipSettings Enable="true"></AccumulationChartTooltipSettings>
+                            <AccumulationChartLegendSettings Visible="true" Position="LegendPosition.Bottom" Alignment="Alignment.Center"></AccumulationChartLegendSettings>
+                        </AccumulationChartSeriesCollection>
+                    </SfAccumulationChart>
+                </div>
+                <div style="flex: 2;width: 150px; height: 200px;">
+                    <SfGrid DataSource="@interviewsDetails" AllowPaging="false">
+                        <GridColumns>
+                            <GridColumn Field=@nameof(Interview.Name) HeaderText="Name" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
+                            <GridColumn Field=@nameof(Interview.Role) HeaderText="Role" Width="20%"></GridColumn>
+                            <GridColumn Field=@nameof(Interview.Status) HeaderText="Status" Width="20%">
+                            </GridColumn>
+                            <GridColumn Field=@nameof(Interview.Date) HeaderText="Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
+                            <GridColumn Field=@nameof(Interview.ReportingTo) HeaderText="ReportingTo" Width="20%"></GridColumn>
+                        </GridColumns>
+                    </SfGrid>
+                </div>
             </div>
-            <div style="flex: 2;width: 150px; height: 200px;">
-                <SfGrid DataSource="@interviewsDetails" AllowPaging="false">
-                    <GridColumns>
-                        <GridColumn Field=@nameof(Interview.Name) HeaderText="Name" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(Interview.Role) HeaderText="Role" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(Interview.Status) HeaderText="Status" Width="20%">
-                        </GridColumn>
-                        <GridColumn Field=@nameof(Interview.Date) HeaderText="Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(Interview.ReportingTo) HeaderText="ReportingTo" Width="20%"></GridColumn>
-                    </GridColumns>
-                </SfGrid>
-            </div>
-        </div>
         </p>
-       
         <div class="header-wrapper">
             <h2 style="width:48%;text-align: left;">Power House Details</h2>
             <h2 style=" width:48%;text-align:left;"></h2>
         </div>
         <p class="solid">
-        <div style="display: flex; flex-direction: row;">
-            <div style="flex: 2;  width: 50%; ">
-                <SfAccumulationChart >
-                    <AccumulationChartSeriesCollection>
-                        <AccumulationChartSeries Type="AccumulationType.Pie" DataSource="@ChartData" XName="EATerm" YName="EAResult" LegendShape="LegendShape.Triangle">
-                            <AccumulationDataLabelSettings Visible="true" Name="Text"></AccumulationDataLabelSettings>
-                        </AccumulationChartSeries>
-                        <AccumulationChartTooltipSettings Enable="true"></AccumulationChartTooltipSettings>
-                        <AccumulationChartLegendSettings Visible="true" Position="LegendPosition.Bottom" Alignment="Alignment.Center"></AccumulationChartLegendSettings>
-                    </AccumulationChartSeriesCollection>
-                </SfAccumulationChart>
-            </div>
-            <div style="flex: 2;width: 150px; height: 200px;">
+            <div style="display: flex; flex-direction: row;">
+                <div style="flex: 2;  width: 50%; ">
+                    <SfAccumulationChart>
+                        <AccumulationChartSeriesCollection>
+                            <AccumulationChartSeries Type="AccumulationType.Pie" DataSource="@ChartData" XName="EATerm" YName="EAResult" LegendShape="LegendShape.Triangle">
+                                <AccumulationDataLabelSettings Visible="true" Name="Text"></AccumulationDataLabelSettings>
+                            </AccumulationChartSeries>
+                            <AccumulationChartTooltipSettings Enable="true"></AccumulationChartTooltipSettings>
+                            <AccumulationChartLegendSettings Visible="true" Position="LegendPosition.Bottom" Alignment="Alignment.Center"></AccumulationChartLegendSettings>
+                        </AccumulationChartSeriesCollection>
+                    </SfAccumulationChart>
+                </div>
+                <div style="flex: 2;width: 150px; height: 200px;">
                     <SfGrid DataSource="@powerHouseDetails" AllowPaging="false">
-                    <GridColumns>
-                        <GridColumn Field=@nameof(PowerHouse.Role) HeaderText="Role" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(PowerHouse.StartDate) HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(PowerHouse.EndDate) HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(PowerHouse.ReportingTo) HeaderText="ReportingTo" TextAlign="TextAlign.Right" Width="20%"></GridColumn>
-                    </GridColumns>
-                </SfGrid>
+                        <GridColumns>
+                            <GridColumn Field=@nameof(PowerHouse.Role) HeaderText="Role" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
+                            <GridColumn Field=@nameof(PowerHouse.StartDate) HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
+                            <GridColumn Field=@nameof(PowerHouse.EndDate) HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
+                            <GridColumn Field=@nameof(PowerHouse.ReportingTo) HeaderText="ReportingTo" TextAlign="TextAlign.Right" Width="20%"></GridColumn>
+                        </GridColumns>
+                    </SfGrid>
+                </div>
             </div>
-        </div>
         </p>
     </div>
 </div>

@@ -26,11 +26,14 @@ namespace Employee_Report.Pages
         public IEnumerable<PowerHouse> powerHouseDetails { get; set; }
         public PowerHouse powerHouseModel = new();
 
+        
+
+        Repository.Services.EmployeePocService employeePocService = new Repository.Services.EmployeePocService();
         public IEnumerable<EmployeePOCEntity> employeepoc { get; set; }
 
         public EmployeePoc employeePocModel = new();
 
-        public IEnumerable<EmployeeProjectEntity> employee { get; set; }
+        public IEnumerable<EmployeeProjectEntity> employeeproject { get; set; }
         public EmployeeProject employeeProject = new();
 
         Repository.Services.LearningService LearningService = new();
@@ -90,7 +93,7 @@ namespace Employee_Report.Pages
             var powerHouseresponse = await benchServices.GeEACouncilEntryDetails();
             powerHouseDetails = Utility.GetResponseData<List<PowerHouse>>(powerHouseresponse.response);
             employeepoc = (await reportService.GetEmployeePOCDetails()).ToList();
-            employee = (await reportService.GetEmployeeProjectDetails()).ToList();
+            employeeproject = (await reportService.GetEmployeeProjectDetails()).ToList();
             var learningresponse = await LearningService.GetLearnings();
             learningCompleteDetails = Utility.GetResponseData<List<Learning>>(learningresponse.response);
             var trainingresponse = await TrainingService.GetTrainings();

@@ -1,15 +1,15 @@
 ﻿@page "/trainings"
 @using Syncfusion.Blazor.Buttons
 @inject NavigationManager navManager
-<h3>Training Details</h3>
-<hr />
-<div class="form-control" hidden=@HideLearningControls>
+
+<div hidden=@HideLearningControls>
+    <h1>Add Training Details</h1>
     <div class="row">
         <div class="col-md-6 mt-2">
             <SfTextBox @bind-Value="training.Name" class="form-control" Placeholder="Enter Training Technology Name"></SfTextBox>
         </div>
         <div class="col-md-6 mt-2">
-            <SfNumericTextBox @bind-Value="training.HoursOfLearning" class="form-control" Placeholder="Enter Learning Hours"></SfNumericTextBox>
+            <SfNumericTextBox @bind-Value="training.HoursOfLearning" class="form-control" Placeholder="Enter Training Hours"></SfNumericTextBox>
         </div>
     </div>
     <div class="row">
@@ -20,18 +20,19 @@
             <InputDate Type="InputDateType.Date" @bind-Value="training.EndDate" class="form-control" Placeholder="Select EndDate"></InputDate>
         </div>
     </div>
-    <div style="margin-top:10px;" class="row">
+    <div style="margin-top:10px;" id="trainingpostBtnCenter" class="row">
         <div class="col-md-1">
-            <SfButton OnClick="PostTrainingDetails" style="color:white;font-weight:900;background-color:dodgerblue;border-radius:8px;padding-top:5px;padding-bottom:5px;padding-left:50px;padding-right:50px;" Content="Create"></SfButton>
+            <SfButton OnClick="PostTrainingDetails" id="trainingpostID" Content="Create"></SfButton>
         </div>
         <div class="col-md-1" style="width:78%">
-            <SfButton OnClick="ClearPostTrainingDetails" style="color:white;font-weight:900;background-color:dodgerblue;border-radius:8px;padding-top:5px;padding-bottom:5px;padding-left:50px;padding-right:50px;margin-left:100%" Content="Cancel"></SfButton>
+            <SfButton OnClick="ClearPostTrainingDetails" id="clearPostTraining"  Content="Cancel"></SfButton>
         </div>
     </div>
 </div>
 
-<div class="col-md-3" hidden="@HideAdd">
-    <SfButton OnClick="AddTraining" style="background-color:dodgerblue;" Content="AddTraning"></SfButton>
+<div class="col-md-3" id="sfTrainingID" hidden="@HideAdd">
+    <h2 style="margin-top: 7px;">Training&nbsp;Details</h2>
+    <SfButton OnClick="AddTraining" id="sfAddBtnTrainingID" style="background-color:dodgerblue;" Content="Add Traning"></SfButton>
 </div>
 <div class="mt-2">
     @if (TraningList == null)
@@ -43,10 +44,10 @@
         <SfGrid TItem="EmployeeModel" hidden="@HideGrid" DataSource="@TraningList">
             <GridColumns>
                 <GridColumn Field="@nameof(training.Name)" HeaderText="Name" TextAlign="TextAlign.Left" Width="100"></GridColumn>
-                <GridColumn Field="@nameof(training.HoursOfLearning)" HeaderText="LearningHours" TextAlign="TextAlign.Center" Width="100">
+                <GridColumn Field="@nameof(training.HoursOfLearning)" HeaderText="Learning Hours" TextAlign="TextAlign.Center" Width="100">
                 </GridColumn>
-                <GridColumn Format="d" Field="@nameof(training.StartDate)" HeaderText="StartDate" TextAlign="TextAlign.Left" Width="100"></GridColumn>
-                <GridColumn Format="d" Field="@nameof(training.EndDate)" HeaderText="EndDate" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Format="d" Field="@nameof(training.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Format="d" Field="@nameof(training.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Left" Width="100"></GridColumn>
             </GridColumns>
         </SfGrid>
     }
