@@ -43,16 +43,15 @@ namespace Employee_Report.API.Controllers
             try
             {
                 var result = await _BenchService.GetAllEACouncilEntryExit();
-                if (result.status)
-                    return Ok(result);
-                return BadRequest(result);
+                if (result == null)
+                    return NotFound();
+                return Ok(result);
             }
             catch (Exception)
             {
 
                 throw;
             }
-
         }
 
         [HttpPost]
