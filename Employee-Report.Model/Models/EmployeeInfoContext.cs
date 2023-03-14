@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Employee_Report.Model.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Employee.DataModel.Models
@@ -45,9 +46,10 @@ namespace Employee.DataModel.Models
         public virtual DbSet<Skill> Skills { get; set; }
 
         public virtual DbSet<Training> Training { get; set; }
+        public DbSet<IntelleactualProperty> IntelleactualProperty { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer("Server=MLI00741\\RAJEEV_SQLDEV;Database=EmployeeInfo;Integrated Security=True;TrustServerCertificate=True;User ID=sa; Password=Raj@727_eev.MLI;");
+            => optionsBuilder.UseSqlServer("Server=MLI00740\\SQLEXPRESS;Database=EmployeeInfo;Integrated Security=True;TrustServerCertificate=True;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -279,6 +281,20 @@ namespace Employee.DataModel.Models
                     .IsUnicode(false);
                 entity.Property(e => e.StartDate).HasColumnType("date");
             });
+
+            //modelBuilder.Entity<IntelleactualProperty>(entity =>
+            //{
+            //    entity.HasKey(e => e.Id).HasName("PK__IntelleactualProperty__3214EC279848A453");
+
+            //    entity.Property(e => e.Id).HasColumnName("Id");
+            //    entity.Property(e => e.EndDate).HasColumnType("datetime");
+            //    entity.Property(e => e.StartDate).HasColumnType("datetime");
+            //    entity.Property(e => e.Name);
+            //    entity.Property(e => e.EmpId);
+            //    entity.Property(e => e.BenchId);
+            //    entity.Property(e => e.ReportingTo);
+            //    entity.Property(e => e.Role);
+            //});
 
             OnModelCreatingPartial(modelBuilder);
         }

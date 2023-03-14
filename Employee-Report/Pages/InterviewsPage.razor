@@ -17,17 +17,17 @@ else
         }
     </div>
     <div class="@(IsHidden ? "show" : "hidden")">
-        <EditForm Model="@InterviewModel" OnValidSubmit="addInterview">
+        <EditForm Model="@InterviewModel">
             <DataAnnotationsValidator />
             <div class="form-control">
                 <div class="row mt-2">
                     <div class="col-md-6">
-                        <label Class="e-outline-date">Name</label>
+                        <label>Name</label>
                         <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Name" />
                         <ValidationMessage For="@(() => InterviewModel.Name)" />
                     </div>
                     <div class="col-md-6">
-                        <label Class="e-outline-date">SKill</label>
+                        <label>SKill</label>
                         <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Skill" />
                         <ValidationMessage For="@(() => InterviewModel.Skill)" />
                     </div>
@@ -35,12 +35,12 @@ else
 
                 <div class="row mt-2">
                     <div class="col-md-6">
-                        <label Class="e-outline-date">Role</label>
+                        <label>Role</label>
                         <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Role" />
                         <ValidationMessage For="@(() => InterviewModel.Role)" />
                     </div>
                     <div class="col-md-6">
-                        <label Class="e-outline-date">Status</label>
+                        <label>Status</label>
                         <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Status" />
                         <ValidationMessage For="@(() => InterviewModel.Status)" />
                     </div>
@@ -48,19 +48,20 @@ else
 
                 <div class="row mt-2">
                     <div class="col-md-6">
-                        <label Class="e-outline-date">Interview Date</label>
-                        <InputDate Type="InputDateType.Date" class="form-control" @bind-Value="InterviewModel.Date" />
+                        <label>Date</label>
+                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                               @bind-Value="InterviewModel.Date" />
                         <ValidationMessage For="@(() => InterviewModel.Date)" />
                     </div>
                     <div class="col-md-6">
-                        <label Class="e-outline-date">Reporting To</label>
+                        <label>Reporting To</label>
                         <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.ReportingTo" />
                         <ValidationMessage For="@(() => InterviewModel.ReportingTo)" />
                     </div>
                 </div>
-                <div id="SfBtns">
-                    <SfButton @onclick="@AddClass" type="submit" class="btnAdd" Content="Add"></SfButton>
-                    <SfButton @onclick="@AddClass" type="submit" class="btnCancel" Content="Cancel"></SfButton>
+                <div id="SfInterviewBtns">
+                    <SfButton @onclick="@AddInterview" type="submit" class="btnAddInterview" Content="Add"></SfButton>
+                    <SfButton @onclick="@CancelInterview" type="submit" class="btnCancelInterview" Content="Cancel"></SfButton>
                 </div>
             </div>
         </EditForm>
@@ -74,7 +75,7 @@ else
             <GridColumn Field="@nameof(InterviewModel.Skill)" HeaderText="Skill" TextAlign="TextAlign.Center" Width="120"></GridColumn>
             <GridColumn Field="@nameof(InterviewModel.Role)" HeaderText="Role" TextAlign="TextAlign.Center" Width="120"></GridColumn>
             <GridColumn Field="@nameof(InterviewModel.Status)" HeaderText="Status" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-            <GridColumn Field="@nameof(InterviewModel.Date)" HeaderText="Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+            <GridColumn Format="d" Field="@nameof(InterviewModel.Date)" HeaderText="Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
             <GridColumn Field="@nameof(InterviewModel.ReportingTo)" HeaderText="Repoting to" TextAlign="TextAlign.Center" Width="150"></GridColumn>
         </GridColumns>
     </SfGrid>
