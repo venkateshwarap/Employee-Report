@@ -26,6 +26,9 @@ namespace Employee_Report.Pages
         public IEnumerable<PowerHouse> powerHouseDetails { get; set; }
         public PowerHouse powerHouseModel = new();
 
+        
+
+        Repository.Services.EmployeePocService employeePocService = new Repository.Services.EmployeePocService();
         public IEnumerable<EmployeePOCEntity> employeepoc { get; set; }
 
         public EmployeePoc employeePocModel = new();
