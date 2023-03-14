@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Employee_Report.Model.Models
 {
-    public class IntelleactualProperty
+    public class IntellectualProperty
     {
         public int Id { get; set; }
-        public int? POCId { get; set; }
+        public string? Name { get; set; }
         public string? EmpId { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }

@@ -436,18 +436,17 @@ INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [StartDate], [EndDate], [
 VALUES('MLI719', 5, GETDATE()-30, GETDATE(), 'Taj', GETDATE(), 'Taj', GETDATE()+1)
 
 
-CREATE TABLE [dbo].[IntelleactualProperty](
+CREATE TABLE [dbo].[IntellectualProperty](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[POCId] [int] NOT NULL,
-	[EmpId] [nvarchar](10) NOT NULL,
+	[Name] [varchar](200) NULL,
+	[EmpId] [nvarchar](10) NULL,
 	[StartDate] [date] NULL,
 	[EndDate] [date] NULL,
 	[ReportingTo] [nvarchar](25) NULL,
-	[RoleId] [int] NOT NULL,
+	[RoleId] [int] NULL,
 	[CreatedBy] [nvarchar](50) NULL,
 	[CreatedOn] [datetime] NULL,
 	[ModifiedBy] [nvarchar](50) NULL,
 	[ModifiedOn] [datetime] NULL,
 	[IsActive] [bit] NULL
 ) ON [PRIMARY]
-GO

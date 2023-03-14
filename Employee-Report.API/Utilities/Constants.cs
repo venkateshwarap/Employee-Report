@@ -51,11 +51,17 @@ namespace Employee_Report.API.Utilities
         #region API Routes
         public const string RT_Certification = "api/certification";
         public const string RT_POWER_HOUSE = "api/power-house";
+        public const string RT_INTELLECTUAL_PROPERTY = "api/intellectual-property";
         #endregion
 
         #region Controller Routes
         public const string get = "get";
         public const string create = "create";
         #endregion
+
+        public const string GET = "get";
+        public const string CREATE = "create";
+        public const string UPDATE = "update";
+        public const string GET_BY_ID = "getById";
     }
 }

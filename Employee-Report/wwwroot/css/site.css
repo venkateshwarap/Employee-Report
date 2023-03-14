@@ -521,3 +521,15 @@ a {
     margin-left: 281%;
     margin-top: 8%;
 }
+.sfbtnAdd {
+    margin: 0 0 1% 77%;
+    background-color: dodgerblue !important;
+}
+
+.sfbtn {
+    margin: 1% 0% 5px 48%;
+}
+
+.sfbtnIP {
+    background-color: dodgerblue !important;
+}

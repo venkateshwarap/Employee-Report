@@ -28,7 +28,7 @@ builder.Services.AddScoped<IEmployeeTrainingService, EmployeeTrainingService>();
 builder.Services.AddScoped<ITrainingService, TrainingService>();
 builder.Services.AddTransient<IRoleService, RoleService>();
 builder.Services.AddTransient<IEmpService, EmpService>();
-builder.Services.AddTransient<IIntelleactalProperty,IntelleactualPropertyService>();
+builder.Services.AddTransient<IIntelleactalProperty, IntellectualPropertyService>();
 
 var app = builder.Build();
 

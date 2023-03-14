@@ -1,0 +1,78 @@
+﻿@page "/intellectual"
+<PageTitle>Employee Information - Employee POC</PageTitle>
+@using Employee_Report.API.Entities;
+@using Employee_Report.Model.Models;
+@using Syncfusion.Blazor.Grids
+@inject NavigationManager navManager;
+
+
+@if (intelleactuallist == null)
+{
+    <p><em>Loading your data... Please wait..</em></p>
+}
+else
+{
+    <div id="divHeader">
+        <h5 style="text-align:center">Intelleactual Property</h5>
+        @if (!IsHidden)
+        {
+            <SfButton class="sfbtnAdd" OnClick="AddClass">Add new IP</SfButton>
+        }
+    </div>
+
+    <div class="@(IsHidden ? "show" : "hidden")">
+        <EditForm Model="@intelleactualProperty">
+            <DataAnnotationsValidator />
+            <div class="form-control">
+                <div class="row">
+                    <div class="col-md-6">
+                        <SfTextBox CssClass="e-outline custom-size" Placeholder="Name" FloatLabelType="@FloatLabelType.Auto" Type="InputType.Text" class="form-control"
+                               @bind-Value="intelleactualProperty.Name" />
+                        <ValidationMessage For="@(() => intelleactualProperty.Name)" />
+                    </div>
+                    <div class="col-md-6">
+                        <SfTextBox CssClass="e-outline custom-size" Placeholder="Employee Id" FloatLabelType="@FloatLabelType.Auto" Type="InputType.Text" class="form-control"
+                               @bind-Value="intelleactualProperty.EmpId" />
+                        <ValidationMessage For="@(() => intelleactualProperty.EmpId)" />
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col-md-6">
+                            <label Class="e-outline-date">Start Date</label>
+                            <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                                   @bind-Value="intelleactualProperty.StartDate" />
+                            <ValidationMessage For="@(() => intelleactualProperty.StartDate)" />
+                        </div>
+                             <div class="col-md-6">
+                            <label Class="e-outline-date">End Date</label>
+                            <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                                   @bind-Value="intelleactualProperty.EndDate" />
+                        <ValidationMessage For="@(() => intelleactualProperty.EndDate)" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <SfNumericTextBox CssClass="e-outline custom-size" Placeholder="Role Id" FloatLabelType="@FloatLabelType.Auto" Type="InputType.Number" class="form-control"
+                           @bind-Value="intelleactualProperty.RoleId" />
+                        <ValidationMessage For="@(() => intelleactualProperty.RoleId)" />
+                    </div>
+                    <div class="sfbtn">
+                    <SfButton class="sfbtnIP" @onclick="@AddIntelleactual" type="submit" Content="Add"></SfButton>
+                <SfButton @onclick="@CancelIntelleactual" type="button" class="sfbtnCancel" Content="Cancel"></SfButton>
+                </div>
+                </div>
+        </EditForm>
+    </div>
+    @if (!IsHidden)
+    {
+        <SfGrid DataSource="@intelleactuallist">
+            <GridColumns>
+                <GridColumn Field="@nameof(IntellectualProperty.Name)" HeaderText="Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Field="@nameof(IntellectualProperty.EmpId)" HeaderText="Employee Id" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Field="@nameof(IntellectualProperty.ReportingTo)" HeaderText="Reporting To" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Field="@nameof(IntellectualProperty.RoleId)" HeaderText="Role Id" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(IntellectualProperty.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(IntellectualProperty.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+            </GridColumns>
+        </SfGrid>
+    }
+}
