@@ -1,6 +1,8 @@
-﻿@inherits LayoutComponentBase
+﻿@using Employee_Report.Auth;
+@inherits LayoutComponentBase
 <PageTitle>Employee Information</PageTitle>
 @inject NavigationManager navManager;
+@inject AuthenticationStateProvider authStateProvider
 <div class="page">
 
     <div id="mySidebar" class="collaps-active" style="@(collaps? "width:250px !important" : "")">
@@ -112,7 +114,7 @@
                 <div class="logoutbtn">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item ">
-                            <a class="nav-link" href="#">LogOut</a>
+                            <a href="/" onclick="(()=> Logout())">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -130,5 +132,12 @@
     bool collaps = true;
     void OpenNav() => collaps = !collaps;
     void CloseNav() => collaps = !collaps;
+    private async Task Logout()
+    {
+
+        var customAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvider;
+        await customAuthStateProvider.UpdateAuthenticationState(null);
+        navManager.NavigateTo("/login", true);
+    }
 
 }

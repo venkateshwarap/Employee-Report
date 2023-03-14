@@ -30,7 +30,9 @@ namespace Employee_Report.AppSettings
         #region Employee
         public const string GetEmployee = "https://localhost:7178/api/Emp/GetEmployee";
         #endregion
-
+        #region Login
+        public const string Login = "https://localhost:7178/api/Authenticate/login";
+        #endregion
         #region Role
         public const string GetRole = "https://localhost:7178/api/Role/GetRole";
         public const string AddRole = "https://localhost:7178/api/Role/AddRole";

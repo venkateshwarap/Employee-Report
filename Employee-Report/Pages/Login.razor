@@ -1,0 +1,39 @@
+﻿@page "/"
+@layout LoginLayout
+@using Syncfusion.Blazor.Diagrams
+@using Syncfusion.Blazor.Inputs;
+@inject NavigationManager navManager
+@inject IJSRuntime js
+@inject AuthenticationStateProvider authStateProvider
+
+
+<div class="row" >
+    <div class="page-background-class">
+        <img src="../icon/motivity.png"  style="padding-top: 30px" />
+    </div>
+ <EditForm Model="@model">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+       @* <div class="align" style="margin-right:50%">*@
+        <div class="col-lg-4 offset-lg-4 pt-4 pb-4" >
+            <div class="mb-3 text-ceneter">
+                <h3 style="margin-left:23%">Motivity Manager Login</h3>
+            </div>
+            <div class="mb-3">
+                <label>Email</label>
+                    <SfTextBox @bind-Value="model.UserName" Placeholder='Email'></SfTextBox>
+            </div>
+            <div class="mb-3">
+                <label>Password</label>
+                <SfTextBox Type="InputType.Password" @bind-Value="model.security" placeholder="Password"></SfTextBox>
+            </div>
+            <div class="mb-3 d-grid gap-2">
+                <label hidden="@model.IsValidLogin" style="color:red;">Invalid Credentials!!</label>
+            </div>
+            <div class="mb-3 d-grid gap-2">
+                <SfButton @onclick="Authenticate" class="btn btn-primary">Login</SfButton>
+            </div>
+        @*</div>*@
+        </div>
+ </EditForm>
+ </div>

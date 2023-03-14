@@ -46,8 +46,10 @@ namespace Employee.DataModel.Models
 
         public virtual DbSet<Training> Training { get; set; }
 
+        public virtual DbSet<UserDetail> UserDetails { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer("Server=MLI00741\\RAJEEV_SQLDEV;Database=EmployeeInfo;Integrated Security=True;TrustServerCertificate=True;User ID=sa; Password=Raj@727_eev.MLI;");
+            => optionsBuilder.UseSqlServer(" Server=MLI00737\\SQLEXPRESS;Database=EmployeeInfo;Integrated Security=True;TrustServerCertificate=True;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -95,9 +97,11 @@ namespace Employee.DataModel.Models
                 entity.Property(e => e.FirstName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+                entity.Property(e => e.JoiningDate).HasColumnType("date");
                 entity.Property(e => e.LastName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+                entity.Property(e => e.LastWorkingDate).HasColumnType("date");
             });
 
             modelBuilder.Entity<EmployeeLearning>(entity =>
@@ -279,6 +283,22 @@ namespace Employee.DataModel.Models
                     .IsUnicode(false);
                 entity.Property(e => e.StartDate).HasColumnType("date");
             });
+
+            modelBuilder.Entity<UserDetail>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Table_1");
+
+                entity.ToTable("UserDetail");
+
+                entity.Property(e => e.EmpId).HasMaxLength(10);
+                entity.Property(e => e.Key).HasMaxLength(25);
+
+                //entity.HasOne(d => d.Emp).WithMany(p => p.UserDetails)
+                //    .HasForeignKey(d => d.EmpId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_Table_1_Table_1");
+            });
+
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -1,6 +1,8 @@
+using Employee_Report.Auth;
 using Employee_Report.Repository.IServices;
 using Employee_Report.Repository.Services;
 using Employee_Report.Utilities;
+using Microsoft.AspNetCore.Components.Authorization;
 using Syncfusion.Blazor;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,8 @@ builder.Services.AddScoped<IEmployeeProjectService, EmployeeProjectService>();
 builder.Services.AddScoped<IEmployeeSkillService, EmployeeSkillService>();
 builder.Services.AddScoped<IEmployeePocService, EmployeePocService>();
 builder.Services.AddScoped<IGetRoleService, GetRoleService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddHttpClient();
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTIxMjA0MEAzMjMwMmUzNDJlMzBMalJWcXpUYTZBY09jeDZqNjQwVGRtK3lBU0dWMWladUU2Vi9XQVNmNFNzPQ==");
