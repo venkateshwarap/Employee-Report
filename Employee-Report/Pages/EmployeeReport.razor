@@ -183,7 +183,7 @@
                             }
                         </Template>
                     </GridColumn>
-                    <GridColumn Field=@nameof(Learning.HoursOfLearning) HeaderText="Learning Hours" TextAlign="TextAlign.Center" Width="20%"></GridColumn>
+                    <GridColumn Field=@nameof(Learning.HoursOfLearning) HeaderText="HoursSpent" TextAlign="TextAlign.Center" Width="20%"></GridColumn>
                     <GridColumn Field=@nameof(Learning.StartDate) HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="30%"> </GridColumn>
                     <GridColumn Field=@nameof(Learning.EndDate) HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="30%"></GridColumn>
                 </GridColumns>
@@ -212,7 +212,7 @@
                 <SfGrid DataSource="@trainingDetails" AllowPaging="false">
                     <GridColumns>
                         <GridColumn Field=@nameof(Training.Name) HeaderText="Name" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(Training.HoursOfLearning) HeaderText="HoursOfLearning" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(Training.HoursOfLearning) HeaderText="HoursSpent" TextAlign="TextAlign.Center" Width="20%"></GridColumn>
                         <GridColumn Field=@nameof(Training.StartDate) HeaderText="StartDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
                         <GridColumn Field=@nameof(Training.EndDate) HeaderText="EndDate" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
                     </GridColumns>
@@ -220,12 +220,14 @@
             </div>
             <h1 style="text-align: right;"></h1>
             <div class="table-t">
-                <SfGrid DataSource="@employee" AllowPaging="false">
+                <SfGrid DataSource="@employeeproject" AllowPaging="false">
                     <GridColumns>
-                        <GridColumn Field=@nameof(EmployeeProject.StartDate) HeaderText="Start Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%">
+                        <GridColumn Field=@nameof(EmployeeProjectEntity.Name) HeaderText="Name" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeeProjectEntity.Role) HeaderText="Role" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeeProjectEntity.StartDate) HeaderText="Start Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%">
                         </GridColumn>
-                        <GridColumn Field=@nameof(EmployeeProject.EndDate) HeaderText="End Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
-                        <GridColumn Field=@nameof(EmployeeProject.ReportingTo) HeaderText="ReportingTo" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeeProjectEntity.EndDate) HeaderText="End Date" Format="dd/MM/yyyy" Type="ColumnType.DateTime" Width="20%"></GridColumn>
+                        <GridColumn Field=@nameof(EmployeeProjectEntity.ReportingTo) HeaderText="ReportingTo" Width="20%"></GridColumn>
                     </GridColumns>
                 </SfGrid>
             </div>
