@@ -48,7 +48,7 @@ namespace Employee.DataModel.Models
         public virtual DbSet<Training> Training { get; set; }
         public DbSet<IntelleactualProperty> IntelleactualProperty { get; set; }
 
-        public virtual DbSet<UserDetail> UserDetails { get; set; }
+     //   public virtual DbSet<UserDetail> UserDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseSqlServer(" Server=MLI00737\\SQLEXPRESS;Database=EmployeeInfo;Integrated Security=True;TrustServerCertificate=True;");
@@ -284,21 +284,6 @@ namespace Employee.DataModel.Models
                     .HasMaxLength(30)
                     .IsUnicode(false);
                 entity.Property(e => e.StartDate).HasColumnType("date");
-            });
-
-            modelBuilder.Entity<UserDetail>(entity =>
-            {
-                entity.HasKey(e => e.Id).HasName("PK_Table_1");
-
-                entity.ToTable("UserDetail");
-
-                entity.Property(e => e.EmpId).HasMaxLength(10);
-                entity.Property(e => e.Key).HasMaxLength(25);
-
-                //entity.HasOne(d => d.Emp).WithMany(p => p.UserDetails)
-                //    .HasForeignKey(d => d.EmpId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_Table_1_Table_1");
             });
 
 
