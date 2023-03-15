@@ -238,24 +238,19 @@ CREATE TABLE [dbo].[Employee](
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
+
 --Employee DATA:
-INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[LastWorkingDate],[Key])
-VALUES ('MLI741', 'Rajeev','Reddy', 'rajeev.reddy@motivitylabs.com',1,18-08-2021,'Rajeev@123')
 
-INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[LastWorkingDate],[Key])
-VALUES ('MLI740', 'Nitin','Sharma', 'nitin.sharma@motivitylabs.com',1,18-08-2021,'Nitin@123')
-
-INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[LastWorkingDate],[Key])
-VALUES ('MLI737', 'SriLaxmi','Katla', 'srilaxmi.katla@motivitylabs.com',1,11-08-2021,'Srilaxmi@123')
-
-INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[LastWorkingDate],[Key])
-VALUES ('MLI748', 'Praful','Reddy', 'praful.reddy@motivitylabs.com',1,18-08-2021,'Praful@123')
-
-INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[LastWorkingDate],[Key])
-VALUES ('MLI719', 'Taj','Ansari', 'taj.ansari@motivitylabs.com',1,18-08-2021,'Taj@123')
-
-
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[Key])
+	VALUES ('MLI741', 'Rajeev','Reddy', 'rajeev.reddy@motivitylabs.com',1,'2021-08-18T00:00:00','Rajeev@123') 
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[Key])
+	VALUES ('MLI740', 'Nitin','Sharma', 'nitin.sharma@motivitylabs.com',1,'2021-08-18T00:00:00','Nitin@123') 
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[Key])
+	VALUES ('MLI737', 'SriLaxmi','Katla', 'srilaxmi.katla@motivitylabs.com',1,'2021-08-18T00:00:00','Srilaxmi@123') 
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[Key])
+	VALUES ('MLI748', 'Praful','Reddy', 'praful.reddy@motivitylabs.com',1,'2021-08-18T00:00:00','Praful@123') 
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[Key])
+	VALUES ('MLI719', 'Taj','Ansari', 'taj.ansari@motivitylabs.com',1,'2021-08-18T00:00:00','Taj@123')
 
 -----------------------------------------Employee-----------------------------------------
 
@@ -438,6 +433,7 @@ VALUES('MLI748', 4, GETDATE()-30, GETDATE(), 'Praful', GETDATE(), 'Praful', GETD
 INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [StartDate], [EndDate], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
 VALUES('MLI719', 5, GETDATE()-30, GETDATE(), 'Taj', GETDATE(), 'Taj', GETDATE()+1)
 
+--IntellectualProperty TABLE:
 
 CREATE TABLE [dbo].[IntellectualProperty](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
@@ -453,3 +449,20 @@ CREATE TABLE [dbo].[IntellectualProperty](
 	[ModifiedOn] [datetime] NULL,
 	[IsActive] [bit] NULL
 ) ON [PRIMARY]
+
+--IntellectualProperty DATA:
+
+INSERT INTO [dbo].[IntellectualProperty]([Name], [EmpId], [StartDate], [EndDate], [ReportingTo], [RoleId], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn],[IsActive])
+     VALUES('abc', 'MLI741', GETDATE(), GETDATE()+365, 'Sandeep Y', 1, 'Rajeev', GETDATE(), 'Rajeev', GETDATE(), 1)
+
+INSERT INTO [dbo].[IntellectualProperty]([Name], [EmpId], [StartDate], [EndDate], [ReportingTo], [RoleId], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn],[IsActive])
+     VALUES('def', 'MLI740', GETDATE(), GETDATE()+365, 'Sandeep Y', 1, 'Nitin', GETDATE(), 'Nitin', GETDATE(), 1)
+
+INSERT INTO [dbo].[IntellectualProperty]([Name], [EmpId], [StartDate], [EndDate], [ReportingTo], [RoleId], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn],[IsActive])
+     VALUES('ghi', 'MLI737', GETDATE(), GETDATE()+365, 'Sandeep Y', 1, 'SriLaxmi', GETDATE(), 'SriLaxmi', GETDATE(), 1)
+
+INSERT INTO [dbo].[IntellectualProperty]([Name], [EmpId], [StartDate], [EndDate], [ReportingTo], [RoleId], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn],[IsActive])
+     VALUES('jkl', 'MLI748', GETDATE(), GETDATE()+365, 'Sandeep Y', 1, 'Praful', GETDATE(), 'Praful', GETDATE(), 1)
+
+INSERT INTO [dbo].[IntellectualProperty]([Name], [EmpId], [StartDate], [EndDate], [ReportingTo], [RoleId], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn],[IsActive])
+     VALUES('mno', 'MLI716', GETDATE(), GETDATE()+365, 'Sandeep Y', 1, 'Taj', GETDATE(), 'Taj', GETDATE(), 1)
