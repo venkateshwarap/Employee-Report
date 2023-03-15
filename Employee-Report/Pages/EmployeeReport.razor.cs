@@ -14,7 +14,16 @@ namespace Employee_Report.Pages
     public partial class EmployeeReport
     {
 
-         ReportService reportService=new ReportService();
+        Repository.Services.SkillsService SkillsService = new();
+        public IEnumerable<Skill>? skillDetails { get; set; }
+        public Skill skillModel = new();
+
+        Repository.Services.EmployeesService employeesService = new Repository.Services.EmployeesService();
+        public IEnumerable<Employees> employees { get; set; }
+       
+        
+       
+        ReportService reportService=new ReportService();
         public IEnumerable<Interview>? interviewsDetails { get; set; }
         public Interview InterviewModel = new();
 
@@ -44,6 +53,8 @@ namespace Employee_Report.Pages
         public IEnumerable<Training>? trainingDetails { get; set; }
         public Training trainingModel = new();
 
+        
+
         public IEnumerable<Poc> poc { get; set; }
 
         public List<ChartDataModel> pieData;
@@ -66,7 +77,7 @@ namespace Employee_Report.Pages
          new ChartDataModel{ Expertise="Trainings",ResourceCount=2},
          new ChartDataModel{  Result ="Pass",ResultCount=66},
          new ChartDataModel{ Result="Fail",ResultCount=34},
-          new ChartDataModel{ EATerm="POCs",EAResult=80},
+         new ChartDataModel{ EATerm="POCs",EAResult=80},
          new ChartDataModel{ EATerm="Learning",EAResult=10},
          new ChartDataModel{ EATerm="Trainings",EAResult=2},
          new ChartDataModel{ EATerm="IPs",EAResult=0}
@@ -98,6 +109,9 @@ namespace Employee_Report.Pages
             learningCompleteDetails = Utility.GetResponseData<List<Learning>>(learningresponse.response);
             var trainingresponse = await TrainingService.GetTrainings();
             trainingDetails = Utility.GetResponseData<List<Training>>(trainingresponse.response);
+            employees = (await employeesService.GetEmployeeDetails()).ToList();
+            //var skillresponse = await SkillsService.GetSkills();
+            //skillDetails = Utility.GetResponseData<List<Skill>>(skillresponse.response);
         }
     }
 }
