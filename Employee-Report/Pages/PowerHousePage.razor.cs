@@ -1,7 +1,4 @@
 ﻿using Employee.DataModel.Models;
-using Employee_Report.API.Entities;
-using Employee_Report.Utilities;
-using Microsoft.AspNetCore.Components;
 
 
 namespace Employee_Report.Pages
