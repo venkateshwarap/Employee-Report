@@ -25,7 +25,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpGet]
-        [Route(Constants.GET)]
+        [Route(Constants.get)]
         public async Task<IActionResult> GetALL()
         {
             var result = await _intelleactal.GetAll();
@@ -33,7 +33,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpPost]
-        [Route(Constants.CREATE)]
+        [Route(Constants.create)]
         public async Task<IActionResult> Create(IntellectualProperty intelleactal)
         {
             var result = await _intelleactal.Create(intelleactal);

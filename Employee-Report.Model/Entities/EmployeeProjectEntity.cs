@@ -1,4 +1,4 @@
-﻿namespace Employee_Report.API.Entities
+﻿namespace Employee.DataModel.Models
 {
     public class EmployeeProjectEntity
     {

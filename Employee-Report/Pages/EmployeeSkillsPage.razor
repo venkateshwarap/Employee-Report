@@ -2,7 +2,6 @@
 <PageTitle>Employee Information - Employee Skills</PageTitle>
 @inject NavigationManager navManager
 @using Employee.DataModel.Models;
-@using Employee_Report.API.Entities;
 @using Employee_Report.Model.Models;
 @using Syncfusion.Blazor.Grids
 
@@ -20,33 +19,33 @@ else
         }
     </div>
     <div class="@(IsHidden ? "show" : "hidden")">
-        <EditForm Model="@EmployeeSkills_SkillsModel">
+        <EditForm Model="@employeeSkills">
             <DataAnnotationsValidator />
             <div class="form-control">
                 <div class="row">
                     <div class="col-md-6">
                         <label>Employee ID</label>
-                        <SfTextBox Type="InputType.Text" class="form-control"
-                               @bind-Value="EmployeeSkills_SkillsModel.EmpID" />
-                        <ValidationMessage For="@(() => EmployeeSkills_SkillsModel.EmpID)" />
+                        <SfNumericTextBox Type="InputType.Text" class="form-control"
+                               @bind-Value="employeeSkills.EmpId" />
+                        <ValidationMessage For="@(() => employeeSkills.EmpId)" />
                     </div>
                     <div class="col-md-6">
                         <label>Skill Name</label>
-                        <SfTextBox Type="InputType.Text" class="form-control"
-                               @bind-Value="EmployeeSkills_SkillsModel.SkillName" />
-                        <ValidationMessage For="@(() => EmployeeSkills_SkillsModel.SkillName)" />
+                        <SfNumericTextBox Type="InputType.Text" class="form-control"
+                               @bind-Value="employeeSkills.Id" />
+                        <ValidationMessage For="@(() => employeeSkills.Id)" />
                     </div>
                     <div class="col-md-6">
                         <label>Start Date</label>
                         <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
-                               @bind-Value="EmployeeSkills_SkillsModel.StartDate" />
-                        <ValidationMessage For="@(() => EmployeeSkills_SkillsModel.StartDate)" />
+                               @bind-Value="employeeSkills.StartDate" />
+                        <ValidationMessage For="@(() => employeeSkills.StartDate)" />
                     </div>
                     <div class="col-md-6">
                         <label>End Date</label>
                         <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
-                               @bind-Value="EmployeeSkills_SkillsModel.EndDate" />
-                        <ValidationMessage For="@(() => EmployeeSkills_SkillsModel.EndDate)" />
+                               @bind-Value="employeeSkills.EndDate" />
+                        <ValidationMessage For="@(() => employeeSkills.EndDate)" />
                     </div>
                 </div>
                 <div id="SfBtnsEmployeeSkills">

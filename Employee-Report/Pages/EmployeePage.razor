@@ -21,14 +21,16 @@ else
                     }
                 </Template>
             </GridColumn>
-            <GridColumn Field=@nameof(Employees.LastName) HeaderText="Last Name" TextAlign="TextAlign.Left" Width="120">
+            <GridColumn Field=@nameof(Employees.LastName) HeaderText="Last Name" TextAlign="TextAlign.Left" Width="100">
             </GridColumn>
             <GridColumn Field=@nameof(Employees.Email) HeaderText="Email" TextAlign="TextAlign.Left" Width="130">
             </GridColumn>
             <GridColumn Format="d" Field=@nameof(Employees.JoiningDate) HeaderText="Joining Date" TextAlign="TextAlign.Left" Width="120">
             </GridColumn>
-            <GridColumn Format="d" Field=@nameof(Employees.LastWorkingDate) HeaderText="LastWorking Date" TextAlign="TextAlign.Left" Width="130">
+            <GridColumn Format="d" Field=@nameof(Employees.LastWorkingDate) HeaderText="LastWorking Date" TextAlign="TextAlign.Left" Width="120">
             </GridColumn>
+           @* <GridColumn Field=@nameof(Employees.Status == 0  ? "Active": "InActive") HeaderText="Status" TextAlign="TextAlign.Left" Width="130">
+            </GridColumn>*@
         </GridColumns>
     </SfGrid>
 }

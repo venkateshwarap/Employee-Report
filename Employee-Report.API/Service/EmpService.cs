@@ -1,5 +1,4 @@
 ﻿using Employee.DataModel.Models;
-using Employee_Report.API.Entities;
 using Employee_Report.API.IService;
 using Microsoft.EntityFrameworkCore;
 

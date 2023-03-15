@@ -51,7 +51,7 @@ namespace Employee.DataModel.Models
      //   public virtual DbSet<UserDetail> UserDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer("Server=MLI00740\\SQLEXPRESS;Database=EmployeeInfo;Integrated Security=True;TrustServerCertificate=True;");
+            => optionsBuilder.UseSqlServer("Server=MLI00737\\SQLEXPRESS;Database=EmployeeInfo;Integrated Security=True;TrustServerCertificate=True;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -86,7 +86,7 @@ namespace Employee.DataModel.Models
                 entity.Property(e => e.ReportingTo)
                     .HasMaxLength(10)
                     .IsUnicode(false);
-                entity.Property(e => e.RoleId).HasMaxLength(50);
+                //entity.Property(e => e.RoleId).HasMaxLength(50);
                 entity.Property(e => e.StartDate).HasColumnType("date");
             });
 

@@ -1,7 +1,4 @@
 ﻿using Employee.DataModel.Models;
-using Employee_Report.API.Entities;
-using Employee_Report.Model.Models;
-using System.Threading.Tasks;
 
 namespace employee_report.api.iservice
 {
