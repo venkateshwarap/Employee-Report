@@ -1,7 +1,5 @@
 ﻿using Employee.DataModel.Models;
-using Employee_Report.API.Entities;
-
-using Employee_Report.Model.Models;
+using Employee_Report.Repository.Services;
 using Employee_Report.Utilities;
 
 namespace Employee_Report.Pages
@@ -12,6 +10,7 @@ namespace Employee_Report.Pages
         public IEnumerable<EmployeeSkills_Skills_Entity> employeeSkills_SkillsDetails { get; set; }
         public EmployeeSkills_Skills_Entity EmployeeSkills_SkillsModel = new EmployeeSkills_Skills_Entity();
         public EmployeeSkills empSkillsModel = new EmployeeSkills();
+        Repository.Services.SkillsService SkillsService = new();
         public EmployeeSkills employeeSkills = new();
         private bool IsHidden { get; set; } = false;
 
