@@ -4,7 +4,8 @@
 @using Employee.DataModel.Models;
 @using Employee_Report.API.Entities;
 @using Employee_Report.Model.Models;
-@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Grids;
+@using Syncfusion.Blazor.DropDowns
 
 @if (employeeSkills_SkillsDetails == null)
 {
@@ -32,9 +33,11 @@ else
                     </div>
                     <div class="col-md-6">
                         <label>Skill Name</label>
-                        <SfTextBox Type="InputType.Text" class="form-control"
-                               @bind-Value="EmployeeSkills_SkillsModel.SkillName" />
-                        <ValidationMessage For="@(() => EmployeeSkills_SkillsModel.SkillName)" />
+                        <SfDropDownList TValue="string" TItem="Skill" Placeholder="Select Skill"
+                                    DataSource="@skillDetails">
+                                    <DropDownListFieldSettings Value="Id" Text="SkillName">
+                                    </DropDownListFieldSettings></SfDropDownList>
+
                     </div>
                     <div class="col-md-6">
                         <label>Start Date</label>
