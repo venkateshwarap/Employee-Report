@@ -46,12 +46,12 @@ namespace Employee.DataModel.Models
         public virtual DbSet<Skill> Skills { get; set; }
 
         public virtual DbSet<Training> Training { get; set; }
-        public DbSet<IntelleactualProperty> IntelleactualProperty { get; set; }
+        public DbSet<IntellectualProperty> IntellectualProperty { get; set; }
 
      //   public virtual DbSet<UserDetail> UserDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer(" Server=MLI00737\\SQLEXPRESS;Database=EmployeeInfo;Integrated Security=True;TrustServerCertificate=True;");
+            => optionsBuilder.UseSqlServer("Server=MLI00740\\SQLEXPRESS;Database=EmployeeInfo;Integrated Security=True;TrustServerCertificate=True;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

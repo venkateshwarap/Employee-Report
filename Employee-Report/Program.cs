@@ -17,6 +17,7 @@ builder.Services.AddScoped<IEmployeeProjectService, EmployeeProjectService>();
 builder.Services.AddScoped<IEmployeeSkillService, EmployeeSkillService>();
 builder.Services.AddScoped<IEmployeePocService, EmployeePocService>();
 builder.Services.AddScoped<IGetRoleService, GetRoleService>();
+builder.Services.AddScoped<IIntellectualPropertyService, IntellectualPropertyService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 builder.Services.AddSyncfusionBlazor();

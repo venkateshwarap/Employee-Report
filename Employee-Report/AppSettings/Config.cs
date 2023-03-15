@@ -9,6 +9,8 @@ namespace Employee_Report.AppSettings
         public static string CREATE_EA_COUNCIL_ENTRY = ConfigurationHelper._config!.GetSection(Constants.CREATE_EA_COUNCIL_ENTRY).Value!;
         public static string GET_CERTIFICATIONS_DETAILS = ConfigurationHelper._config!.GetSection(Constants.GET_CERTIFICATIONS_DETAILS).Value!;
         public static string CREATE_CERTIFICATIONS_DETAILS = ConfigurationHelper._config!.GetSection(Constants.CREATE_CERTIFICATIONS_DETAILS).Value!;
+        public static string GET_INTELLECTUAL_PROPERTY_DETAILS = ConfigurationHelper._config!.GetSection(Constants.GET_INTELLECTUAL_PROPERTY).Value!;
+        public static string CREATE_INTELLECTUAL_PROPERTY_DETAILS = ConfigurationHelper._config!.GetSection(Constants.CREATE_INTELLECTUAL_PROPERTY).Value!;
 
         public const string LoginAPI = "https://localhost:7024/api/Authenticate/login";
         public const string DashboardList = "https://localhost:7024/api/Dashboard/GetEmployeeDetails";

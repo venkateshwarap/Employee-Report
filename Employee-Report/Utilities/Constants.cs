@@ -11,7 +11,7 @@
         public const string CREATE_EA_COUNCIL_ENTRY = "APIConfig:CreateEACouncilEntry";
         public const string GET_CERTIFICATIONS_DETAILS = "APIConfig:GetCertificationsDetails";
         public const string CREATE_CERTIFICATIONS_DETAILS = "APIConfig:CreateCertificationsDetails";
-
+ 
         #region LEARNING
         public const string CREATE_EMPLOYEE_LEARNING = "APIConfig:EmployeeLearning";
         public const string GET_EMPLOYEE_LEARNING = "APIConfig:EmployeeLearning";
@@ -44,6 +44,12 @@
 
         #region Skills
         public const string GET_SKILLS = "APIConfig:Skills/GetSkills";
+        #endregion
+
+        #region IntellectualProperty Routes
+        public const string GET_INTELLECTUAL_PROPERTY = "APIConfig:GetIntellectualProperty";
+        public const string CREATE_INTELLECTUAL_PROPERTY = "APIConfig:CreateIntellectualProperty";
+        public const string GET_BY_ID_INTELLECTUAL_PROPERTY = "APIConfig:GetIntellectualPropertyById";
         #endregion
         #endregion
     }

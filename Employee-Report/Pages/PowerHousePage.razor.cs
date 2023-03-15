@@ -17,7 +17,7 @@ namespace Employee_Report.Pages
             var response = await benchServices.GeEACouncilEntryDetails();
             powerHouseDetails = Utility.GetResponseData<List<PowerHouse>>(response.response);
         }
-        private async void SaveEntry()
+        private async void SavePowerHouseData()
         {
             if (powerHouseModel != null)
             {
@@ -27,8 +27,11 @@ namespace Employee_Report.Pages
                     navManager.NavigateTo("/power-house", forceLoad: true);
                     IsHidden = false;
                 }
-
             }
+        }
+        private void CancelPowerHouseData()
+        {
+            navManager.NavigateTo("/power-house", forceLoad: true);
         }
         private void Save()
         {

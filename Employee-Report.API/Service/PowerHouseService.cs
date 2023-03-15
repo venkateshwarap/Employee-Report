@@ -1,4 +1,5 @@
 ﻿using Employee.DataModel.Models;
+using Employee_Report.API.Entities;
 using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
 using Microsoft.EntityFrameworkCore;
@@ -26,21 +27,55 @@ namespace Employee_Report.API.Service
         }
 
 
-        public async Task<Response> GetAllEACouncilEntryExit()
+        public async Task<List<PowerHouse_Role>> GetAllEACouncilEntryExit()
         {
-            var result = await _context.PowerHouse.ToListAsync();
-            if (result.Count > 0)
+            var powerHouseDetails = new List<PowerHouse_Role>();
+            if (_context != null)
             {
-                return BindResponse(result, true);
+                var result = (from ph in _context.PowerHouse
+                              join r in _context.Roles on ph.RoleId equals r.Id
+                              select new { ph.Id, ph.EmpId, ph.StartDate, ph.EndDate, r.RoleName, ph.ReportingTo }).ToList();
+
+                if (result != null)
+                {
+                    foreach (var res in result)
+                    {
+                        powerHouseDetails.Add(new PowerHouse_Role
+                        {
+                            Id = res.Id,
+                            EmpId = res.EmpId,
+                            RoleName = res.RoleName,
+                            StartDate = res.StartDate,
+                            EndDate = res.EndDate,
+                            ReportingTo = res.ReportingTo
+                        });
+                    }
+                }
             }
-            {
-                return BindResponse(result, false);
-            }
+            return powerHouseDetails;
+
+            #region Try
+            //var result = (from ph in _context.PowerHouse
+            //              join r in _context.Roles on ph.RoleId equals r.Id
+            //              select new { ph.Id, ph.EmpId, ph.StartDate, ph.EndDate, r.RoleName, ph.ReportingTo }).ToList();
+
+            //PowerHouse_Role phRole = new PowerHouse_Role();
+            //foreach(var data in result)
+            //{
+            //    phRole.Id = data.Id;
+            //    phRole.EmpId = data.EmpId;
+            //    phRole.StartDate = data.StartDate;
+            //    phRole.EndDate = data.EndDate;
+            //    phRole.RoleName = data.RoleName;
+            //    phRole.ReportingTo = data.ReportingTo;
+            //};
+            //return result;
+            #endregion
         }
 
         public async Task<Response> GetEACouncilByEmpId(string empid)
         {
-            var result = await _context.PowerHouse.Where(x=>x.EmpId == empid).FirstOrDefaultAsync();
+            var result = await _context.PowerHouse.Where(x => x.EmpId == empid).FirstOrDefaultAsync();
             if (result != null)
             {
                 return BindResponse(result!, true);
@@ -52,7 +87,7 @@ namespace Employee_Report.API.Service
 
         public async Task<Response> DeleteFromEACouncil(string empid)
         {
-            var result = await _context.PowerHouse.Where(x=>x.EmpId == empid).FirstOrDefaultAsync();
+            var result = await _context.PowerHouse.Where(x => x.EmpId == empid).FirstOrDefaultAsync();
             if (result == null)
             {
                 return BindResponse(result!, false, Constants.RE_EmpId_Not_Available_EA);
@@ -62,7 +97,7 @@ namespace Employee_Report.API.Service
 
             if (response == 1)
             {
-                return BindResponse(result!, true,Constants.RE_Remove_EA);
+                return BindResponse(result!, true, Constants.RE_Remove_EA);
             }
             {
                 return BindResponse(result!, false);

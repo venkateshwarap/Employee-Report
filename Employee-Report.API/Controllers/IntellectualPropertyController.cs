@@ -1,22 +1,23 @@
 ﻿using Employee_Report.API.Service;
+using Employee_Report.API.Utilities;
 using Employee_Report.Model.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(Constants.RT_INTELLECTUAL_PROPERTY)]
     [ApiController]
-    public class IntelleactualPropertyController : ControllerBase
+    public class IntellectualPropertyController : ControllerBase
     {
         private readonly IIntelleactalProperty _intelleactal;
-        public IntelleactualPropertyController(IIntelleactalProperty intelleactal)
+        public IntellectualPropertyController(IIntelleactalProperty intelleactal)
         {
             _intelleactal = intelleactal;
         }
 
         [HttpPost]
-        [Route("getById")]
+        [Route(Constants.GET_BY_ID)]
         public async Task<IActionResult> GetById(string empid)
         {
             var result = await _intelleactal.GetById(empid);
@@ -24,7 +25,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpGet]
-        [Route("get")]
+        [Route(Constants.GET)]
         public async Task<IActionResult> GetALL()
         {
             var result = await _intelleactal.GetAll();
@@ -32,16 +33,16 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpPost]
-        [Route("create")]
-        public async Task<IActionResult> Create(IntelleactualProperty intelleactal)
+        [Route(Constants.CREATE)]
+        public async Task<IActionResult> Create(IntellectualProperty intelleactal)
         {
             var result = await _intelleactal.Create(intelleactal);
             return Ok(result);
         }
 
         [HttpPut]
-        [Route("update")]
-        public async Task<IActionResult> Update(IntelleactualProperty intelleactal)
+        [Route(Constants.UPDATE)]
+        public async Task<IActionResult> Update(IntellectualProperty intelleactal)
         {
             var result = await _intelleactal.Update(intelleactal);
             return Ok(result);

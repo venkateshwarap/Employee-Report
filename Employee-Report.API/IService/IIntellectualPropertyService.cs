@@ -7,8 +7,8 @@ namespace Employee_Report.API.Service
     {
         Task<Response> GetAll();
         Task<Response> GetById(string empid);
-        Task<Response> Create(IntelleactualProperty intelleactual);
-        Task<Response> Update(IntelleactualProperty intelleactual);
+        Task<Response> Create(IntellectualProperty intelleactual);
+        Task<Response> Update(IntellectualProperty intelleactual);
         Task<Response> Delete(string empid);
     }
 }

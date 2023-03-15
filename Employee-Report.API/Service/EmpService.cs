@@ -20,20 +20,20 @@ namespace Employee_Report.API.Service
                 return await _dBContext.Employees.ToListAsync();
             }
             return null;
-            
+
         }
 
         public EMP GetEmployeeById(string Id)
         {
             if (_dBContext != null)
             {
-                var result= _dBContext.Employees.ToList().Find(x=>x.Id == Id);
+                var result = _dBContext.Employees.ToList().Find(x => x.Id == Id);
 
                 var skill = (from empskills in _dBContext.EmployeeSkills
-                              join skills in _dBContext.Skills on empskills.SkillId equals skills.Id
-                              join employees in _dBContext.Employees on empskills.EmpId equals employees.Id
-                              where employees.Id == Id
-                              select new { skills.SkillName }).ToList();
+                             join skills in _dBContext.Skills on empskills.SkillId equals skills.Id
+                             join employees in _dBContext.Employees on empskills.EmpId equals employees.Id
+                             where employees.Id == Id
+                             select new { skills.SkillName }).ToList();
                 var empskill = string.Join(", ", skill);
 
 
