@@ -7,6 +7,7 @@ namespace Employee_Report.AppSettings
         public static string API_ROUTE = ConfigurationHelper._config!.GetSection(Constants.API_ROUTE).Value!;
         public static string GET_EA_COUNCIL = ConfigurationHelper._config!.GetSection(Constants.GET_EA_COUNCIL).Value!;
         public static string CREATE_EA_COUNCIL_ENTRY = ConfigurationHelper._config!.GetSection(Constants.CREATE_EA_COUNCIL_ENTRY).Value!;
+        public static string CREATE_POWERHOUSE_ROLE = ConfigurationHelper._config!.GetSection(Constants.CREATE_POWERHOUSE_ROLE).Value!;
         public static string GET_CERTIFICATIONS_DETAILS = ConfigurationHelper._config!.GetSection(Constants.GET_CERTIFICATIONS_DETAILS).Value!;
         public static string CREATE_CERTIFICATIONS_DETAILS = ConfigurationHelper._config!.GetSection(Constants.CREATE_CERTIFICATIONS_DETAILS).Value!;
         public static string GET_INTELLECTUAL_PROPERTY_DETAILS = ConfigurationHelper._config!.GetSection(Constants.GET_INTELLECTUAL_PROPERTY).Value!;
