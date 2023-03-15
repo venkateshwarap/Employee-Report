@@ -15,9 +15,9 @@ namespace Employee.DataModel.Models
 
         public bool Status { get; set; }
 
-        public string? Key { get; set; } = null!;
+        public string Key { get; set; } 
 
-        public  DateTime? JoiningDate { get; set; }
+        public  DateTime JoiningDate { get; set; }
 
         public DateTime? LastWorkingDate { get; set; }
 

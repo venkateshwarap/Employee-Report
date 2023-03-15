@@ -9,6 +9,7 @@
         public const string API_ROUTE = "APIConfig:BaseUrl";
         public const string GET_EA_COUNCIL = "APIConfig:GetEACouncilEntry";
         public const string CREATE_EA_COUNCIL_ENTRY = "APIConfig:CreateEACouncilEntry";
+        public const string CREATE_POWERHOUSE_ROLE = "APIConfig:CreatePowerHouse_Role";
         public const string GET_CERTIFICATIONS_DETAILS = "APIConfig:GetCertificationsDetails";
         public const string CREATE_CERTIFICATIONS_DETAILS = "APIConfig:CreateCertificationsDetails";
  

@@ -1,9 +1,4 @@
 ﻿using Employee.DataModel.Models;
-using Employee_Report.API.Entities;
-using Employee_Report.API.IService;
-using Employee_Report.Model.Models;
-using Employee_Report.Utilities;
-using static Employee_Report.Pages.EmployeeReport;
 
 namespace Employee_Report.Repository.Services
 {
@@ -21,9 +16,9 @@ namespace Employee_Report.Repository.Services
             return empSkills_Skills;
         }
 
-        public async Task<HttpResponseMessage> AddEmployeeSkills_Skils(EmployeeSkills_Skills_Entity employeeSkills_Skills_Entity)
+        public async Task<HttpResponseMessage> AddEmployeeSkills_Skils(EmployeeSkills employeeSkills)
         {
-            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddEmployeeSkill, employeeSkills_Skills_Entity);
+            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddEmployeeSkill, employeeSkills);
             return responseMessage;
         }
     }

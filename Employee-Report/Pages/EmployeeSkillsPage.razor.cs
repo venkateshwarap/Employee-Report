@@ -12,7 +12,7 @@ namespace Employee_Report.Pages
         public IEnumerable<EmployeeSkills_Skills_Entity> employeeSkills_SkillsDetails { get; set; }
         public EmployeeSkills_Skills_Entity EmployeeSkills_SkillsModel = new EmployeeSkills_Skills_Entity();
         public EmployeeSkills empSkillsModel = new EmployeeSkills();
-          Repository.Services.SkillsService SkillsService = new();
+        public EmployeeSkills employeeSkills = new();
         private bool IsHidden { get; set; } = false;
 
         List<Skill> skillDetails = new List<Skill>();
@@ -26,10 +26,11 @@ namespace Employee_Report.Pages
 
         }
         public async void AddEmployeeSkill()
+
         {
-            if (employeeSkillService != null)
+            if (employeeSkills != null)
             {
-                var response = await employeeSkillService.AddEmployeeSkills_Skils(EmployeeSkills_SkillsModel);
+                var response = await employeeSkillService.AddEmployeeSkills_Skils(employeeSkills);
                 if (response.IsSuccessStatusCode)
                 {
                     IsHidden = false;

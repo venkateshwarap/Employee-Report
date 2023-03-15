@@ -1,9 +1,9 @@
-﻿namespace Employee_Report.API.Entities
+﻿namespace Employee.DataModel.Models
 {
     public class EmployeeProjectEntity
     {
         public string? Name { get; set; }
-
+        public string? EmpId { get; set; }
         public string? Role { get; set; }
 
         public DateTime? StartDate { get; set; }

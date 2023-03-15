@@ -1,9 +1,6 @@
 ﻿using Employee.DataModel.Models;
-using Employee_Report.API.Entities;
 using Employee_Report.API.IService;
-using Employee_Report.Model.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace Employee_Report.API.Service
 {

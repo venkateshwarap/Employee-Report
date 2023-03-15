@@ -92,6 +92,31 @@ namespace Employee_Report.API.Controllers
             }
             return BadRequest();
         }
+        [HttpGet("GetProjectByEmployeeId")]
+        public async Task<IActionResult> GetProjectByEmployeeId(string EmpId)
+        {
+            if (EmpId == null)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                var p = _projectService.GetById(EmpId);
+
+                if (p == null)
+                {
+                    return NotFound();
+                }
+
+
+                return Ok(p);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
 
         [HttpPost("AddProject")]
         public async Task<IActionResult> AddProject([FromBody] Project project)

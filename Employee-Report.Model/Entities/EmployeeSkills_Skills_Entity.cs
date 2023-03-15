@@ -1,6 +1,6 @@
-﻿using Employee.DataModel.Models;
+﻿
 
-namespace Employee_Report.API.Entities
+namespace Employee.DataModel.Models
 {
     public partial class EmployeeSkills_Skills_Entity
     {

@@ -7,6 +7,7 @@ namespace Employee_Report.AppSettings
         public static string API_ROUTE = ConfigurationHelper._config!.GetSection(Constants.API_ROUTE).Value!;
         public static string GET_EA_COUNCIL = ConfigurationHelper._config!.GetSection(Constants.GET_EA_COUNCIL).Value!;
         public static string CREATE_EA_COUNCIL_ENTRY = ConfigurationHelper._config!.GetSection(Constants.CREATE_EA_COUNCIL_ENTRY).Value!;
+        public static string CREATE_POWERHOUSE_ROLE = ConfigurationHelper._config!.GetSection(Constants.CREATE_POWERHOUSE_ROLE).Value!;
         public static string GET_CERTIFICATIONS_DETAILS = ConfigurationHelper._config!.GetSection(Constants.GET_CERTIFICATIONS_DETAILS).Value!;
         public static string CREATE_CERTIFICATIONS_DETAILS = ConfigurationHelper._config!.GetSection(Constants.CREATE_CERTIFICATIONS_DETAILS).Value!;
         public static string GET_INTELLECTUAL_PROPERTY_DETAILS = ConfigurationHelper._config!.GetSection(Constants.GET_INTELLECTUAL_PROPERTY).Value!;
@@ -31,10 +32,13 @@ namespace Employee_Report.AppSettings
 
         #region Employee
         public const string GetEmployee = "https://localhost:7178/api/Emp/GetEmployee";
+        public const string GetEmployeeById = "https://localhost:7178/api/Emp/GetEmployeeById?Id";
         #endregion
+
         #region Login
         public const string Login = "https://localhost:7178/api/Authenticate/login";
         #endregion
+
         #region Role
         public const string GetRole = "https://localhost:7178/api/Role/GetRole";
         public const string AddRole = "https://localhost:7178/api/Role/AddRole";
