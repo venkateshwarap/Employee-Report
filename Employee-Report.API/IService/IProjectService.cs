@@ -15,5 +15,6 @@ namespace employee_report.api.iservice
 
         Task<int> PostProject(Project project);
         Task<int> PostEmployeeProject(EmployeeProject employeeproject);
+        List<EmployeeProjectEntity> GetById(string empId);
     }
 }

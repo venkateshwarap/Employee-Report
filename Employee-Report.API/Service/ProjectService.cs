@@ -51,7 +51,37 @@ namespace Employee_Report.API.Service
             }
             return empProjectDetails;
         }
+        public List<EmployeeProjectEntity> GetById(string empId)
+        {
+            if (_dBContext != null)
+            {
 
+                var result = (from ep in _dBContext.EmployeeProjects
+                              join e in _dBContext.Employees on ep.EmpId equals e.Id
+                              join p in _dBContext.Projects on ep.ProjectId equals p.Id
+                              where e.Id == empId
+                              select new { p.ProjectName, ep.EmpId, ep.ProjectId, ep.StartDate, ep.EndDate, ep.ReportingTo }).ToList();
+
+
+                List<EmployeeProjectEntity> employeeProjectEntity = new List<EmployeeProjectEntity>();
+
+                foreach (var li in result)
+                {
+                    employeeProjectEntity.Add(new EmployeeProjectEntity
+                    {
+                        Name = li.ProjectName,
+                        EmpId = li.EmpId,
+                        EndDate = li.EndDate,
+                        ReportingTo = li.ReportingTo,
+                        StartDate = li.StartDate
+                    });
+                }
+
+                return employeeProjectEntity;
+            }
+            return null;
+
+        }
         public async Task<int> PostProject(Project project)
         {
             if (_dBContext != null)
