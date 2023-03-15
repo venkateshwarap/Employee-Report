@@ -16,6 +16,40 @@ namespace Employee_Report.API.Service
         {
             this._dBContext = context;
         }
+
+        public List<EmployeePOCEntity> GetById(string empId)
+        {
+            if (_dBContext != null)
+            {
+                //var result = _dBContext.Employees.ToList().Find(x => x.Id == Id);
+
+                var result = (from ep in _dBContext.EmployeePocs
+                              join e in _dBContext.Employees on ep.EmpId equals e.Id
+                              join p in _dBContext.Pocs on ep.Pocid equals p.Id
+                              where e.Id == empId
+                              select new { p.Name, ep.EmpId, ep.Pocid, ep.StartDate, ep.EndDate, ep.ReportingTo }).ToList();
+
+
+                List<EmployeePOCEntity> employeePOCEntity = new List<EmployeePOCEntity>();
+
+                foreach (var li in result)
+                {
+                    employeePOCEntity.Add(new EmployeePOCEntity
+                    {
+                        Name = li.Name,
+                        EmpId = li.EmpId,
+                        EndDate = li.EndDate,
+                        ReportingTo = li.ReportingTo,
+                        StartDate = li.StartDate
+                    });
+                }
+
+                return employeePOCEntity;
+            }
+            return null;
+
+        }
+
         public async Task<List<EmployeePOCEntity>> GetEmployeePOCDetails()
         {
             var empPOCDetails = new List<EmployeePOCEntity>();
@@ -24,23 +58,24 @@ namespace Employee_Report.API.Service
                 var result = (from ep in _dBContext.EmployeePocs
                               join p in _dBContext.Pocs on ep.Pocid equals p.Id
                               join r in _dBContext.Roles on ep.RoleId equals r.Id
-                              select new {p.Name, r.RoleName, ep.StartDate, ep.EndDate, ep.ReportingTo }).ToList();
+                              select new { p.Name, r.RoleName, ep.StartDate, ep.EndDate, ep.ReportingTo }).ToList();
 
                 if (result != null)
                 {
                     foreach (var emp in result)
                     {
-                        empPOCDetails.Add( new EmployeePOCEntity { 
-                            
-                            Name= emp.Name,
+                        empPOCDetails.Add(new EmployeePOCEntity
+                        {
+
+                            Name = emp.Name,
                             Role = emp.RoleName,
-                            StartDate= emp.StartDate,
-                            EndDate= emp.EndDate,
+                            StartDate = emp.StartDate,
+                            EndDate = emp.EndDate,
                             ReportingTo = emp.ReportingTo
-                     });
+                        });
                     }
                 }
-                
+
             }
             return empPOCDetails;
         }
@@ -74,6 +109,8 @@ namespace Employee_Report.API.Service
                 return poc.Id;
             }
             return 0;
+
         }
+
     }
 }

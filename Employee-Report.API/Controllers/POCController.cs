@@ -1,5 +1,6 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.API.IService;
+using Employee_Report.API.Service;
 using Employee_Report.Model.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -98,6 +99,33 @@ namespace Employee_Report.API.Controllers
                 }
             }
             return BadRequest();
+        }
+
+
+        [HttpGet("GetPOCByEmployeeId")]
+        public async Task<IActionResult> GetPOCByEmployeeId(string EmpId)
+        {
+            if (EmpId == null)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                var poc = _pocService.GetById(EmpId);
+
+                if (poc == null)
+                {
+                    return NotFound();
+                }
+
+
+                return Ok(poc);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
 
     }

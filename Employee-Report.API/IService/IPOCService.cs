@@ -12,5 +12,6 @@ namespace Employee_Report.API.IService
 
         Task<int> PostPoc(Poc poc);
         Task<int> PostEmployeePoc(EmployeePoc employeePoc);
+        List<EmployeePOCEntity> GetById(string empId);
     }
 }
