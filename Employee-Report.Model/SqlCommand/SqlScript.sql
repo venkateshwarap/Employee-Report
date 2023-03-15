@@ -230,27 +230,30 @@ CREATE TABLE [dbo].[Employee](
 	[LastName] [varchar](50) NOT NULL,
 	[Email] [nvarchar](50) NOT NULL,
 	[Status] [bit] NULL,
+	[JoiningDate] [date] NULL,
+	[LastWorkingDate] [date] NULL,
+	[Key] [nvarchar](25) NULL,
  CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
- 
+GO
 --Employee DATA:
-INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status])
-VALUES ('MLI741', 'Rajeev','Reddy', 'rajeev.reddy@motivitylabs.com',1)
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[LastWorkingDate],[Key])
+VALUES ('MLI741', 'Rajeev','Reddy', 'rajeev.reddy@motivitylabs.com',1,18-08-2021,'Rajeev@123')
 
-INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status])
-VALUES ('MLI740', 'Nitin','Sharma', 'nitin.sharma@motivitylabs.com',1)
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[LastWorkingDate],[Key])
+VALUES ('MLI740', 'Nitin','Sharma', 'nitin.sharma@motivitylabs.com',1,18-08-2021,'Nitin@123')
 
-INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status])
-VALUES ('MLI737', 'SriLaxmi','Katla', 'srilaxmi.katla@motivitylabs.com',1)
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[LastWorkingDate],[Key])
+VALUES ('MLI737', 'SriLaxmi','Katla', 'srilaxmi.katla@motivitylabs.com',1,11-08-2021,'Srilaxmi@123')
 
-INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status])
-VALUES ('MLI748', 'Praful','Reddy', 'praful.reddy@motivitylabs.com',1)
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[LastWorkingDate],[Key])
+VALUES ('MLI748', 'Praful','Reddy', 'praful.reddy@motivitylabs.com',1,18-08-2021,'Praful@123')
 
-INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status])
-VALUES ('MLI719', 'Taj','Ansari', 'taj.ansari@motivitylabs.com',1)
+INSERT INTO [dbo].[Employee] ([Id], [FirstName],[LastName], [Email],[Status],[JoiningDate],[LastWorkingDate],[Key])
+VALUES ('MLI719', 'Taj','Ansari', 'taj.ansari@motivitylabs.com',1,18-08-2021,'Taj@123')
 
 
 
