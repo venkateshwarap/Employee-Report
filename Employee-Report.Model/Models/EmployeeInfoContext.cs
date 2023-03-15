@@ -86,7 +86,7 @@ namespace Employee.DataModel.Models
                 entity.Property(e => e.ReportingTo)
                     .HasMaxLength(10)
                     .IsUnicode(false);
-                entity.Property(e => e.Role).HasMaxLength(50);
+                entity.Property(e => e.RoleId).HasMaxLength(50);
                 entity.Property(e => e.StartDate).HasColumnType("date");
             });
 
