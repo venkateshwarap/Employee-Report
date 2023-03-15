@@ -37,7 +37,7 @@ namespace Employee_Report.API.Controllers
 
         [HttpPost]
         [Route("createPowerHouse_Roles")]
-        public async Task<IActionResult> CreatePowerhouse_Role(PowerHouse_Role powerHouse_Role)
+        public async Task<IActionResult> CreatePowerhouse_Role(PowerHouse powerHouse_Role)
         {
             try
             {
