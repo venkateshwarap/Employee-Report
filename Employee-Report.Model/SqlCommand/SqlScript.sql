@@ -144,7 +144,7 @@ CREATE TABLE [dbo].[PowerHouse](
 	[EmpId] [varchar](10) NULL,
 	[StartDate] [date] NULL,
 	[EndDate] [date] NULL,
-	[Role] [nvarchar](50) NULL,
+	[RoleId] [int] NULL,
 	[ReportingTo] [varchar](10) NULL,
     [CreatedBy] [nvarchar](50) NOT NULL,
 	[CreatedOn] [date] NOT NULL,
@@ -153,19 +153,19 @@ CREATE TABLE [dbo].[PowerHouse](
 ) ON [PRIMARY]
  
 --POWERHOUSE DATA:
-INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [RoleId], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
 VALUES('MLI741', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'Rajeev', GETDATE(), 'Rajeev', GETDATE())
 
-INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [RoleId], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
 VALUES('MLI740', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'Nitin', GETDATE(), 'Nitin', GETDATE())
 
-INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [RoleId], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
 VALUES('MLI737', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'SriLaxmi', GETDATE(), 'SriLaxmi', GETDATE())
 
-INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [RoleId], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
 VALUES('MLI748', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'Praful', GETDATE(), 'Praful', GETDATE())
 
-INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [Role], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
+INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [RoleId], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
 VALUES('MLI719', GETDATE()-30, GETDATE()+30, 1, 'Sandeep Y', 'Taj', GETDATE(), 'Taj', GETDATE())
 
 
