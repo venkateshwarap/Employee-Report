@@ -1,4 +1,5 @@
 ﻿using Employee.DataModel.Models;
+using Employee_Report.API.Entities;
 using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
 using Employee_Report.Model.Models;
@@ -30,10 +31,25 @@ namespace Employee_Report.API.Controllers
             }
             catch (Exception)
             {
-
                 throw;
             }
+        }
 
+        [HttpPost]
+        [Route("createPowerHouse_Roles")]
+        public async Task<IActionResult> CreatePowerhouse_Role(PowerHouse powerHouse_Role)
+        {
+            try
+            {
+                var result = await _BenchService.CreateCouncilEntry(powerHouse_Role);
+                if (result.status)
+                    return Ok(result);
+                return BadRequest(result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [HttpGet]

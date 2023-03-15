@@ -4,7 +4,7 @@
 @using Employee_Report.Model.Models
 @inject NavigationManager navManager;
 
-@if (powerHouseDetails == null)
+@if (powerHouse_RolesDeatils == null)
 {
     <p><em>Loading your data... Please wait..</em></p>
 }
@@ -14,54 +14,54 @@ else
         <h5>Power&nbsp;House</h5>
         @if (!IsHidden)
         {
-            <SfButton id="sfBtnAddPowerHouse" OnClick="Save">Add new PowerHouse</SfButton>
+            <SfButton id="sfBtnAddPowerHouse" OnClick="AddPowerHouseRole">Add new PowerHouse</SfButton>
         }
     </div>
     <div class="@(IsHidden ? "show" : "hidden")">
-        <EditForm Model="@powerHouseModel">
+        <EditForm Model="@PowerHouse_RoleModel">
             <DataAnnotationsValidator />
             <div class="form-control">
                 <div class="row">
                     <div class="col-md-6">
                         <SfTextBox CssClass="e-outline custom-size" Placeholder="Employee Id" FloatLabelType="@FloatLabelType.Auto" Type="InputType.Text" class="form-control"
-                               @bind-Value="powerHouseModel.EmpId" />
-                        <ValidationMessage For="@(() => powerHouseModel.EmpId)" />
+                               @bind-Value="PowerHouse_RoleModel.EmpId" />
+                        <ValidationMessage For="@(() => PowerHouse_RoleModel.EmpId)" />
                     </div>
-                    <div class="col-md-6">
-                        <SfTextBox CssClass="e-outline custom-size" Placeholder="ReportingTo" FloatLabelType="@FloatLabelType.Auto" Type="InputType.Text" class="form-control"
-                               @bind-Value="powerHouseModel.ReportingTo" />
-                        <ValidationMessage For="@(() => powerHouseModel.ReportingTo)" />
-                    </div>
-                </div>
-                <div class="row mt-2">
                     <div class="col-md-6">
                         <label Class="e-outline-date">Role</label>
-                        <InputSelect class="form-control" @bind-Value=@powerHouseModel.RoleId>
+                        <InputSelect class="form-control" @bind-Value=@PowerHouse_RoleModel.RoleName>
                             <option selected value="">Please Select</option>
                             <option value="Admin">Admin</option>
                             <option value="Manager">Manager</option>
                             <option value="Team Lead</">Team Lead</option>
                         </InputSelect>
-                        <ValidationMessage For="@(() => powerHouseModel.RoleId)" />
-                    </div>
-                    <div class="col-md-6">
-                        <label Class="e-outline-date">StartDate</label>
-                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
-                               @bind-Value="powerHouseModel.StartDate" />
-                        <ValidationMessage For="@(() => powerHouseModel.StartDate)" />
+                        <ValidationMessage For="@(() => PowerHouse_RoleModel.RoleName)" />
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-6">
+                        <label Class="e-outline-date">StartDate</label>
+                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                               @bind-Value="PowerHouse_RoleModel.StartDate" />
+                        <ValidationMessage For="@(() => PowerHouse_RoleModel.StartDate)" />
+                    </div>
+                    <div class="col-md-6">
                         <label Class="e-outline-date">EndDate</label>
                         <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
-                               @bind-Value="powerHouseModel.EndDate" />
-                        <ValidationMessage For="@(() => powerHouseModel.EndDate)" />
+                               @bind-Value="PowerHouse_RoleModel.EndDate" />
+                        <ValidationMessage For="@(() => PowerHouse_RoleModel.EndDate)" />
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <SfTextBox CssClass="e-outline custom-size" Placeholder="ReportingTo" FloatLabelType="@FloatLabelType.Auto" Type="InputType.Text" class="form-control"
+                               @bind-Value="PowerHouse_RoleModel.ReportingTo" />
+                        <ValidationMessage For="@(() => PowerHouse_RoleModel.ReportingTo)" />
                     </div>
                 </div>
                 <div id="SfAddPowerHouseBtns">
-                    <SfButton @onclick="@SavePowerHouseData" type="submit" class="btnAddPowerHouse" Content="Add"></SfButton>
-                    <SfButton @onclick="@CancelPowerHouseData" type="button" class="btnCancelPowerHouse" Content="Cancel"></SfButton>
+                    <SfButton @onclick="@AddPowerHouseRole" type="submit" class="btnAddPowerHouse" Content="Add"></SfButton>
+                    <SfButton @onclick="@CanacPowerHouseRole" type="button" class="btnCancelPowerHouse" Content="Cancel"></SfButton>
                 </div>
             </div>
         </EditForm>
@@ -69,11 +69,13 @@ else
     <div style="margin-top:4px;">
     @if (!IsHidden)
     {
-        <SfGrid DataSource="@powerHouseDetails">
+            <SfGrid DataSource="@powerHouse_RolesDeatils">
             <GridColumns>
-                <GridColumn Field="@nameof(powerHouseModel.EmpId)" HeaderText="EmpID" TextAlign="TextAlign.Center" Width="120"></GridColumn>
-                <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(powerHouseModel.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-                <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(powerHouseModel.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                <GridColumn Field="@nameof(PowerHouse_RoleModel.EmpId)" HeaderText="Employee ID" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Field="@nameof(PowerHouse_RoleModel.RoleName)" HeaderText="Role Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Format="d" Field="@nameof(PowerHouse_RoleModel.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                <GridColumn Format="d" Field="@nameof(PowerHouse_RoleModel.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                <GridColumn Format="d" Field="@nameof(PowerHouse_RoleModel.ReportingTo)" HeaderText="Reporting To" TextAlign="TextAlign.Center" Width="150"></GridColumn>
             </GridColumns>
         </SfGrid>
     }

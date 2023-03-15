@@ -86,8 +86,8 @@ namespace Employee_Report.Pages
             interviewsDetails = Utility.GetResponseData<List<Interview>>(response.response);
             var cerificationresponse = await reportService.GetCertificationDetails();
             certificationslist = Utility.GetResponseData<List<Certification>>(cerificationresponse.response);
-            var powerHouseresponse = await benchServices.GeEACouncilEntryDetails();
-            powerHouseDetails = Utility.GetResponseData<List<PowerHouse>>(powerHouseresponse.response);
+            var powerHouseresponse = (await benchServices.GeEACouncilEntryDetails()).ToList();
+            //powerHouseDetails = Utility.GetResponseData<List<PowerHouse>>(powerHouseresponse.response);
             employeepoc = (await reportService.GetEmployeePOCDetails()).ToList();
             employeeproject = (await reportService.GetEmployeeProjectDetails()).ToList();
             var learningresponse = await LearningService.GetLearnings();

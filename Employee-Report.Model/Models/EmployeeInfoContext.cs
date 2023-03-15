@@ -51,7 +51,11 @@ namespace Employee.DataModel.Models
      //   public virtual DbSet<UserDetail> UserDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+<<<<<<< HEAD
             => optionsBuilder.UseSqlServer("Server=MLI00737\\SQLEXPRESS;Database=EmployeeInfo;Integrated Security=True;TrustServerCertificate=True;");
+=======
+            => optionsBuilder.UseSqlServer("Server=MLI00741\\RAJEEV_SQLDEV;Database=EmployeeInfo;Integrated Security=True;TrustServerCertificate=True;User Id=sa;Password=Raj@727_eev.MLI;");
+>>>>>>> d1f704f2c51a1764df7942d6f4a6c7f61af0fafb
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
