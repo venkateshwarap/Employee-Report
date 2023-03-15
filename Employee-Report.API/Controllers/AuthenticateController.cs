@@ -21,7 +21,8 @@ namespace Employee_Report.API.Controllers
         {
             try
             {
-                var employee = _context.Employees.ToList().Find(x => x.Email == loginModel.UserName && x.Key == loginModel.security);
+                //var employee = _context.Employees.ToList().Find(x => x.Email == loginModel.UserName && x.Key == loginModel.security);
+                var employee =  _context.Employees.Where(x => x.Email == loginModel.UserName && x.Key == loginModel.security);
 
                 if (employee == null)
                 {
