@@ -3,6 +3,7 @@ using Employee_Report.Repository.IServices;
 using Employee_Report.Repository.Services;
 using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Syncfusion.Blazor;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +30,7 @@ builder.Services.AddScoped<IGetRoleService, GetRoleService>();
 builder.Services.AddScoped<IIntellectualPropertyService, IntellectualPropertyService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddHttpClient();
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTIxMjA0MEAzMjMwMmUzNDJlMzBMalJWcXpUYTZBY09jeDZqNjQwVGRtK3lBU0dWMWladUU2Vi9XQVNmNFNzPQ==");
@@ -46,7 +48,16 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
-
+app.UseSession();
+app.Use(async delegate (HttpContext Context, Func<Task> Next)
+{
+    //this throwaway session variable will "prime" the SetString() method
+    //to allow it to be called after the response has started
+    var TempKey = Guid.NewGuid().ToString(); //create a random key
+    Context.Session.Set(TempKey, Array.Empty<byte>()); //set the throwaway session variable
+    Context.Session.Remove(TempKey); //remove the throwaway session variable
+    await Next(); //continue on with the request
+});
 app.UseRouting();
 
 app.MapBlazorHub();

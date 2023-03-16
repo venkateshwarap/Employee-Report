@@ -2,6 +2,7 @@
 <PageTitle>Employee Information - Employee Details</PageTitle>
 @using Employee.DataModel.Models;
 @inject NavigationManager navManager
+@inject IHttpContextAccessor HttpContext;
 <h3 style="align-content: center">Employee Details</h3>
 @if (employees == null)
 {
@@ -17,6 +18,7 @@ else
                 <Template>
                     @{
                         var emp = (context as Employees);
+                        HttpContext.HttpContext.Session.SetString("EmpID", emp.Id.ToString());
                         <a href="/EmployeeReport?EmpID=@emp.Id" @onclick="Clicked">@emp.FirstName</a>
                     }
                 </Template>
