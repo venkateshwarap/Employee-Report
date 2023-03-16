@@ -290,19 +290,19 @@ REFERENCES [dbo].[PowerHouse] ([Id])
 GO
 
 --EmployeePOC DATA:
-INSERT INTO [dbo].[EmployeePOC]([POCId], [EmpId], [BenchId], [StartDate], [EndDate], [ReportingTo], [RoleId])
+INSERT INTO [dbo].[EmployeePOC]([POCId], [EmpId], [PowerHouseId], [StartDate], [EndDate], [ReportingTo], [RoleId])
 VALUES(1, 'MLI741', 1, GETDATE()-30, GETDATE()+30, 'Sandeep Y', 1)
 
-INSERT INTO [dbo].[EmployeePOC]([POCId], [EmpId], [BenchId], [StartDate], [EndDate], [ReportingTo], [RoleId])
+INSERT INTO [dbo].[EmployeePOC]([POCId], [EmpId], [PowerHouseId], [StartDate], [EndDate], [ReportingTo], [RoleId])
 VALUES(1, 'MLI740', 2, GETDATE()-30, GETDATE()+30, 'Sandeep Y', 1)
 
-INSERT INTO [dbo].[EmployeePOC]([POCId], [EmpId], [BenchId], [StartDate], [EndDate], [ReportingTo], [RoleId])
+INSERT INTO [dbo].[EmployeePOC]([POCId], [EmpId],[PowerHouseId], [StartDate], [EndDate], [ReportingTo], [RoleId])
 VALUES(1, 'MLI737', 3, GETDATE()-30, GETDATE()+30, 'Sandeep Y', 1)
 
-INSERT INTO [dbo].[EmployeePOC]([POCId], [EmpId], [BenchId], [StartDate], [EndDate], [ReportingTo], [RoleId])
+INSERT INTO [dbo].[EmployeePOC]([POCId], [EmpId], [PowerHouseId], [StartDate], [EndDate], [ReportingTo], [RoleId])
 VALUES(1, 'MLI748', 4, GETDATE()-30, GETDATE()+30, 'Sandeep Y', 1)
 
-INSERT INTO [dbo].[EmployeePOC]([POCId], [EmpId], [BenchId], [StartDate], [EndDate], [ReportingTo], [RoleId])
+INSERT INTO [dbo].[EmployeePOC]([POCId], [EmpId], [PowerHouseId], [StartDate], [EndDate], [ReportingTo], [RoleId])
 VALUES(1, 'MLI719', 5, GETDATE()-30, GETDATE()+30, 'Sandeep Y', 1)
 
 
