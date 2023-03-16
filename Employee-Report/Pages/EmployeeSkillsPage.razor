@@ -25,18 +25,18 @@ else
             <div class="form-control">
                 <div class="row">
                     <div class="col-md-6">
-                        <label>Employee ID</label>
+                        <label>Employee Id</label>
                         <SfNumericTextBox Type="InputType.Text" class="form-control"
-                               @bind-Value="employeeSkills.EmpId" />
+                                      @bind-Value="employeeSkills.EmpId" />
                         <ValidationMessage For="@(() => employeeSkills.EmpId)" />
                     </div>
                     <div class="col-md-6">
                         <label>Skill Name</label>
                         <SfDropDownList TValue="string" TItem="Skill" Placeholder="Select Skill"
                                     DataSource="@skillDetails">
-                                    <DropDownListFieldSettings Value="Id" Text="SkillName">
-                                    </DropDownListFieldSettings></SfDropDownList>
-
+                            <DropDownListFieldSettings Value="Id" Text="SkillName">
+                            </DropDownListFieldSettings>
+                        </SfDropDownList>
                     </div>
                 </div>
                 <div id="SfBtnsEmployeeSkills">
@@ -47,14 +47,14 @@ else
         </EditForm>
     </div>
     <div style="margin-top:4px">
-    @if (!IsHidden)
-    {
-        <SfGrid DataSource="@employeeSkills_SkillsDetails">
-            <GridColumns>
-                <GridColumn Field=@nameof(EmployeeSkills_SkillsModel.EmpID) HeaderText="Employee ID" TextAlign="TextAlign.Center"></GridColumn>
-                <GridColumn Field=@nameof(EmployeeSkills_SkillsModel.SkillName) HeaderText="Skill Name" TextAlign="TextAlign.Center"></GridColumn>
-            </GridColumns>
-        </SfGrid>
-    }
+        @if (!IsHidden)
+        {
+            <SfGrid DataSource="@employeeSkills_SkillsDetails">
+                <GridColumns>
+                    <GridColumn Field=@nameof(EmployeeSkills_SkillsModel.EmpID) HeaderText="Employee Id" TextAlign="TextAlign.Center"></GridColumn>
+                    <GridColumn Field=@nameof(EmployeeSkills_SkillsModel.SkillName) HeaderText="Skill Name" TextAlign="TextAlign.Center"></GridColumn>
+                </GridColumns>
+            </SfGrid>
+        }
     </div>
 }

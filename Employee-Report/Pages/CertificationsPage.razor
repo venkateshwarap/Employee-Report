@@ -11,7 +11,7 @@
 else
 {
     <div id="divHeader">
-        <h5>Certifications</h5>
+        <h3>Certifications</h3>
         @if (!IsHidden)
         {
             <SfButton id="sfBtnCertifications" OnClick="AddClass">Add Certification</SfButton>
@@ -24,12 +24,13 @@ else
             <div class="form-control">
                 <div class="row">
                     <div class="col-md-6">
-                        <SfTextBox CssClass="e-outline custom-size" Placeholder="Name" FloatLabelType="@FloatLabelType.Auto" Type="InputType.Text" class="form-control"
+                        <label>Name</label>
+                        <SfTextBox Type="InputType.Text" class="form-control"
                                @bind-Value="certifications.Name" />
                         <ValidationMessage For="@(() => certifications.Name)" />
                     </div>
                     <div class="col-md-6">
-                        <label Class="e-outline-date">ValidFrom</label>
+                        <label>Valid From</label>
                         <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
                                @bind-Value="certifications.ValidFrom" />
                         <ValidationMessage For="@(() => certifications.ValidFrom)" />
@@ -37,29 +38,29 @@ else
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-6">
-                        <label Class="e-outline-date">ValidTill</label>
+                        <label>Valid Till</label>
                         <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
                                @bind-Value="certifications.ValidTill" />
                         <ValidationMessage For="@(() => certifications.ValidTill)" />
                     </div>
                 </div>
                 <div id="SfAddCertificationBtns">
-                        <SfButton @onclick="@AddCertification" type="submit" class="btnAddCertification" Content="Add"></SfButton>
-                        <SfButton @onclick="@CancelCertification" type="button" class="btnCancelCertification" Content="Cancel"></SfButton>
+                    <SfButton @onclick="@AddCertification" type="submit" class="btnAddCertification" Content="Add"></SfButton>
+                    <SfButton @onclick="@CancelCertification" type="button" class="btnCancelCertification" Content="Cancel"></SfButton>
                 </div>
             </div>
         </EditForm>
     </div>
     <div style="margin-top:4px;">
-    @if (!IsHidden)
-    {
-        <SfGrid DataSource="@certificationslist">
-            <GridColumns>
-                <GridColumn Field="@nameof(Certification.Name)" HeaderText="Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
-                <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(Certification.ValidFrom)" HeaderText="Valid From" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-                <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(Certification.ValidTill)" HeaderText="Valid Till" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-            </GridColumns>
-        </SfGrid>
-    }
+        @if (!IsHidden)
+        {
+            <SfGrid DataSource="@certificationslist">
+                <GridColumns>
+                    <GridColumn Field="@nameof(Certification.Name)" HeaderText="Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                    <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(Certification.ValidFrom)" HeaderText="Valid From" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                    <GridColumn Format="d" Type="ColumnType.Date" Field="@nameof(Certification.ValidTill)" HeaderText="Valid Till" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                </GridColumns>
+            </SfGrid>
+        }
     </div>
 }

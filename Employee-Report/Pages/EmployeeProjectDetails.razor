@@ -30,19 +30,19 @@ else
                         </SfDropDownList>
                     </div>
                     <div class="col-md-6">
-                        <label>EmpId</label>
+                        <label>Employee Id</label>
                         <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeProject.EmpId" />
                         <ValidationMessage For="@(() => employeeProject.EmpId)" />
                     </div>
 
                     <div class="col-md-6">
-                        <label Class="e-outline">StartDate</label>
+                        <label Class="e-outline">Start Date</label>
                         <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
                                @bind-Value="employeeProject.StartDate" />
                         <ValidationMessage For="@(() => employeeProject.StartDate)" />
                     </div>
                     <div class="col-md-6">
-                        <label Class="e-outline">EndDate</label>
+                        <label Class="e-outline">End Date</label>
                         <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
                                @bind-Value="employeeProject.EndDate" />
                         <ValidationMessage For="@(() => employeeProject.EndDate)" />

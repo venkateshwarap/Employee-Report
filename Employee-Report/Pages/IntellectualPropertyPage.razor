@@ -1,21 +1,22 @@
 ﻿@page "/intellectual"
 <PageTitle>Employee Information - Employee POC</PageTitle>
+@using Employee.DataModel.Models;
 @using Employee_Report.Model.Models;
 @using Syncfusion.Blazor.Grids
 @inject NavigationManager navManager;
 
 
-@if (intelleactuallist == null)
+@if (intellectualList == null)
 {
     <p><em>Loading your data... Please wait..</em></p>
 }
 else
 {
     <div id="divHeader">
-        <h5 style="text-align:center">Intelleactual Property</h5>
+        <h3>Intellectual&nbsp;Property</h3>
         @if (!IsHidden)
         {
-            <SfButton class="sfbtnAdd" OnClick="AddClass">Add new IP</SfButton>
+            <SfButton id="sfBtnAddIP" OnClick="AddClass">Add new IP</SfButton>
         }
     </div>
 
@@ -25,45 +26,58 @@ else
             <div class="form-control">
                 <div class="row">
                     <div class="col-md-6">
-                        <SfTextBox CssClass="e-outline custom-size" Placeholder="Name" FloatLabelType="@FloatLabelType.Auto" Type="InputType.Text" class="form-control"
+                        <label>Name</label>
+                        <SfTextBox Type="InputType.Text" class="form-control"
                                @bind-Value="intelleactualProperty.Name" />
                         <ValidationMessage For="@(() => intelleactualProperty.Name)" />
                     </div>
                     <div class="col-md-6">
-                        <SfTextBox CssClass="e-outline custom-size" Placeholder="Employee Id" FloatLabelType="@FloatLabelType.Auto" Type="InputType.Text" class="form-control"
+                        <label>Employee Id</label>
+                        <SfTextBox Type="InputType.Text" class="form-control"
                                @bind-Value="intelleactualProperty.EmpId" />
                         <ValidationMessage For="@(() => intelleactualProperty.EmpId)" />
                     </div>
                 </div>
                 <div class="row">
-                        <div class="col-md-6">
-                            <label Class="e-outline-date">Start Date</label>
-                            <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
-                                   @bind-Value="intelleactualProperty.StartDate" />
-                            <ValidationMessage For="@(() => intelleactualProperty.StartDate)" />
-                        </div>
-                             <div class="col-md-6">
-                            <label Class="e-outline-date">End Date</label>
-                            <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
-                                   @bind-Value="intelleactualProperty.EndDate" />
-                        <ValidationMessage For="@(() => intelleactualProperty.EndDate)" />
-                        </div>
+                    <div class="col-md-6">
+                        <label>Start Date</label>
+                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                               @bind-Value="intelleactualProperty.StartDate" />
+                        <ValidationMessage For="@(() => intelleactualProperty.StartDate)" />
                     </div>
                     <div class="col-md-6">
-                        <SfNumericTextBox CssClass="e-outline custom-size" Placeholder="Role Id" FloatLabelType="@FloatLabelType.Auto" Type="InputType.Number" class="form-control"
-                           @bind-Value="intelleactualProperty.RoleId" />
-                        <ValidationMessage For="@(() => intelleactualProperty.RoleId)" />
+                        <label>End Date</label>
+                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                               @bind-Value="intelleactualProperty.EndDate" />
+                        <ValidationMessage For="@(() => intelleactualProperty.EndDate)" />
                     </div>
-                    <div class="sfbtn">
-                    <SfButton class="sfbtnIP" @onclick="@AddIntelleactual" type="submit" Content="Add"></SfButton>
-                <SfButton @onclick="@CancelIntelleactual" type="button" class="sfbtnCancel" Content="Cancel"></SfButton>
                 </div>
+                <div class="col-md-6">
+                    <label>Role</label>
+                    <SfDropDownList TValue="string" TItem="Role" Placeholder="Select a Role"
+                                DataSource="@roleDetails">
+                        <DropDownListFieldSettings Value="Id" Text="RoleName">
+                        </DropDownListFieldSettings>
+                    </SfDropDownList>
                 </div>
+                <div class="col-md-6">
+                    <label>Role</label>
+                    <SfDropDownList TValue="string" TItem="Role" Placeholder="Select a Role"
+                                DataSource="@roleDetails">
+                        <DropDownListFieldSettings Value="Id" Text="RoleName">
+                        </DropDownListFieldSettings>
+                    </SfDropDownList>
+                </div>
+                <div id="SfIPBtns">
+                    <SfButton class="btnAddIP" @onclick="@AddIP" type="submit" Content="Add"></SfButton>
+                    <SfButton class="btnCancelIP" @onclick="@CancelIP" type="button" Content="Cancel"></SfButton>
+                </div>
+            </div>
         </EditForm>
     </div>
     @if (!IsHidden)
     {
-        <SfGrid DataSource="@intelleactuallist">
+        <SfGrid DataSource="@intellectualList">
             <GridColumns>
                 <GridColumn Field="@nameof(IntellectualProperty.Name)" HeaderText="Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
                 <GridColumn Field="@nameof(IntellectualProperty.EmpId)" HeaderText="Employee Id" TextAlign="TextAlign.Center" Width="120"></GridColumn>

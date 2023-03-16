@@ -1,5 +1,6 @@
 ﻿@page "/interviews"
 <PageTitle>Employee Information - Interviews</PageTitle>
+@using Employee.DataModel.Models;
 @using Employee_Report.Model.Models
 @inject NavigationManager navManager;
 
@@ -26,22 +27,33 @@ else
                         <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Name" />
                         <ValidationMessage For="@(() => InterviewModel.Name)" />
                     </div>
+
                     <div class="col-md-6">
-                        <label>SKill</label>
-                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Skill" />
-                        <ValidationMessage For="@(() => InterviewModel.Skill)" />
+                        <label>Skills</label>
+                        <SfDropDownList TValue="string" TItem="Skill" Placeholder="Select a Skill"
+                                    DataSource="@skillDetails">
+                            <DropDownListFieldSettings Value="Id" Text="SkillName">
+                            </DropDownListFieldSettings>
+                        </SfDropDownList>
                     </div>
                 </div>
-
                 <div class="row mt-2">
                     <div class="col-md-6">
                         <label>Role</label>
-                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Role" />
-                        <ValidationMessage For="@(() => InterviewModel.Role)" />
+                        <SfDropDownList TValue="string" TItem="Role" Placeholder="Select a Role"
+                                    DataSource="@roleDetails">
+                            <DropDownListFieldSettings Value="Id" Text="RoleName">
+                            </DropDownListFieldSettings>
+                        </SfDropDownList>
                     </div>
+
                     <div class="col-md-6">
-                        <label>Status</label>
-                        <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="InterviewModel.Status" />
+                        <label Class="e-outline-date">Status</label>
+                        <InputSelect class="form-control" @bind-Value=@InterviewModel.Status>
+                            <option selected value="">Select Status</option>
+                            <option value="Selected">Selected</option>
+                            <option value="Rejected">Rejected</option>
+                        </InputSelect>
                         <ValidationMessage For="@(() => InterviewModel.Status)" />
                     </div>
                 </div>
@@ -71,13 +83,13 @@ else
     {
         <SfGrid DataSource="@interviewsDetails">
             <GridColumns>
-            <GridColumn Field="@nameof(InterviewModel.Name)" HeaderText="Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
-            <GridColumn Field="@nameof(InterviewModel.Skill)" HeaderText="Skill" TextAlign="TextAlign.Center" Width="120"></GridColumn>
-            <GridColumn Field="@nameof(InterviewModel.Role)" HeaderText="Role" TextAlign="TextAlign.Center" Width="120"></GridColumn>
-            <GridColumn Field="@nameof(InterviewModel.Status)" HeaderText="Status" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-            <GridColumn Format="d" Field="@nameof(InterviewModel.Date)" HeaderText="Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-            <GridColumn Field="@nameof(InterviewModel.ReportingTo)" HeaderText="Repoting To" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-        </GridColumns>
-    </SfGrid>
+                <GridColumn Field="@nameof(InterviewModel.Name)" HeaderText="Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Field="@nameof(InterviewModel.Skill)" HeaderText="Skill" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Field="@nameof(InterviewModel.Role)" HeaderText="Role" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                <GridColumn Field="@nameof(InterviewModel.Status)" HeaderText="Status" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                <GridColumn Format="d" Field="@nameof(InterviewModel.Date)" HeaderText="Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                <GridColumn Field="@nameof(InterviewModel.ReportingTo)" HeaderText="Repoting To" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+            </GridColumns>
+        </SfGrid>
     }
 }
