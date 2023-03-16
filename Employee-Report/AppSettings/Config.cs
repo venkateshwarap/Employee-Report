@@ -47,12 +47,17 @@ namespace Employee_Report.AppSettings
         #region Learnings
         public static string Getlearnings = "Learnings/get";
         public static string AddNewLearning = "Learnings/create";
+        public static string EmployeeLearning = "EmployeeLearning/GetDetails";
+        public static string EmployeeLearningbyId = "EmployeeLearning/GetDetailsbyEmpID";
+
 
         #endregion
 
         #region Trainings
         public static string GetTrainings = "Trainings/get";
         public static string AddNewTraining = "Trainings/create";
+        public static string EmployeeTraining = "EmployeeTraining/GetDetails";
+        public static string EmployeeTrainingbyID = "EmployeeTraining/GetDetailsbyId";
         #endregion
 
         public static string GetEmployeeURl = "Employee/GetAllEmployee";
