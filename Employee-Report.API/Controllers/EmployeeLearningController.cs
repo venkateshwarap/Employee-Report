@@ -17,15 +17,24 @@ namespace Employee_Report.API.Controllers
             _employeeLearningService = employeeLearningService;
         }
 
-        [HttpGet]
-        public List<EmployeeLearning> GetAllEmployeeLearningDetails()
+        [HttpGet("GetDetailsbyEmpID")]
+        public List<EmployeeLearning> GetAllEmployeeLearningDetails(string empID)
         {
-            return _employeeLearningService.GetEmployeelearningDetails();
+            return _employeeLearningService.GetEmployeelearningDetailsbyEmpID(empID);
         }
         [HttpPost]
         public ResponseModel SaveEmployeeLearningDetails(EmployeeLearning employee)
         {
             return _employeeLearningService.SaveEmployeeLearningDetails(employee);
         }
+
+        [HttpGet("GetDetails")]
+        public List<EmployeeLearning> GetAllEmployeeLearningDetails()
+        {
+            return _employeeLearningService.GetEmployeelearningDetails();
+        }
+
+
+
     }
 }

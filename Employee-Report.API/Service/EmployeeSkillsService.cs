@@ -32,7 +32,7 @@ namespace Employee_Report.API.Service
             {
                 var result = (from empskills in _context.EmployeeSkills
                               join skills in _context.Skills on empskills.SkillId equals skills.Id
-                              select new { empskills.EmpId, skills.SkillName, empskills.StartDate, empskills.EndDate }).ToList();
+                              select new { empskills.EmpId, skills.SkillName}).ToList();
 
                 if (result != null)
                 {
@@ -42,8 +42,6 @@ namespace Employee_Report.API.Service
                         {
                             EmpID = res.EmpId,
                             SkillName = res.SkillName,
-                            StartDate = res.StartDate,
-                            EndDate = res.EndDate
                         });
                     }
                 }

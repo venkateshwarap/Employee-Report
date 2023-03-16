@@ -181,51 +181,47 @@ CREATE TABLE Learnings
 SkillID int,
 HoursOfLearning int,
 Name VARCHAR(30),
-Path VARCHAR(500),
-StartDate date,
-EndDate date )
+Path VARCHAR(500) )
 
 --Learnings DATA:
-INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path], [StartDate], [EndDate])
-VALUES(1, 16, '.NET', 'https://learn.microsoft.com/en-us/dotnet/', GETDATE()-30, GETDATE()+30)
+INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path])
+VALUES(1, 16, '.NET', 'https://learn.microsoft.com/en-us/dotnet/')
 
-INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path], [StartDate], [EndDate])
-VALUES(2,16, 'Azure', 'https://learn.microsoft.com/en-us/certifications/exams/az-204/', GETDATE()-30, GETDATE()+30)
+INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path])
+VALUES(2,16, 'Azure', 'https://learn.microsoft.com/en-us/certifications/exams/az-204/')
 
-INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path], [StartDate], [EndDate])
-VALUES(3, 16, 'React', 'https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started', GETDATE()-30, GETDATE()+30)
+INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path])
+VALUES(3, 16, 'React', 'https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started')
 
-INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path], [StartDate], [EndDate])
-VALUES(4, 16, 'Blazor', 'https://learn.microsoft.com/en-us/aspnet/core/client-side/spa/angular?view=aspnetcore-7.0&tabs=visual-studio', GETDATE()-30, GETDATE()+30)
+INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path])
+VALUES(4, 16, 'Blazor', 'https://learn.microsoft.com/en-us/aspnet/core/client-side/spa/angular?view=aspnetcore-7.0&tabs=visual-studio')
 
-INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path], [StartDate], [EndDate])
-VALUES(5, 16, 'Angular', 'https://learn.microsoft.com/en-us/dotnet/', GETDATE()-30, GETDATE()+30)
+INSERT INTO [dbo].[Learnings]([SkillID], [HoursOfLearning], [Name], [Path])
+VALUES(5, 16, 'Angular', 'https://learn.microsoft.com/en-us/dotnet/')
 
 --Training TABLE:
 
 CREATE TABLE  Training
 (ID INT PRIMARY KEY IDENTITY(1,1),
 Name VARCHAR (30),
-HoursOfLearning int,
-StartDate date,
-EndDate date
+HoursOfLearning int
 )
 
 --Training DATA:
-INSERT INTO [dbo].[Training]([Name], [HoursOfLearning], [StartDate], [EndDate])
-VALUES('.Net', 16, GETDATE()-30, GETDATE()+30)
+INSERT INTO [dbo].[Training]([Name], [HoursOfLearning])
+VALUES('.Net', 16)
 
-INSERT INTO [dbo].[Training]([Name], [HoursOfLearning], [StartDate], [EndDate])
-VALUES('Azure', 16, GETDATE()-30, GETDATE()+30)
+INSERT INTO [dbo].[Training]([Name], [HoursOfLearning])
+VALUES('Azure', 16)
 
-INSERT INTO [dbo].[Training]([Name], [HoursOfLearning], [StartDate], [EndDate])
-VALUES('React', 16, GETDATE()-30, GETDATE()+30)
+INSERT INTO [dbo].[Training]([Name], [HoursOfLearning])
+VALUES('React', 16)
 
-INSERT INTO [dbo].[Training]([Name], [HoursOfLearning], [StartDate], [EndDate])
-VALUES('Blazor', 16, GETDATE()-30, GETDATE()+30)
+INSERT INTO [dbo].[Training]([Name], [HoursOfLearning])
+VALUES('Blazor', 16)
 
-INSERT INTO [dbo].[Training]([Name], [HoursOfLearning], [StartDate], [EndDate])
-VALUES('Angular', 16, GETDATE()-30, GETDATE()+30)
+INSERT INTO [dbo].[Training]([Name], [HoursOfLearning])
+VALUES('Angular', 16)
 
 --Employee TABLE
 
@@ -408,8 +404,6 @@ CREATE TABLE [dbo].[EmployeeSkills](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[EmpID] [nvarchar] (10) NOT NULL,
 	[SkillID] [int] NOT NULL,
-	[StartDate] [date] NOT NULL,
-	[EndDate] [date] NOT NULL,
 	[CreatedBy] [nvarchar](50) NOT NULL,
 	[CreatedOn] [date] NOT NULL,
 	[ModifiedBy] [nvarchar](50) NOT NULL,
@@ -426,20 +420,20 @@ REFERENCES [dbo].[Skills] ([ID])
 ALTER TABLE [dbo].[EmployeeSkills] CHECK CONSTRAINT [FK_EmployeeSkills_Skills]
 
 --EmployeeSkills DATA:
-INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [StartDate], [EndDate], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
-VALUES('MLI741', 1, GETDATE()-30, GETDATE(), 'Rajeev', GETDATE(), 'Rajeev', GETDATE()+1)
+INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
+VALUES('MLI741', 1,  'Rajeev', GETDATE(), 'Rajeev', GETDATE()+1)
 
-INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [StartDate], [EndDate], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
-VALUES('MLI740', 2, GETDATE()-30, GETDATE(), 'Nitin', GETDATE(), 'Nitin', GETDATE()+1)
+INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
+VALUES('MLI740', 2,  'Nitin', GETDATE(), 'Nitin', GETDATE()+1)
 
-INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [StartDate], [EndDate], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
-VALUES('MLI737', 3, GETDATE()-30, GETDATE(), 'SriLaxmi', GETDATE(), 'SriLaxmi', GETDATE()+1)
+INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
+VALUES('MLI737', 3,  'SriLaxmi', GETDATE(), 'SriLaxmi', GETDATE()+1)
 
-INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [StartDate], [EndDate], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
-VALUES('MLI748', 4, GETDATE()-30, GETDATE(), 'Praful', GETDATE(), 'Praful', GETDATE()+1)
+INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
+VALUES('MLI748', 4,  'Praful', GETDATE(), 'Praful', GETDATE()+1)
 
-INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [StartDate], [EndDate], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
-VALUES('MLI719', 5, GETDATE()-30, GETDATE(), 'Taj', GETDATE(), 'Taj', GETDATE()+1)
+INSERT INTO [dbo].[EmployeeSkills]([EmpID], [SkillID], [CreatedBy], [CreatedOn], [ModifiedBy], [modifiedOn])
+VALUES('MLI719', 5,  'Taj', GETDATE(), 'Taj', GETDATE()+1)
 
 --IntellectualProperty TABLE:
 

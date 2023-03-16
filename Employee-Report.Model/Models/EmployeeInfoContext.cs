@@ -51,7 +51,7 @@ namespace Employee.DataModel.Models
      //   public virtual DbSet<UserDetail> UserDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer("Server=MLI00748;Database=EmployeeInfo;Integrated Security=True;TrustServerCertificate=True;");
+            => optionsBuilder.UseSqlServer("Server=MLI00609\\MSSQLSERVER01;Database=EmployeeInfo;Integrated Security=True;TrustServerCertificate=True;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -115,9 +115,9 @@ namespace Employee.DataModel.Models
                 entity.Property(e => e.Id).HasColumnName("ID");
                 entity.Property(e => e.BenchId).HasColumnName("BenchID");
                 entity.Property(e => e.EmpId).HasMaxLength(10);
-                entity.Property(e => e.EndDate).HasColumnType("date");
                 entity.Property(e => e.LearningId).HasColumnName("LearningID");
-                entity.Property(e => e.StartDate).HasColumnType("date");
+                entity.Property(e => e.StartDate).HasColumnName("StartDate");
+                entity.Property(e => e.EndDate).HasColumnName("EndDate");
             });
 
             modelBuilder.Entity<EmployeePoc>(entity =>
@@ -183,13 +183,11 @@ namespace Employee.DataModel.Models
                 entity.Property(e => e.EmpId)
                     .HasMaxLength(10)
                     .HasColumnName("EmpID");
-                entity.Property(e => e.EndDate).HasMaxLength(50);
                 entity.Property(e => e.ModifiedBy).HasMaxLength(50);
                 entity.Property(e => e.ModifiedOn)
                     .HasColumnType("date")
                     .HasColumnName("modifiedOn");
                 entity.Property(e => e.SkillId).HasColumnName("SkillID");
-                entity.Property(e => e.StartDate).HasColumnType("date");
 
                 entity.HasOne(d => d.Skill).WithMany(p => p.EmployeeSkills)
                     .HasForeignKey(d => d.SkillId)
@@ -229,7 +227,6 @@ namespace Employee.DataModel.Models
                 entity.HasKey(e => e.Id).HasName("PK__Learning__3214EC27262E3C76");
 
                 entity.Property(e => e.Id).HasColumnName("ID");
-                entity.Property(e => e.EndDate).HasColumnType("date");
                 entity.Property(e => e.Name)
                     .HasMaxLength(30)
                     .IsUnicode(false);
@@ -237,7 +234,6 @@ namespace Employee.DataModel.Models
                     .HasMaxLength(500)
                     .IsUnicode(false);
                 entity.Property(e => e.SkillId).HasColumnName("SkillID");
-                entity.Property(e => e.StartDate).HasColumnType("date");
             });
 
             modelBuilder.Entity<Poc>(entity =>
@@ -279,11 +275,9 @@ namespace Employee.DataModel.Models
                 entity.HasKey(e => e.Id).HasName("PK__Training__3214EC279848A453");
 
                 entity.Property(e => e.Id).HasColumnName("ID");
-                entity.Property(e => e.EndDate).HasColumnType("date");
                 entity.Property(e => e.Name)
                     .HasMaxLength(30)
                     .IsUnicode(false);
-                entity.Property(e => e.StartDate).HasColumnType("date");
             });
 
 

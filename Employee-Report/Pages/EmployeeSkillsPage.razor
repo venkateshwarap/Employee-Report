@@ -38,18 +38,6 @@ else
                                     </DropDownListFieldSettings></SfDropDownList>
 
                     </div>
-                    <div class="col-md-6">
-                        <label>Start Date</label>
-                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
-                               @bind-Value="employeeSkills.StartDate" />
-                        <ValidationMessage For="@(() => employeeSkills.StartDate)" />
-                    </div>
-                    <div class="col-md-6">
-                        <label>End Date</label>
-                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
-                               @bind-Value="employeeSkills.EndDate" />
-                        <ValidationMessage For="@(() => employeeSkills.EndDate)" />
-                    </div>
                 </div>
                 <div id="SfBtnsEmployeeSkills">
                     <SfButton @onclick="@AddEmployeeSkill" type="submit" class="btnAddEmployeeSkill" Content="Add"></SfButton>
@@ -65,8 +53,6 @@ else
             <GridColumns>
                 <GridColumn Field=@nameof(EmployeeSkills_SkillsModel.EmpID) HeaderText="Employee ID" TextAlign="TextAlign.Center"></GridColumn>
                 <GridColumn Field=@nameof(EmployeeSkills_SkillsModel.SkillName) HeaderText="Skill Name" TextAlign="TextAlign.Center"></GridColumn>
-                <GridColumn Format="d" Field=@nameof(EmployeeSkills_SkillsModel.StartDate) HeaderText="Start Date" TextAlign="TextAlign.Center"></GridColumn>
-                <GridColumn Format="d" Field=@nameof(EmployeeSkills_SkillsModel.EndDate) HeaderText="End Date" TextAlign="TextAlign.Center"></GridColumn>
             </GridColumns>
         </SfGrid>
     }

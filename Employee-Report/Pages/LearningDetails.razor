@@ -16,14 +16,6 @@
     </div>
     <div class="row">
         <div class="col-md-6 mt-2">
-            <InputDate Type="InputDateType.Date" @bind-Value="learning.StartDate" class="form-control" Placeholder="Select StartDate"></InputDate>
-        </div>
-        <div class="col-md-6 mt-2">
-            <InputDate Type="InputDateType.Date" @bind-Value="learning.EndDate" class="form-control" Placeholder="Select EndDate"></InputDate>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 mt-2">
             <InputNumber @bind-Value="learning.HoursOfLearning" class="form-control" Placeholder="Learning Hours"></InputNumber>
         </div>
     </div>
@@ -60,8 +52,6 @@
                     </Template>
                 </GridColumn>
                 <GridColumn Field="@nameof(learning.HoursOfLearning)" HeaderText="Learning Hours" TextAlign="TextAlign.Center" Width="100"></GridColumn>
-                <GridColumn Format="d" Field="@nameof(learning.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Center" Width="100"></GridColumn>
-                <GridColumn Format="d" Field="@nameof(learning.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Center" Width="100"></GridColumn>
             </GridColumns>
         </SfGrid>
     }

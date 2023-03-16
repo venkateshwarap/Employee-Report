@@ -17,7 +17,7 @@ namespace Employee_Report.API.Controllers
         {
             _employeeTrainingService = employeeTrainingService;
         }
-        [HttpGet]
+        [HttpGet("GetDetails")]
         public List<EmployeeTraining> GetEmployeeTraningDetails()
         {
             return _employeeTrainingService.GetEmployeeTraningDetails();
@@ -26,6 +26,12 @@ namespace Employee_Report.API.Controllers
         public ResponseModel SaveEmployeeTraning(EmployeeTraining employeeTraining)
         {
             return _employeeTrainingService.SaveEmployeeTraningDetails(employeeTraining);
+        }
+
+        [HttpGet("GetDetailsbyId")]
+        public List<EmployeeTraining> GetEmployeeTraningDetailsById(string empId)
+        {
+            return _employeeTrainingService.GetEmployeeTraningDetailsById(empId);
         }
     }
 }

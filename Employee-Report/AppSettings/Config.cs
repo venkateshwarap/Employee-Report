@@ -47,6 +47,7 @@ namespace Employee_Report.AppSettings
         #region Learnings
         public static string Getlearnings = "Learnings/get";
         public static string AddNewLearning = "Learnings/create";
+
         #endregion
 
         #region Trainings

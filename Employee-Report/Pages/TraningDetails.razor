@@ -12,20 +12,12 @@
             <SfNumericTextBox @bind-Value="training.HoursOfLearning" class="form-control" Placeholder="Enter Training Hours"></SfNumericTextBox>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6 mt-2">
-            <InputDate Type="InputDateType.Date" @bind-Value="training.StartDate" class="form-control" Placeholder="Select StartDate"></InputDate>
-        </div>
-        <div class="col-md-6 mt-2">
-            <InputDate Type="InputDateType.Date" @bind-Value="training.EndDate" class="form-control" Placeholder="Select EndDate"></InputDate>
-        </div>
-    </div>
     <div style="margin-top:10px;" id="trainingpostBtnCenter" class="row">
         <div class="col-md-1">
             <SfButton OnClick="PostTrainingDetails" id="trainingpostID" Content="Create"></SfButton>
         </div>
         <div class="col-md-1" style="width:78%">
-            <SfButton OnClick="ClearPostTrainingDetails" id="clearPostTraining"  Content="Cancel"></SfButton>
+            <SfButton OnClick="ClearPostTrainingDetails" id="clearPostTraining" Content="Cancel"></SfButton>
         </div>
     </div>
 </div>
@@ -46,8 +38,6 @@
                 <GridColumn Field="@nameof(training.Name)" HeaderText="Name" TextAlign="TextAlign.Left" Width="100"></GridColumn>
                 <GridColumn Field="@nameof(training.HoursOfLearning)" HeaderText="Learning Hours" TextAlign="TextAlign.Center" Width="100">
                 </GridColumn>
-                <GridColumn Format="d" Field="@nameof(training.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Left" Width="100"></GridColumn>
-                <GridColumn Format="d" Field="@nameof(training.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Left" Width="100"></GridColumn>
             </GridColumns>
         </SfGrid>
     }

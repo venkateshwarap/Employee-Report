@@ -18,6 +18,11 @@ namespace Employee_Report.API.Service
             return _eatrackingContext.EmployeeTrainings.ToList();
         }
 
+        public List<EmployeeTraining> GetEmployeeTraningDetailsById(string EmpID)
+        {
+            return _eatrackingContext.EmployeeTrainings.ToList().FindAll(x => x.EmpId == EmpID);
+        }
+
         public ResponseModel SaveEmployeeTraningDetails(EmployeeTraining employeeTrainng)
         {
             _eatrackingContext.Add(employeeTrainng);

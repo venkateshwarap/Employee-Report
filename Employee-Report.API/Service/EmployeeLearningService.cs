@@ -26,6 +26,22 @@ namespace Employee_Report.API.Service
                 throw;
             }
         }
+
+
+        public List<EmployeeLearning> GetEmployeelearningDetailsbyEmpID(string empId)
+        {
+
+            try
+            {
+                return _context.EmployeeLearnings.ToList().FindAll(x=>x.EmpId == empId);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public ResponseModel SaveEmployeeLearningDetails(EmployeeLearning learning)
         {
             _context.Add(learning);

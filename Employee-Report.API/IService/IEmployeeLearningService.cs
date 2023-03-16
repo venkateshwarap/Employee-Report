@@ -6,5 +6,7 @@ namespace Employee_Report.API.IService
     {
         public ResponseModel SaveEmployeeLearningDetails(EmployeeLearning learning);
         public List<EmployeeLearning> GetEmployeelearningDetails();
+
+        public List<EmployeeLearning> GetEmployeelearningDetailsbyEmpID(string empId);
     }
 }
