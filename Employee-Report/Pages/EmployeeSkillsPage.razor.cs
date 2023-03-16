@@ -10,6 +10,7 @@ namespace Employee_Report.Pages
         public IEnumerable<EmployeeSkills_Skills_Entity> employeeSkills_SkillsDetails { get; set; }
         public EmployeeSkills_Skills_Entity EmployeeSkills_SkillsModel = new EmployeeSkills_Skills_Entity();
         public EmployeeSkills empSkillsModel = new EmployeeSkills();
+        
         Repository.Services.SkillsService SkillsService = new();
         public EmployeeSkills employeeSkills = new();
         private bool IsHidden { get; set; } = false;
@@ -21,8 +22,6 @@ namespace Employee_Report.Pages
             employeeSkills_SkillsDetails = (await employeeSkillService.GetEmployeeSkills_Skills()).ToList();
             var response = await SkillsService.GetSkills();
             skillDetails = Utility.GetResponseData<List<Skill>>(response.response);
-
-
         }
         public async void AddEmployeeSkill()
 

@@ -11,10 +11,15 @@ namespace Employee_Report.Pages
         public PowerHouse PowerHouseModel = new PowerHouse();
         public PowerHouse_Role PowerHouse_RoleModel = new PowerHouse_Role();
         private bool IsHidden { get; set; } = false;
+
+        Repository.Services.GetRoleService roleService = new();
+        List<Role> roleDetails = new List<Role>();
+
         protected override async Task OnInitializedAsync()
         {
             powerHouse_RolesDeatils = (await powerHouseService.GeEACouncilEntryDetails()).ToList();
-            //employeeSkills_SkillsDetails = (await employeeSkillService.GetEmployeeSkills_Skills()).ToList();
+            var roleResponse = await roleService.GetRoleDetails();
+            roleDetails = roleResponse.ToList();
         }
         public async void AddPowerHouseRole()
         {

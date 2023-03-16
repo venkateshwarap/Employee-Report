@@ -165,14 +165,13 @@ a, .btn-link {
 #sfBtnAddPOC {
     background-color: dodgerblue;
     margin-left: 76.4%;
-    margin-top:8px;
+    margin-top: 8px;
 }
 
 #sfBtnAddProject {
     background-color: dodgerblue;
     margin-left: 70.5%;
-    margin-top:9px
-    
+    margin-top: 9px
 }
 
 #sfBtnAddRole {
@@ -202,8 +201,14 @@ a, .btn-link {
 }
 
 #sfBtnAddPowerHouse {
+    margin-bottom: 1%;
     background-color: dodgerblue;
-    margin-left: 74.2%;
+    margin-left: 70%;
+}
+
+#sfBtnAddIP {
+    background-color: dodgerblue !important;
+    margin-left: 67.2%;
     margin-bottom: 1%;
 }
 
@@ -211,6 +216,7 @@ a, .btn-link {
     margin: 1%;
     margin-left: 43%;
 }
+
 #SfBtnsAddEmployeeProject {
     margin: 1%;
     margin-left: 43%;
@@ -218,14 +224,15 @@ a, .btn-link {
 
 #sfBtnCertifications {
     background-color: dodgerblue;
-    margin-left: 77%;
+    margin-left: 72.5%;
+    margin-bottom: 1%;
 }
 
 #sfBtnAddEmployeeSkill {
-    margin-bottom:1%;
+    margin-bottom: 1%;
     background-color: dodgerblue;
     margin-left: 68.5%;
-    margin-top:8px;
+    margin-top: 8px;
 }
 
 #divHeader {
@@ -296,20 +303,21 @@ a, .btn-link {
     margin-left: 5%;
 }
 
-#SfInterviewBtns{
+#SfInterviewBtns {
     margin: 1%;
     margin-left: 43%;
 }
 
-.btnAddInterview{
+.btnAddInterview {
     background-color: dodgerblue !important;
     width: 10%;
 }
 
-.btnCancelInterview{
+.btnCancelInterview {
     width: 10%;
     margin-left: 5%;
 }
+
 #SfAddPOCBtns {
     margin: 1%;
     margin-left: 13%;
@@ -327,7 +335,22 @@ a, .btn-link {
 
 #SfAddPowerHouseBtns {
     margin-top: 10px;
-    margin-left: 42%;
+    margin-left: 43%;
+}
+
+#SfIPBtns {
+    margin-top: 10px;
+    margin-left: 43.4%;
+}
+
+.btnAddIP {
+    background-color: dodgerblue !important;
+    width: 10%;
+}
+
+.btnCancelIP {
+    width: 10%;
+    margin-left: 5%;
 }
 
 .btnAddPowerHouse {
@@ -374,10 +397,12 @@ a, .btn-link {
     width: 10%;
     margin-left: 5%;
 }
+
 .btnAdd {
     width: 10%;
     background-color: dodgerblue !important;
 }
+
 .btnCancel {
     width: 10%;
     margin-left: 5%;
@@ -494,12 +519,15 @@ a {
     font-weight: 900;
     background-color: dodgerblue;
 }
+
 #postBtnCenter {
-    margin-left:42%;
+    margin-left: 42%;
 }
+
 #clearPostLearning {
     margin-left: 7%;
 }
+
 #sflearningID {
     display: flex;
 }
@@ -507,7 +535,7 @@ a {
 #sfAddbuttonID {
     background-color: dodgerblue;
     margin-left: 273%;
-    margin-top:8%;
+    margin-top: 8%;
 }
 /*Training Css*/
 #trainingpostID {
@@ -533,6 +561,7 @@ a {
     margin-left: 281%;
     margin-top: 8%;
 }
+
 .sfbtnAdd {
     margin: 0 0 1% 77%;
     background-color: dodgerblue !important;
