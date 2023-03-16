@@ -22,9 +22,12 @@ else
             <div class="form-control">
                 <div class="row">
                     <div class="col-md-6">
-                        <label>ProjectId</label>
-                        <SfNumericTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeProject.ProjectId" />
-                        <ValidationMessage For="@(() => employeeProject.ProjectId)" />
+                        <label>Project Name</label>
+                        <SfDropDownList TValue="string" TItem="Project" Placeholder="Select Project"
+                                    DataSource="@projectDetails">
+                            <DropDownListFieldSettings Value="Id" Text="ProjectName">
+                            </DropDownListFieldSettings>
+                        </SfDropDownList>
                     </div>
                     <div class="col-md-6">
                         <label>EmpId</label>
@@ -44,30 +47,32 @@ else
                                @bind-Value="employeeProject.EndDate" />
                         <ValidationMessage For="@(() => employeeProject.EndDate)" />
                     </div>
-                    <div class="row mt-2">
                         <div class="col-md-6">
                             <label>ReportingTo</label>
                             <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeProject.ReportingTo" />
                             <ValidationMessage For="@(() => employeeProject.ReportingTo)" />
                         </div>
                         <div class="col-md-6">
-                            <label>RoleId</label>
-                            <SfNumericTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeProject.RoleId" />
-                            <ValidationMessage For="@(() => employeeProject.RoleId)" />
+                        <label>Role</label>
+                        <SfDropDownList TValue="string" TItem="Role" Placeholder="Select Role"
+                                    DataSource="@roleDetails">
+                            <DropDownListFieldSettings Value="Id" Text="RoleName">
+                            </DropDownListFieldSettings>
+                        </SfDropDownList>
                         </div>
-                    </div>
-                    <div class="row mt-2">
+                   
                         <div class="col-md-6">
                             <label>Achivements</label>
                             <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeeProject.Achivements" />
                             <ValidationMessage For="@(() => employeeProject.Achivements)" />
                         </div>
-                    </div>
+                 
                 </div>
-                <div id="SfBtns">
+                <div id="SfBtnsAddEmployeeProject">
                     <SfButton @onclick="@AddClass" type="submit" class="btnAdd" Content="Add"></SfButton>
                     <SfButton @onclick="@AddClass" type="submit" class="btnCancel" Content="Cancel"></SfButton>
                 </div>
+               
             </div>
         </EditForm>
     </div>

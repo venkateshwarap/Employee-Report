@@ -24,37 +24,21 @@ else
             <DataAnnotationsValidator />
             <div class="form-control">
                 <div class="row">
+                 
                     <div class="col-md-6">
-                        <label>POC</label>
-                        <SfNumericTextBox CssClass="e-outline" Type="InputType.Text" class="form-control"
-                                      @bind-Value="employeePocModel.Pocid" />
-                        <ValidationMessage For="@(() => employeePocModel.Pocid)" />
+                        <label>POC Name</label>
+                        <SfDropDownList TValue="string" TItem="Poc" Placeholder="Select POC"
+                                    DataSource="@pocDetails">
+                            <DropDownListFieldSettings Value="Id" Text="Name">
+                            </DropDownListFieldSettings>
+                        </SfDropDownList>
+
                     </div>
                     <div class="col-md-6">
                         <label>Employee ID</label>
                         <SfTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeePocModel.EmpId" />
                         <ValidationMessage For="@(() => employeePocModel.EmpId)" />
-                    </div>
-                    <div class="col-md-6">
-                        <label>Bench Id</label>
-                        <SfNumericTextBox CssClass="e-outline" Placeholder="BenchId" Type="InputType.Text" class="form-control"
-                                      @bind-Value="employeePocModel.BenchId" />
-                        <ValidationMessage For="@(() => employeePocModel.BenchId)" />
-                    </div>
-                    <div class="col-md-6">
-                        <label Class="e-outline">Start Date</label>
-                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
-                               @bind-Value="employeePocModel.StartDate" />
-                        <ValidationMessage For="@(() => employeePocModel.StartDate)" />
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-6">
-                        <label Class="e-outline">End Date</label>
-                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
-                               @bind-Value="employeePocModel.EndDate" />
-                        <ValidationMessage For="@(() => employeePocModel.EndDate)" />
-                    </div>
+                    </div>              
                     <div class="col-md-6">
                         <label>Reporting To</label>
                         <SfTextBox CssClass="e-outline" Placeholder="ReportingTo" Type="InputType.Text" class="form-control" @bind-Value="employeePocModel.ReportingTo" />
@@ -62,10 +46,28 @@ else
                     </div>
                     <div class="col-md-6">
                         <label>Role</label>
-                        <SfNumericTextBox CssClass="e-outline" Type="InputType.Text" class="form-control" @bind-Value="employeePocModel.RoleId" />
-                        <ValidationMessage For="@(() => employeePocModel.RoleId)" />
+                        <SfDropDownList TValue="string" TItem="Role" Placeholder="Select Role"
+                                    DataSource="@roleDetails">
+                            <DropDownListFieldSettings Value="Id" Text="RoleName">
+                            </DropDownListFieldSettings>
+                        </SfDropDownList>
                     </div>
-                </div>
+                    <div class="col-md-6">
+                        <label Class="e-outline">Start Date</label>
+                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                               @bind-Value="employeePocModel.StartDate" />
+                        <ValidationMessage For="@(() => employeePocModel.StartDate)" />
+                    </div>
+                    <div class="col-md-6">
+                        <label Class="e-outline">End Date</label>
+                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                               @bind-Value="employeePocModel.EndDate" />
+                        <ValidationMessage For="@(() => employeePocModel.EndDate)" />
+                    </div>
+                    <div>
+                </div>               
+               </div>
+              
                 <div id="SfBtnsAddEmployeePOC">
                     <SfButton @onclick="@AddEmployeePOC" type="submit" class="btnAddEmployeePOC" Content="Add"></SfButton>
                     <SfButton @onclick="@CancelEmployeePOC" type="submit" class="btnCancelEmployeePOC" Content="Cancel"></SfButton>

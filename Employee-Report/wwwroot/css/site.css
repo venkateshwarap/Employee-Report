@@ -138,10 +138,10 @@ a, .btn-link {
 }
 
 
-.btnAdd, .btnCancel {
+/*.btnAdd, .btnCancel {
     width: 50%;
     margin: 5px;
-}
+}*/
 
 .hidden {
     display: none !important;
@@ -208,6 +208,10 @@ a, .btn-link {
 }
 
 #SfBtnsAddEmployeePOC {
+    margin: 1%;
+    margin-left: 43%;
+}
+#SfBtnsAddEmployeeProject {
     margin: 1%;
     margin-left: 43%;
 }
@@ -367,6 +371,14 @@ a, .btn-link {
 }
 
 .btnCancelEmployeePOC {
+    width: 10%;
+    margin-left: 5%;
+}
+.btnAdd {
+    width: 10%;
+    background-color: dodgerblue !important;
+}
+.btnCancel {
     width: 10%;
     margin-left: 5%;
 }

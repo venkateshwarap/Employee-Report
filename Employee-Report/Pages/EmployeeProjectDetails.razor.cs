@@ -8,10 +8,17 @@ namespace Employee_Report.Pages
         Repository.Services.EmployeeProjectService employeeProjectService = new Repository.Services.EmployeeProjectService();
         public IEnumerable<EmployeeProjectEntity> employee { get; set; }
         public EmployeeProject employeeProject = new();
+        List<Project> projectDetails = new List<Project>();
+        Repository.Services.GetRoleService roleService = new();
+        List<Role> roleDetails = new List<Role>();
         private bool IsHidden { get; set; } = false;
         protected override async Task OnInitializedAsync()
         {
             employee = (await employeeProjectService.GetEmployeeProjectDetails()).ToList();
+            var roleResponse = await roleService.GetRoleDetails();
+            roleDetails = roleResponse.ToList();
+            var response = await employeeProjectService.GetProjectDetails();
+            projectDetails = response.ToList();
         }
         public async void addProject()
         {

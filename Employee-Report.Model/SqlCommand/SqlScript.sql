@@ -144,13 +144,18 @@ CREATE TABLE [dbo].[PowerHouse](
 	[EmpId] [varchar](10) NULL,
 	[StartDate] [date] NULL,
 	[EndDate] [date] NULL,
-	[RoleId] [int] NULL,
+	[Role] [nvarchar](50) NULL,
 	[ReportingTo] [varchar](10) NULL,
-    [CreatedBy] [nvarchar](50) NOT NULL,
+	[CreatedBy] [nvarchar](50) NOT NULL,
 	[CreatedOn] [date] NOT NULL,
 	[ModifiedBy] [nvarchar](50) NOT NULL,
-	[ModifiedOn] [date] NOT NULL,
+	[modifiedOn] [date] NOT NULL,
+ CONSTRAINT [PK_PowerHouse] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
  
 --POWERHOUSE DATA:
 INSERT INTO [dbo].[PowerHouse]([EmpId], [StartDate], [EndDate], [RoleId], [ReportingTo], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn])
@@ -260,7 +265,7 @@ CREATE TABLE [dbo].[EmployeePOC](
     [Id] [int] IDENTITY(1,1) NOT NULL,
     [POCId] [int] NOT NULL,
     [EmpId] [nvarchar](10) NOT NULL,
-    [BenchId] [int] NOT NULL,
+   [PowerHouseId] [int] NOT NULL,
     [StartDate] [date] NULL,
     [EndDate] [date] NULL,
     [ReportingTo] [nvarchar](25) NULL,
@@ -280,6 +285,9 @@ ALTER TABLE [dbo].[EmployeePOC] CHECK CONSTRAINT [FK_EmployeePOC_Role]
 ALTER TABLE [dbo].[EmployeePOC]  WITH CHECK ADD  CONSTRAINT [FK_EmployeePOC_Employee] FOREIGN KEY([EmpId])
 REFERENCES [dbo].[Employee] ([Id])
 ALTER TABLE [dbo].[EmployeePOC] CHECK CONSTRAINT [FK_EmployeePOC_Employee]
+ALTER TABLE [dbo].[EmployeePOC]  WITH CHECK ADD  CONSTRAINT [FK_EmployeePOC_PowerHouse] FOREIGN KEY([PowerHouseId])
+REFERENCES [dbo].[PowerHouse] ([Id])
+GO
 
 --EmployeePOC DATA:
 INSERT INTO [dbo].[EmployeePOC]([POCId], [EmpId], [BenchId], [StartDate], [EndDate], [ReportingTo], [RoleId])

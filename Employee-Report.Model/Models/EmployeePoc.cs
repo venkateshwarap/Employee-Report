@@ -11,7 +11,7 @@ namespace Employee.DataModel.Models
 
         public string EmpId { get; set; } = null!;
 
-        public int BenchId { get; set; }
+        public int PowerHouseId { get; set; }
 
         public DateTime? StartDate { get; set; }
 
