@@ -32,6 +32,27 @@ namespace Employee_Report.API.Controllers
                 throw;
             }
         }
+        [HttpGet]
+        [Route("GetInterviewByID")]
+        public async Task<IActionResult> GetIntervieByID(int id)
+        {
+            try
+            {
+                var empByID = await _interviewService.GetInterviewByID(id);
+                if(empByID != null)
+                {
+                    return Ok(empByID);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         [HttpPost]
         [Route("AddInterview")]

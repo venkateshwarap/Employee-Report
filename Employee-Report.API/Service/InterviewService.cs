@@ -3,6 +3,7 @@ using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
 using Employee_Report.Model;
 using Employee_Report.Model.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Report.API.Service
@@ -34,6 +35,20 @@ namespace Employee_Report.API.Service
             if (result.Count > 0)
                 return BindResponse(result, true);
             return BindResponse(result, false);
+        }
+
+        public async Task<Response> GetInterviewByID(int id)
+        {
+            if (id != 0)
+            {
+                var result = await _context.Interviews.FindAsync(id);
+                if (result == null)
+                {
+                    return BindResponse(result, false, "Data of selected Interview is not found");
+                }
+                return BindResponse(result, true, "Data of Interview with ID:" + id + " found");
+            }
+            else { return null; }
         }
 
         private Response BindResponse(Object Obj = null!, bool Status = true, string Message = "")

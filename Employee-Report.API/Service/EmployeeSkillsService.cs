@@ -32,7 +32,7 @@ namespace Employee_Report.API.Service
             {
                 var result = (from empskills in _context.EmployeeSkills
                               join skills in _context.Skills on empskills.SkillId equals skills.Id
-                              select new { empskills.EmpId, skills.SkillName}).ToList();
+                              select new { empskills.EmpId, skills.SkillName }).ToList();
 
                 if (result != null)
                 {
@@ -47,6 +47,27 @@ namespace Employee_Report.API.Service
                 }
             }
             return employeeSkillsDetails;
+        }
+        public async Task<List<EmployeeSkills_Skills_Entity>> GetEmployeeSkillsByID(int id)
+        {
+            var empSkillByID = new List<EmployeeSkills_Skills_Entity>();
+            var result = (from empskills in _context.EmployeeSkills
+                          join skills in _context.Skills on empskills.Id equals skills.Id
+                          where empskills.Id == id
+                          select new { empskills.EmpId, skills.SkillName }).ToList();
+            if(result != null)
+            {
+                foreach (var res in result)
+                {
+                    empSkillByID.Add(new EmployeeSkills_Skills_Entity
+                    {
+                        EmpID = res.EmpId,
+                        SkillName = res.SkillName,
+
+                    });
+                }
+            }
+            return empSkillByID;
         }
 
         private Response BindResponse(Object Obj = null!, bool Status = true, string Message = "")
