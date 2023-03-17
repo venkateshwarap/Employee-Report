@@ -4,6 +4,8 @@
 @using Employee_Report.Model.Models;
 @using Employee_Report.Repository.Services;
 @inject NavigationManager NavManager
+@inject Microsoft.JSInterop.IJSRuntime JS
+@using System.IO;
 
 
 <style>
@@ -157,9 +159,15 @@
     .rounded {
         border-radius: 0.25rem !important;
     }
+
+    #exportpdf{
+        margin-left: 80%;
+        background-color: green;
+    }
 </style>
 <h3 class="h2 text-black mb-0 rounded text-center">MOTIVITY LABS EMPLOYEE REPORT</h3>
 <h3></h3>
+<SfButton id="exportpdf" class="btn btn-primary" @onclick="@ExportToPdf">Export to PDF</SfButton>
 <div style="float: left; flex-direction: column;">
     <div class="row">
         <div class="column" style="float: left;">

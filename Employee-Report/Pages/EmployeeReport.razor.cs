@@ -1,5 +1,6 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.API.Service;
+using Employee_Report.Data;
 using Employee_Report.Repository.Services;
 using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components;
@@ -106,8 +107,19 @@ namespace Employee_Report.Pages
             var trainingresponse = await TrainingService.GetTrainings();
             trainingDetails = Utility.GetResponseData<List<Training>>(trainingresponse.response);
             employees = (await employeesService.GetEmployeeDetails()).ToList();
+            
             //var skillresponse = await SkillsService.GetSkills();
             //skillDetails = Utility.GetResponseData<List<Skill>>(skillresponse.response);
         }
+        protected async Task ExportToPdf()
+        {
+            ExportService exportService = new ExportService();
+            using (MemoryStream excelStream = exportService.CreatePdf())
+            {
+                await JS.SaveAs("EmployeeReport.pdf", excelStream.ToArray());
+            }
+
+        }
+
     }
 }
