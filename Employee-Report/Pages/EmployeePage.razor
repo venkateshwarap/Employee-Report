@@ -18,7 +18,8 @@ else
                 <Template>
                     @{
                         var emp = (context as Employees);
-                        HttpContext.HttpContext.Session.SetString("EmpID", emp.Id.ToString());
+                        HttpContext.HttpContext.Session.SetString("EmpId", emp.Id.ToString());
+                        HttpContext.HttpContext.Session.SetString("Name", emp.FirstName.ToString()+" "+emp.LastName.ToString());
                         <a href="/EmployeeReport?EmpID=@emp.Id" @onclick="Clicked">@emp.FirstName</a>
                     }
                 </Template>

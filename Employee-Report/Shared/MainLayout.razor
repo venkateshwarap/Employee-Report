@@ -3,6 +3,7 @@
 <PageTitle>Employee Information</PageTitle>
 @inject NavigationManager navManager;
 @inject AuthenticationStateProvider authStateProvider
+@inject IHttpContextAccessor ContextAccessor;
 <div class="page">
 
     <div id="mySidebar" class="collaps-active" style="@(collaps? "width:250px !important" : "")">
@@ -40,79 +41,87 @@
                                     <i class="bi bi-journal-check sub-menu-icon" aria-hidden="true"></i>Skills
                                 </NavLink>
                             </li>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="accordion-item" style="background-color:#f0f0f0">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed menu-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <i class="bi bi-person-circle menu-icon"></i>
-                            Employee
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-
-                        <ul class="Employee-toggle-menu">
-                            <li>
-                                <NavLink class="nav-link" href="employee">
-                                    <i class="bi bi-person-circle sub-menu-icon" aria-hidden="true"></i>EmployeeList
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink class="nav-link" href="learnings">
-                                    <i class="bi bi-book sub-menu-icon" aria-hidden="true"></i>Learning
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink class="nav-link" href="trainings">
-                                    <i class="bi bi-person-workspace sub-menu-icon" aria-hidden="true"></i>Training
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink class="nav-link" href="power-house">
-                                    <i class="bi bi-house-add-fill sub-menu-icon" aria-hidden="true"></i>Power House
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink class="nav-link" href="EmployeeSkills">
-                                    <i class="bi bi-person-lock sub-menu-icon"> </i>Skills
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink class="nav-link" href="employeePocDetails">
-                                    <i class="bi bi-cast sub-menu-icon" aria-hidden="true"></i>POC
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink class="nav-link" href="employeeProjectDetails">
-                                    <i class="bi bi-projector sub-menu-icon" aria-hidden="true"></i>Project
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink class="nav-link" href="certifications">
-                                    <i class="bi bi-patch-check-fill sub-menu-icon" aria-hidden="true"></i>Certifications
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink class="nav-link" href="EmployeeReport">
-                                    <i class="bi bi-pie-chart sub-menu-icon"></i>Report
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink class="nav-link" href="interviews">
-                                    <i class="bi bi-person-workspace sub-menu-icon" aria-hidden="true"></i>Interviews
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink class="nav-link" href="intellectual">
-                                    <i class="bi bi-clipboard2-plus sub-menu-icon" aria-hidden="true"></i>IP
-                                </NavLink>
+                             <li>
+                            <NavLink class="nav-link" href="employee">
+                            <i class="bi bi-person-circle sub-menu-icon" aria-hidden="true"></i>EmployeeList
+                            </NavLink>
                             </li>
                         </ul>
 
                     </div>
                 </div>
+                @if (ContextAccessor.HttpContext.Session.GetString("EmpId") != null)
+                {
+                    <div class="accordion-item" style="background-color:#f0f0f0">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed menu-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <i class="bi bi-person-circle menu-icon"></i>
+                                Employee
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+
+                            <ul class="Employee-toggle-menu">
+                                @*      <li>
+                                    <NavLink class="nav-link" href="employee">
+                                        <i class="bi bi-person-circle sub-menu-icon" aria-hidden="true"></i>EmployeeList
+                                    </NavLink>
+                                </li>*@
+                                <li>
+                                    <NavLink class="nav-link" href="learnings">
+                                        <i class="bi bi-book sub-menu-icon" aria-hidden="true"></i>Learning
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="trainings">
+                                        <i class="bi bi-person-workspace sub-menu-icon" aria-hidden="true"></i>Training
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="power-house">
+                                        <i class="bi bi-house-add-fill sub-menu-icon" aria-hidden="true"></i>Power House
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="EmployeeSkills">
+                                        <i class="bi bi-person-lock sub-menu-icon"> </i>Skills
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="employeePocDetails">
+                                        <i class="bi bi-cast sub-menu-icon" aria-hidden="true"></i>POC
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="employeeProjectDetails">
+                                        <i class="bi bi-projector sub-menu-icon" aria-hidden="true"></i>Project
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="certifications">
+                                        <i class="bi bi-patch-check-fill sub-menu-icon" aria-hidden="true"></i>Certifications
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="EmployeeReport">
+                                        <i class="bi bi-pie-chart sub-menu-icon"></i>Report
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="interviews">
+                                        <i class="bi bi-person-workspace sub-menu-icon" aria-hidden="true"></i>Interviews
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink class="nav-link" href="intellectual">
+                                        <i class="bi bi-clipboard2-plus sub-menu-icon" aria-hidden="true"></i>IP
+                                    </NavLink>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                }
             </div>
         </nav>
     </div>
@@ -120,12 +129,18 @@
         <nav class="navbar navbar-expand-lg" style="background-color:#f0f0f0">
             <button class="openbtn" @onclick="@(collaps ?  CloseNav : OpenNav)">☰</button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                @*     <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                <a class="nav-link" href="#"><span class="sr-only">@navManager.BaseUri</span></a>
-                </li>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <p>
+                            @(
+                            ContextAccessor.HttpContext.Session.GetString("Name") != null ? ContextAccessor.HttpContext.Session.GetString("Name") : ""
+                )@(
+                                           ContextAccessor.HttpContext.Session.GetString("EmpId") != null ? "("+ContextAccessor.HttpContext.Session.GetString("EmpId")+")" : ""
+                                            )
+                        </p>
+                </li> 
 
-                </ul>*@
+                </ul>
                 <div class="logoutbtn">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item ">

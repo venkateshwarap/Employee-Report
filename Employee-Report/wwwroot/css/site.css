@@ -574,3 +574,8 @@ a {
 .sfbtnIP {
     background-color: dodgerblue !important;
 }
+#navbarSupportedContent {
+    white-space: nowrap;
+    margin-top: 15px;
+    color: blue;
+}
