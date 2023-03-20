@@ -16,11 +16,9 @@ else
             </GridColumn>
             <GridColumn Field=@nameof(Employees.FirstName) HeaderText="First Name" TextAlign="TextAlign.Left" Width="100">
                 <Template>
-                    @{
+                   @{
                         var emp = (context as Employees);
-                        HttpContext.HttpContext.Session.SetString("EmpId", emp.Id.ToString());
-                        HttpContext.HttpContext.Session.SetString("Name", emp.FirstName.ToString()+" "+emp.LastName.ToString());
-                        <a href="/EmployeeReport?EmpID=@emp.Id" @onclick="Clicked">@emp.FirstName</a>
+                        <a rel='nofollow' href="#" @onclick="@(() => Clicked(emp.Id,emp.FirstName + " "+emp.LastName))">@emp.FirstName</a>
                     }
                 </Template>
             </GridColumn>

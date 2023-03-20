@@ -50,7 +50,7 @@
 
                     </div>
                 </div>
-                @if (ContextAccessor.HttpContext.Session.GetString("EmpId") != null)
+                @if (ContextAccessor.HttpContext.Session.GetString("EmployeeId") != null)
                 {
                     <div class="accordion-item" style="background-color:#f0f0f0">
                         <h2 class="accordion-header" id="headingTwo">
@@ -135,7 +135,7 @@
                             @(
                             ContextAccessor.HttpContext.Session.GetString("Name") != null ? ContextAccessor.HttpContext.Session.GetString("Name") : ""
                 )@(
-                                           ContextAccessor.HttpContext.Session.GetString("EmpId") != null ? "("+ContextAccessor.HttpContext.Session.GetString("EmpId")+")" : ""
+                               ContextAccessor.HttpContext.Session.GetString("EmployeeId") != null ? "(" + ContextAccessor.HttpContext.Session.GetString("EmployeeId") + ")" : ""
                                             )
                         </p>
                 </li> 

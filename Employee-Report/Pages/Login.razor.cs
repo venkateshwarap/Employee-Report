@@ -1,10 +1,13 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.Auth;
+using Microsoft.AspNetCore.Components;
 
 namespace Employee_Report.Pages
 {
     public partial class Login
     {
+        [Inject]
+        IHttpContextAccessor HttpContext { get; set; }
         public LoginModel model = new LoginModel();
 
         HttpClient _httpClient = new HttpClient();
@@ -23,6 +26,7 @@ namespace Employee_Report.Pages
 
             if (result.IsSuccessStatusCode)
             {
+                HttpContext.HttpContext.Session.Clear();
                 navManager.NavigateTo("/employee", true);
             }
             else
