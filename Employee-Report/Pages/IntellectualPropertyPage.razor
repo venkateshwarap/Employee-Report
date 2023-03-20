@@ -52,15 +52,7 @@ else
                         <ValidationMessage For="@(() => intelleactualProperty.EndDate)" />
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <label>Role</label>
-                    <SfDropDownList TValue="string" TItem="Role" Placeholder="Select a Role"
-                                DataSource="@roleDetails">
-                        <DropDownListFieldSettings Value="Id" Text="RoleName">
-                        </DropDownListFieldSettings>
-                    </SfDropDownList>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-6" style="width: 49%;">
                     <label>Role</label>
                     <SfDropDownList TValue="string" TItem="Role" Placeholder="Select a Role"
                                 DataSource="@roleDetails">

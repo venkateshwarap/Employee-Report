@@ -129,13 +129,13 @@
         <nav class="navbar navbar-expand-lg" style="background-color:#f0f0f0">
             <button class="openbtn" @onclick="@(collaps ?  CloseNav : OpenNav)">☰</button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mr-auto" style="width: 4%;">
                     <li class="nav-item active">
                         <p>
                             @(
                             ContextAccessor.HttpContext.Session.GetString("Name") != null ? ContextAccessor.HttpContext.Session.GetString("Name") : ""
                 )@(
-                               ContextAccessor.HttpContext.Session.GetString("EmployeeId") != null ? "(" + ContextAccessor.HttpContext.Session.GetString("EmployeeId") + ")" : ""
+                               ContextAccessor.HttpContext.Session.GetString("EmployeeId") != null ? " (" + ContextAccessor.HttpContext.Session.GetString("EmployeeId") + ")" : ""
                                             )
                         </p>
                 </li> 
@@ -143,7 +143,7 @@
                 </ul>
                 <div class="logoutbtn">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item ">
+                        <li class="nav-item" style="padding-bottom: 32%; margin-left: -15%;">
                             <a href="/" onclick="(()=> Logout())">Logout</a>
                         </li>
                     </ul>
