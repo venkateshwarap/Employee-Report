@@ -57,6 +57,7 @@ namespace Employee_Report.API.Utilities
         #region Controller Routes
         public const string get = "get";
         public const string create = "create";
+        public const string getById = "getById";
         #endregion
 
         public const string GET = "get";

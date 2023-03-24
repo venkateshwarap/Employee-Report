@@ -1,0 +1,70 @@
+﻿@page "/employeeLearnings"
+@using Employee.DataModel.Models;
+<PageTitle>Employee Information - Employee Details</PageTitle>
+@inject NavigationManager navManager;
+
+@if (employeeLearning == null)
+{
+    <p><em>Loading your data... Please wait..</em></p>
+}
+else
+{
+    <div id="divHeader">
+        <h3 style="text-align:center">Employee&nbsp;Learnings</h3>
+        @if (!IsHidden)
+        {
+            <SfButton id="sfBtnAddLearning" OnClick="AddClass">Add Employee Learning</SfButton>
+        }
+    </div>
+    <div class="@(IsHidden ? "show" : "hidden")">
+        <EditForm Model="@employeeLearning">
+            <DataAnnotationsValidator />
+            <div class="form-control">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Learning Id</label>
+                        <SfNumericTextBox CssClass="e-outline" Type="InputType.Number" class="form-control" @bind-Value="employeeLearningData.LearningId" />
+                        <ValidationMessage For="@(() => employeeLearningData.LearningId)" />
+                    </div>
+                    <div class="col-md-6">
+                        <label Class="e-outline">Start Date</label>
+                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                               @bind-Value="employeeLearningData.StartDate" />
+                        <ValidationMessage For="@(() => employeeLearningData.StartDate)" />
+                    </div>
+                    <div class="col-md-6">
+                        <label Class="e-outline">End Date</label>
+                        <InputDate Type="InputDateType.Date" ShowClearButton="true" format-value="yyyy-MM-dd" class="form-control"
+                               @bind-Value="employeeLearningData.EndDate" />
+                        <ValidationMessage For="@(() => employeeLearningData.EndDate)" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>Bench Id</label>
+                        <SfNumericTextBox CssClass="e-outline" Type="InputType.Number" class="form-control" @bind-Value="employeeLearningData.BenchId" />
+                        <ValidationMessage For="@(() => employeeLearningData.BenchId)" />
+                    </div>
+                </div>
+                <div id="SfBtnsAddEmployeeLearnings">
+                    <SfButton @onclick="@AddProject" type="submit" class="btnAdd" Content="Add"></SfButton>
+                    <SfButton @onclick="@CancelProject" type="submit" class="btnCancel" Content="Cancel"></SfButton>
+                </div>
+
+            </div>
+        </EditForm>
+    </div>
+    @if (!IsHidden)
+    {
+        <SfGrid DataSource="@employeeLearning">
+            <GridColumns>
+                <GridColumn Field=@nameof(EmployeeLearning.LearningId) HeaderText="Learning Id" TextAlign="TextAlign.Center" Width="120">
+                </GridColumn>
+                <GridColumn Format="d" Field=@nameof(EmployeeLearning.StartDate) HeaderText="Start Date" TextAlign="TextAlign.Center" Width="130">
+                </GridColumn>
+                <GridColumn Format="d" Field=@nameof(EmployeeLearning.EndDate) HeaderText="End Date" TextAlign="TextAlign.Center" Width="120">
+                </GridColumn>
+                <GridColumn Field=@nameof(EmployeeLearning.BenchId) HeaderText="Bench Id" TextAlign="TextAlign.Center" Width="120">
+                </GridColumn>
+            </GridColumns>
+        </SfGrid>
+    }
+}

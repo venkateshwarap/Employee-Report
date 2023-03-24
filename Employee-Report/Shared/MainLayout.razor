@@ -5,7 +5,6 @@
 @inject AuthenticationStateProvider authStateProvider
 @inject IHttpContextAccessor ContextAccessor;
 <div class="page">
-
     <div id="mySidebar" class="collaps-active" style="@(collaps? "width:250px !important" : "")">
         <div class="top-logo">
             <img class="main-logo-sidebar" src="../icon/motivity.png" />
@@ -19,7 +18,6 @@
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-
                         <ul class="Master-toggler-menu">
                             <li>
                                 <NavLink class="nav-link" href="poc">
@@ -41,13 +39,17 @@
                                     <i class="bi bi-journal-check sub-menu-icon" aria-hidden="true"></i>Skills
                                 </NavLink>
                             </li>
-                             <li>
-                            <NavLink class="nav-link" href="employee">
-                            <i class="bi bi-person-circle sub-menu-icon" aria-hidden="true"></i>EmployeeList
-                            </NavLink>
+                            <li>
+                                <NavLink class="nav-link" href="employee">
+                                    <i class="bi bi-person-circle sub-menu-icon" aria-hidden="true"></i>EmployeeList
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink class="nav-link" href="learnings">
+                                    <i class="bi bi-book sub-menu-icon" aria-hidden="true"></i>Learning
+                                </NavLink>
                             </li>
                         </ul>
-
                     </div>
                 </div>
                 @if (ContextAccessor.HttpContext.Session.GetString("EmployeeId") != null)
@@ -60,18 +62,7 @@
                             </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-
                             <ul class="Employee-toggle-menu">
-                                @*      <li>
-                                    <NavLink class="nav-link" href="employee">
-                                        <i class="bi bi-person-circle sub-menu-icon" aria-hidden="true"></i>EmployeeList
-                                    </NavLink>
-                                </li>*@
-                                <li>
-                                    <NavLink class="nav-link" href="learnings">
-                                        <i class="bi bi-book sub-menu-icon" aria-hidden="true"></i>Learning
-                                    </NavLink>
-                                </li>
                                 <li>
                                     <NavLink class="nav-link" href="trainings">
                                         <i class="bi bi-person-workspace sub-menu-icon" aria-hidden="true"></i>Training
@@ -117,8 +108,12 @@
                                         <i class="bi bi-clipboard2-plus sub-menu-icon" aria-hidden="true"></i>IP
                                     </NavLink>
                                 </li>
+                                <li>
+                                    <NavLink class="nav-link" href="employeeLearnings">
+                                        <i class="bi bi-person-circle sub-menu-icon" aria-hidden="true"></i>Learnings
+                                    </NavLink>
+                                </li>
                             </ul>
-
                         </div>
                     </div>
                 }
@@ -133,12 +128,12 @@
                     <li class="nav-item active">
                         <p>
                             @(
-                            ContextAccessor.HttpContext.Session.GetString("Name") != null ? ContextAccessor.HttpContext.Session.GetString("Name") : ""
-                )@(
+                                ContextAccessor.HttpContext.Session.GetString("Name") != null ? ContextAccessor.HttpContext.Session.GetString("Name") : ""
+                                )@(
                                ContextAccessor.HttpContext.Session.GetString("EmployeeId") != null ? " (" + ContextAccessor.HttpContext.Session.GetString("EmployeeId") + ")" : ""
-                                            )
+                               )
                         </p>
-                </li> 
+                    </li>
 
                 </ul>
                 <div class="logoutbtn">
@@ -154,20 +149,16 @@
             @Body
         </article>
     </div>
-
 </div>
 
 @code {
-
     bool collaps = true;
     void OpenNav() => collaps = !collaps;
     void CloseNav() => collaps = !collaps;
     private async Task Logout()
     {
-
         var customAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvider;
         await customAuthStateProvider.UpdateAuthenticationState(null);
         navManager.NavigateTo("/login", true);
     }
-
 }
