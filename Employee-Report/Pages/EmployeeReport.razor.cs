@@ -1,6 +1,7 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.API.Service;
 using Employee_Report.Data;
+using Employee_Report.Repository.IServices;
 using Employee_Report.Repository.Services;
 using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components;
@@ -10,7 +11,8 @@ namespace Employee_Report.Pages
 {
     public partial class EmployeeReport
     {
-
+        [Inject]
+        IEmployeeSkillService employeeSkills { get; set; }
         Repository.Services.SkillsService SkillsService = new();
         public IEnumerable<Skill>? skillDetails { get; set; }
         public Skill skillModel = new();
@@ -49,8 +51,9 @@ namespace Employee_Report.Pages
         Repository.Services.TrainingService TrainingService = new();
         public IEnumerable<Training>? trainingDetails { get; set; }
         public Training trainingModel = new();
+        public List<string> employeeskils = new();
 
-        
+
 
         public IEnumerable<Poc> poc { get; set; }
 
@@ -84,16 +87,18 @@ namespace Employee_Report.Pages
             public int EmployeeIdentity { get; set; }
             public string ExpertiseDoamin { get; set; }
         }
-        private string _empid;
+        private string? _empid;
+        private string? _name;
         protected override async Task OnInitializedAsync()
         {
 
             var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
             var queryStrings = QueryHelpers.ParseQuery(uri.Query);
-            if(queryStrings.TryGetValue("EMPID", out var empid))
-                {
-                _empid = empid;
-            }
+             _empid = Utility.GetSessionClaim("EmployeeId");
+            _name = Utility.GetSessionClaim("Name");
+            var _resp_skils = await employeeSkills.GetEmployeeSkillsById(_empid);
+            employeeskils = Utility.GetResponseData<List<string>>(_resp_skils.response);
+
             var response = await reportService.GetInterviews();
             interviewsDetails = Utility.GetResponseData<List<Interview>>(response.response);
             var cerificationresponse = await reportService.GetCertificationDetails();

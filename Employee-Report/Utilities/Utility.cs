@@ -1,4 +1,5 @@
 ﻿using Employee.DataModel.Models;
+using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections;
@@ -8,6 +9,11 @@ namespace Employee_Report.Utilities
 {
     public static class Utility
     {
+        private static IHttpContextAccessor httpContextAccessor;
+        public static void SetHttpContextAccessor(IHttpContextAccessor accessor)
+        {
+            httpContextAccessor = accessor;
+        }
         public static T GetResponseData<T>(Object? value)
         {
             if (value is null)
@@ -168,5 +174,9 @@ namespace Employee_Report.Utilities
         #endregion
         #endregion
 
+        public static string GetSessionClaim(string claimname)
+        {
+          return httpContextAccessor.HttpContext.Session.GetString(claimname);
+        }
     }
 }

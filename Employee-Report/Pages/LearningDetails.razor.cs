@@ -20,6 +20,7 @@ namespace Employee_Report.Pages
         {
             learning = new Learning();
             var responseMessage = await learningService.GetLearnings();
+           var empId =  Utility.GetSessionClaim("EmployeeId");
             if (responseMessage != null)
             {
                 learningList = Utility.GetResponseData<List<Learning>>(responseMessage.response);

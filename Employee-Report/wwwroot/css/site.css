@@ -579,3 +579,6 @@ a {
     margin-top: 15px;
     color: blue;
 }
+.skills_name {
+    white-space: nowrap;
+}

@@ -72,6 +72,8 @@ namespace Employee_Report.AppSettings
         #region Skills
         public const string GetSkills = "Skills/get";
         public const string AddSkill = "Skills/create";
+        public static string GET_EMPLOYEE_SKILS_ById = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_SKILLS_ById).Value!;
+
         #endregion
 
         #region EmployeeSkills

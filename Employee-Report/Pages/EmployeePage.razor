@@ -13,14 +13,14 @@ else
     <SfGrid DataSource="@employees">
         <GridColumns>
             <GridColumn Field=@nameof(Employees.Id) HeaderText="Employee Id" TextAlign="TextAlign.Left" Width="100">
-            </GridColumn>
-            <GridColumn Field=@nameof(Employees.FirstName) HeaderText="First Name" TextAlign="TextAlign.Left" Width="100">
                 <Template>
-                   @{
+                    @{
                         var emp = (context as Employees);
-                        <a rel='nofollow' href="#" @onclick="@(() => Clicked(emp.Id,emp.FirstName + " "+emp.LastName))">@emp.FirstName</a>
+                        <a rel='nofollow' href="#" @onclick="@(() => Clicked(emp.Id,emp.FirstName + " "+emp.LastName))">@emp.Id</a>
                     }
                 </Template>
+            </GridColumn>
+            <GridColumn Field=@nameof(Employees.FirstName) HeaderText="First Name" TextAlign="TextAlign.Left" Width="100">
             </GridColumn>
             <GridColumn Field=@nameof(Employees.LastName) HeaderText="Last Name" TextAlign="TextAlign.Left" Width="100">
             </GridColumn>

@@ -1,6 +1,7 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Report.API.Service
 {
@@ -69,7 +70,29 @@ namespace Employee_Report.API.Service
             }
             return empSkillByID;
         }
+        public Response GetEmployeeSkillsByEmpId(string id)
+        {
+            var empSkillByID = new List<EmployeeSkills_Skills_Entity>();
+            var result=  _context.EmployeeSkills.Where(x=>x.EmpId == id).ToList();
+            List<string> _skills = new List<string>();
+            if(result != null)
+            {
+                foreach (var item in result)
+                {
+                    if (item != null)
+                    {
+                        var skills_name = _context.Skills.Where(x => x.Id == item.SkillId).FirstOrDefault();
+                        _skills.Add(skills_name!.SkillName.ToString()!);
 
+                    }
+                }
+
+            }
+           
+
+
+            return BindResponse(_skills, true);
+        }
         private Response BindResponse(Object Obj = null!, bool Status = true, string Message = "")
         {
             Response resp = new Response();

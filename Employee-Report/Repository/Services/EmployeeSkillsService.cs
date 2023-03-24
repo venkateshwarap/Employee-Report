@@ -1,4 +1,5 @@
 ﻿using Employee.DataModel.Models;
+using Employee_Report.Utilities;
 
 namespace Employee_Report.Repository.Services
 {
@@ -20,6 +21,11 @@ namespace Employee_Report.Repository.Services
         {
             HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddEmployeeSkill, employeeSkills);
             return responseMessage;
+        }
+        public async Task<Response> GetEmployeeSkillsById(string empid)
+        {
+            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EMPLOYEE_SKILS_ById, empid, _httpClient);
+            return entry;
         }
     }
 }

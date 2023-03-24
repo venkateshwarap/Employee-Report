@@ -45,6 +45,7 @@
 
         #region Skills
         public const string GET_SKILLS = "APIConfig:Skills/GetSkills";
+        public const string GET_EMPLOYEE_SKILLS_ById = "APIConfig:GetEmployee_SkilsById";
         #endregion
 
         #region IntellectualProperty Routes

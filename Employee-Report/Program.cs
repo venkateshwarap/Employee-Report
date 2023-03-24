@@ -3,8 +3,10 @@ using Employee_Report.Repository.IServices;
 using Employee_Report.Repository.Services;
 using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Syncfusion.Blazor;
+using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +38,12 @@ builder.Services.AddSyncfusionBlazor();
 builder.Services.AddHttpClient();
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTIxMjA0MEAzMjMwMmUzNDJlMzBMalJWcXpUYTZBY09jeDZqNjQwVGRtK3lBU0dWMWladUU2Vi9XQVNmNFNzPQ==");
 ConfigurationHelper.Initialize(builder.Configuration);
+using (ServiceProvider serviceProvider = builder.Services.BuildServiceProvider())
+{
+    var accessor = serviceProvider.GetService<IHttpContextAccessor>();
+    Utility.SetHttpContextAccessor(accessor);
+
+}
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

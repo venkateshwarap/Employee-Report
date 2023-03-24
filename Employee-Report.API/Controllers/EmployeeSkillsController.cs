@@ -53,6 +53,25 @@ namespace Employee_Report.API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetEmployeeSkillsByEmpId")]
+        public IActionResult GetEmployeeSkillsEmpId(string id)
+        {
+            try
+            {
+                var empSkillByID =  _employeeSkillService.GetEmployeeSkillsByEmpId(id);
+                if (empSkillByID == null)
+                {
+                    return NotFound();
+                }
+                return Ok(empSkillByID);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpPost]
         [Route(Constants.create)]
         public async Task<IActionResult> AddEmployeeSkill([FromBody] EmployeeSkills employeeSkills)
