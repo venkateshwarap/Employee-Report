@@ -5,7 +5,7 @@ namespace Employee_Report.API.IService
     public interface IEmpService
     {
         Task<IEnumerable<Employees>> GetEmployee();
-        EMP GetEmployeeById(string Id);
+        Employees GetEmployeeById(string Id);
 
     }
 }
