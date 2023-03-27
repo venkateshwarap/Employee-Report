@@ -1,7 +1,9 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.API.IService;
+using Employee_Report.API.Utilities;
 using Employee_Report.Model.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Report.API.Service
 {
@@ -28,12 +30,18 @@ namespace Employee_Report.API.Service
         }
 
 
-        public List<EmployeeLearning> GetEmployeelearningDetailsbyEmpID(string empId)
+        public Response GetEmployeelearningDetailsbyEmpID(string empId)
         {
 
             try
             {
-                return _context.EmployeeLearnings.ToList().FindAll(x=>x.EmpId == empId);
+                var result = _context.EmployeeLearnings.Where(x => x.EmpId == empId).FirstOrDefault();
+                var res_result = _context.Learnings.Where(x=>x.Id==result!.Id).ToList();
+                if (res_result.Count > 0)
+                {
+                  return  APIUtility.BindResponse(res_result, true);
+                }
+                return APIUtility.BindResponse(res_result, false);
             }
             catch (Exception)
             {

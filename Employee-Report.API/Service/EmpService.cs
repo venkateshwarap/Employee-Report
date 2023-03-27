@@ -14,11 +14,20 @@ namespace Employee_Report.API.Service
         }
         public async Task<IEnumerable<Employees>> GetEmployee()
         {
-            if (_dBContext != null)
+            try
             {
-                return await _dBContext.Employees.ToListAsync();
+                if (_dBContext != null)
+                {
+                    return await _dBContext.Employees.ToListAsync();
+                }
+                return null;
             }
-            return null;
+            catch (Exception)
+            {
+
+                throw;
+            }
+          
 
         }
 

@@ -35,6 +35,19 @@ namespace Employee_Report.API.Service
             return BindResponse(result, false);
         }
 
+        public async Task<Response> GetTrainingById(string Id)
+        {
+            var Emp_result = await _context.EmployeeTrainings.Where(x => x.EmpId == Id).FirstOrDefaultAsync();
+            if (Emp_result != null)
+            {
+                var result = await _context.Training.Where(x => x.Id == Emp_result!.Id).ToListAsync();
+                if (result != null)
+                    return BindResponse(result, true);
+            }
+            return BindResponse(null!, false);
+
+        }
+
         private Response BindResponse(Object Obj = null!, bool Status = true, string Message = "")
         {
             Response resp = new Response();

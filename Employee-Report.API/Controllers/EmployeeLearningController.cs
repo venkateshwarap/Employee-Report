@@ -19,7 +19,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpGet(Constants.getById)]
-        public List<EmployeeLearning> GetAllEmployeeLearningDetails(string empID)
+        public Response GetAllEmployeeLearningDetails(string empID)
         {
             return _employeeLearningService.GetEmployeelearningDetailsbyEmpID(empID);
         }

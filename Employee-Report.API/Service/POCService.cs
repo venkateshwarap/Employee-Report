@@ -1,6 +1,8 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.API.IService;
+using Employee_Report.API.Utilities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Employee_Report.API.Service
 {
@@ -14,7 +16,7 @@ namespace Employee_Report.API.Service
             this._dBContext = context;
         }
 
-        public List<EmployeePOCEntity> GetById(string empId)
+        public Response GetById(string empId)
         {
             if (_dBContext != null)
             {
@@ -41,9 +43,9 @@ namespace Employee_Report.API.Service
                     });
                 }
 
-                return employeePOCEntity;
+                return APIUtility.BindResponse(employeePOCEntity,true);
             }
-            return null;
+            return APIUtility.BindResponse(null!, false);
 
         }
 

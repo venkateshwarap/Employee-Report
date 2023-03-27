@@ -1,5 +1,6 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.Repository.IServices;
+using Employee_Report.Utilities;
 using System.Net.Http.Json;
 
 namespace Employee_Report.Repository.Services
@@ -17,7 +18,13 @@ namespace Employee_Report.Repository.Services
             var emp = await _httpClient.GetFromJsonAsync<Employees[]>(AppSettings.Config.GetEmployee);
             return emp;
         }
-       
+
+        public async Task<Response> GetEmployeeDetails(string Id)
+        {
+            var emp = await Utility.HttpClientGetAsync(AppSettings.Config.GetEmployeeById,Id,_httpClient);
+            return emp;
+        }
+
         public async Task<EMP> GetEmployeeById(string Id)
         {
             var emp = await _httpClient.GetFromJsonAsync<EMP>(AppSettings.Config.GetEmployeeById);

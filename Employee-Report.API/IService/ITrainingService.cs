@@ -6,5 +6,6 @@ namespace Employee_Report.API.IService
     {
         Task<Response> GetTrainings();
         Task<Response> AddNewTraining(Training training);
+        Task<Response> GetTrainingById(string Id);
     }
 }

@@ -105,7 +105,7 @@ namespace Employee_Report.API.Service
 
         public async Task<Response> GetByProjectId(string EmpId)
         {
-            var result = await _dBContext.EmployeeProjects.Where(x => x.EmpId == EmpId).FirstOrDefaultAsync();
+            var result = await _dBContext.EmployeeProjects.Where(x => x.EmpId == EmpId).ToListAsync();
             if (result != null)
             {
                 return BindResponse(result!, true);

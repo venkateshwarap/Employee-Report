@@ -17,6 +17,12 @@ namespace Employee_Report.Repository.Services
             var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GetTrainings, _httpClient);
             return entry;
         }
+
+        public async Task<Response> GetTrainingsById(string Id)
+        {
+            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GET_TRAINING_BY_ID,Id, _httpClient);
+            return entry;
+        }
         public async Task<Response> AddNewTraining(Training training)
         {
             var entry = await Utility.HttpClientPostAsync(AppSettings.Config.AddNewTraining, _httpClient, training);

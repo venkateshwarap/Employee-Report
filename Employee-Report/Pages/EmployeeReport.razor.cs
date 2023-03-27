@@ -19,14 +19,14 @@ namespace Employee_Report.Pages
 
         Repository.Services.EmployeesService employeesService = new Repository.Services.EmployeesService();
         public IEnumerable<Employees> employees { get; set; }
-       
-        
-       
-        ReportService reportService=new ReportService();
+
+
+
+        ReportService reportService = new ReportService();
         public IEnumerable<Interview>? interviewsDetails { get; set; }
         public Interview InterviewModel = new();
 
-        public IEnumerable<Certification>? certificationslist { get; set; }
+        public List<Certification>? certificationslist = new();
         public Certification certifications = new();
 
         [Inject]
@@ -34,14 +34,14 @@ namespace Employee_Report.Pages
         public IEnumerable<PowerHouse> powerHouseDetails { get; set; }
         public PowerHouse powerHouseModel = new();
 
-        
+
 
         Repository.Services.EmployeePocService employeePocService = new Repository.Services.EmployeePocService();
         public IEnumerable<EmployeePOCEntity> employeepoc { get; set; }
 
         public EmployeePoc employeePocModel = new();
 
-        public IEnumerable<EmployeeProjectEntity> employeeproject { get; set; }
+        public IEnumerable<EmployeeProject> employeeproject { get; set; }
         public EmployeeProject employeeProject = new();
 
         Repository.Services.LearningService LearningService = new();
@@ -49,7 +49,7 @@ namespace Employee_Report.Pages
         public Learning learningModel = new();
 
         Repository.Services.TrainingService TrainingService = new();
-        public IEnumerable<Training>? trainingDetails { get; set; }
+        public IEnumerable<Training>? trainingDetails  { get; set; }
         public Training trainingModel = new();
         public List<string> employeeskils = new();
 
@@ -58,7 +58,7 @@ namespace Employee_Report.Pages
         public IEnumerable<Poc> poc { get; set; }
 
         public List<ChartDataModel> pieData;
-      
+
         public class ChartDataModel
         {
             public string Expertise { get; set; }
@@ -94,25 +94,28 @@ namespace Employee_Report.Pages
 
             var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
             var queryStrings = QueryHelpers.ParseQuery(uri.Query);
-             _empid = Utility.GetSessionClaim("EmployeeId");
+            _empid = Utility.GetSessionClaim("EmployeeId");
             _name = Utility.GetSessionClaim("Name");
             var _resp_skils = await employeeSkills.GetEmployeeSkillsById(_empid);
             employeeskils = Utility.GetResponseData<List<string>>(_resp_skils.response);
 
             var response = await reportService.GetInterviews();
             interviewsDetails = Utility.GetResponseData<List<Interview>>(response.response);
-            var cerificationresponse = await reportService.GetCertificationDetails();
-            certificationslist = Utility.GetResponseData<List<Certification>>(cerificationresponse.response);
-            var powerHouseresponse = (await benchServices.GeEACouncilEntryDetails()).ToList();
-            //powerHouseDetails = Utility.GetResponseData<List<PowerHouse>>(powerHouseresponse.response);
-            employeepoc = (await reportService.GetEmployeePOCDetails()).ToList();
-            employeeproject = (await reportService.GetEmployeeProjectDetails()).ToList();
-            var learningresponse = await LearningService.GetLearnings();
+            var cerificationresponse = await reportService.GetCertificationById(_empid);
+            var _cert_res_result = Utility.GetResponseData<Certification>(cerificationresponse.response);
+            certificationslist.Add(_cert_res_result);
+            var powerHouseresponse = await benchServices.GetPowerHouseById(_empid);
+            var pocById = await reportService.GetEmployeePOCById(_empid);
+            employeepoc = Utility.GetResponseData<List<EmployeePOCEntity>>(pocById.response);
+
+            var res_employeeproject = await reportService.GetEmployeeProjectDetailsById(_empid);
+            employeeproject = Utility.GetResponseData<List<EmployeeProject>>(res_employeeproject.response);
+            var learningresponse = await LearningService.GetLearningsById(_empid);
             learningCompleteDetails = Utility.GetResponseData<List<Learning>>(learningresponse.response);
-            var trainingresponse = await TrainingService.GetTrainings();
+            var trainingresponse = await TrainingService.GetTrainingsById(_empid);
             trainingDetails = Utility.GetResponseData<List<Training>>(trainingresponse.response);
             employees = (await employeesService.GetEmployeeDetails()).ToList();
-            
+
             //var skillresponse = await SkillsService.GetSkills();
             //skillDetails = Utility.GetResponseData<List<Skill>>(skillresponse.response);
         }

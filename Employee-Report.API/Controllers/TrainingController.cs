@@ -34,6 +34,23 @@ namespace Employee_Report.API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route(Constants.GET_BY_ID)]
+        public async Task<IActionResult> GetTrainingById(string Id)
+        {
+            try
+            {
+                var result = await _trainingService.GetTrainingById(Id);
+                if (result.status)
+                    return Ok(result);
+                return BadRequest(result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpPost]
         [Route(Constants.create)]
         public async Task<IActionResult> AddNewTraining(Training training)

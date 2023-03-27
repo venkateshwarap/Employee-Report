@@ -7,5 +7,7 @@ namespace Employee_Report.Repository.IServices
     {
         Task<Response> GetLearnings();
         Task<Response> AddNewLearning(Learning learning);
+
+        Task<Response> GetLearningsById(string Id);
     }
 }

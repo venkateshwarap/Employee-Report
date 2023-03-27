@@ -16,6 +16,6 @@ namespace Employee.DataModel.Models
 
         public DateTime? ValidTill { get; set; }
 
-        public int? Eacid { get; set; }
+        public int Eacid { get; set; }
     }
 }

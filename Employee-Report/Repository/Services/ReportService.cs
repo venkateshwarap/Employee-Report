@@ -22,6 +22,12 @@ namespace Employee_Report.Repository.Services
             return entry;
         }
 
+        public async Task<Response> GetCertificationById(string empid)
+        {
+            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GET_CERTIFICATIONS_DETAILS_BY_ID, empid, _httpClient);
+            return entry;
+        }
+
         public async Task<Response> GeEACouncilEntryDetails()
         {
             var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EA_COUNCIL, _httpClient);
@@ -34,12 +40,23 @@ namespace Employee_Report.Repository.Services
             return empPoc;
         }
 
+        public async Task<Response> GetEmployeePOCById(string Id)
+        {
+            var empPoc = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EMPLOYEE_POC_ID, Id, _httpClient);
+            return empPoc;
+        }
+
+
         public async Task<IEnumerable<EmployeeProjectEntity>> GetEmployeeProjectDetails()
         {
             var empProject = await _httpClient.GetFromJsonAsync<EmployeeProjectEntity[]>(AppSettings.Config.GetEmployeeProject);
             return empProject;
         }
-
+        public async Task<Response> GetEmployeeProjectDetailsById(string Id)
+        {
+            var empProject = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EMPLOYEE_PROJECT_BY_ID, Id, _httpClient);
+            return empProject;
+        }
         public async Task<Response> GetLearnings()
         {
             var entry = await Utility.HttpClientGetAsync(AppSettings.Config.Getlearnings, _httpClient);

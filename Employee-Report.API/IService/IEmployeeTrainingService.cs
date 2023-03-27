@@ -7,6 +7,6 @@ namespace Employee_Report.API.IService
         public ResponseModel SaveEmployeeTraningDetails(EmployeeTraining employeeTrainng);
         public List<EmployeeTraining> GetEmployeeTraningDetails();
 
-        public List<EmployeeTraining> GetEmployeeTraningDetailsById(string EmpID);
+        public Task<Response> GetEmployeeTraningDetailsById(string EmpID);
     }
 }

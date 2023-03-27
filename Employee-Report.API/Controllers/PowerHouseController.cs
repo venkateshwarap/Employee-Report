@@ -67,7 +67,7 @@ namespace Employee_Report.API.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("getbyId")]
         public async Task<IActionResult> GetEACouncilDetailsById(string empid)
         {

@@ -11,8 +11,16 @@
         public const string CREATE_EA_COUNCIL_ENTRY = "APIConfig:CreateEACouncilEntry";
         public const string CREATE_POWERHOUSE_ROLE = "APIConfig:CreatePowerHouse_Role";
         public const string GET_CERTIFICATIONS_DETAILS = "APIConfig:GetCertificationsDetails";
+        public const string GET_CERTIFICATIONS_DETAILS_BY_ID = "APIConfig:GetCertificationsDetailsById";
         public const string CREATE_CERTIFICATIONS_DETAILS = "APIConfig:CreateCertificationsDetails";
- 
+        
+        public const string GET_CERTIFICATION_BY_ID = "APIConfig:GetCertificationsDetailsById";
+        public const string GET_EMPLOYEE_PROJECT_BY_ID = "APIConfig:GetEmployeeProjectById";
+        public const string GET_EMPLOYEE_POC_ID = "APIConfig:GetEmployeePOCById";
+        public const string GET_TRAINING_BY_ID = "APIConfig:GetTrainingById";
+        public const string GET_EMPLOYEE_LEARNING_ID = "APIConfig:GetEmployeeLearningById";
+        public const string GET_POWERHOUS_BY_ID = "APIConfig:GetPowerHouseById";
+
         #region LEARNING
         public const string CREATE_EMPLOYEE_LEARNING = "APIConfig:EmployeeLearning";
         public const string GET_EMPLOYEE_LEARNING = "APIConfig:EmployeeLearning";

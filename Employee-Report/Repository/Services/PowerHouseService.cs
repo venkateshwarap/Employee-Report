@@ -1,5 +1,6 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.Repository.IServices;
+using Employee_Report.Utilities;
 
 namespace Employee_Report.Repository.Services
 {
@@ -26,6 +27,11 @@ namespace Employee_Report.Repository.Services
             //powerHouse.CreatedOn = DateTime.Now;
             //var entry = await Utility.HttpClientPostAsync(AppSettings.Config.CREATE_EA_COUNCIL_ENTRY, _httpClient, powerHouse);
             //return entry;
+        }
+        public async Task<Response> GetPowerHouseById(string Id)
+        {
+            var result = await Utility.HttpClientGetAsync(AppSettings.Config.GET_POWERHOUS_BY_ID, Id, _httpClient);
+            return result;
         }
     }
 }

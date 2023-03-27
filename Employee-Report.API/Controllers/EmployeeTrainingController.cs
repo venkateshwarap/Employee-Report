@@ -29,9 +29,10 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpGet("GetDetailsbyId")]
-        public List<EmployeeTraining> GetEmployeeTraningDetailsById(string empId)
+        public async Task<IActionResult> GetEmployeeTraningDetailsById(string empId)
         {
-            return _employeeTrainingService.GetEmployeeTraningDetailsById(empId);
+            var result = await _employeeTrainingService.GetEmployeeTraningDetailsById(empId);
+            return Ok(result);
         }
     }
 }

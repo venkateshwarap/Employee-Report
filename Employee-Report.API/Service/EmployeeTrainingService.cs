@@ -1,6 +1,8 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.API.IService;
+using Employee_Report.API.Utilities;
 using Employee_Report.Model.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Report.API.Service
 {
@@ -18,9 +20,10 @@ namespace Employee_Report.API.Service
             return _eatrackingContext.EmployeeTrainings.ToList();
         }
 
-        public List<EmployeeTraining> GetEmployeeTraningDetailsById(string EmpID)
+        public async Task<Response> GetEmployeeTraningDetailsById(string EmpID)
         {
-            return _eatrackingContext.EmployeeTrainings.ToList().FindAll(x => x.EmpId == EmpID);
+            var res=  await _eatrackingContext.EmployeeTrainings.Where(x => x.EmpId == EmpID).ToListAsync();
+            return APIUtility.BindResponse(res, true);
         }
 
         public ResponseModel SaveEmployeeTraningDetails(EmployeeTraining employeeTrainng)
