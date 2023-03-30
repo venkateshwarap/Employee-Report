@@ -1,5 +1,6 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.Repository.IServices;
+using Employee_Report.Utilities;
 
 namespace Employee_Report.Repository.Services
 {
@@ -11,9 +12,15 @@ namespace Employee_Report.Repository.Services
             _httpClient.BaseAddress = new Uri(AppSettings.Config.API_ROUTE!);
         }
        
-        public async Task<IEnumerable<EmployeeLearning>> GetEmployeeLearnings()
+        public async Task<Response> GetEmployeeLearnings()
         {
-            var empLearnings = await _httpClient.GetFromJsonAsync<EmployeeLearning[]>(AppSettings.Config.GetEmployeeLearning);
+            var empLearnings = await Utility.HttpClientGetAsync(AppSettings.Config.GetEmployeeLearning,_httpClient);
+            return empLearnings;
+        }
+
+        public async Task<Response> GetEmployeeLearningById(string empId)
+        {
+            var empLearnings = await Utility.HttpClientGetAsync("EmployeeLearning/getById?empID=MLI740", empId, _httpClient);
             return empLearnings;
         }
 

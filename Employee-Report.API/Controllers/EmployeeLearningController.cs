@@ -19,21 +19,33 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpGet(Constants.getById)]
-        public Response GetAllEmployeeLearningDetails(string empID)
+        public async Task<IActionResult> GetAllEmployeeLearningDetails(string empID)
         {
-            return _employeeLearningService.GetEmployeelearningDetailsbyEmpID(empID);
+            var result =  await _employeeLearningService.GetEmployeeLearningbyEmpId(empID);
+            if(result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
         [HttpPost]
         [Route(Constants.create)]
-        public ResponseModel SaveEmployeeLearningDetails(EmployeeLearning employee)
+        public async Task<IActionResult> CreateEmployeeLearning(EmployeeLearning employee)
         {
-            return _employeeLearningService.SaveEmployeeLearningDetails(employee);
+            var result = await _employeeLearningService.CreateEmployeeLearning(employee);
+            if(result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
         }
 
         [HttpGet(Constants.get)]
-        public List<EmployeeLearning> GetAllEmployeeLearningDetails()
+        public IActionResult GetAllEmployeeLearningDetails()
         {
-            return _employeeLearningService.GetEmployeelearningDetails();
+            var result = _employeeLearningService.GetEmployeelearningDetails();
+           return Ok(result);
         }
 
 

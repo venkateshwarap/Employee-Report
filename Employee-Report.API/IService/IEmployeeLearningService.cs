@@ -4,9 +4,8 @@ namespace Employee_Report.API.IService
 {
     public interface IEmployeeLearningService
     {
-        public ResponseModel SaveEmployeeLearningDetails(EmployeeLearning learning);
-        public List<EmployeeLearning> GetEmployeelearningDetails();
-
-        public Response GetEmployeelearningDetailsbyEmpID(string empId);
+        Task<Response> CreateEmployeeLearning(EmployeeLearning learning);
+        Response GetEmployeelearningDetails();
+        Task<Response> GetEmployeeLearningbyEmpId(string empId);
     }
 }

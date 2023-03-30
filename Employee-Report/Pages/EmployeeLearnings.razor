@@ -1,7 +1,9 @@
 ﻿@page "/employeeLearnings"
 @using Employee.DataModel.Models;
+@using Employee_Report.Model.ModelView;
 <PageTitle>Employee Information - Employee Details</PageTitle>
 @inject NavigationManager navManager;
+@using Syncfusion.Blazor.DropDowns
 
 @if (employeeLearning == null)
 {
@@ -17,14 +19,21 @@ else
         }
     </div>
     <div class="@(IsHidden ? "show" : "hidden")">
-        <EditForm Model="@employeeLearning">
+        <EditForm Model="@employeeLearning" OnSubmit="@AddEmployeeLearning">
             <DataAnnotationsValidator />
             <div class="form-control">
                 <div class="row">
                     <div class="col-md-6">
-                        <label>Learning Id</label>
-                        <SfNumericTextBox CssClass="e-outline" Type="InputType.Number" class="form-control" @bind-Value="employeeLearningData.LearningId" />
-                        <ValidationMessage For="@(() => employeeLearningData.LearningId)" />
+                        <InputText type="hidden" class="form-control" @bind-Value="employeeLearningData.EmpId" />
+                        <label>Learning Name</label>
+                        <InputSelect class="form-control form-select" @bind-Value=@employeeLearningData.LearningId>
+                        
+                            @foreach (var display in learninglist)
+                            {
+                                <option value=@display.Id>@display.Name</option>
+                            }
+                        
+                        </InputSelect>
                     </div>
                     <div class="col-md-6">
                         <label Class="e-outline">Start Date</label>
@@ -38,14 +47,9 @@ else
                                @bind-Value="employeeLearningData.EndDate" />
                         <ValidationMessage For="@(() => employeeLearningData.EndDate)" />
                     </div>
-                    <div class="col-md-6">
-                        <label>Bench Id</label>
-                        <SfNumericTextBox CssClass="e-outline" Type="InputType.Number" class="form-control" @bind-Value="employeeLearningData.BenchId" />
-                        <ValidationMessage For="@(() => employeeLearningData.BenchId)" />
-                    </div>
                 </div>
                 <div id="SfBtnsAddEmployeeLearnings">
-                    <SfButton @onclick="@AddProject" type="submit" class="btnAdd" Content="Add"></SfButton>
+                    <SfButton type="submit" class="btnAdd" Content="Add"></SfButton>
                     <SfButton @onclick="@CancelProject" type="submit" class="btnCancel" Content="Cancel"></SfButton>
                 </div>
 
@@ -56,13 +60,15 @@ else
     {
         <SfGrid DataSource="@employeeLearning">
             <GridColumns>
-                <GridColumn Field=@nameof(EmployeeLearning.LearningId) HeaderText="Learning Id" TextAlign="TextAlign.Center" Width="120">
+                <GridColumn Field=@nameof(EmployeeLearningView.LearningName) HeaderText="Learning Name" TextAlign="TextAlign.Center" Width="120">
                 </GridColumn>
-                <GridColumn Format="d" Field=@nameof(EmployeeLearning.StartDate) HeaderText="Start Date" TextAlign="TextAlign.Center" Width="130">
+                <GridColumn Field=@nameof(EmployeeLearningView.LearningPath) HeaderText="Learning Path" TextAlign="TextAlign.Center" Width="120">
+                    </GridColumn>
+                    <GridColumn Format="d" Field=@nameof(EmployeeLearningView.StartDate) HeaderText="Start Date" TextAlign="TextAlign.Center" Width="130">
                 </GridColumn>
-                <GridColumn Format="d" Field=@nameof(EmployeeLearning.EndDate) HeaderText="End Date" TextAlign="TextAlign.Center" Width="120">
+                    <GridColumn Format="d" Field=@nameof(EmployeeLearningView.EndDate) HeaderText="End Date" TextAlign="TextAlign.Center" Width="120">
                 </GridColumn>
-                <GridColumn Field=@nameof(EmployeeLearning.BenchId) HeaderText="Bench Id" TextAlign="TextAlign.Center" Width="120">
+                <GridColumn Field=@nameof(EmployeeLearningView.Duration) HeaderText="Duration (Days)" TextAlign="TextAlign.Center" Width="120">
                 </GridColumn>
             </GridColumns>
         </SfGrid>

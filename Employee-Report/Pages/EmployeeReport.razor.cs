@@ -92,8 +92,6 @@ namespace Employee_Report.Pages
         protected override async Task OnInitializedAsync()
         {
 
-            var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
-            var queryStrings = QueryHelpers.ParseQuery(uri.Query);
             _empid = Utility.GetSessionClaim("EmployeeId");
             _name = Utility.GetSessionClaim("Name");
             var _resp_skils = await employeeSkills.GetEmployeeSkillsById(_empid);

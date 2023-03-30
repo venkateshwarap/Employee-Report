@@ -113,7 +113,6 @@ namespace Employee.DataModel.Models
                 entity.ToTable("EmployeeLearning");
 
                 entity.Property(e => e.Id).HasColumnName("ID");
-                entity.Property(e => e.BenchId).HasColumnName("BenchID");
                 entity.Property(e => e.EmpId).HasMaxLength(10);
                 entity.Property(e => e.LearningId).HasColumnName("LearningID");
                 entity.Property(e => e.StartDate).HasColumnName("StartDate");
