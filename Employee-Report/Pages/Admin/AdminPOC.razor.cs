@@ -1,9 +1,9 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.Model.Models;
 
-namespace Employee_Report.Pages
+namespace Employee_Report.Pages.Admin
 {
-    public partial class POCDetails
+    public partial class AdminPOC
     {
 
         Repository.Services.EmployeePocService employeePocService = new Repository.Services.EmployeePocService();

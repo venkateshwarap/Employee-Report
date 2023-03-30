@@ -2,9 +2,9 @@
 using Employee_Report.Model.Models;
 using Employee_Report.Utilities;
 
-namespace Employee_Report.Pages
+namespace Employee_Report.Pages.Admin
 {
-    public partial class SkillsPage
+    public partial class AdminSkillsPage
     {
         Repository.Services.SkillsService SkillsService = new();
         public IEnumerable<Skill>? skillDetails { get; set; }

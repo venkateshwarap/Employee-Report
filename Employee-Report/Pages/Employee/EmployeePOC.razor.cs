@@ -5,7 +5,7 @@ using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components.Web;
 using System.Net.Http;
 
-namespace Employee_Report.Pages
+namespace Employee_Report.Pages.Employee
 {
     public partial class EmployeePOC
     {

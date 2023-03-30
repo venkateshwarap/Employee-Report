@@ -2,7 +2,7 @@
 using Employee_Report.Model.ModelView;
 using Employee_Report.Utilities;
 
-namespace Employee_Report.Pages
+namespace Employee_Report.Pages.Employee
 {
     public partial class EmployeeLearnings
     {

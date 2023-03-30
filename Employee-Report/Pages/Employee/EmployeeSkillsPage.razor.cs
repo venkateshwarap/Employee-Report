@@ -2,7 +2,7 @@
 using Employee_Report.Repository.Services;
 using Employee_Report.Utilities;
 
-namespace Employee_Report.Pages
+namespace Employee_Report.Pages.Employee
 {
     public partial class EmployeeSkillsPage
     {

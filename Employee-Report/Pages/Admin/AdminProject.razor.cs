@@ -1,9 +1,9 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.Model.Models;
 
-namespace Employee_Report.Pages
+namespace Employee_Report.Pages.Admin
 {
-    public partial class ProjectDetails
+    public partial class AdminProject
     {
         Repository.Services.EmployeeProjectService employeeProjectService = new Repository.Services.EmployeeProjectService();
         public IEnumerable<Project> projects { get; set; }

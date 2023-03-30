@@ -1,7 +1,7 @@
 ﻿using Employee.DataModel.Models;
 using Microsoft.AspNetCore.Components.Web;
 
-namespace Employee_Report.Pages
+namespace Employee_Report.Pages.Employee
 {
     public partial class EmployeeProjectDetails
     {

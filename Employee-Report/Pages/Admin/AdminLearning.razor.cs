@@ -5,9 +5,9 @@ using Employee_Report.Model.Models;
 using Employee_Report.Repository.Services;
 using Employee_Report.Utilities;
 
-namespace Employee_Report.Pages
+namespace Employee_Report.Pages.Admin
 {
-    public partial class LearningDetails
+    public partial class AdminLearning
     {
         public bool HideLearningControls = true;
         public bool HideAdd = false;
@@ -20,7 +20,7 @@ namespace Employee_Report.Pages
         {
             learning = new Learning();
             var responseMessage = await learningService.GetLearnings();
-           var empId =  Utility.GetSessionClaim("EmployeeId");
+            var empId = Utility.GetSessionClaim("EmployeeId");
             if (responseMessage != null)
             {
                 learningList = Utility.GetResponseData<List<Learning>>(responseMessage.response);

@@ -1,9 +1,9 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.Model.Models;
 
-namespace Employee_Report.Pages
+namespace Employee_Report.Pages.Admin
 {
-    public partial class GetRoles
+    public partial class AdminRoles
     {
         Repository.Services.GetRoleService roleService = new Repository.Services.GetRoleService();
         public IEnumerable<Role> role { get; set; }

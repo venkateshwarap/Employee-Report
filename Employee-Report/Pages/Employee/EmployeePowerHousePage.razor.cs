@@ -1,9 +1,9 @@
 ﻿using Employee.DataModel.Models;
 
 
-namespace Employee_Report.Pages
+namespace Employee_Report.Pages.Employee
 {
-    public partial class PowerHousePage
+    public partial class EmployeePowerHousePage
     {
         private readonly Repository.Services.PowerHouseService powerHouseService = new Repository.Services.PowerHouseService();
         public IEnumerable<PowerHouse_Role> powerHouse_RolesDeatils { get; set; }

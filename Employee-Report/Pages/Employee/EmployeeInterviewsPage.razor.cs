@@ -1,9 +1,9 @@
 ﻿using Employee.DataModel.Models;
 using Employee_Report.Utilities;
 
-namespace Employee_Report.Pages
+namespace Employee_Report.Pages.Employee
 {
-    public partial class InterviewsPage
+    public partial class EmployeeInterviewsPage
     {
         Repository.Services.InterviewService interviewService = new Repository.Services.InterviewService();
         public IEnumerable<Interview>? interviewsDetails { get; set; }

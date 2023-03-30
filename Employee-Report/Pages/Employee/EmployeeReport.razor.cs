@@ -7,7 +7,7 @@ using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace Employee_Report.Pages
+namespace Employee_Report.Pages.Employee
 {
     public partial class EmployeeReport
     {

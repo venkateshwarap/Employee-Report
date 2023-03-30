@@ -5,9 +5,9 @@ using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components;
 using Syncfusion.Blazor.FileManager;
 
-namespace Employee_Report.Pages
+namespace Employee_Report.Pages.Employee
 {
-    public partial class IntellectualPropertyPage
+    public partial class EmployeeIntellectualPropertyPage
     {
         [Inject]
         public Repository.IServices.IIntellectualPropertyService service { get; set; }
