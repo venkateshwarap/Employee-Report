@@ -1,14 +1,14 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components;
 
-namespace Employee_Report.Pages.Admin
+namespace Employee_Report.Pages.Employee
 {
-    public partial class AdminCertificationsPage
+    public partial class CertificationsPage
     {
         [Inject]
         public Repository.IServices.ICertificationsService service { get; set; }
-        public IEnumerable<Certification> certificationslist { get; set; }
+        public IEnumerable<Certification>? certificationslist { get; set; }
         public Certification certifications = new();
         private bool IsHidden { get; set; } = false;
         protected override async Task OnInitializedAsync()

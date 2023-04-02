@@ -1,11 +1,11 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 
 namespace Employee_Report.API.IService
 {
     public interface IEmpService
     {
-        Task<IEnumerable<Employees>> GetEmployee();
-        Employees GetEmployeeById(string Id);
+        Task<Response> GetEmployee();
+        Task<Response> GetEmployeeById(string Id);
 
     }
 }

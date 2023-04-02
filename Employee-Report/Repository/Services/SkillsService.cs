@@ -1,12 +1,10 @@
-﻿using Employee.DataModel.Models;
-using Employee_Report.API.IService;
-using Employee_Report.Model.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.Repository.IServices;
 using Employee_Report.Utilities;
 
 namespace Employee_Report.Repository.Services
 {
-    public class SkillsService : Repository.IServices.ISkillsService
+    public class SkillsService : ISkillsService
     {
         HttpClient _httpClient = new HttpClient();
         public SkillsService()

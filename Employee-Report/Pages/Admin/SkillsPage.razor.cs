@@ -1,13 +1,12 @@
-﻿using Employee.DataModel.Models;
-using Employee_Report.Model.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.Utilities;
 
 namespace Employee_Report.Pages.Admin
 {
-    public partial class AdminSkillsPage
+    public partial class SkillsPage
     {
         Repository.Services.SkillsService SkillsService = new();
-        public IEnumerable<Skill>? skillDetails { get; set; }
+        public IEnumerable<Skill> skillDetails { get; set; }
         public Skill skillModel = new();
         private bool IsHidden { get; set; } = false;
         protected override async Task OnInitializedAsync()

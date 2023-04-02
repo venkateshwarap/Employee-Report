@@ -1,10 +1,9 @@
-﻿using Employee.DataModel.Models;
-using Employee_Report.Model.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.Utilities;
 
 namespace Employee_Report.Pages.Employee
 {
-    public partial class EmployeeTraning
+    public partial class TraningDetails
     {
 
         public bool HideLearningControls = true;

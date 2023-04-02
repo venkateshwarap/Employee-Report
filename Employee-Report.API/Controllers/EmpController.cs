@@ -1,4 +1,4 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,53 +8,47 @@ namespace Employee_Report.API.Controllers
     [ApiController]
     public class EmpController : ControllerBase
     {
-        private IEmpService _empService;
-        private EmployeeInfoContext _dBContext;
-        public EmpController(IEmpService empService, EmployeeInfoContext context)
+        private readonly IEmpService _empService;
+        public EmpController(IEmpService empService)
         {
-            this._empService = empService;
+            _empService = empService;
         }
         [HttpGet("GetEmployee")]
         public async Task<IActionResult> GetEmployeeDetails()
         {
             try
             {
-                var e = await _empService.GetEmployee();
-                if (e == null)
+                var result = await _empService.GetEmployee();
+                if (result.status)
                 {
-                    return NotFound();
+                    return Ok(result);
                 }
-                return Ok(e);
+                    return NotFound();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest();
+                throw;
             }
         }
 
         [HttpGet("GetEmployeeById")]
         public async Task<IActionResult> GetEmployeeById(string Id)
         {
-            if (Id == null)
-            {
-                return BadRequest();
-            }
-
             try
             {
-                var emp =  _empService.GetEmployeeById(Id);
+                var result = await _empService.GetEmployeeById(Id);
 
-                if (emp == null)
+                if (result.status)
                 {
-                    return NotFound();
+                    Ok(result);
+                    
                 }
+                return NotFound(result);
 
-
-                return Ok(emp);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest();
+                throw;
             }
         }
     }

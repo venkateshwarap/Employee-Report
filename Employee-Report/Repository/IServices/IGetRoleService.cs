@@ -1,11 +1,11 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.Model.Models;
 
 namespace Employee_Report.Repository.IServices
 {
     public interface IGetRoleService
     {
-        Task<IEnumerable<Role>> GetRoleDetails();
-        Task<HttpResponseMessage> AddRole(Role role);
+        Task<Response> GetRoleDetails();
+        Task<Response> AddRole(Role role);
     }
 }

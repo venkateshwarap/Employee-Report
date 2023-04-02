@@ -62,5 +62,7 @@
         public const string GET_BY_ID_INTELLECTUAL_PROPERTY = "APIConfig:GetIntellectualPropertyById";
         #endregion
         #endregion
+
+        public const string EMPLOYEE_ID = "EmployeeId";
     }
 }

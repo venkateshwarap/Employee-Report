@@ -1,4 +1,4 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,8 +21,7 @@ namespace Employee_Report.API.Controllers
         {
             try
             {
-                //var employee = _context.Employees.ToList().Find(x => x.Email == loginModel.UserName && x.Key == loginModel.security);
-                var employee =  _context.Employees.Where(x => x.Email == loginModel.UserName && x.Key == loginModel.security);
+                var employee = await _context.Employees.Where(x => x.Email == loginModel.UserName && x.Key == loginModel.security).ToListAsync();
 
                 if (employee == null)
                 {

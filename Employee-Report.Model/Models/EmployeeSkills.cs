@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Employee.DataModel.Models
+namespace Employee_Report.Model.Models
 {
     public partial class EmployeeSkills
     {

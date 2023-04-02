@@ -1,5 +1,6 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.Repository.IServices;
+using Employee_Report.Utilities;
 
 namespace Employee_Report.Repository.Services
 {
@@ -11,27 +12,35 @@ namespace Employee_Report.Repository.Services
         {
             _httpClient.BaseAddress = new Uri(AppSettings.Config.API_ROUTE!);
         }
-        public async Task<IEnumerable<EmployeeProjectEntity>> GetEmployeeProjectDetails()
+        public async Task<Response> GetEmployeeProjectDetails()
         {
-            var empProject = await _httpClient.GetFromJsonAsync<EmployeeProjectEntity[]>(AppSettings.Config.GetEmployeeProject);
+            var empProject = await Utility.HttpClientGetAsync(AppSettings.Config.GetEmployeeProject,_httpClient);
             return empProject;
         }
-        public async Task<HttpResponseMessage> AddEmployeeProject(EmployeeProject project)
+        public async Task<Response> AddEmployeeProject(EmployeeProject project)
         {
-            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddEmployeeProject, project);
-            return responseMessage;
+            var response = await Utility.HttpClientPostAsync(AppSettings.Config.AddEmployeeProject,_httpClient, project);
+            return response;
         }
 
-        public async Task<IEnumerable<Project>> GetProjectDetails()
+        public async Task<Response> GetProjectDetails()
         {
-            var empProject = await _httpClient.GetFromJsonAsync<Project[]>(AppSettings.Config.GetProject);
+            var empProject =  await Utility.HttpClientGetAsync(AppSettings.Config.GetProject,_httpClient);
             return empProject;
         }
 
-        public async Task<HttpResponseMessage> AddProject(Project project)
+        public async Task<Response> AddProject(Project project)
         {
-            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddProject, project);
-            return responseMessage;
+            var response = await Utility.HttpClientPostAsync(AppSettings.Config.AddProject, _httpClient, project);
+            return response;
+        }
+        public async Task<Response> GetEmployeeProjectDetailsById(string Id)
+        {
+            var empProject = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EMPLOYEE_PROJECT_BY_ID, Id, _httpClient);
+            return empProject;
         }
     }
 }
+
+
+

@@ -7,7 +7,6 @@
 @inject AuthenticationStateProvider authStateProvider
 @inject IHttpContextAccessor ContextAccessor;
 @using System.IO;
-@using global::Employee.DataModel.Models;
 
 
 <style>
@@ -162,7 +161,7 @@
         border-radius: 0.25rem !important;
     }
 
-    #exportpdf{
+    #exportpdf {
         margin-left: 80%;
         background-color: green;
     }
@@ -178,18 +177,11 @@
                     <span class="display-26 text-secondary me-2 font-weight-600">Name:</span>
                 </li>
                 <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">MLID:</span>@_empid</li>
-                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">SKills:</span>Dotnet Core,.NetMVC, C#,Asp.Net WebForms</li>
+                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">SKills:</span>@{
+                        string skills = string.Join(",", employeeskils.Select(item => item.ToString()));
+                        @skills
+                    }</li>
             </ul>
-
-@*
-            <p>
-                            @(
-                            ContextAccessor.HttpContext.Session.GetString("Name") != null ? ContextAccessor.HttpContext.Session.GetString("Name") : ""
-                )@(
-                               ContextAccessor.HttpContext.Session.GetString("EmployeeId") != null ? " (" + ContextAccessor.HttpContext.Session.GetString("EmployeeId") + ")" : ""
-                                            )
-                        </p>*@
-
 
             <div class="header-wrapper">
                 <h4 style="width:48% ; color: navy;text-align: left;">Learnings</h4>

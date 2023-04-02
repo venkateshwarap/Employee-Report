@@ -1,6 +1,7 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
 using Microsoft.EntityFrameworkCore;
+using Employee_Report.API.Utilities;
 
 namespace Employee_Report.API.Service
 {
@@ -10,35 +11,27 @@ namespace Employee_Report.API.Service
 
         public EmpService(EmployeeInfoContext context)
         {
-            this._dBContext = context;
+           _dBContext = context;
         }
-        public async Task<IEnumerable<Employees>> GetEmployee()
+        public async Task<Response> GetEmployee()
         {
-            try
-            {
-                if (_dBContext != null)
-                {
-                    return await _dBContext.Employees.ToListAsync();
-                }
-                return null;
+           
+            var result = await _dBContext.Employees.ToListAsync();
+            if(result.Count > 0) 
+            { 
+            return APIUtility.BindResponse(result, true);
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-          
-
+            return APIUtility.BindResponse(result, false);
         }
 
-        public Employees GetEmployeeById(string Id)
+        public async Task<Response> GetEmployeeById(string Id)
         {
-            if (_dBContext != null)
+                var result = await _dBContext.Employees.Where(x => x.Id == Id).ToListAsync();  
+            if(result.Count > 0)
             {
-                var result = _dBContext.Employees.ToList().Find(x => x.Id == Id);        
-                return result;
+                return APIUtility.BindResponse(result, true);
             }
-            return null;
+            return APIUtility.BindResponse(result, false);
         }
     }
 }

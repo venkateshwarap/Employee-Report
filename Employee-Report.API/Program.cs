@@ -1,4 +1,4 @@
-using Employee.DataModel.Models;
+using Employee_Report.Model.Models;
 using employee_report.api.iservice;
 using Employee_Report.API.IService;
 using Employee_Report.API.Service;

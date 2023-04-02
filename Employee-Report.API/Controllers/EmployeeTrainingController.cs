@@ -1,7 +1,5 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
-using Employee_Report.Model.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Report.API.Controllers
@@ -23,9 +21,9 @@ namespace Employee_Report.API.Controllers
             return _employeeTrainingService.GetEmployeeTraningDetails();
         }
         [HttpPost]
-        public ResponseModel SaveEmployeeTraning(EmployeeTraining employeeTraining)
+        public IActionResult SaveEmployeeTraning(EmployeeTraining employeeTraining)
         {
-            return _employeeTrainingService.SaveEmployeeTraningDetails(employeeTraining);
+            return Ok(_employeeTrainingService.SaveEmployeeTraningDetails(employeeTraining));
         }
 
         [HttpGet("GetDetailsbyId")]

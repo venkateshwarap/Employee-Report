@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Employee.DataModel.Models
+namespace Employee_Report.Model.Models
 {
     public partial class PowerHouse
     {

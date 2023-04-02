@@ -1,5 +1,6 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.Repository.IServices;
+using Employee_Report.Utilities;
 
 namespace Employee_Report.Repository.Services
 {
@@ -11,28 +12,34 @@ namespace Employee_Report.Repository.Services
             _httpClient.BaseAddress = new Uri(AppSettings.Config.API_ROUTE!);
         }
 
-        public async Task<IEnumerable<EmployeePOCEntity>> GetEmployeePOCDetails()
+        public async Task<Response> GetEmployeePOCDetails()
         {
-            var empPoc = await _httpClient.GetFromJsonAsync<EmployeePOCEntity[]>(AppSettings.Config.GetEmployeePOC);
+            var empPoc = await Utility.HttpClientGetAsync(AppSettings.Config.GetEmployeePOC, _httpClient);
             return empPoc;
         }
 
-        public async Task<HttpResponseMessage> AddEmployeePOC(EmployeePoc employeePoc)
+        public async Task<Response> AddEmployeePOC(EmployeePoc employeePoc)
         {
-            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddEmployeePOC, employeePoc);
-            return responseMessage;
+            var response = await Utility.HttpClientPostAsync(AppSettings.Config.AddEmployeePOC, _httpClient, employeePoc);
+            return response;
         }
 
-        public async Task<IEnumerable<Poc>> GetPOCDetails()
+        public async Task<Response> GetPOCDetails()
         {
-            var Poc = await _httpClient.GetFromJsonAsync<Poc[]>(AppSettings.Config.GetPOC);
+            var Poc = await Utility.HttpClientGetAsync(AppSettings.Config.GetPOC, _httpClient);
             return Poc;
         }
 
-        public async Task<HttpResponseMessage> AddPOC(Poc poc)
+        public async Task<Response> AddPOC(Poc poc)
         {
-            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddPOC, poc);
-            return responseMessage;
+            var response = await Utility.HttpClientPostAsync(AppSettings.Config.AddPOC, _httpClient, poc);
+            return response;
+        }
+        public async Task<Response> GetEmployeePOCById(string Id)
+        {
+            var empPoc = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EMPLOYEE_POC_ID, Id, _httpClient);
+            return empPoc;
         }
     }
 }
+

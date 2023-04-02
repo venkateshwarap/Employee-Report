@@ -1,7 +1,7 @@
 ﻿@page "/power-house"
 <PageTitle>Employee Information - PowerHouse</PageTitle>
-@using Employee_Report.Model.Models
-@using global::Employee.DataModel.Models;
+@using Employee_Report.Model.ModelView;
+@using Employee_Report.Model.Models;
 @inject NavigationManager navManager;
 
 @if (powerHouse_RolesDeatils == null)
@@ -71,11 +71,12 @@ else
         {
             <SfGrid DataSource="@powerHouse_RolesDeatils">
                 <GridColumns>
-                    <GridColumn Field="@nameof(PowerHouse_RoleModel.EmpId)" HeaderText="Employee Id" TextAlign="TextAlign.Center" Width="120"></GridColumn>
-                    <GridColumn Field="@nameof(PowerHouse_RoleModel.RoleName)" HeaderText="Role Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
-                    <GridColumn Format="d" Field="@nameof(PowerHouse_RoleModel.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-                    <GridColumn Format="d" Field="@nameof(PowerHouse_RoleModel.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-                    <GridColumn Format="d" Field="@nameof(PowerHouse_RoleModel.ReportingTo)" HeaderText="Reporting To" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                    <GridColumn Field="@nameof(PowerHouseRoleView.FirstName)" HeaderText="First Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(PowerHouseRoleView.LastName)" HeaderText="Last Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(PowerHouseRoleView.RoleName)" HeaderText="Role Name" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+                    <GridColumn Format="d" Field="@nameof(PowerHouseRoleView.StartDate)" HeaderText="Start Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                    <GridColumn Format="d" Field="@nameof(PowerHouseRoleView.EndDate)" HeaderText="End Date" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                    <GridColumn Format="d" Field="@nameof(PowerHouseRoleView.ReportingTo)" HeaderText="Reporting To" TextAlign="TextAlign.Center" Width="150"></GridColumn>
                 </GridColumns>
             </SfGrid>
         }

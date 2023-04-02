@@ -1,4 +1,4 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 
 namespace employee_report.api.iservice
 {

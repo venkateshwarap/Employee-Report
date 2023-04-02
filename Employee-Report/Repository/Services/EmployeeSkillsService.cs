@@ -1,4 +1,4 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.Utilities;
 
 namespace Employee_Report.Repository.Services

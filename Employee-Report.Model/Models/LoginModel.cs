@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Employee.DataModel.Models
+namespace Employee_Report.Model.Models
 {
     public class LoginModel
     {

@@ -1,9 +1,11 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.Model.Models;
+using Employee_Report.Utilities;
+using System.Collections.Generic;
 
 namespace Employee_Report.Pages.Admin
 {
-    public partial class AdminProject
+    public partial class ProjectDetails
     {
         Repository.Services.EmployeeProjectService employeeProjectService = new Repository.Services.EmployeeProjectService();
         public IEnumerable<Project> projects { get; set; }
@@ -18,7 +20,10 @@ namespace Employee_Report.Pages.Admin
 
         protected override async Task OnInitializedAsync()
         {
-            projects = (await employeeProjectService.GetProjectDetails()).ToList();
+            var res = await employeeProjectService.GetProjectDetails();
+            if (res.status) { 
+            projects = Utility.GetResponseData<IEnumerable<Project>>(res.response);
+            }
         }
 
         private async void AddProject()
@@ -26,7 +31,7 @@ namespace Employee_Report.Pages.Admin
             if (projectModel != null)
             {
                 var response = await employeeProjectService.AddProject(projectModel);
-                if (response.IsSuccessStatusCode)
+                if (response.status)
                 {
                     navManager.NavigateTo("/projects", forceLoad: true);
                     IsHidden = false;

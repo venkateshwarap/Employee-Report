@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Employee.DataModel.Models
+﻿namespace Employee_Report.Model.Models
 {
-    public partial class Skill
+    public class Skill
     {
         public int Id { get; set; }
 

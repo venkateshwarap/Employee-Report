@@ -1,9 +1,10 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.Model.Models;
+using Employee_Report.Utilities;
 
 namespace Employee_Report.Pages.Admin
 {
-    public partial class AdminPOC
+    public partial class POCDetails
     {
 
         Repository.Services.EmployeePocService employeePocService = new Repository.Services.EmployeePocService();
@@ -19,14 +20,18 @@ namespace Employee_Report.Pages.Admin
 
         protected override async Task OnInitializedAsync()
         {
-            poc = (await employeePocService.GetPOCDetails()).ToList();
+            var poc_resp = await employeePocService.GetPOCDetails();
+            if(poc_resp.status)
+            {
+                poc = Utility.GetResponseData<IEnumerable<Poc>>(poc_resp.response);
+            }
         }
         private async void AddPOC()
         {
             if (pocModel != null)
             {
                 var response = await employeePocService.AddPOC(pocModel);
-                if (response.IsSuccessStatusCode)
+                if (response.status)
                 {
                     navManager.NavigateTo("/poc", forceLoad: true);
                     IsHidden = false;

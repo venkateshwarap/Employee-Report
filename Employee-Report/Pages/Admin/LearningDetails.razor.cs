@@ -1,29 +1,25 @@
-﻿using Employee.DataModel.Models;
-using Employee_Report.API.IService;
-using Employee_Report.API.Service;
-using Employee_Report.Model.Models;
-using Employee_Report.Repository.Services;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.Utilities;
 
 namespace Employee_Report.Pages.Admin
 {
-    public partial class AdminLearning
+    public partial class LearningDetails
     {
         public bool HideLearningControls = true;
         public bool HideAdd = false;
         public bool HideGrid = false;
-        public Learning learning { get; set; }
-        public List<Learning> learningList { get; set; }
+        public Learning learning { get; set; }  
+        public IEnumerable<Learning> learningList { get; set; }
         HttpClient client = new HttpClient();
         Repository.Services.LearningService learningService = new Repository.Services.LearningService();
         protected override async Task OnInitializedAsync()
         {
             learning = new Learning();
             var responseMessage = await learningService.GetLearnings();
-            var empId = Utility.GetSessionClaim("EmployeeId");
+           var empId =  Utility.GetSessionClaim("EmployeeId");
             if (responseMessage != null)
             {
-                learningList = Utility.GetResponseData<List<Learning>>(responseMessage.response);
+                learningList = Utility.GetResponseData<IEnumerable<Learning>>(responseMessage.response);
             }
             //base.OnInitialized();
         }

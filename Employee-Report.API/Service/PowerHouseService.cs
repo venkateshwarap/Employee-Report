@@ -1,7 +1,9 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
 using Microsoft.EntityFrameworkCore;
+using Employee_Report.Model.ModelView;
+
 namespace Employee_Report.API.Service
 {
     public class PowerHouseService : IPowerHouseService
@@ -26,62 +28,46 @@ namespace Employee_Report.API.Service
         }
 
 
-        public async Task<List<PowerHouse_Role>> GetAllEACouncilEntryExit()
+        public async Task<Response> GetAllEACouncilEntryExit()
         {
-            var powerHouseDetails = new List<PowerHouse_Role>();
-            if (_context != null)
-            {
-                var result = (from ph in _context.PowerHouse
+                var result = await (from ph in _context.PowerHouse
                               join r in _context.Roles on ph.RoleId equals r.Id
-                              select new { ph.Id, ph.EmpId, ph.StartDate, ph.EndDate, r.RoleName, ph.ReportingTo }).ToList();
+                              select new { Id = ph.Id, EmpId = ph.EmpId, StartDate = ph.StartDate, EndDate = ph.EndDate, RoleName = r.RoleName, ReportingTo = ph.ReportingTo }).ToListAsync();
 
+              var result_employee = (from ph in result
+                                     join employee in _context.Employees on ph.EmpId equals employee.Id
+                                     select new { Id = ph.Id, FirstName = employee!.FirstName, LastName = employee!.LastName, EmpId = ph.EmpId, StartDate = ph.StartDate, EndDate = ph.EndDate, RoleName = ph.RoleName, ReportingTo = ph.ReportingTo }).ToList();
+
+            if (result_employee != null)
+            {
                 if (result != null)
                 {
-                    foreach (var res in result)
-                    {
-                        powerHouseDetails.Add(new PowerHouse_Role
-                        {
-                            Id = res.Id,
-                            EmpId = res.EmpId,
-                            RoleName = res.RoleName,
-                            StartDate = res.StartDate,
-                            EndDate = res.EndDate,
-                            ReportingTo = res.ReportingTo
-                        });
-                    }
+                    return BindResponse(result_employee!, true);
                 }
             }
-            return powerHouseDetails;
-
-            #region Try
-            //var result = (from ph in _context.PowerHouse
-            //              join r in _context.Roles on ph.RoleId equals r.Id
-            //              select new { ph.Id, ph.EmpId, ph.StartDate, ph.EndDate, r.RoleName, ph.ReportingTo }).ToList();
-
-            //PowerHouse_Role phRole = new PowerHouse_Role();
-            //foreach(var data in result)
-            //{
-            //    phRole.Id = data.Id;
-            //    phRole.EmpId = data.EmpId;
-            //    phRole.StartDate = data.StartDate;
-            //    phRole.EndDate = data.EndDate;
-            //    phRole.RoleName = data.RoleName;
-            //    phRole.ReportingTo = data.ReportingTo;
-            //};
-            //return result;
-            #endregion
+            return BindResponse(null!, false);
         }
+   
 
         public async Task<Response> GetEACouncilByEmpId(string empid)
         {
-            var result = await _context.PowerHouse.Where(x => x.EmpId == empid).FirstOrDefaultAsync();
-            if (result != null)
+            var employee = await _context.Employees.Where(x => x.Id == empid).FirstOrDefaultAsync();
+            if (employee!.Id != null)
             {
-                return BindResponse(result!, true);
+                var result = await (from ph in _context.PowerHouse
+                                    join r in _context.Roles on ph.RoleId equals r.Id
+                                    where ph.EmpId == empid
+                                    select new { Id = ph.Id, FirstName = employee!.FirstName, LastName = employee!.LastName, EmpId = ph.EmpId, StartDate = ph.StartDate, EndDate = ph.EndDate, RoleName= r.RoleName, ReportingTo = ph.ReportingTo }).ToListAsync();
+
+                if (result != null)
+                {
+                    if (result != null)
+                    {
+                        return BindResponse(result!, true);
+                    }
+                }
             }
-            {
-                return BindResponse(result!, false);
-            }
+            return BindResponse(null!, false);
         }
 
         public async Task<Response> DeleteFromEACouncil(string empid)

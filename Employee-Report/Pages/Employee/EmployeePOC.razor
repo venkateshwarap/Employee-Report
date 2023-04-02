@@ -1,7 +1,7 @@
 ﻿@page "/employeePocDetails"
 <PageTitle>Employee Information - Employee POC</PageTitle>
+@using Employee_Report.Model.Models;
 @using Syncfusion.Blazor.Grids
-@using global::Employee.DataModel.Models;
 @inject NavigationManager navManager;
 
 
@@ -24,6 +24,7 @@ else
             <DataAnnotationsValidator />
             <div class="form-control">
                 <div class="row">
+                 
                     <div class="col-md-6">
                         <label>POC Name</label>
                         <SfDropDownList TValue="string" TItem="Poc" Placeholder="Select POC"

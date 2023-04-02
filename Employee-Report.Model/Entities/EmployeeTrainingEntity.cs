@@ -1,4 +1,4 @@
-﻿namespace Employee.DataModel.Models
+﻿namespace Employee_Report.Model.Models
 {
     public class EmployeeTrainingEntity
     {

@@ -1,7 +1,5 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
-using Employee_Report.API.Service;
-using Employee_Report.Model.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Report.API.Controllers

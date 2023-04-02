@@ -1,7 +1,6 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
-using Employee_Report.Model.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Report.API.Service
@@ -26,15 +25,16 @@ namespace Employee_Report.API.Service
             return APIUtility.BindResponse(res, true);
         }
 
-        public ResponseModel SaveEmployeeTraningDetails(EmployeeTraining employeeTrainng)
+        public Response SaveEmployeeTraningDetails(EmployeeTraining employeeTrainng)
         {
-            _eatrackingContext.Add(employeeTrainng);
-            _eatrackingContext.SaveChanges();
-            return new ResponseModel()
+           _eatrackingContext.EmployeeTrainings.Add(employeeTrainng);
+           var result = _eatrackingContext.SaveChanges();
+            if(result != 0)
             {
-                Message = "Employee Traning details inserted successfully!",
-                Status = true
-            };
+                return APIUtility.BindResponse(result, true, "Employee Traning has been added successfully!");
+            }
+            return APIUtility.BindResponse(result, false);
+
         }
     }
 }

@@ -1,21 +1,23 @@
-﻿using Employee.DataModel.Models;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.Auth;
 using Microsoft.AspNetCore.Components;
+using Employee_Report.Repository.IServices;
 
 namespace Employee_Report.Pages
 {
     public partial class Login
     {
         [Inject]
-        IHttpContextAccessor HttpContext { get; set; }
-        public LoginModel model = new LoginModel();
+        IHttpContextAccessor _HttpContext { get; set; }
 
-        HttpClient _httpClient = new HttpClient();
-        Repository.Services.UserService service = new Repository.Services.UserService();
+        [Inject]
+        private IUserService _service { get; set; }
+      
+        public LoginModel model = new LoginModel();
         private async Task Authenticate()
         {
 
-            var result = await service.Login(model);
+            var result = await _service.Login(model);
 
             var customAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvider;
             await customAuthStateProvider.UpdateAuthenticationState(new LoginModel
@@ -26,12 +28,11 @@ namespace Employee_Report.Pages
 
             if (result.IsSuccessStatusCode)
             {
-                HttpContext.HttpContext.Session.Clear();
+                _HttpContext.HttpContext.Session.Clear();
                 navManager.NavigateTo("/employee", true);
             }
             else
             {
-                //navManager.NavigateTo("/login");
                 model.IsValidLogin = false;
             }
         }
