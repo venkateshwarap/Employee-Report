@@ -1,18 +1,16 @@
 ﻿using Employee_Report.Model.Models;
 using Employee_Report.Repository.IServices;
 using Employee_Report.Utilities;
+using Microsoft.AspNetCore.Components;
 
 namespace Employee_Report.Pages.Employee
 {
     public partial class IntellectualPropertyPage
     {
-        private readonly IIntellectualPropertyService _intellectualservice;
-        private readonly IGetRoleService _roleService;
-        public IntellectualPropertyPage(IIntellectualPropertyService intellectualservice, IGetRoleService roleService)
-        {
-            _intellectualservice = intellectualservice;
-            _roleService = roleService;
-        }
+        [Inject]
+        private  IIntellectualPropertyService _intellectualservice { get; set; }
+        [Inject]
+        private  IGetRoleService _roleService { get; set; }
         public IEnumerable<IntellectualProperty> intellectualList { get; set; }
         public IntellectualProperty intelleactualProperty = new();
         private bool IsHidden { get; set; } = false;

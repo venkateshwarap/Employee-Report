@@ -14,13 +14,13 @@ namespace Employee_Report.Repository.Services
 
         public async Task<Response> GetEmployeeDetails()
         {
-            var emp = await Utility.HttpClientGetAsync(AppSettings.Config.GetEmployee, _httpClient);
+            var emp = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EMPLOYEES, _httpClient);
             return emp;
         }
 
         public async Task<Response> GetEmployeeById(string Id)
         {
-            var emp = await Utility.HttpClientGetAsync(AppSettings.Config.GetEmployeeById, Id, _httpClient);
+            var emp = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EMPLOYEE_BY_ID, Id, _httpClient);
             return emp;
         }
     }

@@ -3,9 +3,8 @@ namespace Employee_Report.API.IService
 {
     public interface IEmployeeTrainingService
     {
-        public Response SaveEmployeeTraningDetails(EmployeeTraining employeeTrainng);
-        public List<EmployeeTraining> GetEmployeeTraningDetails();
-
-        public Task<Response> GetEmployeeTraningDetailsById(string EmpID);
+        Task<Response> SaveEmployeeTraningDetails(EmployeeTraining employeeTrainng);
+        Task<Response> GetEmployeeTraningDetails();
+        Task<Response> GetEmployeeTraningDetailsById(string EmpID);
     }
 }

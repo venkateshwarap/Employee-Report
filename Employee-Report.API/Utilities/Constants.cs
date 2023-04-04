@@ -50,19 +50,31 @@ namespace Employee_Report.API.Utilities
 
         #region API Routes
         public const string RT_Certification = "api/certification";
-        public const string RT_POWER_HOUSE = "api/power-house";
-        public const string RT_INTELLECTUAL_PROPERTY = "api/intellectual-property";
+        public const string RT_POWER_HOUSE = "api/powerhouse";
+        public const string RT_INTELLECTUAL_PROPERTY = "api/intellectual/property";
+        public const string RT_EMPLOYEE_POC = "api/employee/poc";
+        public const string RT_ADMIN_POC = "api/admin/poc";
+        public const string RT_EMPLOYEE_LEARNING = "api/employee/learning";
+        public const string RT_EMPLOYEE = "api/employee";
+        public const string RT_EMPLOYEE_SKILLS = "api/employee/skills";
+        public const string RT_EMPLOYEE_TRAINING = "api/employee/training";
+        public const string RT_INTERVIEW = "api/employee/interview";
+        public const string RT_ADMIN_LEARNING = "api/admin/learning";
+        public const string RT_PROJECT = "api/project";
+        public const string RT_EMPLOYEE_PROJECT = "api/employee/project";
+        public const string RT_ROLE = "api/role";
+        public const string RT_ADMIN_SKILLS = "api/admin/skills";
+        public const string RT_ADMIN_TRAININGS = "api/admin/training";
+
         #endregion
 
         #region Controller Routes
-        public const string get = "get";
-        public const string create = "create";
-        public const string getById = "getById";
-        #endregion
-
         public const string GET = "get";
         public const string CREATE = "create";
         public const string UPDATE = "update";
         public const string GET_BY_ID = "getById";
+        public const string DELETE = "delete";
+        public const string GET_BY_EMP_ID = "getByEmpId";
+        #endregion
     }
 }

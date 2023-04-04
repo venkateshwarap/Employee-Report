@@ -4,12 +4,12 @@ namespace Employee_Report.API.IService
 {
     public interface IPOCService
     {
-        Task<List<Poc>> GetPOCDetails();
+        Task<Response> GetPOCDetails();
 
-        Task<List<EmployeePOCEntity>> GetEmployeePOCDetails();
+        Task<Response> GetEmployeePOCDetails();
 
-        Task<int> PostPoc(Poc poc);
-        Task<int> PostEmployeePoc(EmployeePoc employeePoc);
-        Response GetById(string empId);
+        Task<Response> PostPoc(Poc poc);
+        Task<Response> PostEmployeePoc(EmployeePoc employeePoc);
+        Task<Response> GetById(string empId);
     }
 }

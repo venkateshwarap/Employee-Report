@@ -1,13 +1,11 @@
 ﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
-using Employee_Report.API.Service;
 using Employee_Report.API.Utilities;
-using Employee_Report.Model.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(Constants.RT_EMPLOYEE_SKILLS)]
     [ApiController]
     public class EmployeeSkillsController : ControllerBase
     {
@@ -18,35 +16,36 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpGet]
-        [Route(Constants.get)]
+        [Route(Constants.GET)]
         public async Task<IActionResult> GetEmployeeSkill()
         {
             try
             {
                 var empSkills = await _employeeSkillService.GetEmployeeSkills();
-                if (empSkills == null)
+                if (!empSkills.status)
                 {
-                    return NotFound();
+                    return NotFound(empSkills);
                 }
                 return Ok(empSkills);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest();
+                throw;
             }
         }
 
         [HttpGet]
-        [Route("GetEmployeeSkillsByID")]
+        [Route(Constants.GET_BY_ID)]
         public async Task<IActionResult> GetEmployeeSkillsByID(int id)
         {
             try
             {
                 var empSkillByID = await _employeeSkillService.GetEmployeeSkillsByID(id);
-                if(empSkillByID == null)
+                if(empSkillByID.status)
                 {
-                    return NotFound();
-                }return Ok(empSkillByID);
+                    return Ok(empSkillByID);
+                }
+                return NotFound(); 
             }catch(Exception)
             {
                 throw;
@@ -54,17 +53,17 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetEmployeeSkillsByEmpId")]
-        public IActionResult GetEmployeeSkillsEmpId(string id)
+        [Route(Constants.GET_BY_EMP_ID)]
+        public async Task<IActionResult> GetEmployeeSkillsEmpId(string id)
         {
             try
             {
-                var empSkillByID =  _employeeSkillService.GetEmployeeSkillsByEmpId(id);
-                if (empSkillByID == null)
+                var result = await _employeeSkillService.GetEmployeeSkillsByEmpId(id);
+                if (result.status)
                 {
-                    return NotFound();
+                    return Ok(result);
                 }
-                return Ok(empSkillByID);
+                return NotFound(result);
             }
             catch (Exception)
             {
@@ -73,7 +72,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpPost]
-        [Route(Constants.create)]
+        [Route(Constants.CREATE)]
         public async Task<IActionResult> AddEmployeeSkill([FromBody] EmployeeSkills employeeSkills)
         {
             try

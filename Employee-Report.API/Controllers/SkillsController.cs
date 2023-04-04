@@ -1,13 +1,11 @@
 ﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
-using Employee_Report.Model.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route("api/Skills")]
+    [Route(Constants.RT_ADMIN_SKILLS)]
     [ApiController]
     public class SkillsController : ControllerBase
     {
@@ -18,7 +16,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpGet]
-        [Route(Constants.get)]
+        [Route(Constants.GET)]
         public async Task<IActionResult> GetSkills()
         {
             try
@@ -35,7 +33,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpPost]
-        [Route(Constants.create)]
+        [Route(Constants.CREATE)]
         public async Task<IActionResult> AddNewSkill(Skill skill)
         {
             try
@@ -45,7 +43,7 @@ namespace Employee_Report.API.Controllers
                     return Ok(result);
                 return BadRequest(result);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

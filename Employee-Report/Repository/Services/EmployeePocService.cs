@@ -14,25 +14,25 @@ namespace Employee_Report.Repository.Services
 
         public async Task<Response> GetEmployeePOCDetails()
         {
-            var empPoc = await Utility.HttpClientGetAsync(AppSettings.Config.GetEmployeePOC, _httpClient);
+            var empPoc = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EMPLOYEE_POC, _httpClient);
             return empPoc;
         }
 
         public async Task<Response> AddEmployeePOC(EmployeePoc employeePoc)
         {
-            var response = await Utility.HttpClientPostAsync(AppSettings.Config.AddEmployeePOC, _httpClient, employeePoc);
+            var response = await Utility.HttpClientPostAsync(AppSettings.Config.CREATE_EMPLOYEE, _httpClient, employeePoc);
             return response;
         }
 
         public async Task<Response> GetPOCDetails()
         {
-            var Poc = await Utility.HttpClientGetAsync(AppSettings.Config.GetPOC, _httpClient);
+            var Poc = await Utility.HttpClientGetAsync(AppSettings.Config.GET_ADMIN_POC, _httpClient);
             return Poc;
         }
 
         public async Task<Response> AddPOC(Poc poc)
         {
-            var response = await Utility.HttpClientPostAsync(AppSettings.Config.AddPOC, _httpClient, poc);
+            var response = await Utility.HttpClientPostAsync(AppSettings.Config.CREATE_ADMIN_POC, _httpClient, poc);
             return response;
         }
         public async Task<Response> GetEmployeePOCById(string Id)

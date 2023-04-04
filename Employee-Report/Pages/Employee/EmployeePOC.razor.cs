@@ -1,24 +1,20 @@
-﻿using Azure;
-using Employee_Report.Model.Models;
-using Employee_Report.API.Service;
+﻿using Employee_Report.Model.Models;
 using Employee_Report.Utilities;
 using Microsoft.AspNetCore.Components.Web;
-using System.Net.Http;
-using Employee_Report.Repository.Services;
+using Employee_Report.Repository.IServices;
+using Microsoft.AspNetCore.Components;
 
 namespace Employee_Report.Pages.Employee
 {
     public partial class EmployeePOC
     {
-        private readonly EmployeePocService _employeePocService;
-        public EmployeePOC(EmployeePocService employeePocService) 
-        {
-            _employeePocService = employeePocService;
-        }
+        [Inject]
+        private  IEmployeePocService _employeePocService { get; set; }
+        [Inject]
+        private  IGetRoleService roleService { get; set; }
         public IEnumerable<EmployeePOCEntity> employeepoc { get; set; }
         IEnumerable<Poc> pocDetails { get; set; }
        
-        Repository.Services.GetRoleService roleService = new();
         IEnumerable<Role> roleDetails = new List<Role>();
 
         public EmployeePoc employeePocModel = new();

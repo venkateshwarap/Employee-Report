@@ -1,19 +1,19 @@
-﻿using Employee_Report.Model.Models;
-using Employee_Report.API.IService;
+﻿using Employee_Report.API.IService;
 using Microsoft.AspNetCore.Mvc;
+using Employee_Report.API.Utilities;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(Constants.RT_EMPLOYEE)]
     [ApiController]
-    public class EmpController : ControllerBase
+    public class EmployeeController : ControllerBase
     {
         private readonly IEmpService _empService;
-        public EmpController(IEmpService empService)
+        public EmployeeController(IEmpService empService)
         {
             _empService = empService;
         }
-        [HttpGet("GetEmployee")]
+        [HttpGet(Constants.GET)]
         public async Task<IActionResult> GetEmployeeDetails()
         {
             try
@@ -31,7 +31,7 @@ namespace Employee_Report.API.Controllers
             }
         }
 
-        [HttpGet("GetEmployeeById")]
+        [HttpGet(Constants.GET_BY_ID)]
         public async Task<IActionResult> GetEmployeeById(string Id)
         {
             try

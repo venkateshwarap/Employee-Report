@@ -1,62 +1,56 @@
 ﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
-using Employee_Report.API.Service;
-using Employee_Report.Model.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Employee_Report.API.Utilities;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(Constants.RT_ROLE)]
     [ApiController]
     public class RoleController : ControllerBase
     {
         private IRoleService _roleService;
         public RoleController(IRoleService roleService)
         {
-            this._roleService = roleService;
+            _roleService = roleService;
         }
-        [HttpGet("GetRole")]
+        [HttpGet(Constants.GET)]
         public async Task<IActionResult> GetRole()
         {
             try
             {
-                var r = await _roleService.GetRoleDetails();
-                if (r == null)
+                var result = await _roleService.GetRoleDetails();
+                if (!result.status)
                 {
-                    return NotFound();
+                    return NotFound(result);
                 }
-                return Ok(r);
+                return Ok(result);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest();
+                throw;
             }
         }
 
-        [HttpPost("AddRole")]
-        public async Task<IActionResult> AddRole([FromBody] Role role)
+        [HttpPost(Constants.CREATE)]
+        public async Task<IActionResult> AddRole(Role role)
         {
-            if (ModelState.IsValid)
-            {
                 try
                 {
-                    var r = await _roleService.PostRole(role);
-                    if (r > 0)
+                    var result = await _roleService.CreateRole(role);
+                    if (result.status)
                     {
-                        return Ok(r);
+                        return Ok(result);
                     }
                     else
                     {
-                        return NotFound();
+                        return NotFound(result);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    return BadRequest();
+                    throw;
                 }
-            }
-            return BadRequest();
         }
 
 

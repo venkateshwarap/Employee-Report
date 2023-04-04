@@ -1,6 +1,6 @@
-﻿namespace Employee_Report.Model.Models
+﻿namespace Employee_Report.Model.ModelView
 {
-    public class Skill
+    public class EmployeeSkillView
     {
         public int Id { get; set; }
 

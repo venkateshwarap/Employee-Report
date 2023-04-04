@@ -3,7 +3,7 @@
     public class EmployeePOCEntity
     {
         public string? Name { get; set; }
-        public string EmpId { get; set; }
+        public string? EmpId { get; set; }
 
         public string? Role { get; set; }
 

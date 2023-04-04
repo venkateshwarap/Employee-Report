@@ -1,12 +1,14 @@
 ﻿using Employee_Report.Model.Models;
-using Employee_Report.Repository.Services;
+using Employee_Report.Repository.IServices;
 using Employee_Report.Utilities;
+using Microsoft.AspNetCore.Components;
 
 namespace Employee_Report.Pages.Employee
 {
     public partial class EmployeeSkillsPage
     {
-        private readonly Repository.Services.EmployeeSkillService employeeSkillService = new Repository.Services.EmployeeSkillService();
+        [Inject]
+        private IEmployeeSkillService employeeSkillService { get; set; }
         public IEnumerable<EmployeeSkills_Skills_Entity> employeeSkills_SkillsDetails { get; set; }
         public EmployeeSkills_Skills_Entity EmployeeSkills_SkillsModel = new EmployeeSkills_Skills_Entity();
         public EmployeeSkills empSkillsModel = new EmployeeSkills();
@@ -19,17 +21,25 @@ namespace Employee_Report.Pages.Employee
         public Skill skillModel = new();
         protected override async Task OnInitializedAsync()
         {
-            employeeSkills_SkillsDetails = (await employeeSkillService.GetEmployeeSkills_Skills()).ToList();
-            var response = await SkillsService.GetSkills();
-            skillDetails = Utility.GetResponseData<List<Skill>>(response.response);
+            var response  = await employeeSkillService.GetEmployeeSkills();
+            if (response.status)
+            {
+                employeeSkills_SkillsDetails = Utility.GetResponseData<IEnumerable<EmployeeSkills_Skills_Entity>>(response.response);
+            }
+            
+            var skills_response = await SkillsService.GetSkills();
+            if (skills_response.status)
+            {
+                skillDetails = Utility.GetResponseData<List<Skill>>(skills_response.response);
+            }
         }
         public async void AddEmployeeSkill()
 
         {
             if (employeeSkills != null)
             {
-                var response = await employeeSkillService.AddEmployeeSkills_Skils(employeeSkills);
-                if (response.IsSuccessStatusCode)
+                var response = await employeeSkillService.CreateEmployeeSkill(employeeSkills);
+                if (response.status)
                 {
                     IsHidden = false;
                     navManager.NavigateTo("/EmployeeSkills", forceLoad: true);

@@ -1,5 +1,6 @@
 ﻿@page "/employeeProjectDetails"
 @using Employee_Report.Model.Models;
+@using Employee_Report.Model.ModelView;
 <PageTitle>Employee Information - Employee Details</PageTitle>
 @inject NavigationManager navManager;
 
@@ -81,15 +82,15 @@ else
         {
             <SfGrid DataSource="@employee">
                 <GridColumns>
-                    <GridColumn Field=@nameof(EmployeeProjectEntity.Name) HeaderText="Name" TextAlign="TextAlign.Center" Width="120">
+                    <GridColumn Field=@nameof(EmployeeProjectView.ProjectName) HeaderText="Name" TextAlign="TextAlign.Center" Width="120">
                     </GridColumn>
-                    <GridColumn Field=@nameof(EmployeeProjectEntity.Role) HeaderText="Role" TextAlign="TextAlign.Center" Width="150">
+                    <GridColumn Field=@nameof(EmployeeProjectView.RoleName) HeaderText="Role" TextAlign="TextAlign.Center" Width="150">
                     </GridColumn>
-                    <GridColumn Format="d" Field=@nameof(EmployeeProjectEntity.StartDate) HeaderText="Start Date" TextAlign="TextAlign.Center" Width="130">
+                    <GridColumn Format="d" Field=@nameof(EmployeeProjectView.StartDate) HeaderText="Start Date" TextAlign="TextAlign.Center" Width="130">
                     </GridColumn>
-                    <GridColumn Format="d" Field=@nameof(EmployeeProjectEntity.EndDate) HeaderText="End Date" TextAlign="TextAlign.Center" Width="120">
+                    <GridColumn Format="d" Field=@nameof(EmployeeProjectView.EndDate) HeaderText="End Date" TextAlign="TextAlign.Center" Width="120">
                     </GridColumn>
-                    <GridColumn Field=@nameof(EmployeeProjectEntity.ReportingTo) HeaderText="Reporting To" TextAlign="TextAlign.Center" Width="120">
+                    <GridColumn Field=@nameof(EmployeeProjectView.ReportingTo) HeaderText="Reporting To" TextAlign="TextAlign.Center" Width="120">
                     </GridColumn>
 
                 </GridColumns>

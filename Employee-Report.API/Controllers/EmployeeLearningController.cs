@@ -1,13 +1,12 @@
 ﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
-using Employee_Report.Model.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route("api/EmployeeLearning")]
+    [Route(Constants.RT_EMPLOYEE_LEARNING)]
     [ApiController]
     public class EmployeeLearningController : ControllerBase
     {
@@ -18,7 +17,7 @@ namespace Employee_Report.API.Controllers
             _employeeLearningService = employeeLearningService;
         }
 
-        [HttpGet(Constants.getById)]
+        [HttpGet(Constants.GET_BY_ID)]
         public async Task<IActionResult> GetAllEmployeeLearningDetails(string empID)
         {
             var result =  await _employeeLearningService.GetEmployeeLearningbyEmpId(empID);
@@ -29,7 +28,7 @@ namespace Employee_Report.API.Controllers
             return BadRequest(result);
         }
         [HttpPost]
-        [Route(Constants.create)]
+        [Route(Constants.CREATE)]
         public async Task<IActionResult> CreateEmployeeLearning(EmployeeLearning employee)
         {
             var result = await _employeeLearningService.CreateEmployeeLearning(employee);
@@ -41,7 +40,7 @@ namespace Employee_Report.API.Controllers
 
         }
 
-        [HttpGet(Constants.get)]
+        [HttpGet(Constants.GET)]
         public IActionResult GetAllEmployeeLearningDetails()
         {
             var result = _employeeLearningService.GetEmployeelearningDetails();

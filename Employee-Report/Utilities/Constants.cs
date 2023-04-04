@@ -7,53 +7,95 @@
 
         #region API Routes
         public const string API_ROUTE = "APIConfig:BaseUrl";
-        public const string GET_EA_COUNCIL = "APIConfig:GetEACouncilEntry";
-        public const string CREATE_EA_COUNCIL_ENTRY = "APIConfig:CreateEACouncilEntry";
-        public const string CREATE_POWERHOUSE_ROLE = "APIConfig:CreatePowerHouse_Role";
-        public const string GET_CERTIFICATIONS_DETAILS = "APIConfig:GetCertificationsDetails";
-        public const string GET_CERTIFICATIONS_DETAILS_BY_ID = "APIConfig:GetCertificationsDetailsById";
-        public const string CREATE_CERTIFICATIONS_DETAILS = "APIConfig:CreateCertificationsDetails";
-        
-        public const string GET_CERTIFICATION_BY_ID = "APIConfig:GetCertificationsDetailsById";
-        public const string GET_EMPLOYEE_PROJECT_BY_ID = "APIConfig:GetEmployeeProjectById";
-        public const string GET_EMPLOYEE_POC_ID = "APIConfig:GetEmployeePOCById";
-        public const string GET_TRAINING_BY_ID = "APIConfig:GetTrainingById";
-        public const string GET_EMPLOYEE_LEARNING_ID = "APIConfig:GetEmployeeLearningById";
+
+        #region Power House
+        public const string GET_POWERHOUSE = "APIConfig:GetPowerHouse";
+        public const string CREATE_POWERHOUSE = "APIConfig:CreatePowerHouse";
         public const string GET_POWERHOUS_BY_ID = "APIConfig:GetPowerHouseById";
-
-        #region LEARNING
-        public const string CREATE_EMPLOYEE_LEARNING = "APIConfig:EmployeeLearning";
-        public const string GET_EMPLOYEE_LEARNING = "APIConfig:EmployeeLearning";
+        public const string CREATE_POWERHOUSE_ROLE = "APIConfig:CreatePowerHouse_Role";
         #endregion
 
-        #region TRAINING
-        public const string GET_TRAINING = "APIConfig:EmployeeTraining";
-        public const string CREATE_TRAINING = "APIConfig:EmployeeTraining";
+        #region Certificate
+        public const string GET_CERTIFICATIONS_DETAILS = "APIConfig:GetCertificationsDetails";
+        public const string CREATE_CERTIFICATIONS_DETAILS = "APIConfig:CreateCertificationsDetails";
+        public const string GET_CERTIFICATION_BY_ID = "APIConfig:GetCertificationsDetailsById";
         #endregion
 
-        #region Interview
-        public const string GET_INTERVIEW = "APIConfig:Interview/GetAllInterviews";
-        public const string CREATE_INTERVIEW = "APIConfig:Interview/AddInterview";
+        #region Employee
+        public const string CREATE_EMPLOYEE = "APIConfig:CreateEmployee";
+        public const string GET_EMPLOYEE_BY_ID = "APIConfig:GetEmployeeById";
+        public const string GET_EMPLOYEES = "APIConfig:GetEmployee";
         #endregion
 
-        #region POC
-        public const string GET_POC = "APIConfig:Interview/POC/GetPOC";
-        public const string CREATE_POC = "APIConfig:POC/AddEmployeePoc";
+        #region Employee Project
+        public const string GET_EMPLOYEE_PROJECT_BY_ID = "APIConfig:GetEmployeeProjectById";
+        public const string GET_EMPLOYEE_PROJECT = "APIConfig:GetEmployeeProjectById";
+        public const string CREATE_EMPLOYEE_PROJECT = "APIConfig:CreateEmployeeProject";
         #endregion
 
         #region Project
-        public const string GET_EMPLOYEE_PROJECT = "APIConfig:Project/GetEmployeeProject";
-        public const string AddProject = "APIConfig:Project/AddEmployeeProject";
+        public const string CREATE_PROJECT = "APIConfig:GetProject";
+        public const string GET_PROJECT_BY_ID = "APIConfig:GetProjectById";
+        public const string GET_PROJECT = "APIConfig:GetProject";
+        #endregion
+
+        #region LEARNING
+        public const string GET_EMPLOYEE_LEARNING_BY_ID = "APIConfig:GetEmployeeLearningById";
+        public const string GET_EMPLOYEE_LEARNING = "APIConfig:GetEmployeeLearning";
+        public const string CREATE_EMPLOYEE_LEARNING = "APIConfig:CreateEmployeeLearning";
+        #endregion
+
+        #region ADMIN LEARNING
+        public const string GET_ADMIN_EMPLOYEE_LEARNING = "APIConfig:GetAdminLearning";
+        public const string CREATE_ADMIN_LEARNING = "APIConfig:CreateAdminLearning";
+        #endregion
+
+        #region TRAINING
+        public const string GET_TRAINING_BY_ID = "APIConfig:GetTrainingById";
+        public const string GET_EMPLOYEE_TRAINING = "APIConfig:GetEmployeeTraining";
+        public const string GET_EMPLOYEE_TRAINING_BY_ID = "APIConfig:GetEmployeeTrainingById";
+        public const string CREATE_EMPLOYEE_TRAINING = "APIConfig:CreateEmployeeTraining";
+        #endregion
+
+        #region TRAINING
+        public const string GET_ADMIN_TRAINING = "APIConfig:GetAdminTraining";
+        public const string GET_ADMIN_TRAINING_BY_ID = "APIConfig:GetAdminTrainingById";
+        public const string CREATE_ADMIN_TRAINING = "APIConfig:CreateAdminTrainingById";
+        #endregion
+
+        #region Interview
+        public const string GET_INTERVIEW = "APIConfig:GetInterviews";
+        public const string GET_INTERVIEW_BY_ID = "APIConfig:GetInterviewById";
+        public const string CREATE_INTERVIEW = "APIConfig:CreateInterview";
+        #endregion
+
+        #region Employee POC
+        public const string GET_EMPLOYEE_POC_ID = "APIConfig:GetEmployeePOCByEmpId";
+        public const string CREATE_EMPLOYEE_POC = "APIConfig:CreateEmployeePOC";
+        public const string GET_EMPLOYEE_POC = "APIConfig:GetEmployeePOC";
+        #endregion
+
+        #region Admin POC
+        public const string GET_ADMIN_POC_By_ID = "APIConfig:GetAdminPOC";
+        public const string CREATE_ADMIN_POC = "APIConfig:CreateAdminPOC";
+        public const string GET_ADMIN_POC = "APIConfig:GetAdminPOC";
         #endregion
 
         #region Role
-        public const string GET_ROLE = "APIConfig:Role/GetRole";
-        public const string ADD_ROLE = "APIConfig:Role/AddRole";
+        public const string GET_ROLE = "APIConfig:GetRole";
+        public const string ADD_ROLE = "APIConfig:CreateRole";
         #endregion
 
-        #region Skills
-        public const string GET_SKILLS = "APIConfig:Skills/GetSkills";
-        public const string GET_EMPLOYEE_SKILLS_ById = "APIConfig:GetEmployee_SkilsById";
+        #region Employee Skills
+        public const string GET_EMPLOYEE_SKILLS = "APIConfig:GetEmployeeSkills";
+        public const string GET_EMPLOYEE_SKILLS_By_ID = "APIConfig:GetEmployeeSkillsById";
+        public const string CREATE_EMPLOYEE_SKILLS = "APIConfig:CreateEmployeeSkills";
+
+        #endregion
+
+        #region Admin Skills 
+        public const string GET_ADMIN_SKILLS = "APIConfig:GetAdminSkills";
+        public const string CREATE_ADMIN_SKILLS = "APIConfig:CreateAdminSkills";
         #endregion
 
         #region IntellectualProperty Routes

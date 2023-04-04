@@ -5,22 +5,22 @@ using Employee_Report.API.Utilities;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route(Constants.RT_PROJECT)]
+    [Route(Constants.RT_EMPLOYEE_PROJECT)]
     [ApiController]
-    public class ProjectController : ControllerBase
+    public class EmployeeProjectController : ControllerBase
     {
         private IProjectService _projectService;
-        public ProjectController(IProjectService projectService)
+        public EmployeeProjectController(IProjectService projectService)
         {
             _projectService = projectService;
         }
+
         [HttpGet(Constants.GET)]
-        public async Task<IActionResult> GetProject()
+        public async Task<IActionResult> GetEmployeeProject()
         {
             try
             {
-                var result = await _projectService.GetProjectDetails();
-
+                var result = await _projectService.GetEmployeeProjectDetails();
                 if (!result.status)
                 {
                     return NotFound();
@@ -31,6 +31,31 @@ namespace Employee_Report.API.Controllers
             {
                 throw;
             }
+        }
+
+        [HttpGet(Constants.CREATE)]
+        public async Task<IActionResult> AddEmployeeProject(EmployeeProject employeeProject)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var result = await _projectService.CreateEmployeeProject(employeeProject);
+                    if (result.status)
+                    {
+                        return Ok(result);
+                    }
+                    else
+                    {
+                        return NotFound(result);
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return BadRequest();
         }
 
         [HttpGet(Constants.GET_BY_ID)]
@@ -53,24 +78,6 @@ namespace Employee_Report.API.Controllers
             {
                 throw;
             }
-        }
-
-        [HttpPost(Constants.CREATE)]
-        public async Task<IActionResult> AddProject([FromBody] Project project)
-        {
-                try
-                {
-                    var result = await _projectService.PostProject(project);
-                    if (result.status)
-                    {
-                        return Ok(result);
-                    }
-                      return BadRequest(result);
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
         }
     }
 }

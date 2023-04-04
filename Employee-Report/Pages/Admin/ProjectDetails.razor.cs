@@ -1,5 +1,4 @@
 ﻿using Employee_Report.Model.Models;
-using Employee_Report.Model.Models;
 using Employee_Report.Utilities;
 using System.Collections.Generic;
 
@@ -20,7 +19,7 @@ namespace Employee_Report.Pages.Admin
 
         protected override async Task OnInitializedAsync()
         {
-            var res = await employeeProjectService.GetProjectDetails();
+            var res = await employeeProjectService.GetAdminProjectDetails();
             if (res.status) { 
             projects = Utility.GetResponseData<IEnumerable<Project>>(res.response);
             }
@@ -30,7 +29,7 @@ namespace Employee_Report.Pages.Admin
         {
             if (projectModel != null)
             {
-                var response = await employeeProjectService.AddProject(projectModel);
+                var response = await employeeProjectService.CreateAdminProject(projectModel);
                 if (response.status)
                 {
                     navManager.NavigateTo("/projects", forceLoad: true);

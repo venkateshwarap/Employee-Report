@@ -14,21 +14,31 @@ namespace Employee_Report.API.Service
             _eatrackingContext = eatrackingContext;
         }
 
-        public List<EmployeeTraining> GetEmployeeTraningDetails()
+        public async Task<Response> GetEmployeeTraningDetails()
         {
-            return _eatrackingContext.EmployeeTrainings.ToList();
+            var result = await _eatrackingContext.EmployeeTrainings.ToListAsync();
+            if(result.Count > 0)
+            {
+            return APIUtility.BindResponse(result,true);
+            }
+            return APIUtility.BindResponse(result, false);
+
         }
 
         public async Task<Response> GetEmployeeTraningDetailsById(string EmpID)
         {
-            var res=  await _eatrackingContext.EmployeeTrainings.Where(x => x.EmpId == EmpID).ToListAsync();
-            return APIUtility.BindResponse(res, true);
+            var result =  await _eatrackingContext.EmployeeTrainings.Where(x => x.EmpId == EmpID).ToListAsync();
+            if (result.Count > 0)
+            {
+                return APIUtility.BindResponse(result, true);
+            }
+            return APIUtility.BindResponse(result, false);
         }
 
-        public Response SaveEmployeeTraningDetails(EmployeeTraining employeeTrainng)
+        public async Task<Response> SaveEmployeeTraningDetails(EmployeeTraining employeeTrainng)
         {
-           _eatrackingContext.EmployeeTrainings.Add(employeeTrainng);
-           var result = _eatrackingContext.SaveChanges();
+          await _eatrackingContext.EmployeeTrainings.AddAsync(employeeTrainng);
+           var result = await _eatrackingContext.SaveChangesAsync();
             if(result != 0)
             {
                 return APIUtility.BindResponse(result, true, "Employee Traning has been added successfully!");

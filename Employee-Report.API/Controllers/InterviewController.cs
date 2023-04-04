@@ -1,12 +1,11 @@
 ﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
-using Employee_Report.Model.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Employee_Report.API.Utilities;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(Constants.RT_INTERVIEW)]
     [ApiController]
     public class InterviewController : ControllerBase
     {
@@ -17,7 +16,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetAllInterviews")]
+        [Route(Constants.GET)]
         public async Task<IActionResult> GetAllInterviews()
         {
             try
@@ -32,8 +31,7 @@ namespace Employee_Report.API.Controllers
                 throw;
             }
         }
-        [HttpGet]
-        [Route("GetInterviewByID")]
+        [HttpGet(Constants.GET_BY_ID)]
         public async Task<IActionResult> GetIntervieByID(int id)
         {
             try
@@ -55,7 +53,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpPost]
-        [Route("AddInterview")]
+        [Route(Constants.CREATE)]
         public async Task<IActionResult> AddInterview(Interview interview)
         {
             try

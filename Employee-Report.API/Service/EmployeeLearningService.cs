@@ -1,8 +1,6 @@
 ﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
-using Employee_Report.Model.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Report.API.Service
@@ -13,7 +11,7 @@ namespace Employee_Report.API.Service
         private readonly EmployeeInfoContext _context;
         public EmployeeLearningService(EmployeeInfoContext context)
         {
-            this._context = context;
+            _context = context;
         }
         public Response GetEmployeelearningDetails()
         {
@@ -21,20 +19,20 @@ namespace Employee_Report.API.Service
             try
             {
                 var result = from employelearning in _context.EmployeeLearnings
-                             join learnig in _context.Learnings on employelearning.Id equals learnig.Id into Details
+                             join learnig in _context.Learnings on employelearning.LearningId equals learnig.SkillId into Details
                              from m in Details.DefaultIfEmpty()
                              select new
                              {
                                  EmpId = employelearning.EmpId,
-                                 EndDate = employelearning.EndDate,
-                                 StartDate = employelearning.StartDate,
-                                 Duration = employelearning.EndDate - employelearning.StartDate,
-                                 Name = m.Name,
-                                 LarningId = m.Id,
-                                 Path = m.Path,
-                                 HoursOfLearning = m.HoursOfLearning,
+                                 EndDate = (employelearning.EndDate.HasValue)?(employelearning.EndDate): employelearning.EndDate.GetValueOrDefault(),
+                                 StartDate = (employelearning.StartDate.HasValue) ? (employelearning.StartDate) : employelearning.EndDate.GetValueOrDefault(),
+                                 Duration = (employelearning.EndDate - employelearning.StartDate)!.HasValue ? (employelearning.EndDate - employelearning!.StartDate)!.Value.TotalDays : 0,
+                                 Name = m.Name!=null? m.Name:String.Empty,
+                                 Path = m.Path != null? m.Path:String.Empty,
+                                 HoursOfLearning = m.HoursOfLearning != null ? m.HoursOfLearning :0,
                              };
-               var employee_res = from employelearning in result
+
+                var employee_res = from employelearning in result
                              join employee in _context.Employees on employelearning.EmpId equals employee.Id into Details 
                 from m in Details.DefaultIfEmpty()
                 select new
@@ -44,9 +42,8 @@ namespace Employee_Report.API.Service
                     EmpId = employelearning.EmpId,
                     EndDate = employelearning.EndDate,
                     StartDate = employelearning.StartDate,
-                    Duration = employelearning.EndDate - employelearning.StartDate,
+                    Duration = employelearning.Duration,
                     Name = employelearning.Name,
-                    LarningId = employelearning.LarningId,
                     Path = employelearning.Path,
                     HoursOfLearning = employelearning.HoursOfLearning,
                 };
@@ -71,7 +68,7 @@ namespace Employee_Report.API.Service
             {
                 var employee = await _context.Employees.Where(x=>x.Id== empId).FirstOrDefaultAsync();
                 var result = from employelearning in _context.EmployeeLearnings
-                              join learnig in _context.Learnings on employelearning.Id equals learnig.Id  into Details where employelearning.EmpId == empId
+                              join learnig in _context.Learnings on employelearning.LearningId equals learnig.SkillId  into Details where employelearning.EmpId == empId
                              from m in Details.DefaultIfEmpty()
                              select new
                              {

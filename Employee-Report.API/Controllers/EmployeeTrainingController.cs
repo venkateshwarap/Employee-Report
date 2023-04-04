@@ -1,10 +1,11 @@
 ﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
 using Microsoft.AspNetCore.Mvc;
+using Employee_Report.API.Utilities;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(Constants.RT_EMPLOYEE_TRAINING)]
     [ApiController]
     public class EmployeeTrainingController : ControllerBase
     {
@@ -15,22 +16,30 @@ namespace Employee_Report.API.Controllers
         {
             _employeeTrainingService = employeeTrainingService;
         }
-        [HttpGet("GetDetails")]
-        public List<EmployeeTraining> GetEmployeeTraningDetails()
+        [HttpGet(Constants.GET)]
+        public async Task<IActionResult> GetEmployeeTraningDetails()
         {
-            return _employeeTrainingService.GetEmployeeTraningDetails();
+            var result = await _employeeTrainingService.GetEmployeeTraningDetails();
+            if(result.status)
+            return Ok(result);
+            return NotFound(result);
         }
-        [HttpPost]
-        public IActionResult SaveEmployeeTraning(EmployeeTraining employeeTraining)
+        [HttpPost(Constants.CREATE)]
+        public async Task<IActionResult> SaveEmployeeTraning(EmployeeTraining employeeTraining)
         {
-            return Ok(_employeeTrainingService.SaveEmployeeTraningDetails(employeeTraining));
+            var result = await _employeeTrainingService.SaveEmployeeTraningDetails(employeeTraining);
+            if (result.status)
+                return Ok(result);
+            return NotFound(result);
         }
 
-        [HttpGet("GetDetailsbyId")]
+        [HttpGet(Constants.GET_BY_ID)]
         public async Task<IActionResult> GetEmployeeTraningDetailsById(string empId)
         {
             var result = await _employeeTrainingService.GetEmployeeTraningDetailsById(empId);
-            return Ok(result);
+            if (result.status)
+                return Ok(result);
+            return NotFound(result);
         }
     }
 }

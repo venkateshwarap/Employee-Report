@@ -1,8 +1,6 @@
 ﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
-using Employee_Report.Model.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Report.API.Controllers
@@ -18,7 +16,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpPost]
-        [Route("create")]
+        [Route(Constants.CREATE)]
         public async Task<IActionResult> CreateCertificationDetails(Certification certifications)
         {
             try
@@ -37,7 +35,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpGet]
-        [Route("get")]
+        [Route(Constants.GET)]
         public async Task<IActionResult> GetCertificationDetails()
         {
             try
@@ -56,7 +54,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpGet]
-        [Route("getbyId")]
+        [Route(Constants.GET_BY_ID)]
         public async Task<IActionResult> GetCertificatioDetailsById(string empid)
         {
             try
@@ -75,7 +73,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpDelete]
-        [Route("delete")]
+        [Route(Constants.DELETE)]
         public async Task<IActionResult> DeleteCertificationDetails(string empid)
         {
             try

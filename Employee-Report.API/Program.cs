@@ -2,8 +2,7 @@ using Employee_Report.Model.Models;
 using employee_report.api.iservice;
 using Employee_Report.API.IService;
 using Employee_Report.API.Service;
-using Employee_Report.Model.Models;
-using Microsoft.AspNetCore.Components.Authorization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

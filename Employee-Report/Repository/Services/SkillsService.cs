@@ -13,12 +13,12 @@ namespace Employee_Report.Repository.Services
         }
         public async Task<Response> GetSkills()
         {
-            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GetSkills, _httpClient);
+            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GET_ADMIN_SKILLS, _httpClient);
             return entry;
         }
         public async Task<Response> AddSkill(Skill skill)
         {
-            var entry = await Utility.HttpClientPostAsync(AppSettings.Config.AddSkill, _httpClient, skill);
+            var entry = await Utility.HttpClientPostAsync(AppSettings.Config.CREATE_ADMIN_SKILLS, _httpClient, skill);
             return entry;
         }
     }

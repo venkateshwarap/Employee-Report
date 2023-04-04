@@ -15,7 +15,7 @@ namespace Employee_Report.Repository.Services
         }
         public async Task<Response> GeEACouncilEntryDetails()
         {
-            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EA_COUNCIL, _httpClient);
+            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GET_POWER_HOUSE, _httpClient);
             return entry;
         }
         public async Task<Response> CreateEACouncilEntryDetails(PowerHouseRoleView powerHouse_Role)

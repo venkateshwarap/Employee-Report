@@ -1,6 +1,5 @@
 ﻿using Employee_Report.Model.Models;
 using Employee_Report.API.Utilities;
-using Employee_Report.Model.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Report.API.Service

@@ -30,9 +30,9 @@ namespace Employee_Report.Repository.Services
                 var response = await _httpClient.PostAsync(AppSettings.Config.Login, stringContent);
                 return response;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }

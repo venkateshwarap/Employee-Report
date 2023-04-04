@@ -37,7 +37,7 @@ namespace Employee_Report.Pages.Employee
         {
             if (training != null)
             {
-                var response = await trainingService.AddNewTraining(training);
+                var response = await trainingService.CreateTraining(training);
                 if (response.status)
                 {
                     navManager.NavigateTo("/trainings", forceLoad: true);

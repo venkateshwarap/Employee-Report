@@ -14,19 +14,19 @@ namespace Employee_Report.Repository.Services
        
         public async Task<Response> GetEmployeeLearnings()
         {
-            var empLearnings = await Utility.HttpClientGetAsync(AppSettings.Config.GetEmployeeLearning,_httpClient);
+            var empLearnings = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EMPLOYEE_LEARNING,_httpClient);
             return empLearnings;
         }
 
         public async Task<Response> GetEmployeeLearningById(string empId)
         {
-            var empLearnings = await Utility.HttpClientGetAsync("EmployeeLearning/getById?empID=MLI740", empId, _httpClient);
+            var empLearnings = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EMPLOYEE_LEARNING_BY_ID, empId, _httpClient);
             return empLearnings;
         }
 
         public async Task<HttpResponseMessage> AddEmployeeLearning(EmployeeLearning empLearning)
         {
-            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.AddEmployeeLearning, empLearning);
+            HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(AppSettings.Config.CREATE_EMPLOYEE_LEARNING, empLearning);
             return responseMessage;
         }
 

@@ -1,13 +1,11 @@
 ﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
-using Employee_Report.Model.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route("api/Trainings")]
+    [Route(Constants.RT_ADMIN_TRAININGS)]
     [ApiController]
     public class TrainingController : ControllerBase
     {
@@ -18,7 +16,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpGet]
-        [Route(Constants.get)]
+        [Route(Constants.GET)]
         public async Task<IActionResult> GetTrainings()
         {
             try
@@ -52,7 +50,7 @@ namespace Employee_Report.API.Controllers
         }
 
         [HttpPost]
-        [Route(Constants.create)]
+        [Route(Constants.CREATE)]
         public async Task<IActionResult> AddNewTraining(Training training)
         {
             try
@@ -62,7 +60,7 @@ namespace Employee_Report.API.Controllers
                     return Ok(result);
                 return BadRequest(result);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

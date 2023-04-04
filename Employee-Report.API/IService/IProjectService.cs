@@ -4,14 +4,14 @@ namespace employee_report.api.iservice
 {
     public interface IProjectService
     {
-        Task<List<Project>> GetProjectDetails();
+        Task<Response> GetProjectDetails();
 
-        Task<List<EmployeeProjectEntity>> GetEmployeeProjectDetails();
+        Task<Response> GetEmployeeProjectDetails();
 
         Task<Response> GetByProjectId(string EmpId);
 
-        Task<int> PostProject(Project project);
-        Task<int> PostEmployeeProject(EmployeeProject employeeproject);
-        List<EmployeeProjectEntity> GetById(string empId);
+        Task<Response> PostProject(Project project);
+        Task<Response> CreateEmployeeProject(EmployeeProject employeeproject);
+        Task<Response> GetById(string empId);
     }
 }

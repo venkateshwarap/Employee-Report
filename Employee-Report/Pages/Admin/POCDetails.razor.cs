@@ -1,13 +1,14 @@
 ﻿using Employee_Report.Model.Models;
-using Employee_Report.Model.Models;
+using Employee_Report.Repository.IServices;
 using Employee_Report.Utilities;
+using Microsoft.AspNetCore.Components;
 
 namespace Employee_Report.Pages.Admin
 {
     public partial class POCDetails
     {
-
-        Repository.Services.EmployeePocService employeePocService = new Repository.Services.EmployeePocService();
+        [Inject]
+        IEmployeePocService employeePocService { get; set; }
         public IEnumerable<Poc> poc { get; set; }
         private bool IsHidden { get; set; } = false;
 

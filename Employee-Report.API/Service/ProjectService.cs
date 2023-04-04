@@ -1,6 +1,7 @@
 ﻿using Employee_Report.Model.Models;
 using employee_report.api.iservice;
 using Microsoft.EntityFrameworkCore;
+using Employee_Report.API.Utilities;
 
 namespace Employee_Report.API.Service
 {
@@ -12,24 +13,23 @@ namespace Employee_Report.API.Service
         {
             this._dBContext = context;
         }
-        public async Task<List<Project>> GetProjectDetails()
+        public async Task<Response> GetProjectDetails()
         {
-            if (_dBContext != null)
-            {
-                return await _dBContext.Projects.ToListAsync();
-            }
-            return null;
+            var result = await _dBContext.Projects.ToListAsync();
+            if (result.Count > 0)
+                return APIUtility.BindResponse(result, true);
+            return APIUtility.BindResponse(result, false);
         }
 
-        public async Task<List<EmployeeProjectEntity>> GetEmployeeProjectDetails()
+        public async Task<Response> GetEmployeeProjectDetails()
         {
             var empProjectDetails = new List<EmployeeProjectEntity>();
             if (_dBContext != null)
             {
-                var result = (from ep in _dBContext.EmployeeProjects
+                var result = await (from ep in _dBContext.EmployeeProjects
                               join p in _dBContext.Projects on ep.ProjectId equals p.Id
                               join r in _dBContext.Roles on ep.RoleId equals r.Id
-                              select new { p.ProjectName ,r.RoleName, ep.ReportingTo, ep.StartDate, ep.EndDate }).ToList();
+                              select new { p.ProjectName ,r.RoleName, ep.ReportingTo, ep.StartDate, ep.EndDate }).ToListAsync();
 
                 if (result != null)
                 {
@@ -44,63 +44,46 @@ namespace Employee_Report.API.Service
                             ReportingTo = emp.ReportingTo
                         });
                     }
+                    return APIUtility.BindResponse(result, true);
                 }
 
             }
-            return empProjectDetails;
+            return APIUtility.BindResponse(null!, false);
         }
-        public List<EmployeeProjectEntity> GetById(string empId)
+        public async Task<Response> GetById(string empId)
         {
-            if (_dBContext != null)
-            {
 
-                var result = (from ep in _dBContext.EmployeeProjects
+                var result = await (from ep in _dBContext.EmployeeProjects
                               join e in _dBContext.Employees on ep.EmpId equals e.Id
                               join p in _dBContext.Projects on ep.ProjectId equals p.Id
-                              where e.Id == empId
-                              select new { p.ProjectName, ep.EmpId, ep.ProjectId, ep.StartDate, ep.EndDate, ep.ReportingTo }).ToList();
+                              join role in _dBContext.Roles on ep.RoleId equals role.Id
+                                    where e.Id == empId
+                              select new { RoleName = role.RoleName, ProjectName= p.ProjectName, EmpId= ep.EmpId, ProjectId= ep.ProjectId, StartDate= ep.StartDate, EndDate= ep.EndDate, ReportingTo= ep.ReportingTo }).ToListAsync();
 
-
-                List<EmployeeProjectEntity> employeeProjectEntity = new List<EmployeeProjectEntity>();
-
-                foreach (var li in result)
-                {
-                    employeeProjectEntity.Add(new EmployeeProjectEntity
-                    {
-                        Name = li.ProjectName,
-                        EmpId = li.EmpId,
-                        EndDate = li.EndDate,
-                        ReportingTo = li.ReportingTo,
-                        StartDate = li.StartDate
-                    });
-                }
-
-                return employeeProjectEntity;
-            }
-            return null;
-
-        }
-        public async Task<int> PostProject(Project project)
-        {
-            if (_dBContext != null)
+            if (result != null)
             {
+                return APIUtility.BindResponse(result, true);
 
+            }
+
+            return APIUtility.BindResponse(null!, false);
+        }
+        public async Task<Response> PostProject(Project project)
+        {
                 await _dBContext.Projects.AddAsync(project);
-                await _dBContext.SaveChangesAsync();
-                return project.Id;
-            }
-            return 0;
+              var result =  await _dBContext.SaveChangesAsync();
+                if (result != 0)
+                    return APIUtility.BindResponse(result, true);
+                return APIUtility.BindResponse(result, false);
         }
 
-        public async Task<int> PostEmployeeProject(EmployeeProject employeeProject)
+        public async Task<Response> CreateEmployeeProject(EmployeeProject employeeProject)
         {
-            if (_dBContext != null)
-            {
                 await _dBContext.EmployeeProjects.AddAsync(employeeProject);
-                await _dBContext.SaveChangesAsync();
-                return employeeProject.Id;
-            }
-            return 0;
+                var result = await _dBContext.SaveChangesAsync();
+                if (result != 0)
+                    return APIUtility.BindResponse(result, true);
+                return APIUtility.BindResponse(result, false);
         }
 
         public async Task<Response> GetByProjectId(string EmpId)
@@ -108,20 +91,12 @@ namespace Employee_Report.API.Service
             var result = await _dBContext.EmployeeProjects.Where(x => x.EmpId == EmpId).ToListAsync();
             if (result != null)
             {
-                return BindResponse(result!, true);
+                return APIUtility.BindResponse(result, true);
             }
             {
-                return BindResponse(result!, false);
+                return APIUtility.BindResponse(null!, false);
             }
 
-        }
-        private Response BindResponse(Object Obj = null!, bool Status = true, string Message = "")
-        {
-            Response resp = new Response();
-            resp.response = Obj;
-            resp.message = Message;
-            resp.status = Status;
-            return resp;
         }
     }
 }

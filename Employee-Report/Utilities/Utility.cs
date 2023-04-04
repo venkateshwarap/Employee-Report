@@ -1,10 +1,6 @@
 ﻿using Employee_Report.Model.Models;
-using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Collections;
-using System.Net.Http;
-
 namespace Employee_Report.Utilities
 {
     public static class Utility
@@ -14,7 +10,7 @@ namespace Employee_Report.Utilities
         {
             httpContextAccessor = accessor;
         }
-        public static T GetResponseData<T>(Object? value)
+        public static T GetResponseData<T>(Object value)
         {
             if (value is null)
             {

@@ -11,7 +11,7 @@ namespace Employee_Report.API.Service
 
         public EmployeeSkillsService(EmployeeInfoContext context)
         {
-            this._context = context;
+            _context = context;
         }
         public async Task<Response> AddEmployeeSkill(EmployeeSkills employeeSkills)
         {
@@ -19,87 +19,52 @@ namespace Employee_Report.API.Service
             var result = _context.SaveChanges();
             if (result > 0)
             {
-                return BindResponse(result, true, Constants.Response_Add_EmployeeSkills_Success);
+                return APIUtility.BindResponse(result, true, Constants.Response_Add_EmployeeSkills_Success);
             }
             {
-                return BindResponse(result, false, Constants.Response_Add_EmployeeSkills_Failue);
+                return APIUtility.BindResponse(result, false, Constants.Response_Add_EmployeeSkills_Failue);
             }
         }
 
-        public async Task<List<EmployeeSkills_Skills_Entity>> GetEmployeeSkills()
+        public async Task<Response> GetEmployeeSkills()
         {
             var employeeSkillsDetails = new List<EmployeeSkills_Skills_Entity>();
-            if (_context != null)
-            {
-                var result = (from empskills in _context.EmployeeSkills
+                var result = await (from empskills in _context.EmployeeSkills
                               join skills in _context.Skills on empskills.SkillId equals skills.Id
-                              select new { empskills.EmpId, skills.SkillName }).ToList();
+                              select new { EmpId = empskills.EmpId, SkillName = skills.SkillName }).ToListAsync();
 
                 if (result != null)
                 {
-                    foreach (var res in result)
-                    {
-                        employeeSkillsDetails.Add(new EmployeeSkills_Skills_Entity
-                        {
-                            EmpID = res.EmpId,
-                            SkillName = res.SkillName,
-                        });
-                    }
+                    return APIUtility.BindResponse(result!, true);
                 }
-            }
-            return employeeSkillsDetails;
+
+            return APIUtility.BindResponse(null!, false);
         }
-        public async Task<List<EmployeeSkills_Skills_Entity>> GetEmployeeSkillsByID(int id)
+        public async Task<Response> GetEmployeeSkillsByID(int id)
         {
-            var empSkillByID = new List<EmployeeSkills_Skills_Entity>();
-            var result = (from empskills in _context.EmployeeSkills
+            var result =await (from empskills in _context.EmployeeSkills
                           join skills in _context.Skills on empskills.Id equals skills.Id
                           where empskills.Id == id
-                          select new { empskills.EmpId, skills.SkillName }).ToList();
+                          select new { EmpId = empskills.EmpId, SkillName= skills.SkillName }).ToListAsync();
             if(result != null)
             {
-                foreach (var res in result)
-                {
-                    empSkillByID.Add(new EmployeeSkills_Skills_Entity
-                    {
-                        EmpID = res.EmpId,
-                        SkillName = res.SkillName,
-
-                    });
-                }
+                return APIUtility.BindResponse(result!, true);
             }
-            return empSkillByID;
+            return APIUtility.BindResponse(null!, false);
         }
-        public Response GetEmployeeSkillsByEmpId(string id)
+        public async Task<Response> GetEmployeeSkillsByEmpId(string id)
         {
-            var empSkillByID = new List<EmployeeSkills_Skills_Entity>();
-            var result=  _context.EmployeeSkills.Where(x=>x.EmpId == id).ToList();
-            List<string> _skills = new List<string>();
-            if(result != null)
+            
+            var result = await (from empskills in _context.EmployeeSkills
+                                join skills in _context.Skills on empskills.Id equals skills.Id
+                                where empskills.EmpId == id
+                                select new { EmpId = empskills.EmpId, SkillName = skills.SkillName }).ToListAsync();
+            if (result != null)
             {
-                foreach (var item in result)
-                {
-                    if (item != null)
-                    {
-                        var skills_name = _context.Skills.Where(x => x.Id == item.SkillId).FirstOrDefault();
-                        _skills.Add(skills_name!.SkillName.ToString()!);
-
-                    }
-                }
-
+                return APIUtility.BindResponse(result!, true);
             }
-           
-
-
-            return BindResponse(_skills, true);
+            return APIUtility.BindResponse(null!, false);
         }
-        private Response BindResponse(Object Obj = null!, bool Status = true, string Message = "")
-        {
-            Response resp = new Response();
-            resp.response = Obj;
-            resp.message = Message;
-            resp.status = Status;
-            return resp;
-        }
+       
     }
 }

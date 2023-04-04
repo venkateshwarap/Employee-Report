@@ -2,11 +2,11 @@
 {
     public class EMP
     {
-        public string Id { get; set; } = null!;
+        public string? Id { get; set; }
 
-        public string EmpFullName { get; set; } = null!;
+        public string? EmpFullName { get; set; }
 
-        public string EmpEmployeeSkill { get; set; } = null;
+        public string? EmpEmployeeSkill { get; set; }
 
     }
 }

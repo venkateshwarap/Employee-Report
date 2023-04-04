@@ -2,7 +2,6 @@
 using Employee_Report.API.IService;
 using Employee_Report.API.Utilities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Employee_Report.API.Service
 {
@@ -16,98 +15,67 @@ namespace Employee_Report.API.Service
             this._dBContext = context;
         }
 
-        public Response GetById(string empId)
+        public async Task<Response> GetById(string empId)
         {
-            if (_dBContext != null)
+            var result = await (from ep in _dBContext.EmployeePocs
+                                join p in _dBContext.Pocs on ep.Pocid equals p.Id
+                                join e in _dBContext.Employees on ep.EmpId equals e.Id
+                                join r in _dBContext.Roles on ep.RoleId equals r.Id
+                                select new { EmpId = ep.EmpId, Name = p.Name, Role = r.RoleName, StartDate = ep.StartDate, EndDate = ep.EndDate, ReportingTo = ep.ReportingTo }).ToListAsync();
+
+            if (result != null)
             {
-                //var result = _dBContext.Employees.ToList().Find(x => x.Id == Id);
-
-                var result = (from ep in _dBContext.EmployeePocs
-                              join e in _dBContext.Employees on ep.EmpId equals e.Id
-                              join p in _dBContext.Pocs on ep.Pocid equals p.Id
-                              where e.Id == empId
-                              select new { p.Name, ep.EmpId, ep.Pocid, ep.StartDate, ep.EndDate, ep.ReportingTo }).ToList();
-
-
-                List<EmployeePOCEntity> employeePOCEntity = new List<EmployeePOCEntity>();
-
-                foreach (var li in result)
-                {
-                    employeePOCEntity.Add(new EmployeePOCEntity
-                    {
-                        Name = li.Name,
-                        EmpId = li.EmpId,
-                        EndDate = li.EndDate,
-                        ReportingTo = li.ReportingTo,
-                        StartDate = li.StartDate
-                    });
-                }
-
-                return APIUtility.BindResponse(employeePOCEntity,true);
+                return APIUtility.BindResponse(result, true);
             }
             return APIUtility.BindResponse(null!, false);
-
         }
 
-        public async Task<List<EmployeePOCEntity>> GetEmployeePOCDetails()
+        public async Task<Response> GetEmployeePOCDetails()
         {
-            var empPOCDetails = new List<EmployeePOCEntity>();
-            if (_dBContext != null)
+           
+            var result = await (from ep in _dBContext.EmployeePocs
+                                join p in _dBContext.Pocs on ep.Pocid equals p.Id
+                                join r in _dBContext.Roles on ep.RoleId equals r.Id
+                                select new {EmpId=ep.EmpId, Name = p.Name, Role= r.RoleName, StartDate = ep.StartDate, EndDate = ep.EndDate, ReportingTo = ep.ReportingTo }).ToListAsync();
+
+            if (result != null)
             {
-                var result = (from ep in _dBContext.EmployeePocs
-                              join p in _dBContext.Pocs on ep.Pocid equals p.Id
-                              join r in _dBContext.Roles on ep.RoleId equals r.Id
-                              select new { p.Name, r.RoleName, ep.StartDate, ep.EndDate, ep.ReportingTo }).ToList();
-
-                if (result != null)
-                {
-                    foreach (var emp in result)
-                    {
-                        empPOCDetails.Add(new EmployeePOCEntity
-                        {
-
-                            Name = emp.Name,
-                            Role = emp.RoleName,
-                            StartDate = emp.StartDate,
-                            EndDate = emp.EndDate,
-                            ReportingTo = emp.ReportingTo
-                        });
-                    }
-                }
-
+                return APIUtility.BindResponse(result, true);
             }
-            return empPOCDetails;
+            return APIUtility.BindResponse(null!, false);
         }
 
-        public async Task<List<Poc>> GetPOCDetails()
+        public async Task<Response> GetPOCDetails()
         {
-            if (_dBContext != null)
+            var result = await _dBContext.Pocs.ToListAsync();
+            if (result != null)
             {
-                return await _dBContext.Pocs.ToListAsync();
+                return APIUtility.BindResponse(result, true);
             }
-            return null;
+            return APIUtility.BindResponse(null!, false);
         }
 
-        public async Task<int> PostEmployeePoc(EmployeePoc employeePoc)
+        public async Task<Response> PostEmployeePoc(EmployeePoc employeePoc)
         {
-            if (_dBContext != null)
+
+            await _dBContext.EmployeePocs.AddAsync(employeePoc);
+            var result = await _dBContext.SaveChangesAsync();
+            if (result != 0)
             {
-                await _dBContext.EmployeePocs.AddAsync(employeePoc);
-                await _dBContext.SaveChangesAsync();
-                return employeePoc.Id;
+                return APIUtility.BindResponse(result, true);
             }
-            return 0;
+            return APIUtility.BindResponse(result!, false);
         }
 
-        public async Task<int> PostPoc(Poc poc)
+        public async Task<Response> PostPoc(Poc poc)
         {
-            if (_dBContext != null)
+            await _dBContext.Pocs.AddAsync(poc);
+            var result = await _dBContext.SaveChangesAsync();
+            if (result != 0)
             {
-                await _dBContext.Pocs.AddAsync(poc);
-                await _dBContext.SaveChangesAsync();
-                return poc.Id;
+                return APIUtility.BindResponse(result, true);
             }
-            return 0;
+            return APIUtility.BindResponse(result!, false);
 
         }
 

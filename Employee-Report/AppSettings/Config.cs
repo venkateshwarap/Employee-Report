@@ -5,42 +5,53 @@ namespace Employee_Report.AppSettings
     public static class Config
     {
         public static string API_ROUTE = ConfigurationHelper._config!.GetSection(Constants.API_ROUTE).Value!;
-        public static string GET_EA_COUNCIL = ConfigurationHelper._config!.GetSection(Constants.GET_EA_COUNCIL).Value!;
-        public static string CREATE_EA_COUNCIL_ENTRY = ConfigurationHelper._config!.GetSection(Constants.CREATE_EA_COUNCIL_ENTRY).Value!;
-        public static string CREATE_POWERHOUSE_ROLE = ConfigurationHelper._config!.GetSection(Constants.CREATE_POWERHOUSE_ROLE).Value!;
+
+        #region Certificate
         public static string GET_CERTIFICATIONS_DETAILS = ConfigurationHelper._config!.GetSection(Constants.GET_CERTIFICATIONS_DETAILS).Value!;
-        public static string GET_CERTIFICATIONS_DETAILS_BY_ID = ConfigurationHelper._config!.GetSection(Constants.GET_CERTIFICATIONS_DETAILS_BY_ID).Value!;
+        public static string GET_CERTIFICATIONS_DETAILS_BY_ID = ConfigurationHelper._config!.GetSection(Constants.GET_POWERHOUS_BY_ID).Value!;
         public static string CREATE_CERTIFICATIONS_DETAILS = ConfigurationHelper._config!.GetSection(Constants.CREATE_CERTIFICATIONS_DETAILS).Value!;
+        #endregion
+
+        #region INTELLECTUAL
         public static string GET_INTELLECTUAL_PROPERTY_DETAILS = ConfigurationHelper._config!.GetSection(Constants.GET_INTELLECTUAL_PROPERTY).Value!;
         public static string CREATE_INTELLECTUAL_PROPERTY_DETAILS = ConfigurationHelper._config!.GetSection(Constants.CREATE_INTELLECTUAL_PROPERTY).Value!;
+        #endregion
 
-        public static string GET_EMPLOYEE_PROJECT_BY_ID = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_PROJECT_BY_ID).Value!;
-        public static string GET_EMPLOYEE_POC_ID = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_POC_ID).Value!;
-        public static string GET_TRAINING_BY_ID = ConfigurationHelper._config!.GetSection(Constants.GET_TRAINING_BY_ID).Value!;
-        public static string GET_EMPLOYEE_LEARNING_ID = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_LEARNING_ID).Value!;
+        #region Power House 
+        public static string GET_POWER_HOUSE = ConfigurationHelper._config!.GetSection(Constants.GET_POWERHOUSE).Value!;
         public static string GET_POWERHOUS_BY_ID = ConfigurationHelper._config!.GetSection(Constants.GET_POWERHOUS_BY_ID).Value!;
+        public static string CREATE_POWER_HOUSE = ConfigurationHelper._config!.GetSection(Constants.CREATE_POWERHOUSE).Value!;
+        public static string CREATE_POWERHOUSE_ROLE = ConfigurationHelper._config!.GetSection(Constants.CREATE_POWERHOUSE_ROLE).Value!;
+        #endregion
 
+        #region Employee POC
+        public static string GET_EMPLOYEE_POC = ConfigurationHelper._config.GetSection(Constants.GET_EMPLOYEE_POC).Value;
+        public static string GET_EMPLOYEE_POC_ID = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_POC_ID).Value!;
+        public static string CREATE_EMPLOYEE_POC = ConfigurationHelper._config!.GetSection(Constants.CREATE_EMPLOYEE_POC).Value!;
+        #endregion
 
-        public const string LoginAPI = "https://localhost:7024/api/Authenticate/login";
-        public const string DashboardList = "https://localhost:7024/api/Dashboard/GetEmployeeDetails";
+        #region Admin POC
+        public static string GET_ADMIN_POC = ConfigurationHelper._config.GetSection(Constants.GET_ADMIN_POC).Value;
+        public static string GET_ADMIN_POC_ID = ConfigurationHelper._config!.GetSection(Constants.GET_ADMIN_POC_By_ID).Value!;
+        public static string CREATE_ADMIN_POC = ConfigurationHelper._config!.GetSection(Constants.CREATE_ADMIN_POC).Value!;
+        #endregion
 
-        #region POC       
-        public const string GetEmployeePOC = "https://localhost:7178/api/POC/GetEmployeePOC";
-        public const string AddEmployeePOC = "https://localhost:7178/api/POC/AddEmployeePoc";
-        public const string GetPOC = "https://localhost:7178/api/POC/GetPOC";
-        public const string AddPOC = "https://localhost:7178/api/POC/AddPoc";
+        #region Employee Project
+        public static string CREATE_EMPLOYEE_PROJECT = ConfigurationHelper._config!.GetSection(Constants.CREATE_EMPLOYEE_PROJECT).Value!;
+        public static string GET_EMPLOYEE_PROJECT = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_PROJECT).Value!;
+        public static string GET_EMPLOYEE_PROJECT_BY_ID = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_PROJECT_BY_ID).Value!;
         #endregion
 
         #region Project
-        public const string GetEmployeeProject = "https://localhost:7178/api/Project/GetEmployeeProject";
-        public const string AddEmployeeProject = "https://localhost:7178/api/Project/AddEmployeeProject";
-        public const string GetProject = "https://localhost:7178/api/Project/GetProject";
-        public const string AddProject = "https://localhost:7178/api/Project/AddProject";
+        public static string CREATE_PROJECT = ConfigurationHelper._config!.GetSection(Constants.CREATE_PROJECT).Value!;
+        public static string GET_PROJECT_BY_ID = ConfigurationHelper._config!.GetSection(Constants.GET_PROJECT_BY_ID).Value!;
+        public static string GET_PROJECT = ConfigurationHelper._config!.GetSection(Constants.GET_PROJECT).Value!;
         #endregion
 
         #region Employee
-        public const string GetEmployee = "https://localhost:7178/api/Emp/GetEmployee";
-        public const string GetEmployeeById = "https://localhost:7178/api/Emp/GetEmployeeById?Id";
+        public static string GET_EMPLOYEE_BY_ID = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_BY_ID).Value!;
+        public static string CREATE_EMPLOYEE = ConfigurationHelper._config!.GetSection(Constants.CREATE_EMPLOYEE).Value!;
+        public static string GET_EMPLOYEES = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEES).Value!;
         #endregion
 
         #region Login
@@ -48,44 +59,48 @@ namespace Employee_Report.AppSettings
         #endregion
 
         #region Role
-        public const string GetRole = "https://localhost:7178/api/Role/GetRole";
-        public const string AddRole = "https://localhost:7178/api/Role/AddRole";
+        public static string ADD_ROLE = ConfigurationHelper._config!.GetSection(Constants.ADD_ROLE).Value!;
+        public static string GET_ROLE = ConfigurationHelper._config!.GetSection(Constants.GET_ROLE).Value!;
         #endregion
 
         #region Learnings
-        public static string Getlearnings = "Learnings/get";
-        public static string AddNewLearning = "Learnings/create";
-        public static string GetEmployeeLearning = "EmployeeLearning/get";
-        public static string AddEmployeeLearning = "EmployeeLearning/create";
-        public static string EmployeeLearningbyId = "EmployeeLearning/getById";
+        public static string CREATE_EMPLOYEE_LEARNING = ConfigurationHelper._config!.GetSection(Constants.CREATE_EMPLOYEE_LEARNING).Value!;
+        public static string GET_EMPLOYEE_LEARNING = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_LEARNING).Value!;
+        public static string GET_EMPLOYEE_LEARNING_BY_ID = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_LEARNING_BY_ID).Value!;
+        #endregion
+
+        #region Admin Learning
+        public static string CREATE_ADMIN_LEARNING = ConfigurationHelper._config!.GetSection(Constants.CREATE_ADMIN_LEARNING).Value!;
+        public static string GET_ADMIN_LEARNING = ConfigurationHelper._config!.GetSection(Constants.GET_ADMIN_EMPLOYEE_LEARNING).Value!;
         #endregion
 
         #region Trainings
-        public static string GetTrainings = "Trainings/get";
-        public static string AddNewTraining = "Trainings/create";
-        public static string EmployeeTraining = "EmployeeTraining/GetDetails";
-        public static string EmployeeTrainingbyID = "EmployeeTraining/GetDetailsbyId";
+        public static string GET_EMPLOYEE_TRAINING = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_TRAINING).Value!;
+        public static string CREATE_EMPLOYEE_TRAINING = ConfigurationHelper._config!.GetSection(Constants.CREATE_EMPLOYEE_TRAINING).Value!;
+        public static string GET_EMPLOYEE_TRAINING_BY_ID = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_TRAINING_BY_ID).Value!;
         #endregion
 
-        public static string GetEmployeeURl = "Employee/GetAllEmployee";
-        public const string GetBenchEntry = "eacouncil/entry/get";
-        public const string CreateBenchEntry = "eacouncil/entry/create";
+        #region Admin Training
+        public static string GET_ADMIN_TRAINING = ConfigurationHelper._config!.GetSection(Constants.GET_ADMIN_TRAINING).Value!;
+        public static string GET_ADMIN_TRAINING_BY_ID = ConfigurationHelper._config!.GetSection(Constants.GET_ADMIN_TRAINING_BY_ID).Value!;
+        public static string CREATE_ADMIN_TRAINING = ConfigurationHelper._config!.GetSection(Constants.CREATE_ADMIN_TRAINING).Value!;
+        #endregion
 
         #region Interviews
-        public const string GetInterviews = "Interview/GetAllInterviews";
-        public const string AddInterviews = "Interview/AddInterview";
+        public static string GET_INTERVIEW = ConfigurationHelper._config!.GetSection(Constants.GET_INTERVIEW).Value!;
+        public static string GET_INTERVIEW_BY_ID = ConfigurationHelper._config!.GetSection(Constants.GET_INTERVIEW_BY_ID).Value!;
+        public static string CREATE_INTERVIEW = ConfigurationHelper._config!.GetSection(Constants.CREATE_INTERVIEW).Value!;
         #endregion
 
-        #region Skills
-        public const string GetSkills = "Skills/get";
-        public const string AddSkill = "Skills/create";
-        public static string GET_EMPLOYEE_SKILS_ById = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_SKILLS_ById).Value!;
-
+        #region ADMIN Skills
+        public static string GET_ADMIN_SKILLS = ConfigurationHelper._config!.GetSection(Constants.GET_ADMIN_SKILLS).Value!;
+        public static string CREATE_ADMIN_SKILLS = ConfigurationHelper._config!.GetSection(Constants.CREATE_ADMIN_SKILLS).Value!;
         #endregion
 
-        #region EmployeeSkills
-        public const string GetEmployeeSkills = "EmployeeSkills/get";
-        public const string AddEmployeeSkill = "EmployeeSkills/create";
+        #region Employee Skills
+        public static string GET_EMPLOYEE_SKILLS_BY_ID = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_SKILLS_By_ID).Value!;
+        public static string CREATE_EMPLOYEE_SKILLS = ConfigurationHelper._config!.GetSection(Constants.CREATE_EMPLOYEE_SKILLS).Value!;
+        public static string GET_EMPLOYEE_SKILLS = ConfigurationHelper._config!.GetSection(Constants.GET_EMPLOYEE_SKILLS).Value!;
         #endregion
     }
 }

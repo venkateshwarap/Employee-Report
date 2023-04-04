@@ -14,24 +14,24 @@ namespace Employee_Report.Repository.Services
         }
         public async Task<Response> GetEmployeeProjectDetails()
         {
-            var empProject = await Utility.HttpClientGetAsync(AppSettings.Config.GetEmployeeProject,_httpClient);
+            var empProject = await Utility.HttpClientGetAsync(AppSettings.Config.GET_EMPLOYEE_PROJECT,_httpClient);
             return empProject;
         }
         public async Task<Response> AddEmployeeProject(EmployeeProject project)
         {
-            var response = await Utility.HttpClientPostAsync(AppSettings.Config.AddEmployeeProject,_httpClient, project);
+            var response = await Utility.HttpClientPostAsync(AppSettings.Config.CREATE_EMPLOYEE_PROJECT,_httpClient, project);
             return response;
         }
 
-        public async Task<Response> GetProjectDetails()
+        public async Task<Response> GetAdminProjectDetails()
         {
-            var empProject =  await Utility.HttpClientGetAsync(AppSettings.Config.GetProject,_httpClient);
+            var empProject =  await Utility.HttpClientGetAsync(AppSettings.Config.GET_PROJECT, _httpClient);
             return empProject;
         }
 
-        public async Task<Response> AddProject(Project project)
+        public async Task<Response> CreateAdminProject(Project project)
         {
-            var response = await Utility.HttpClientPostAsync(AppSettings.Config.AddProject, _httpClient, project);
+            var response = await Utility.HttpClientPostAsync(AppSettings.Config.CREATE_PROJECT, _httpClient, project);
             return response;
         }
         public async Task<Response> GetEmployeeProjectDetailsById(string Id)

@@ -1,5 +1,4 @@
 ﻿using Employee_Report.Model.Models;
-using Employee_Report.Model.Models;
 using Employee_Report.Repository.IServices;
 using Employee_Report.Utilities;
 

@@ -8,7 +8,7 @@ namespace Employee_Report.Pages.Employee
     {
         [Inject]
         public Repository.IServices.ICertificationsService service { get; set; }
-        public IEnumerable<Certification>? certificationslist { get; set; }
+        public IEnumerable<Certification> certificationslist { get; set; }
         public Certification certifications = new();
         private bool IsHidden { get; set; } = false;
         protected override async Task OnInitializedAsync()

@@ -1,129 +1,60 @@
 ﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata;
+using Employee_Report.API.Utilities;
 
 namespace Employee_Report.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(Constants.RT_ADMIN_POC)]
     [ApiController]
     public class POCController : ControllerBase
     {
-        private IPOCService _pocService;
+        private readonly IPOCService _pocService;
         public POCController(IPOCService pocService)
         {
-            this._pocService = pocService;
+            _pocService = pocService;
         }
-        [HttpGet("GetPOC")]
+        [HttpGet(Constants.GET)]
         public async Task<IActionResult> GetPOC()
         {
             try
             {
-                var p = await _pocService.GetPOCDetails();
-                if (p == null)
+                var result = await _pocService.GetPOCDetails();
+                if (result.status)
                 {
-                    return NotFound();
+                    return Ok(result);
                 }
-                return Ok(p);
+                return NotFound(result);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest();
+                throw;
             }
         }
-        [HttpGet("GetEmployeePOC")]
-        public async Task<IActionResult> GetEmployeePOC()
-        {
-            try
-            {
-                var p = await _pocService.GetEmployeePOCDetails();
-                if (p == null)
-                {
-                    return NotFound();
-                }
-                return Ok(p);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest();
-            }
-        }
+        
 
-        [HttpPost("AddPOC")]
-        public async Task<IActionResult> AddPOC([FromBody] Poc poc)
+        [HttpPost(Constants.CREATE)]
+        public async Task<IActionResult> AddPOC(Poc poc)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var p = await _pocService.PostPoc(poc);
-                    if (p > 0)
+                    var result = await _pocService.PostPoc(poc);
+                    if (result.status)
                     {
-                        return Ok(p);
+                        return Ok(result);
                     }
-                    else
-                    {
-                        return NotFound();
-                    }
+                   
+                        return NotFound(result);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    return BadRequest();
+                    throw;
                 }
             }
             return BadRequest();
-        }
-
-
-        [HttpPost("AddEmployeePoc")]
-        public async Task<IActionResult> AddEmployeePoc([FromBody] EmployeePoc employeePoc)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var p = await _pocService.PostEmployeePoc(employeePoc);
-                    if (p > 0)
-                    {
-                        return Ok(p);
-                    }
-                    else
-                    {
-                        return NotFound();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest();
-                }
-            }
-            return BadRequest();
-        }
-
-
-        [HttpGet("GetPOCByEmployeeId")]
-        public async Task<IActionResult> GetPOCByEmployeeId(string EmpId)
-        {
-            if (EmpId == null)
-            {
-                return BadRequest();
-            }
-
-            try
-            {
-                var poc = _pocService.GetById(EmpId);
-
-                if (poc == null)
-                {
-                    return NotFound();
-                }
-
-
-                return Ok(poc);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest();
-            }
         }
 
     }

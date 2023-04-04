@@ -37,7 +37,7 @@ namespace Employee_Report.Pages.Admin
 
             if (learning != null)
             {
-                var response = await learningService.AddNewLearning(learning);
+                var response = await learningService.CreateLearning(learning);
                 if (response.status)
                 {
                     navManager.NavigateTo("/learnings", forceLoad: true);

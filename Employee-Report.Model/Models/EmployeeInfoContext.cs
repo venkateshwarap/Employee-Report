@@ -29,7 +29,7 @@ namespace Employee_Report.Model.Models
 
         public virtual DbSet<EmployeeProject> EmployeeProjects { get; set; }
 
-        public virtual DbSet<EmployeeSkills> EmployeeSkills { get; set; }
+        public  DbSet<EmployeeSkills> EmployeeSkills { get; set; }
 
         public virtual DbSet<EmployeeTraining> EmployeeTrainings { get; set; }
 
@@ -43,7 +43,7 @@ namespace Employee_Report.Model.Models
 
         public virtual DbSet<Role> Roles { get; set; }
 
-        public virtual DbSet<Skill> Skills { get; set; }
+        public  DbSet<Skill> Skills { get; set; }
 
         public virtual DbSet<Training> Training { get; set; }
         public DbSet<IntellectualProperty> IntellectualProperty { get; set; }
@@ -128,21 +128,6 @@ namespace Employee_Report.Model.Models
                 entity.Property(e => e.Pocid).HasColumnName("POCId");
                 entity.Property(e => e.ReportingTo).HasMaxLength(25);
                 entity.Property(e => e.StartDate).HasColumnType("date");
-
-                //entity.HasOne(d => d.Emp).WithMany(p => p.EmployeePocs)
-                //    .HasForeignKey(d => d.EmpId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_EmployeePOC_Employee");
-
-                //entity.HasOne(d => d.Poc).WithMany(p => p.EmployeePocs)
-                //    .HasForeignKey(d => d.Pocid)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_EmployeePOC_POC");
-
-                //entity.HasOne(d => d.Role).WithMany(p => p.EmployeePocs)
-                //    .HasForeignKey(d => d.RoleId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_EmployeePOC_Role");
             });
 
             modelBuilder.Entity<EmployeeProject>(entity =>
@@ -172,26 +157,6 @@ namespace Employee_Report.Model.Models
                 //    .HasForeignKey(d => d.RoleId)
                 //    .OnDelete(DeleteBehavior.ClientSetNull)
                 //    .HasConstraintName("FK_EmployeeProject_Role");
-            });
-
-            modelBuilder.Entity<EmployeeSkills>(entity =>
-            {
-                entity.Property(e => e.Id).HasColumnName("ID");
-                entity.Property(e => e.CreatedBy).HasMaxLength(50);
-                entity.Property(e => e.CreatedOn).HasColumnType("date");
-                entity.Property(e => e.EmpId)
-                    .HasMaxLength(10)
-                    .HasColumnName("EmpID");
-                entity.Property(e => e.ModifiedBy).HasMaxLength(50);
-                entity.Property(e => e.ModifiedOn)
-                    .HasColumnType("date")
-                    .HasColumnName("modifiedOn");
-                entity.Property(e => e.SkillId).HasColumnName("SkillID");
-
-                entity.HasOne(d => d.Skill).WithMany(p => p.EmployeeSkills)
-                    .HasForeignKey(d => d.SkillId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_EmployeeSkills_Skills");
             });
 
             modelBuilder.Entity<EmployeeTraining>(entity =>

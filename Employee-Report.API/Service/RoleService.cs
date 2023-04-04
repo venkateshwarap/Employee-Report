@@ -1,7 +1,7 @@
 ﻿using Employee_Report.Model.Models;
 using Employee_Report.API.IService;
-using Employee_Report.Model.Models;
 using Microsoft.EntityFrameworkCore;
+using Employee_Report.API.Utilities;
 
 namespace Employee_Report.API.Service
 {
@@ -13,24 +13,25 @@ namespace Employee_Report.API.Service
         {
             this._dBContext = context;
         }
-        public async Task<List<Role>> GetRoleDetails()
+        public async Task<Response> GetRoleDetails()
         {
-            if (_dBContext != null)
+           var result = await _dBContext.Roles.ToListAsync();
+            if(result.Count > 0)
             {
-                return await _dBContext.Roles.ToListAsync();
+                return APIUtility.BindResponse(result, true);
             }
-            return null;
+            return APIUtility.BindResponse(result, false);
         }
 
-        public async Task<int> PostRole(Role role)
+        public async Task<Response> CreateRole(Role role)
         {
-            if (_dBContext != null)
-            {
                 await _dBContext.Roles.AddAsync(role);
-                await _dBContext.SaveChangesAsync();
-                return role.Id;
+               var result = await _dBContext.SaveChangesAsync();
+            if (result != 0)
+            {
+                return APIUtility.BindResponse(result, true);
             }
-            return 0;
+            return APIUtility.BindResponse(result, false);
         }
     }
 }

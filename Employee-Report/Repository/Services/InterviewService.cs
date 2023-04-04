@@ -13,12 +13,12 @@ namespace Employee_Report.Repository.Services
         }
         public async Task<Response> GetInterviews()
         {
-            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GetInterviews, _httpClient);
+            var entry = await Utility.HttpClientGetAsync(AppSettings.Config.GET_INTERVIEW, _httpClient);
             return entry;
         }
-        public async Task<Response> AddInterview(Interview interview)
+        public async Task<Response> CreateInterview(Interview interview)
         {
-            var entry = await Utility.HttpClientPostAsync(AppSettings.Config.AddInterviews, _httpClient, interview);
+            var entry = await Utility.HttpClientPostAsync(AppSettings.Config.CREATE_INTERVIEW, _httpClient, interview);
             return entry;
         }
     }
