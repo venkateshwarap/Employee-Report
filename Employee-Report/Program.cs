@@ -2,9 +2,16 @@ using Employee_Report.Auth;
 using Employee_Report.Repository.IServices;
 using Employee_Report.Repository.Services;
 using Employee_Report.Utilities;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.AzureAD.UI;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Identity.Web;
+using Microsoft.Identity.Web.UI;
 using Syncfusion.Blazor;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -43,7 +50,25 @@ builder.Services.AddSyncfusionBlazor();
 builder.Services.AddHttpClient();
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTIxMjA0MEAzMjMwMmUzNDJlMzBMalJWcXpUYTZBY09jeDZqNjQwVGRtK3lBU0dWMWladUU2Vi9XQVNmNFNzPQ==");
 ConfigurationHelper.Initialize(builder.Configuration);
-using (ServiceProvider serviceProvider = builder.Services.BuildServiceProvider())
+
+// Sign-in users with the Microsoft identity platform
+
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"), OpenIdConnectDefaults.AuthenticationScheme, "ADCookies");
+
+builder.Services.AddControllersWithViews(options =>
+{
+    var policy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+    options.Filters.Add(new AuthorizeFilter(policy));
+}).AddMicrosoftIdentityUI();
+
+builder.Services.AddRazorPages();
+
+
+
+using (ServiceProvider serviceProvider = builder.Services?.BuildServiceProvider())
 {
     var accessor = serviceProvider.GetService<IHttpContextAccessor>();
     Utility.SetHttpContextAccessor(accessor);
@@ -60,7 +85,8 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseStaticFiles();
 app.UseSession();
 app.Use(async delegate (HttpContext Context, Func<Task> Next)

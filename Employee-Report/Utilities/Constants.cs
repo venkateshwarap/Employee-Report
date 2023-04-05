@@ -106,5 +106,14 @@
         #endregion
 
         public const string EMPLOYEE_ID = "EmployeeId";
+
+
+        public const string AZ_AD_SECTION = "AzureAd";
+        public const string AZ_MICROSOFTGRAPH = "MicrosoftGraph";
+        public const string AZ_GRAPH_SCOPES = "MicrosoftGraph:Scopes";
+        public const string AZ_AD_RURL = "AzureAd:RedirectUri";
+        public const string AZ_SSO_SIGNOUT = "/signout-callback-oidc";
+
+        public const string SURVEY_API_SCOPE = "SurveyAPI:scopes";
     }
 }
